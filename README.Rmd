@@ -3,7 +3,7 @@
 tidystats
 ---------------
 
-**Authors:** [Willem Sleegers](http://willemsleegers.com/), [Arnoud Plantinga](http://http://arnoudplantinga.nl/)<br/>
+**Authors:** [Willem Sleegers](http://willemsleegers.com/), [Arnoud Plantinga](http://www.arnoudplantinga.nl/)<br/>
 **License:** [MIT](https://opensource.org/licenses/MIT)
 
 ## Setup
