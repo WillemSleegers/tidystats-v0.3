@@ -1,4 +1,4 @@
-#' Title
+#' Tidystats generic function
 #'
 #' \code{tidystats} is a generic function that returns a line of tidy stats.
 
