@@ -35,9 +35,9 @@ corr <- cor.test(x, y)
 results <- addstats(results, corr, "cor_x_y", "Hypothesis", "Correlation between x and y")
 ```
 
-Show the results:
+This is the resulting data.frame:
 
-```{r}
+```{r, echo = FALSE}
 library(pander)
 panderOptions("table.split.table", 1000)
 pander(results, style = "rmarkdown")
