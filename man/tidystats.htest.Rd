@@ -4,12 +4,13 @@
 \alias{tidystats.htest}
 \title{Tidystats method for an htest object}
 \usage{
-\method{tidystats}{htest}(identifier, model, description = NULL)
+\method{tidystats}{htest}(identifier, type = "", model, description = NULL)
 }
 \description{
 Creates a tidystats data.frame for an htest object.
 }
 \examples{
 ttest <- t.test(1:10, y = c(7:20))
-#' tidystats.htest("ttest_x_y", ttest, "A t-test for x and y")
+tidystats.htest("ttest_x_y", "Hypothesis", ttest, "A t-test for x and y")
+
 }
