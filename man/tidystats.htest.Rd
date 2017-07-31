@@ -4,21 +4,13 @@
 \alias{tidystats.htest}
 \title{Tidystats method for an htest object}
 \usage{
-<<<<<<< HEAD
-\method{tidystats}{htest}(ttest, description = "")
-=======
-\method{tidystats}{htest}(identifier, type = "", model, description = NULL)
->>>>>>> 4351146a59e5ecf271b234651629bcd081fcf139
+\method{tidystats}{htest}(model, identifier, type = "", description = NULL)
 }
 \description{
 Creates a tidystats data.frame for an htest object.
 }
 \examples{
 ttest <- t.test(1:10, y = c(7:20))
-<<<<<<< HEAD
-tidystats.htest(ttest)
-=======
 tidystats.htest("ttest_x_y", "Hypothesis", ttest, "A t-test for x and y")
 
->>>>>>> 4351146a59e5ecf271b234651629bcd081fcf139
 }
