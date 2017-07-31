@@ -18,7 +18,7 @@ new_stats_data_frame <- function() {
         std.error = NA,
         parameter = NA,
         statistic = NA,
-        p.value = NA,
+        p_value = NA,
         description = NA
     )
 }
