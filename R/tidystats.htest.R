@@ -1,6 +1,6 @@
-#' Title
+#' Tidystats method for an htest object
 #'
-#' Description
+#' Creates a tidystats data.frame for an htest object. 
 
 #' @Dependencies
 #' broom
