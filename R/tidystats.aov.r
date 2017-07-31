@@ -13,8 +13,8 @@ tidystats.aov <- function(model, identifier, type = "", description = NULL) {
     # Tidy the result to a data.frame
     tidy(model) %>%
         rename(
-            parameter = df,
-        )
+            parameter = df
+        ) %>%
         mutate(
             identifier = identifier,
             type = type,
