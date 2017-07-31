@@ -17,7 +17,10 @@
 #'@export
 correlation <- function(identifier, type, model, description = NULL) {
     
-    # Use the broom's tidy() function to retrieve relevant statistics, add the identifier and type information, and store the results in a data frame
+    # Create output data frame: 
+    # - Use the broom's tidy() function to retrieve relevant statistics
+    # - Add identifier and type information
+    # - Store the results in a data frame
     tidy(model) %>%
         select(method, estimate, statistic, p.value, parameter) %>%
         mutate(
