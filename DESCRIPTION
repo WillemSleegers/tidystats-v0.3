@@ -3,7 +3,8 @@ Title: Convience Functions for Producing Tidy Statistics Output
 Version: 0.0.0.9000
 Authors@R: person("Willem", "Sleegers", email = "w.sleegers@me.com", role = c("aut", "cre"))
 Description: Set of convenience functions to produce a data file containing the output of statistical models and to assist with a workflow aimed at writing scientific papers using R Markdown. The package is based on tidy principles (i.e., the tidyverse; Wickham, 2017).
-Depends: R (>= 3.4.1), tibble
+Depends: R (>= 3.4.1)
+Imports: broom, tibble, dplyr
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
