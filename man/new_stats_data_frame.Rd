@@ -11,4 +11,5 @@ This function allows you to create an empty data frame to store the descriptive 
 }
 \examples{
 new_stats_data_frame()
+
 }
