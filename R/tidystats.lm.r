@@ -20,9 +20,9 @@ tidystats.lm <- function(model, identifier, type = "", description = NULL) {
         mutate(
             identifier = identifier,
             type = type,
-            method = "lm"
+            method = "Linear regression"
         ) %>%
-        select(identifier, type, method, everything()) -> output
+        select(identifier, type, method, term, everything()) -> output
     
     # Add description if provided
     if (!is.null(description)) {
