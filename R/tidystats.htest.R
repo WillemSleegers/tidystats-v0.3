@@ -11,7 +11,7 @@
 #'@import tibble
 #'@importFrom magrittr %>%
 
-tidystats.htest <- function(identifier, type = "", model, description = NULL) {
+tidystats.htest <- function(model, identifier, type = "", description = NULL) {
 
     # Tidy the result to a data.frame
     broom::tidy(model) %>%
