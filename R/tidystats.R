@@ -2,7 +2,8 @@
 #'
 #' \code{tidystats} is a generic function that returns a line of tidy stats.
 
-#' @examples
-#' tidystats.t.test()
+# @examples
+# 
 
+#'@export
 tidystats <- function(model, identifier, type = "", description = NULL) UseMethod("tidystats")

@@ -11,6 +11,7 @@
 #'@import tibble
 #'@importFrom magrittr %>%
 
+#'@export
 tidystats.htest <- function(model, identifier, type = "", description = NULL) {
 
     # Tidy the result to a data.frame
