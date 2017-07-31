@@ -6,7 +6,8 @@
 #' broom
 
 #' @examples
-#' tidystats.t.test()
+#' ttest <- t.test(1:10, y = c(7:20))
+#' tidystats.htest(ttest)
 
 tidystats.htest <- function(ttest, description = "") {
     # Tidy the result to a data.frame
