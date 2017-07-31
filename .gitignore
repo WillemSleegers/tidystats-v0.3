@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+tidystats.Rproj
+.DS_Store
+.Rbuildignore
+.gitignore
