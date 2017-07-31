@@ -3,7 +3,7 @@
 #' This function allows you to create an empty data frame to store the descriptive information and output of statistical models in.
 
 #' @Dependencies
-#' tibble, broom, dplyr
+#' tibble
 
 #' @examples
 #' new_stats_data_frame()
