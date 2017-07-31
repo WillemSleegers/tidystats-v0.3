@@ -8,4 +8,4 @@
 #' @examples
 #' tidystats.t.test()
 
-tidystats <- function(test, description = "") UseMethod("tidystats")
+tidystats <- function(identifer, model, description = NULL) UseMethod("tidystats")
