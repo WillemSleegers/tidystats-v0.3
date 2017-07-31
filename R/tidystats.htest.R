@@ -15,7 +15,7 @@ tidystats.htest <- function(identifier, model, description = NULL) {
         select(estimate, statistic, p.value, parameter) %>% 
         mutate(
             identifier = identifier,
-            type = "t.test"
+            type = "t-test"
         ) %>% 
         select(identifier, type, everything()) -> output
     
