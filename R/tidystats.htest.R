@@ -7,21 +7,25 @@
 
 #' @examples
 #' ttest <- t.test(1:10, y = c(7:20))
-#' tidystats.htest(ttest)
+#' #' tidystats.htest("ttest_x_y", ttest, "A t-test for x and y")
 
-tidystats.htest <- function(ttest, description = "") {
+tidystats.htest <- function(identifier, model, description = NULL) {
     # Tidy the result to a data.frame
-    results <- broom::tidy(ttest)
+    broom::tidy(model) %>% 
+        select(estimate, statistic, p.value, parameter) %>% 
+        mutate(
+            identifier = identifier,
+            type = "t.test"
+        ) %>% 
+        select(identifier, type, everything()) -> output
     
-    # Create variables
-    identifier <- ""
-    type <- "t.test"
-    term <- "t"
-    estimate <- results$estimate
-    std_error <- NA
-    statistic <- results$statistic
-    p_value <- results$p.value
+    # Add description if provided
+    if (!is.null(description)) {
+        output %>%
+            mutate(
+                description = description
+            ) -> output
+    }
     
-    # Return data.frame of all variables
-    data.frame(identifier, type, term, estimate, std_error, statistic, p_value, description)
+    return(output)
 }
