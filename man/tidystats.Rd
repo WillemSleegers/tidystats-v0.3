@@ -2,9 +2,15 @@
 % Please edit documentation in R/tidystats.R
 \name{tidystats}
 \alias{tidystats}
+<<<<<<< HEAD
 \title{Tidystats generic function}
 \usage{
 tidystats(identifer, model, description = NULL)
+=======
+\title{Title}
+\usage{
+tidystats(test, description = "")
+>>>>>>> 5c3a4c5b629b60e2855cfd2c73076fd9b2127c7f
 }
 \description{
 \code{tidystats} is a generic function that returns a line of tidy stats.
