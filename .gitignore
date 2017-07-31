@@ -2,6 +2,13 @@
 .Rhistory
 .RData
 .Ruserdata
+<<<<<<< HEAD
+tidystats.Rproj
+.DS_Store
+.Rbuildignore
+.gitignore
+=======
 *.Rbuildignore
 tidystats.Rproj
 *.Rproj
+>>>>>>> 4351146a59e5ecf271b234651629bcd081fcf139
