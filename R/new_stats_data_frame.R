@@ -1,0 +1,23 @@
+#' Create Empty Stats Data Frame
+#'
+#' This function allows you to create an empty data frame to store the descriptive information and output of statistical models in.
+
+#' @Dependencies
+#' tibble
+
+#' @examples
+#' new_stats_data_frame()
+
+new_stats_data_frame <- function() {
+
+    return <- tibble::data_frame(
+        identifier = NA,
+        type = NA,
+        term = NA,
+        estimate = NA,
+        std.error = NA,
+        statistic = NA,
+        p.value = NA,
+        description = NA
+    )
+}
