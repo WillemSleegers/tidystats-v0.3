@@ -9,6 +9,3 @@ tidystats(model, identifier, type = "", description = NULL)
 \description{
 \code{tidystats} is a generic function that returns a line of tidy stats.
 }
-\examples{
-tidystats.t.test()
-}

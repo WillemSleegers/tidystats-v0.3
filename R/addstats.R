@@ -9,6 +9,7 @@
 
 #'@import dplyr
 
+#'@export
 addstats <- function(results, model, identifier, type = "", description = NULL) {
     
     # Create the new row

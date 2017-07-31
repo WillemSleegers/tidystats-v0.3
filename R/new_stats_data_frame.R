@@ -7,6 +7,7 @@
 #' 
 #'@import tibble
 
+#'@export
 new_stats_data_frame <- function() {
 
     return <- tibble::data_frame(
