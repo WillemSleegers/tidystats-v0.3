@@ -40,7 +40,7 @@ Show the results:
 ```{r}
 library(pander)
 panderOptions("table.split.table", 1000)
-pander(results, style = "grid")
+pander(results, style = "rmarkdown")
 ```
 
 

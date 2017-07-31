@@ -42,18 +42,14 @@ Show the results:
 ```r
 library(pander)
 panderOptions("table.split.table", 1000)
-pander(results, style = "grid")
+pander(results, style = "rmarkdown")
 ```
 
 
 
-+--------------+------------+--------------------------+------------+-------------+-----------+-------------+-----------------------------+
-|  identifier  |    type    |          method          |  estimate  |  statistic  |  p.value  |  parameter  |         description         |
-+==============+============+==========================+============+=============+===========+=============+=============================+
-|  ttest_x_y   | Hypothesis | Welch Two Sample t-test  |     -8     |   -5.435    | 1.855e-05 |    21.98    |     A t-test of x and y     |
-+--------------+------------+--------------------------+------------+-------------+-----------+-------------+-----------------------------+
-|   cor_x_y    | Hypothesis | Pearson's product-moment |   0.5712   |    1.841    |  0.1082   |      7      | Correlation between x and y |
-|              |            |       correlation        |            |             |           |             |                             |
-+--------------+------------+--------------------------+------------+-------------+-----------+-------------+-----------------------------+
+|  identifier  |    type    |                method                |  estimate  |  statistic  |  p.value  |  parameter  |         description         |
+|:------------:|:----------:|:------------------------------------:|:----------:|:-----------:|:---------:|:-----------:|:---------------------------:|
+|  ttest_x_y   | Hypothesis |       Welch Two Sample t-test        |     -8     |   -5.435    | 1.855e-05 |    21.98    |     A t-test of x and y     |
+|   cor_x_y    | Hypothesis | Pearson's product-moment correlation |   0.5712   |    1.841    |  0.1082   |      7      | Correlation between x and y |
 
 
