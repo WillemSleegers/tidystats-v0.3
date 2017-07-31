@@ -36,15 +36,7 @@ corr <- cor.test(x, y)
 results <- addstats(results, corr, "cor_x_y", "Hypothesis", "Correlation between x and y")
 ```
 
-Show the results:
-
-
-```r
-library(pander)
-panderOptions("table.split.table", 1000)
-pander(results, style = "rmarkdown")
-```
-
+This is the resulting data.frame:
 
 
 |  identifier  |    type    |                method                |  estimate  |  statistic  |  p.value  |  parameter  |         description         |
