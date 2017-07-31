@@ -15,7 +15,7 @@ new_stats_data_frame <- function() {
         type = NA,
         term = NA,
         estimate = NA,
-        std.error = NA,
+        std_error = NA,
         parameter = NA,
         statistic = NA,
         p_value = NA,
