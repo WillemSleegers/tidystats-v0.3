@@ -4,7 +4,7 @@
 \alias{report}
 \title{Report generic function}
 \usage{
-report(x, ...)
+report(object, ...)
 }
 \description{
 \code{report} is a generic function that reports a test in APA style.

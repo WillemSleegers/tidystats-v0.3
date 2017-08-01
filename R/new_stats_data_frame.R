@@ -25,4 +25,5 @@ new_stats_data_frame <- function() {
   )
   output$type <- factor(output$type, levels = c("hypothesis", "manipulation check", "contrast",
                                                 "other"))
+  return(output)
 }

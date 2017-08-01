@@ -15,13 +15,21 @@
 tidystats.htest <- function(model, identifier, type = "other", description = NULL) {
 
   # Tidy the result to a data.frame
-  tidy(model) %>%
-    select(one_of("estimate", "statistic", "p.value", "parameter", "method")) %>%
-    mutate(
-      identifier = identifier,
-      type = type
-    ) %>%
-    select(identifier, type, method, everything()) -> output
+    # Set the variables to select
+    if (!is.null(model$parameter)) {
+      vars <- c("estimate", "statistic", "p.value", "parameter", "method")
+    } else {
+      vars <- c("estimate", "statistic", "p.value", "method")
+    }
+
+    # Create the variables
+    tidy(model) %>%
+      select(one_of(vars)) %>%
+      mutate(
+        identifier = identifier,
+        type = type
+      ) %>%
+      select(identifier, type, method, everything()) -> output
 
   # Add description if provided
   if (!is.null(description)) {

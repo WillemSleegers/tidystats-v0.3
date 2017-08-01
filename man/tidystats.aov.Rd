@@ -4,7 +4,8 @@
 \alias{tidystats.aov}
 \title{Tidystats method for an aov object}
 \usage{
-\method{tidystats}{aov}(model, identifier, type = "", description = NULL)
+\method{tidystats}{aov}(model, identifier, type = "other",
+  description = NULL)
 }
 \description{
 Creates a tidystats data.frame for an aov object.

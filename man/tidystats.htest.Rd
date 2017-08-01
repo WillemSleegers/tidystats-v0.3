@@ -4,7 +4,8 @@
 \alias{tidystats.htest}
 \title{Tidystats method for an htest object}
 \usage{
-\method{tidystats}{htest}(model, identifier, type = "", description = NULL)
+\method{tidystats}{htest}(model, identifier, type = "other",
+  description = NULL)
 }
 \description{
 Creates a tidystats data.frame for an htest object.

@@ -4,7 +4,8 @@
 \alias{tidystats.lm}
 \title{Tidystats method for an lm object}
 \usage{
-\method{tidystats}{lm}(model, identifier, type = "", description = NULL)
+\method{tidystats}{lm}(model, identifier, type = "other",
+  description = NULL)
 }
 \description{
 Creates a tidystats data.frame for an lm object.

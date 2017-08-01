@@ -4,7 +4,7 @@
 \alias{tidystats}
 \title{Tidystats generic function}
 \usage{
-tidystats(model, identifier, type = "", description = NULL)
+tidystats(model, identifier, type = "other", description = NULL)
 }
 \description{
 \code{tidystats} is a generic function that returns a line of tidy stats.
