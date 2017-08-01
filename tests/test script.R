@@ -10,7 +10,6 @@ library(tidystats)
 # Create empty tidy stats data frame
 results <- new_stats_data_frame()
 
-
 # Test independent t-test -------------------------------------------------
 
 # Use the 'sleep' data set
@@ -23,7 +22,6 @@ model1 <- t.test(extra ~ group, data = sleep)
 results <- add_stats(results, model1, identifier = "M1", type = "hypothesis",
   description = "Test whether an independent t-test works.")
 
-
 # Test paired t-test ------------------------------------------------------
 
 # Use the sleep data set
@@ -35,7 +33,6 @@ model2 <- t.test(extra ~ group, data = sleep, paired = T)
 # Add model output to results
 results <- add_stats(results, model2, identifier = "M2", type = "hypothesis",
   description = "Test whether a paired t-test works.")
-
 
 # Test correlation --------------------------------------------------------
 
@@ -64,7 +61,6 @@ model5 <- cor.test(x, y, method = "spearman")
 results <- add_stats(results, model5, identifier = "M5", type = "hypothesis",
   description = "Test whether a Spearman's rank correlation rho works.")
 
-
 # Test regression ---------------------------------------------------------
 
 # Use the 'attitude' data set
@@ -90,7 +86,6 @@ model8 <- lm(rating ~ complaints * critical, data = attitude)
 # Add model output to results
 results <- add_stats(results, model8, identifier = "M8", type = "hypothesis",
   description = "Test whether regression with an interaction effect works.")
-
 
 # Test ANOVA --------------------------------------------------------------
 
