@@ -28,12 +28,7 @@ add_stats <- function(results, model, identifier = NULL, type = "other", descrip
   }
 
   # Add the new row to the data.frame
-  if (is.na(results[1, 1])) {
-    # Overwrite the existing result
-    new_results <- new_row
-  } else {
-    new_results <- bind_rows(results, new_row)
-  }
+  new_results <- bind_rows(results, new_row)
 
   # Return the new results data.frame
   return(new_results)

@@ -11,17 +11,17 @@
 new_stats_data_frame <- function() {
 
   output <- tibble::data_frame(
-    identifier = NA,
-    type = NA,
-    method = NA,
-    term = NA,
-    estimate = NA,
-    std_error = NA,
-    parameter = NA,
-    statistic = NA,
-    p_value = NA,
-    effect_size = NA,
-    description = NA
+    identifier = character(),
+    type = factor(),
+    method = character(),
+    term = character(),
+    estimate = double(),
+    std_error = double(),
+    parameter = double(),
+    statistic = double(),
+    p_value = double(),
+    effect_size = double(),
+    description = character()
   )
   output$type <- factor(output$type, levels = c("hypothesis", "manipulation check", "contrast",
                                                 "other"))
