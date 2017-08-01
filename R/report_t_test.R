@@ -2,9 +2,11 @@
 #'
 #' Function to report a t-test in APA style.
 
-# @examples
-# ttest <- t.test(1:10, y = c(7:20))
-# tidystats.htest("ttest_x_y", "Hypothesis", ttest, "A t-test for x and y")
+#' @examples
+#' results <- new_stats_data_frame()
+#' ttest <- t.test(1:10, y = c(7:20))
+#' results <- add_stats(results, ttest, "ttest1")
+#' report_t_test(results, "ttest1")
 #'
 #'@import dplyr
 #'@import broom
@@ -17,7 +19,7 @@ report_t_test <- function(results, identifier, statistic = NULL) {
   res <- results %>%
     filter(identifier == identifier) %>%
     select(parameter, estimate, p.value, effect_size) %>%
-    mutate_at(vars(parameter, effect_size), ~ formatC(., digits = 2, format = "f")) %>%
+    mutate_at(vars(estimate, parameter, effect_size), ~ formatC(., digits = 2, format = "f")) %>%
     mutate(p.value = report_p_value(p.value))
 
   # Report the test
