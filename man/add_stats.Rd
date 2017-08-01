@@ -4,7 +4,8 @@
 \alias{add_stats}
 \title{add_stats Generic Function}
 \usage{
-add_stats(results, model, identifier, type = "", description = NULL)
+add_stats(results, model, identifier = NULL, type = "other",
+  description = NULL)
 }
 \description{
 \code{add_stats} is a generic function to add a line of tidy stats to a tidy stats data.frame.
