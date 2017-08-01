@@ -16,7 +16,10 @@ tidystats.lm <- function(model, identifier, type = "other", description = NULL) 
 
   # Tidy the result to a data.frame
   tidy(model) %>%
-    select(one_of("term", "estimate", "std.error", "statistic", "p.value")) %>%
+    rename(
+      p_value = p.value,
+      std_error = std.error) %>%
+    select(one_of("term", "estimate", "std_error", "statistic", "p_value")) %>%
     mutate(
       identifier = identifier,
       type = type,
