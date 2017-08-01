@@ -13,20 +13,20 @@
 
 #'@export
 report_t_test <- function(results, identifier, statistic = NULL) {
-    # Get the parameters
-    res <- results %>%
-        select(parameter, estimate, p.value, effect_size) %>%
-        mutate_at(vars(parameter, effect_size), ~ formatC(., digits = 2, format = "f")) %>%
-        mutate(p.value = report_p_value(p.value))
+  # Get the parameters
+  res <- results %>%
+    select(parameter, estimate, p.value, effect_size) %>%
+    mutate_at(vars(parameter, effect_size), ~ formatC(., digits = 2, format = "f")) %>%
+    mutate(p.value = report_p_value(p.value))
 
-    # Report the test
-    if (is.null(statistic)) {
-        with(res,
-            paste0("*t*(", res$parameter, ") = ", estimate, ", ", p.value, ", *d* = ",
-                   effect_size)
-        )
-    } else {
-    # Report a specific statistic
-        res[statistic]
-    }
+  # Report the test
+  if (is.null(statistic)) {
+    with(res,
+      paste0("*t*(", res$parameter, ") = ", estimate, ", ", p.value, ", *d* = ",
+           effect_size)
+    )
+  } else {
+  # Report a specific statistic
+    res[statistic]
+  }
 }

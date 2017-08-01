@@ -14,23 +14,23 @@
 #'@export
 tidystats.lm <- function(model, identifier, type = "", description = NULL) {
 
-    # Tidy the result to a data.frame
-    tidy(model) %>%
-        select(one_of("term", "estimate", "std.error", "statistic", "p.value")) %>%
-        mutate(
-            identifier = identifier,
-            type = type,
-            method = "Linear regression"
-        ) %>%
-        select(identifier, type, method, term, everything()) -> output
+  # Tidy the result to a data.frame
+  tidy(model) %>%
+    select(one_of("term", "estimate", "std.error", "statistic", "p.value")) %>%
+    mutate(
+      identifier = identifier,
+      type = type,
+      method = "Linear regression"
+    ) %>%
+    select(identifier, type, method, term, everything()) -> output
 
-    # Add description if provided
-    if (!is.null(description)) {
-        output %>%
-            mutate(
-                description = description
-            ) -> output
-    }
+  # Add description if provided
+  if (!is.null(description)) {
+    output %>%
+      mutate(
+        description = description
+      ) -> output
+  }
 
-    return(output)
+  return(output)
 }

@@ -10,17 +10,17 @@
 #'@export
 new_stats_data_frame <- function() {
 
-    return <- tibble::data_frame(
-        identifier = NA,
-        type = NA,
-        method = NA,
-        term = NA,
-        estimate = NA,
-        std_error = NA,
-        parameter = NA,
-        statistic = NA,
-        p_value = NA,
-        effect_size = NA,
-        description = NA
-    )
+  return <- tibble::data_frame(
+    identifier = NA,
+    type = NA,
+    method = NA,
+    term = NA,
+    estimate = NA,
+    std_error = NA,
+    parameter = NA,
+    statistic = NA,
+    p_value = NA,
+    effect_size = NA,
+    description = NA
+  )
 }

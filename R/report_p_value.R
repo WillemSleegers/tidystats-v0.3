@@ -10,9 +10,9 @@
 #'@export
 report_p_value <- function(p_value) {
 
-    if (p_value >= .001) {
-        paste("*p* =", gsub(formatC(p_value, digits = 3, format = "f"), "0\\.", "."))
-    } else {
-        paste("*p* < .001")
-    }
+  if (p_value >= .001) {
+    paste("*p* =", gsub(formatC(p_value, digits = 3, format = "f"), "0\\.", "."))
+  } else {
+    paste("*p* < .001")
+  }
 }

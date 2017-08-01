@@ -14,27 +14,27 @@
 #'@export
 tidystats.htest <- function(model, identifier, type = "", description = NULL) {
 
-    # Tidy the result to a data.frame
-    tidy(model) %>%
-        select(one_of("estimate", "statistic", "p.value", "parameter", "method")) %>%
-        mutate(
-            identifier = identifier,
-            type = type
-        ) %>%
-        select(identifier, type, method, everything()) -> output
+  # Tidy the result to a data.frame
+  tidy(model) %>%
+    select(one_of("estimate", "statistic", "p.value", "parameter", "method")) %>%
+    mutate(
+      identifier = identifier,
+      type = type
+    ) %>%
+    select(identifier, type, method, everything()) -> output
 
-    # Add description if provided
-    if (!is.null(description)) {
-        output %>%
-            mutate(
-                description = description
-            ) -> output
-    }
+  # Add description if provided
+  if (!is.null(description)) {
+    output %>%
+      mutate(
+        description = description
+      ) -> output
+  }
 
-    # Add Cohen's d
-    if (grepl("t-test", model$method)) {
-        output$effect_size <- 2*model$statistic/sqrt(model$parameter)
-    }
+  # Add Cohen's d
+  if (grepl("t-test", model$method)) {
+    output$effect_size <- 2*model$statistic/sqrt(model$parameter)
+  }
 
-    return(output)
+  return(output)
 }
