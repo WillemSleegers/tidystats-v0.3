@@ -20,7 +20,7 @@ sleep
 model1 <- t.test(extra ~ group, data = sleep)
 
 # Add model output to results
-results <- addstats(results, model1, identifier = "M1", type = "hypothesis", description = "Test whether an independent t-test works.")
+results <- add_stats(results, model1, identifier = "M1", type = "hypothesis", description = "Test whether an independent t-test works.")
 
 
 # Test paired t-test ------------------------------------------------------
@@ -32,7 +32,7 @@ sleep
 model2 <- t.test(extra ~ group, data = sleep, paired = T)
 
 # Add model output to results
-results <- addstats(results, model2, identifier = "M2", type = "hypothesis", description = "Test whether a paired t-test works.")
+results <- add_stats(results, model2, identifier = "M2", type = "hypothesis", description = "Test whether a paired t-test works.")
 
 
 # Test correlation --------------------------------------------------------
@@ -45,19 +45,19 @@ y <- c( 2.6,  3.1,  2.5,  5.0,  3.6,  4.0,  5.2,  2.8,  3.8)
 model3 <- cor.test(x, y, method = "pearson")
 
 # Add model output to results
-results <- addstats(results, model3, identifier = "M3", type = "hypothesis", description = "Test whether a Pearson's product moment correlation works.")
+results <- add_stats(results, model3, identifier = "M3", type = "hypothesis", description = "Test whether a Pearson's product moment correlation works.")
 
 # Run model (Kendall's rank correlation tau)
 model4 <- cor.test(x, y, method = "kendall")
 
 # Add model output to results
-results <- addstats(results, model4, identifier = "M4", type = "hypothesis", description = "Test whether a Kendall's rank correlation tau works.")
+results <- add_stats(results, model4, identifier = "M4", type = "hypothesis", description = "Test whether a Kendall's rank correlation tau works.")
 
 # Run model (Kendall's rank correlation tau)
 model5 <- cor.test(x, y, method = "spearman")
 
 # Add model output to results
-results <- addstats(results, model5, identifier = "M5", type = "hypothesis", description = "Test whether a Spearman's rank correlation rho works.")
+results <- add_stats(results, model5, identifier = "M5", type = "hypothesis", description = "Test whether a Spearman's rank correlation rho works.")
 
 
 # Test regression ---------------------------------------------------------
@@ -69,19 +69,19 @@ attitude
 model6 <- lm(rating ~ complaints, data = attitude)
 
 # Add model output to results
-results <- addstats(results, model6, identifier = "M6", type = "hypothesis", description = "Test whether regression with 1 predictor works.")
+results <- add_stats(results, model6, identifier = "M6", type = "hypothesis", description = "Test whether regression with 1 predictor works.")
 
 # Run model with 2 predictors
 model7 <- lm(rating ~ complaints + critical, data = attitude)
 
 # Add model output to results
-results <- addstats(results, model7, identifier = "M7", type = "hypothesis", description = "Test whether regression with 2 predictors works.")
+results <- add_stats(results, model7, identifier = "M7", type = "hypothesis", description = "Test whether regression with 2 predictors works.")
 
 # Run model with interaction effect
 model8 <- lm(rating ~ complaints * critical, data = attitude)
 
 # Add model output to results
-results <- addstats(results, model8, identifier = "M8", type = "hypothesis", description = "Test whether regression with an interaction effect works.")
+results <- add_stats(results, model8, identifier = "M8", type = "hypothesis", description = "Test whether regression with an interaction effect works.")
 
 
 # Test ANOVA --------------------------------------------------------------
@@ -97,4 +97,4 @@ affect$Film <- factor(affect$Film)
 model9 <- aov(PA2 ~ Film, data = affect)
 
 # Add model output to results
-results <- addstats(results, model9, identifier = "M9", type = "hypothesis", description = "Test whether regression with an interaction effect works.")
+results <- add_stats(results, model9, identifier = "M9", type = "hypothesis", description = "Test whether regression with an interaction effect works.")
