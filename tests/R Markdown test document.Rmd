@@ -1,0 +1,29 @@
+---
+title: "Tidystats R Markdown test document"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load packages
+library(tidyverse)
+library(knitr)
+library(tidystats)
+```
+
+## Setup
+
+Start by reading in the data frame containing the output of all the statistical models.
+
+```{r get_results, message=FALSE}
+results <- read_csv("results.csv")
+```
+
+Let's print the results to a table.
+
+`r kable(results)`
+
+## Report t-test
+
+In our tests we conducted an independent t-test on Student's sleep data. We tested whether there was a difference between the two groups in how much extra sleep they got. The results show that this was not the case, `r report_t_test(results, "M1")`.  
