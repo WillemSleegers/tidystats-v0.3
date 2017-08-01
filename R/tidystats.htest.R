@@ -12,7 +12,7 @@
 #'@importFrom magrittr %>%
 
 #'@export
-tidystats.htest <- function(model, identifier, type = "", description = NULL) {
+tidystats.htest <- function(model, identifier, type = "other", description = NULL) {
 
   # Tidy the result to a data.frame
   tidy(model) %>%
