@@ -1,10 +1,10 @@
 #' Create Empty Stats Data Frame
 #'
-#' This function allows you to create an empty data frame to store the descriptive information and output of statistical models in.
+#' This function allows you to create an empty data frame to store the output of statistical models in.
 
 #' @examples
 #' new_stats_data_frame()
-#' 
+#'
 #'@import tibble
 
 #'@export
