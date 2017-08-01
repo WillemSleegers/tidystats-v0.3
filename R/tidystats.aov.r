@@ -9,7 +9,7 @@
 
 #'@export
 tidystats.aov <- function(model, identifier, type = "", description = NULL) {
-    
+
     # Tidy the result to a data.frame
     tidy(model) %>%
         rename(
@@ -21,7 +21,7 @@ tidystats.aov <- function(model, identifier, type = "", description = NULL) {
             method = "ANOVA"
         ) %>%
         select(identifier, type, method, term, everything()) -> output
-    
+
     # Add description if provided
     if (!is.null(description)) {
         output %>%
@@ -29,6 +29,6 @@ tidystats.aov <- function(model, identifier, type = "", description = NULL) {
                 description = description
             ) -> output
     }
-    
+
     return(output)
 }
