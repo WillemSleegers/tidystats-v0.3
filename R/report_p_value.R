@@ -1,6 +1,6 @@
 #' Report p-value function
 #'
-#' A helper function to report p values in APA style. 
+#' A helper function to report p values in APA style.
 
 #' @examples
 #' report_p_value(.45)
@@ -9,9 +9,9 @@
 
 #'@export
 report_p_value <- function(p_value) {
-    
+
     if (p_value >= .001) {
-        paste("*p* =", gsub(format(p_value, digits = 2), "0\\.", ".")) 
+        paste("*p* =", gsub("0\\.", ".", formatC(p_value, digits = 3, format = "f"))) 
     } else {
         paste("*p* < .001")
     }
