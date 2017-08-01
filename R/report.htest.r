@@ -24,13 +24,13 @@ report.htest <- function(results, identifier, statistic = NULL) {
     if (is.null(statistic)) {
         stats <- filter(results, identifier == identifier)
         
-        paste0(
+        text <- paste0(
             "*t*(", stats$parameter, ") = ", stats$statistic, ", ", 
             report_p_value(stats$p.value))
     } else {
-        stats <- filter(results, identifier == identifier)$statistic
+        text <- paste(filter(results, identifier == identifier)$statistic)
     }
     
-    return(stats)
+    return(text)
 }
 
