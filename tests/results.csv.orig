@@ -1,7 +1,0 @@
-"M1","hypothesis","Welch Two Sample t-test",-1.58,-1.86081346748685,0.0793941401873582,17.7764735161785,"Test whether an independent t-test works.",-0.882693708576179,,,,
-"M2","hypothesis","Paired t-test",-1.58,-4.06212768338204,0.00283289019738427,9,"Test whether a paired t-test works.",-2.70808512225469,,,,
-"M3","hypothesis","Pearson's product-moment correlation",0.571181557563829,1.84108263811534,0.108173054349494,7,"Test whether a Pearson's product moment correlation works.",,,,,
-"M4","hypothesis","Kendall's rank correlation tau",0.444444444444445,26,0.1194389329806,,"Test whether a Kendall's rank correlation tau works.",,,,,
-"M5","hypothesis","Spearman's rank correlation rho",0.6,48,0.0967978395061728,,"Test whether a Spearman's rank correlation rho works.",,,,,
-"M6","hypothesis","Linear regression",14.3763194066236,2.17165404562682,0.0385083291204266,,"Test whether regression with 1 predictor works.",,"(Intercept)",6.61998601276941,,
-"M9","hypothesis","ANOVA",,,,326,"Test whether regression with an interaction effect works.",,"Residuals",,12626.4446969844,38.7314254508725
