@@ -14,10 +14,10 @@
 #'@importFrom magrittr %>%
 
 #'@export
-report_t_test <- function(results, identifier, statistic = NULL) {
+report_t_test <- function(results, ID, statistic = NULL) {
   # Get the parameters
   res <- results %>%
-    filter(identifier == identifier) %>%
+    filter(identifier == ID) %>%
     select(parameter, estimate, p.value, effect_size) %>%
     mutate_at(vars(estimate, parameter, effect_size), ~ formatC(., digits = 2, format = "f")) %>%
     mutate(p.value = report_p_value(p.value))
