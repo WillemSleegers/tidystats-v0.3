@@ -17,13 +17,14 @@ tidystats.htest <- function(model, identifier, type = "other", description = NUL
   # Tidy the result to a data.frame
     # Set the variables to select
     if (!is.null(model$parameter)) {
-      vars <- c("estimate", "statistic", "p.value", "parameter", "method")
+      vars <- c("estimate", "statistic", "p_value", "parameter", "method")
     } else {
-      vars <- c("estimate", "statistic", "p.value", "method")
+      vars <- c("estimate", "statistic", "p_value", "method")
     }
 
     # Create the variables
     tidy(model) %>%
+      rename(p_value = p.value) %>%
       select(one_of(vars)) %>%
       mutate(
         identifier = identifier,
