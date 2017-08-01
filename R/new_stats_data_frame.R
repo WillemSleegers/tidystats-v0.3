@@ -20,6 +20,7 @@ new_stats_data_frame <- function() {
         parameter = NA,
         statistic = NA,
         p_value = NA,
+        effect_size = NA,
         description = NA
     )
 }
