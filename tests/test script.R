@@ -107,3 +107,7 @@ model9 <- aov(PA2 ~ Film, data = affect)
 # Add model output to results
 results <- add_stats(results, model9, identifier = "M9", type = "hypothesis",
     description = "Test whether regression with an interaction effect works.")
+
+# Save to file --------------------------------------------------------------------------------
+
+write.csv(results, file = "tests/results.csv", row.names = FALSE, na = "")

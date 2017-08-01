@@ -1,0 +1,2 @@
+"identifier","type","method","estimate","statistic","p.value","parameter","description","effect_size"
+"M1","hypothesis","Welch Two Sample t-test",-1.58,-1.86081346748685,0.0793941401873582,17.7764735161785,"Test whether an independent t-test works.",-0.882693708576179
