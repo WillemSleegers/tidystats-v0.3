@@ -12,7 +12,7 @@
 #'@importFrom magrittr %>%
 
 #'@export
-tidystats.htest <- function(model, identifier, type = "", description = NULL) {
+tidystats.htest <- function(model, identifier, type = "other", description = NULL) {
 
   # Tidy the result to a data.frame
   tidy(model) %>%
@@ -33,7 +33,7 @@ tidystats.htest <- function(model, identifier, type = "", description = NULL) {
 
   # Add Cohen's d
   if (grepl("t-test", model$method)) {
-    output$effect_size <- 2*model$statistic/sqrt(model$parameter)
+    output$effect_size <- 2 * model$statistic / sqrt(model$parameter)
   }
 
   return(output)

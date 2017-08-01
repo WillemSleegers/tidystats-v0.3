@@ -10,7 +10,7 @@
 #'@export
 new_stats_data_frame <- function() {
 
-  return <- tibble::data_frame(
+  output <- tibble::data_frame(
     identifier = NA,
     type = NA,
     method = NA,
@@ -23,4 +23,6 @@ new_stats_data_frame <- function() {
     effect_size = NA,
     description = NA
   )
+  output$type <- factor(output$type, levels = c("hypothesis", "manipulation check", "contrast",
+                                                "other"))
 }
