@@ -20,7 +20,7 @@ add_stats <- function(results, model, identifier = NULL, type = "other", descrip
 
   # Create the new row
   new_row <- tidystats(model, identifier, type, description) %>%
-    mutate_at(vars(model, identifier, description), as.character)
+    mutate_at(vars(identifier, method, description), as.character)
 
   # Check if the identifier already exists
   if (identifier %in% results$identifier) {
