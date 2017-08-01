@@ -30,6 +30,9 @@ tidystats.htest <- function(model, identifier, type = "", description = NULL) {
                 description = description
             ) -> output
     }
+    
+    # Add Cohen's d
+    effect_size <- 2*model$statistic/sqrt(model$parameter)
 
     return(output)
 }
