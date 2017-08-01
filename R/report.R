@@ -6,4 +6,4 @@
 #
 
 #'@export
-report <- function(x, ...) UseMethod("report")
+report <- function(object, ...) UseMethod("report")
