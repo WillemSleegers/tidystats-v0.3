@@ -30,9 +30,11 @@ tidystats.htest <- function(model, identifier, type = "", description = NULL) {
                 description = description
             ) -> output
     }
-    
+
     # Add Cohen's d
-    output$effect_size <- 2*model$statistic/sqrt(model$parameter)
+    if (grepl("t-test", model$method)) {
+        output$effect_size <- 2*model$statistic/sqrt(model$parameter)
+    }
 
     return(output)
 }
