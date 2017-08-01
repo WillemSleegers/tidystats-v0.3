@@ -15,8 +15,8 @@
 tidystats.htest <- function(model, identifier, type = "", description = NULL) {
 
     # Tidy the result to a data.frame
-    broom::tidy(model) %>%
-        select(estimate, statistic, p.value, parameter, method) %>%
+    tidy(model) %>%
+        select(one_of("estimate", "statistic", "p.value", "parameter", "method")) %>%
         mutate(
             identifier = identifier,
             type = type
