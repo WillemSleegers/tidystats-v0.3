@@ -10,13 +10,7 @@
 #'@import dplyr
 
 #'@export
-add_stats <- function(results, model, identifier = NULL, type = "other", description = NULL) {
-
-  # Create an identifier if it is not specified
-  if (is.null(identifier)) {
-    identifier <- formatC(nrow(results), width = "2", format = "d", flag = "0") %>%
-      paste("Model", .)
-  }
+add_stats <- function(results, model, identifier, type = "other", description = NULL) {
 
   # Create the new row
   new_row <- tidystats(model, identifier, type, description) %>%
