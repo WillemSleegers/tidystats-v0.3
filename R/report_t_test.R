@@ -14,6 +14,7 @@
 #'@export
 report_t_test <- function(results, identifier, statistic = NULL) {
     # Get the parameters
+<<<<<<< HEAD
     res <- results %>%
         select(parameter, estimate, p.value, effect_size) %>%
         mutate_at(vars(parameter, effect_size), ~ formatC(., digits = 2, format = "f")) %>%
@@ -24,6 +25,17 @@ report_t_test <- function(results, identifier, statistic = NULL) {
         with(res,
             paste0("_t_(", res$parameter, ") = ", estimate, ", _p_ = ", p.value, ", _d_ = ", 
                    effect_size)
+=======
+    res <- results %>% 
+        select(parameter, estimate, p.value, effect_size) %>% 
+        mutate_at(vars(parameter, effect_size), ~ formatC(., digits = 2, format = "f")) %>% 
+        mutate_at(vars(p.value),                ~ formatC(., digits = 3, format = "f"))
+    
+    # Report the test
+    if (is.null(statistic)) {
+        with(res, 
+            paste0("_t_(", res$parameter, ") = ", estimate, ", _p_ = ", p.value, ", _d_ = ", effect_size)
+>>>>>>> 974053ecde75e145e75aa10f31c1fbc8e393bc28
              )
     } else {
     # Report a specific statistic
