@@ -7,7 +7,7 @@
 #' ttest <- t.test(1:10, y = c(7:20))
 #' results <- add_stats(results, ttest, "ttest1")
 #' report_t_test(results, "ttest1")
-
+#'
 #'@import dplyr
 #'@import broom
 #'@import tibble
