@@ -18,14 +18,14 @@ report_t_test <- function(results, ID, statistic = NULL) {
   # Get the parameters
   res <- results %>%
     filter(identifier == ID) %>%
-    select(parameter, estimate, p.value, effect_size) %>%
+    select(parameter, estimate, p_value, effect_size) %>%
     mutate_at(vars(estimate, parameter, effect_size), ~ formatC(., digits = 2, format = "f")) %>%
-    mutate(p.value = report_p_value(p.value))
+    mutate(p_value = report_p_value(p_value))
 
   # Report the test
   if (is.null(statistic)) {
     with(res,
-      paste0("*t*(", res$parameter, ") = ", estimate, ", ", p.value, ", *d* = ",
+      paste0("*t*(", res$parameter, ") = ", estimate, ", ", p_value, ", *d* = ",
            effect_size)
     )
   } else {
