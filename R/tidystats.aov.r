@@ -14,7 +14,7 @@ tidystats.aov <- function(model, identifier, type = "other", description = NULL)
   tidy(model) %>%
     rename(
       parameter = df,
-      p_valeu = p.value
+      p_value = p.value
     ) %>%
     mutate(
       identifier = identifier,
