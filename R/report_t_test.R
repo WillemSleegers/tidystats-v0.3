@@ -18,7 +18,6 @@ report_t_test <- function(results, identifier, statistic = NULL) {
         select(parameter, estimate, p.value, effect_size) %>%
         mutate_at(vars(parameter, effect_size), ~ formatC(., digits = 2, format = "f")) %>%
         mutate(p.value = report_p_value(p.value))
-        # mutate_at(vars(p.value),                ~ formatC(., digits = 3, format = "f"))
 
     # Report the test
     if (is.null(statistic)) {
