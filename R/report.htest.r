@@ -25,7 +25,7 @@ report.htest <- function(results, identifier, statistic = NULL) {
         stats <- filter(results, identifier == identifier)
         
         text <- paste0(
-            "*t*(", stats$parameter, ") = ", stats$statistic, ", ", 
+            "*t*(", format(stats$parameter, digits = 2, nsmall = 2), ") = ", format(stats$statistic, digits = 2, nsmall = 2), ", ", 
             report_p_value(stats$p.value))
     } else {
         text <- paste(filter(results, identifier == identifier)$statistic)
