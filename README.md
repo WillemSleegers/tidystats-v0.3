@@ -26,10 +26,6 @@ ttest <- t.test(1:10, y = c(7:20))
 results <- add_stats(results, ttest, "ttest_x_y", "Hypothesis", "A t-test of x and y")
 ```
 
-```
-## Error in add_stats(results, ttest, "ttest_x_y", "Hypothesis", "A t-test of x and y"): could not find function "add_stats"
-```
-
 Add a correlation:
 
 
@@ -40,17 +36,10 @@ corr <- cor.test(x, y)
 results <- add_stats(results, corr, "cor_x_y", "Hypothesis", "Correlation between x and y")
 ```
 
-```
-## Error in add_stats(results, corr, "cor_x_y", "Hypothesis", "Correlation between x and y"): could not find function "add_stats"
-```
-
 This is the resulting data.frame:
 
 
-```
-## Error in dimnames(x) <- dn: length of 'dimnames' [2] not equal to array extent
-```
-
-```
-## Error in if (tail(stdout, 1) == "") {: argument is of length zero
-```
+|  identifier  |    type    |                method                |  estimate  |  statistic  |  p.value  |  parameter  |         description         |
+|:------------:|:----------:|:------------------------------------:|:----------:|:-----------:|:---------:|:-----------:|:---------------------------:|
+|  ttest_x_y   | Hypothesis |       Welch Two Sample t-test        |     -8     |   -5.435    | 1.855e-05 |    21.98    |     A t-test of x and y     |
+|   cor_x_y    | Hypothesis | Pearson's product-moment correlation |   0.5712   |    1.841    |  0.1082   |      7      | Correlation between x and y |
