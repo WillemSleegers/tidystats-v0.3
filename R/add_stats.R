@@ -13,7 +13,7 @@
 add_stats <- function(results, model, identifier, type = "", description = NULL) {
 
     # Create the new row
-    newrow <- tidystats(model, identifier, type, description) %>%
+    new_row <- tidystats(model, identifier, type, description) %>%
         mutate_if(is.factor, as.character)
 
     # Check if the identifier already exists
@@ -24,11 +24,11 @@ add_stats <- function(results, model, identifier, type = "", description = NULL)
     # Add the new row to the data.frame
     if (is.na(results[1, 1])) {
         # Overwrite the existing result
-        newresults <- newrow
+        new_results <- new_row
     } else {
-        newresults <- bind_rows(results, newrow)
+        new_results <- bind_rows(results, new_row)
     }
 
     # Return the new results data.frame
-    return(newresults)
+    return(new_results)
 }
