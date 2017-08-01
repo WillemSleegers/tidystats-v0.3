@@ -13,7 +13,7 @@
 
 #'@export
 tidystats.lm <- function(model, identifier, type = "", description = NULL) {
-    
+
     # Tidy the result to a data.frame
     tidy(model) %>%
         select(one_of("term", "estimate", "std.error", "statistic", "p.value")) %>%
@@ -23,7 +23,7 @@ tidystats.lm <- function(model, identifier, type = "", description = NULL) {
             method = "Linear regression"
         ) %>%
         select(identifier, type, method, term, everything()) -> output
-    
+
     # Add description if provided
     if (!is.null(description)) {
         output %>%
@@ -31,6 +31,6 @@ tidystats.lm <- function(model, identifier, type = "", description = NULL) {
                 description = description
             ) -> output
     }
-    
+
     return(output)
 }
