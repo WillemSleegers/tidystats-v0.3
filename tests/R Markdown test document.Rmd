@@ -17,14 +17,15 @@ library(tidystats)
 Start by reading in the data frame containing the output of all the statistical models.
 
 ```{r get_results, message=FALSE}
-results <- read_csv("results.csv")
+results <- read_stats("results.csv")
 ```
 
 Let's print the results to a table.
 
 ```{r}
 results %>%
-  select(identifier, method, estimate, parameter, statistic, p_value, effect_size) %>%
+  bind_rows() %>%
+  select(identifier, method, estimate, parameter, statistic, p_value) %>%
   kable()
 ```
 

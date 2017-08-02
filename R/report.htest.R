@@ -20,15 +20,15 @@ report.htest <- function(model, statistic = NULL) {
 
   # Get the parameters
   res <- results %>%
-    select(parameter, estimate, p.value, effect_size) %>%
-    mutate_at(vars(parameter, effect_size), ~ formatC(., digits = 2, format = "f")) %>%
+    select(parameter, estimate, p.value, cohens_d) %>%
+    mutate_at(vars(parameter, cohens_d), ~ formatC(., digits = 2, format = "f")) %>%
     mutate(p.value = report_p_value(p.value))
 
   # Report the test
   if (is.null(statistic)) {
     with(res,
       paste0("*t*(", res$parameter, ") = ", estimate, ", ", p.value, ", *d* = ",
-           effect_size)
+           cohens_d)
     )
   } else {
   # Report a specific statistic
