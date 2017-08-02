@@ -17,5 +17,5 @@ write_stats <- function(results, file) {
   df$identifier <- names(results)
   df <- select(df, identifier, everything())
 
-  write_csv(df, file = file, na = "")
+  write_csv(df, path = file, na = "")
 }
