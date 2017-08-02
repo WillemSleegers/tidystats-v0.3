@@ -26,7 +26,7 @@ report_correlation <- function(results, ID, statistic = NULL) {
     res %>%
       select(estimate, parameter, p_value) %>%
       mutate_at(vars(estimate, parameter), ~ formatC(., digits = 2, format = "f")) %>%
-      mutate(p_value = report_p_value(p_value))
+      mutate(p_value = report_p_value(p_value)) -> res
   }
 
   # Report the test
