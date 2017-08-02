@@ -44,11 +44,11 @@ report_correlation <- function(results, identifier, statistic = NULL) {
 
       if (grepl("Kendall", res$method)) {
         output <- with(res,
-                       paste0("*r<sub>$$ \tau $$</sub>* = ", estimate, ", ", p_value)
+                       paste0("*r<sub>$$ {\tau} $$</sub>* = ", estimate, ", ", p_value)
         )
       } else {
         output <- with(res,
-                       paste0("*r<sub>$$ \rho $$</sub>* = ", estimate, ", ", p_value)
+                       paste0("*r<sub>$$ {\rho} $$</sub>* = ", estimate, ", ", p_value)
         )
       }
     }
