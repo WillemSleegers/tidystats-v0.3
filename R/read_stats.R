@@ -11,7 +11,7 @@
 
 #'@export
 read_stats <- function(file) {
-  df <- read.csv(file, na.strings = "")
+  df <- read.csv(file, na.strings = "", stringsAsFactors = F)
   results <- split(df, df$identifier)
   return(results)
 }
