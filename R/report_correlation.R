@@ -18,7 +18,7 @@
 #'@importFrom magrittr %>%
 
 #'@export
-report_correlation <- function(results, ID, statistic = NULL) {
+report_correlation <- function(results, identifier, statistic = NULL) {
 
   # Extract the results of the specific model through its identifier
   res <- results[[identifier]]
