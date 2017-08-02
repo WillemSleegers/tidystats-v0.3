@@ -4,8 +4,7 @@
 \alias{report.data.frame}
 \title{Report generic function}
 \usage{
-\method{report}{data.frame}(results, identifier, term = NULL,
-  statistic = NULL)
+report.data.frame(results, identifier, term = NULL, statistic = NULL)
 }
 \description{
 \code{report} is a generic function that reports a test in APA style.

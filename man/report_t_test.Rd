@@ -4,7 +4,7 @@
 \alias{report_t_test}
 \title{Report method for a t-test.}
 \usage{
-report_t_test(results, ID, statistic = NULL)
+report_t_test(results, identifier, statistic = NULL)
 }
 \description{
 Function to report a t-test in APA style.
