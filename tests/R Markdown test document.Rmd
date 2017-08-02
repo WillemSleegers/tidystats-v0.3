@@ -40,7 +40,7 @@ We currently support 4 different t-tests, tested on Student's sleep data:
 
 ## Report correlations
 
-We currently support 3 different t-tests, tested on some random data:
+We currently support 3 different correlations, tested on some random data:
 
 - Pearson's product-moment correlation: `r report_correlation(results, "M2_1")`
 - Kendall's rank correlation tau: `r report_correlation(results, "M2_2")`
