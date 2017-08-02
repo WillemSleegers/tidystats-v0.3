@@ -30,4 +30,8 @@ results %>%
 
 ## Report t-test
 
+<<<<<<< HEAD
 In our tests we conducted an independent t-test on Student's sleep data. We tested whether there was a difference between the two groups in how much extra sleep they got. The results show that this was not the case, `r report_t_test(results, "M1_1")`. Also if variances are assumed to be equal, there was no effect, `r report_t_test(results, "M1_2")`. However, the data was actually from a within-subjects design, so we should conduct a paired t-test! This does reveal a significant difference, `r report_t_test(results, "M2")`.
+=======
+In our tests we conducted an independent t-test on Student's sleep data. We tested whether there was a difference between the two groups in how much extra sleep they got. The results show that this was not the case, `r report_t_test(results, "M1_1")`. Also if variances are assumed to be equal, there was no effect, `r report_t_test(results, "M1_2")`. However, the data was actually from a within-subjects design, so we should conduct a paired t-test! This does reveal a significant difference, `r report_t_test(results, "M3")`.
+>>>>>>> 57d2e49f19e873b5872a51b80330f7a3272ce7c6
