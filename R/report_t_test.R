@@ -12,7 +12,7 @@
 #' @importFrom magrittr %>%
 
 #'@export
-report_t_test <- function(results, ID, statistic = NULL) {
+report_t_test <- function(results, identifier, statistic = NULL) {
 
   # Extract the results of the specific model through its identifier
   res <- results[[identifier]]
@@ -22,7 +22,7 @@ report_t_test <- function(results, ID, statistic = NULL) {
     output <- res[statistic]
   } else {
     res <- res %>%
-      mutate_at(vars(cohens_d), ~ formatC(., digits = 2, format = "f")) %>%
+      mutate_at(vars(estimate, cohens_d), ~ formatC(., digits = 2, format = "f")) %>%
       mutate(df = if_else(grepl("Welch", method),
                           formatC(df, digits = 2, format = "f"),
                           formatC(df, digits = 0, format = "f"))) %>%
