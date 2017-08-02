@@ -112,4 +112,4 @@ results <- add_stats(results, model9, identifier = "M9", type = "hypothesis",
 
 # Save to file --------------------------------------------------------------------------------
 
-write.csv(results, file = "tests/results.csv", row.names = FALSE, na = "")
+write_stats(results, file = "tests/results.csv")
