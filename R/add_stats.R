@@ -18,18 +18,18 @@ add_stats <- function(results, model, identifier = NULL, type = "other", descrip
       paste("Model", .)
   }
 
-  # Create the new row
-  new_row <- tidystats(model, identifier, type, description) %>%
+  # Create the new element
+  new_element <- tidystats(model, identifier, type, description) %>%
     mutate_at(vars(identifier, method, description), as.character)
 
   # Check if the identifier already exists
-  if (identifier %in% results$identifier) {
+  if (identifier %in% names(results)) {
     stop("Identifier already exists.")
   }
 
   # Add the new row to the data.frame
-  new_results <- bind_rows(results, new_row)
+  results[[identifier]] <- new_element
 
   # Return the new results data.frame
-  return(new_results)
+  return(results)
 }
