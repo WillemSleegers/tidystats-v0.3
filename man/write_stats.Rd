@@ -10,7 +10,8 @@ write_stats(results, file)
 \code{write_stats} creates a \code{.csv} file with all stats
 }
 \examples{
-results <- new_stats_data_frame()
-ttest <- t.test(1:10, y = c(7:20))
-results <- add_stats(results, ttest, "ttest_x_y", "Hypothesis", "A t-test of x and y")
+results <- new_stats_list()
+model <- t.test(1:10, y = c(7:20))
+results <- add_stats(results, model, "model1", "hypothesis")
+write_stats(results)
 }
