@@ -28,7 +28,7 @@ report.htest <- function(model, statistic = NULL) {
   if (is.null(statistic)) {
     with(res,
       paste0("*t*(", res$parameter, ") = ", estimate, ", ", p.value, ", *d* = ",
-           effect_size)
+           cohens_d)
     )
   } else {
   # Report a specific statistic

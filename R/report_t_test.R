@@ -26,7 +26,7 @@ report_t_test <- function(results, ID, statistic = NULL) {
   if (is.null(statistic)) {
     with(res,
       paste0("*t*(", res$parameter, ") = ", estimate, ", ", p_value, ", *d* = ",
-           effect_size)
+           cohens_d)
     )
   } else {
   # Report a specific statistic
