@@ -8,28 +8,33 @@
 #' results <- add_stats(results, ttest, "ttest1")
 #' report_t_test(results, "ttest1")
 #'
-#'@import dplyr
-#'@import broom
-#'@import tibble
-#'@importFrom magrittr %>%
+#' @import dplyr
+#' @importFrom magrittr %>%
 
 #'@export
 report_t_test <- function(results, ID, statistic = NULL) {
-  # Get the parameters
-  res <- results %>%
-    filter(identifier == ID) %>%
-    select(parameter, estimate, p_value, cohens_d) %>%
-    mutate_at(vars(estimate, parameter, cohens_d), ~ formatC(., digits = 2, format = "f")) %>%
-    mutate(p_value = report_p_value(p_value))
 
-  # Report the test
-  if (is.null(statistic)) {
-    with(res,
-      paste0("*t*(", res$parameter, ") = ", estimate, ", ", p_value, ", *d* = ",
-           cohens_d)
-    )
+  # Extract the results of the specific model through its identifier
+  res <- results[[identifier]]
+
+  # Check if only a single statistic is asked, otherwise produce a full line of APA results
+  if (!is.null(statistic)) {
+    output <- res[statistic]
   } else {
-  # Report a specific statistic
-    res[statistic]
+    res <- res %>%
+      mutate_at(vars(cohens_d), ~ formatC(., digits = 2, format = "f")) %>%
+      mutate(df = if_else(grepl("Welch", method),
+                          formatC(df, digits = 2, format = "f"),
+                          formatC(df, digits = 0, format = "f"))) %>%
+      mutate(p_value = report_p_value(p_value)) %>%
+      select(df, estimate, p_value, cohens_d)
+
+    output <- with(res,
+                   paste0("*t*(", res$df, ") = ", estimate, ", ", p_value, ", *d* = ",
+                          cohens_d)
+    )
   }
+
+  return(output)
+}
 }
