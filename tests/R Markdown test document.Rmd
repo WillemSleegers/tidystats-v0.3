@@ -16,7 +16,7 @@ library(tidystats)
 
 Start by reading in the data frame containing the output of all the statistical models.
 
-```{r get_results, message=FALSE}
+```{r get_results, message = FALSE}
 results <- read_stats("results.csv")
 ```
 
@@ -25,14 +25,23 @@ Let's print the results to a table.
 ```{r}
 results %>%
   bind_rows() %>%
-  select(identifier, method, estimate, parameter, statistic, p_value) %>%
+  select(identifier, method, estimate, df, statistic, p_value) %>%
   kable()
 ```
 
 ## Report t-test
 
-In our tests we conducted an independent t-test on Student's sleep data. We tested whether there was a difference between the two groups in how much extra sleep they got. The results show that this was not the case, `r report_t_test(results, "M1_1")`. Also if variances are assumed to be equal, there was no effect, `r report_t_test(results, "M1_2")`. However, the data was actually from a within-subjects design, so we should conduct a paired t-test! This does reveal a significant difference, `r report_t_test(results, "M2")`.
+We currently support 4 different t-tests, tested on Student's sleep data:
 
-## Report correlation
+- One Sample *t*-test: `r report_t_test(results, "M1_1")`
+- Two Sample *t*-test: `r report_t_test(results, "M1_2")`
+- Welch's Two Sample *t*-test: `r report_t_test(results, "M1_3")`
+- Paired *t*-test: `r report_t_test(results, "M1_4")`
 
-We tested for a correlation between two vectors; but we haven't implemented a report correlation function yet so we can't show you the results yet!
+## Report correlations
+
+We currently support 3 different t-tests, tested on some random data:
+
+- Pearson's product-moment correlation: `r report_correlation(results, "M2_1")`
+- Kendall's rank correlation tau: `r report_correlation(results, "M2_2")`
+- Spearman's rank correlation rho: `r report_correlation(results, "M2_3")`

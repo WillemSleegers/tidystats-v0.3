@@ -123,10 +123,11 @@ $(document).ready(function () {
 <div id="setup" class="section level2">
 <h2>Setup</h2>
 <p>Start by reading in the data frame containing the output of all the statistical models.</p>
-<pre class="r"><code>results &lt;- read_csv(&quot;results.csv&quot;)</code></pre>
+<pre class="r"><code>results &lt;- read_stats(&quot;results.csv&quot;)</code></pre>
 <p>Let’s print the results to a table.</p>
 <pre class="r"><code>results %&gt;%
-  select(identifier, method, estimate, parameter, statistic, p_value, effect_size) %&gt;%
+  bind_rows() %&gt;%
+  select(identifier, method, estimate, df, statistic, p_value) %&gt;%
   kable()</code></pre>
 <table>
 <thead>
@@ -134,77 +135,80 @@ $(document).ready(function () {
 <th align="left">identifier</th>
 <th align="left">method</th>
 <th align="right">estimate</th>
-<th align="right">parameter</th>
+<th align="right">df</th>
 <th align="right">statistic</th>
 <th align="right">p_value</th>
-<th align="right">effect_size</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">M1_1</td>
+<td align="left">One Sample t-test</td>
+<td align="right">1.5400000</td>
+<td align="right">19.00000</td>
+<td align="right">3.412965</td>
+<td align="right">0.0029176</td>
+</tr>
+<tr class="even">
+<td align="left">M1_2</td>
+<td align="left">Two Sample t-test</td>
+<td align="right">-1.5800000</td>
+<td align="right">18.00000</td>
+<td align="right">-1.860813</td>
+<td align="right">0.0791867</td>
+</tr>
+<tr class="odd">
+<td align="left">M1_3</td>
 <td align="left">Welch Two Sample t-test</td>
 <td align="right">-1.5800000</td>
 <td align="right">17.77647</td>
 <td align="right">-1.860813</td>
 <td align="right">0.0793941</td>
-<td align="right">-0.8826937</td>
 </tr>
 <tr class="even">
-<td align="left">M1_2</td>
-<td align="left">Two Sample t-test</td>
-<td align="right">NA</td>
-<td align="right">18.00000</td>
-<td align="right">-1.860813</td>
-<td align="right">0.0791867</td>
-<td align="right">-0.8771959</td>
-</tr>
-<tr class="odd">
-<td align="left">M2</td>
+<td align="left">M1_4</td>
 <td align="left">Paired t-test</td>
 <td align="right">-1.5800000</td>
 <td align="right">9.00000</td>
 <td align="right">-4.062128</td>
 <td align="right">0.0028329</td>
-<td align="right">-2.7080851</td>
 </tr>
-<tr class="even">
-<td align="left">M3</td>
+<tr class="odd">
+<td align="left">M2_1</td>
 <td align="left">Pearson’s product-moment correlation</td>
 <td align="right">0.5711816</td>
 <td align="right">7.00000</td>
 <td align="right">1.841083</td>
 <td align="right">0.1081731</td>
-<td align="right">NA</td>
 </tr>
-<tr class="odd">
-<td align="left">M4</td>
+<tr class="even">
+<td align="left">M2_2</td>
 <td align="left">Kendall’s rank correlation tau</td>
 <td align="right">0.4444444</td>
 <td align="right">NA</td>
 <td align="right">26.000000</td>
 <td align="right">0.1194389</td>
-<td align="right">NA</td>
 </tr>
-<tr class="even">
-<td align="left">M5</td>
+<tr class="odd">
+<td align="left">M2_3</td>
 <td align="left">Spearman’s rank correlation rho</td>
 <td align="right">0.6000000</td>
 <td align="right">NA</td>
 <td align="right">48.000000</td>
 <td align="right">0.0967978</td>
-<td align="right">NA</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div id="report-t-test" class="section level2">
 <h2>Report t-test</h2>
-<<<<<<< HEAD
-<p>In our tests we conducted an independent t-test on Student’s sleep data. We tested whether there was a difference between the two groups in how much extra sleep they got. The results show that this was not the case, <em>t</em>(17.78) = -1.58, <em>p</em> = .079, <em>d</em> = -0.88. Also if variances are assumed to be equal, there was no effect, <em>t</em>(18.00) = NA, <em>p</em> = .079, <em>d</em> = -0.88. However, the data was actually from a within-subjects design, so we should conduct a paired t-test! This does reveal a significant difference, <em>t</em>(9.00) = -1.58, <em>p</em> = .003, <em>d</em> = -2.71.</p>
-=======
-<p>In our tests we conducted an independent t-test on Student’s sleep data. We tested whether there was a difference between the two groups in how much extra sleep they got. The results show that this was not the case, <em>t</em>(17.78) = -1.58, <em>p</em> = .079, <em>d</em> = -0.88. Also if variances are assumed to be equal, there was no effect, <em>t</em>(18.00) = NA, <em>p</em> = .079, <em>d</em> = -0.88. However, the data was actually from a within-subjects design, so we should conduct a paired t-test! This does reveal a significant difference, <em>t</em>(7.00) = 0.57, <em>p</em> = .108, <em>d</em> = NA.</p>
->>>>>>> 57d2e49f19e873b5872a51b80330f7a3272ce7c6
+<p>We currently support 4 different t-tests, tested on Student’s sleep data:</p>
+<ul>
+<li>One Sample <em>t</em>-test: <em>t</em>(19) = 1.54, <em>p</em> = .003, <em>d</em> = 1.57</li>
+<li>Two Sample <em>t</em>-test: <em>t</em>(18) = -1.58, <em>p</em> = .079, <em>d</em> = -0.88</li>
+<li>Welch’s Two Sample <em>t</em>-test: <em>t</em>(17.78) = -1.58, <em>p</em> = .079, <em>d</em> = -0.88</li>
+<li>Paired <em>t</em>-test: <em>t</em>(9) = -1.58, <em>p</em> = .003, <em>d</em> = -2.71</li>
+</ul>
 </div>
 
 
