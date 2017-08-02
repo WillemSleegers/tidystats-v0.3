@@ -8,6 +8,6 @@
 #'@import tibble
 
 #'@export
-new_stats_data_frame <- function() {
+new_stats_list <- function() {
   return(list())
 }
