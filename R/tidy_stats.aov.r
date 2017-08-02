@@ -8,7 +8,7 @@
 #'@importFrom magrittr %>%
 
 #'@export
-tidystats.aov <- function(model, identifier, type = "other", description = NULL) {
+tidy_stats.aov <- function(model, identifier, type = "other", description = NULL) {
 
   # Tidy the result to a data.frame
   tidy(model) %>%

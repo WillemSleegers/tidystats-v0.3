@@ -1,18 +1,16 @@
-#' Tidystats method for an lm object
+#' tidy_stats method for an lm object
 #'
-#' Creates a tidystats data.frame for an lm object.
+#' Creates a tidy_stats data frame for an lm object.
 
 #' @examples
 #' lm_model <- lm(extra ~ group, data = sleep)
-#' tidystats.htest("model1", "hypothesis", lm_model, "Linear model to test the effect of group on extra.")
-#'
+#' tidy_stats.lm(lm_model")
+
 #'@import dplyr
-#'@import broom
-#'@import tibble
 #'@importFrom magrittr %>%
 
 #'@export
-tidystats.lm <- function(model, identifier, type = "other", description = NULL) {
+tidy_stats.lm <- function(model, identifier, type = "other", description = NULL) {
 
   # Tidy the result to a data.frame
   tidy(model) %>%
