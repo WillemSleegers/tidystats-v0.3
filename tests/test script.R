@@ -2,9 +2,9 @@
 # Setup -------------------------------------------------------------------
 
 # Load packages
-library(devtools)
+# library(devtools)
 
-install_github("willemsleegers/tidystats")
+# install_github("willemsleegers/tidystats")
 library(tidystats)
 
 # Create empty tidy stats data frame
