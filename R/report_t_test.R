@@ -18,8 +18,8 @@ report_t_test <- function(results, ID, statistic = NULL) {
   # Get the parameters
   res <- results %>%
     filter(identifier == ID) %>%
-    select(parameter, estimate, p_value, effect_size) %>%
-    mutate_at(vars(estimate, parameter, effect_size), ~ formatC(., digits = 2, format = "f")) %>%
+    select(parameter, estimate, p_value, cohens_d) %>%
+    mutate_at(vars(estimate, parameter, cohens_d), ~ formatC(., digits = 2, format = "f")) %>%
     mutate(p_value = report_p_value(p_value))
 
   # Report the test

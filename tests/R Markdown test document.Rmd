@@ -24,8 +24,8 @@ Let's print the results to a table.
 
 ```{r}
 results %>%
-  bind_rows() %>% 
-  select(identifier, method, estimate, parameter, statistic, p_value, effect_size) %>%
+  bind_rows() %>%
+  select(identifier, method, estimate, parameter, statistic, p_value) %>%
   kable()
 ```
 
