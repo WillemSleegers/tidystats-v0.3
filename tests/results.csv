@@ -1,18 +1,8 @@
-"identifier","type","method","term","estimate","std_error","parameter","statistic","p_value","effect_size","description","sumsq","meansq"
-"M1_1","hypothesis","Welch Two Sample t-test",,-1.58,,17.7764735161785,-1.86081346748685,0.0793941401873582,-0.882693708576179,"Independent t-test with unequal variance.",,
-"M1_2","hypothesis"," Two Sample t-test",,,,18,-1.86081346748685,0.0791867142159382,-0.877195880922138,"Independent t-test with equal variance.",,
-"M2","hypothesis","Paired t-test",,-1.58,,9,-4.06212768338204,0.00283289019738427,-2.70808512225469,"Test whether a paired t-test works.",,
-"M3","hypothesis","Pearson's product-moment correlation",,0.571181557563829,,7,1.84108263811534,0.108173054349494,,"Test whether a Pearson's product moment correlation works.",,
-"M4","hypothesis","Kendall's rank correlation tau",,0.444444444444445,,,26,0.1194389329806,,"Test whether a Kendall's rank correlation tau works.",,
-"M5","hypothesis","Spearman's rank correlation rho",,0.6,,,48,0.0967978395061728,,"Test whether a Spearman's rank correlation rho works.",,
-"M6","hypothesis","Linear regression","(Intercept)",14.3763194066236,6.61998601276941,,2.17165404562682,0.0385083291204266,,"Test whether regression with 1 predictor works.",,
-"M6","hypothesis","Linear regression","complaints",0.754609818719365,0.0975328933699503,,7.73697767641393,1.98768220828398e-08,,"Test whether regression with 1 predictor works.",,
-"M7","hypothesis","Linear regression","(Intercept)",14.2513780680078,11.1723374660636,,1.27559502309135,0.212964688156487,,"Test whether regression with 2 predictors works.",,
-"M7","hypothesis","Linear regression","complaints",0.754343623506449,0.101119813728464,,7.45989925903224,5.0320876354198e-08,,"Test whether regression with 2 predictors works.",,
-"M7","hypothesis","Linear regression","critical",0.00190820249392852,0.136068554322776,,0.0140238316150693,0.988914082039299,,"Test whether regression with 2 predictors works.",,
-"M8","hypothesis","Linear regression","(Intercept)",26.9235360790839,41.6438720557142,,0.64651855723367,0.523610226888396,,"Test whether regression with an interaction effect works.",,
-"M8","hypothesis","Linear regression","complaints",0.551381816323561,0.649862014988454,,0.848459832405125,0.403926019896795,,"Test whether regression with an interaction effect works.",,
-"M8","hypothesis","Linear regression","critical",-0.181352584871632,0.595685818944911,,-0.304443347657406,0.763213635653048,,"Test whether regression with an interaction effect works.",,
-"M8","hypothesis","Linear regression","complaints:critical",0.00290742164595893,0.00919193045410616,,0.316301527788446,0.754299105579477,,"Test whether regression with an interaction effect works.",,
-"M9","hypothesis","ANOVA","Film",,,3,8.24429828028225,2.65156366012755e-05,,"Test whether regression with an interaction effect works.",957.940272712526,319.313424237509
-"M9","hypothesis","ANOVA","Residuals",,,326,,,,"Test whether regression with an interaction effect works.",12626.4446969844,38.7314254508725
+"method","estimate","statistic","df","p_value","alternative","null_value","cohens_d"
+"One Sample t-test",1.54,3.41296499527011,19,0.00291762040415412,"two.sided",0,1.56597573812886
+" Two Sample t-test",-1.58,-1.86081346748685,18,0.0791867142159382,"two.sided",,-0.877195880922138
+"Welch Two Sample t-test",-1.58,-1.86081346748685,17.7764735161785,0.0793941401873582,"two.sided",,-0.882693708576179
+"Paired t-test",-1.58,-4.06212768338204,9,0.00283289019738427,"two.sided",,-2.70808512225469
+"Pearson's product-moment correlation",0.571181557563829,1.84108263811534,7,0.108173054349494,"two.sided",,
+"Kendall's rank correlation tau",0.444444444444445,26,,0.1194389329806,"two.sided",,
+"Spearman's rank correlation rho",0.6,48,,0.0967978395061728,"two.sided",,

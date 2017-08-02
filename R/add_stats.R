@@ -12,6 +12,11 @@
 #'@export
 add_stats <- function(results, model, identifier = NULL, type = "other", description = NULL) {
 
+  # Check if the identifier already exists
+  if (identifier %in% names(results)) {
+    stop("Identifier already exists.")
+  }
+
   # Create an identifier if it is not specified
   if (is.null(identifier)) {
     identifier <- formatC(nrow(results), width = "2", format = "d", flag = "0") %>%
@@ -19,17 +24,11 @@ add_stats <- function(results, model, identifier = NULL, type = "other", descrip
   }
 
   # Create the new element
-  new_element <- tidystats(model, identifier, type, description) %>%
-    mutate_at(vars(identifier, method, description), as.character)
+  new_element <- tidy_stats(model)
 
-  # Check if the identifier already exists
-  if (identifier %in% names(results)) {
-    stop("Identifier already exists.")
-  }
-
-  # Add the new row to the data.frame
+  # Add the new element to the list
   results[[identifier]] <- new_element
 
-  # Return the new results data.frame
+  # Return the new results list
   return(results)
 }
