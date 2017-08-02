@@ -37,4 +37,3 @@ report_t_test <- function(results, identifier, statistic = NULL) {
 
   return(output)
 }
-}
