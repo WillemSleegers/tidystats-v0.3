@@ -2,15 +2,14 @@
 % Please edit documentation in R/read_stats.R
 \name{read_stats}
 \alias{read_stats}
-\title{Write a .csv file with all stats}
+\title{Read a .csv file with all stats}
 \usage{
 read_stats(file)
 }
 \description{
-\code{write_stats} creates a \code{.csv} file with all stats
+\code{read_stats} returns a list containing all stats, with the identifier as the name for each list element.
 }
 \examples{
-results <- new_stats_data_frame()
-ttest <- t.test(1:10, y = c(7:20))
-results <- add_stats(results, ttest, "ttest_x_y", "Hypothesis", "A t-test of x and y")
+results <- read_stats("results.csv")
+
 }
