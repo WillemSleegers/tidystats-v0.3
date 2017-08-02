@@ -1,8 +1,8 @@
-"method","estimate","statistic","df","p_value","alternative","null_value","cohens_d"
-"One Sample t-test",1.54,3.41296499527011,19,0.00291762040415412,"two.sided",0,1.56597573812886
-" Two Sample t-test",-1.58,-1.86081346748685,18,0.0791867142159382,"two.sided",,-0.877195880922138
-"Welch Two Sample t-test",-1.58,-1.86081346748685,17.7764735161785,0.0793941401873582,"two.sided",,-0.882693708576179
-"Paired t-test",-1.58,-4.06212768338204,9,0.00283289019738427,"two.sided",,-2.70808512225469
-"Pearson's product-moment correlation",0.571181557563829,1.84108263811534,7,0.108173054349494,"two.sided",,
-"Kendall's rank correlation tau",0.444444444444445,26,,0.1194389329806,"two.sided",,
-"Spearman's rank correlation rho",0.6,48,,0.0967978395061728,"two.sided",,
+identifier,method,estimate,statistic,df,p_value,alternative,null_value,cohens_d
+M1_1,One Sample t-test,1.54,3.412964995270109,19,0.002917620404154116,two.sided,0,1.5659757381288608
+M1_2, Two Sample t-test,-1.58,-1.8608134674868528,18,0.07918671421593818,two.sided,,-0.877195880922138
+M1_3,Welch Two Sample t-test,-1.58,-1.860813467486853,17.7764735161785,0.07939414018735817,two.sided,,-0.8826937085761793
+M1_4,Paired t-test,-1.58,-4.062127683382037,9,0.00283289019738427,two.sided,,-2.708085122254691
+M2_1,Pearson's product-moment correlation,0.5711815575638287,1.8410826381153382,7,0.10817305434949379,two.sided,,
+M2_2,Kendall's rank correlation tau,0.44444444444444453,26,,0.1194389329805996,two.sided,,
+M2_3,Spearman's rank correlation rho,0.6,48,,0.09679783950617284,two.sided,,
