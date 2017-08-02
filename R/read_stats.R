@@ -8,7 +8,7 @@
 #' @import readr
 #' @import dplyr
 #'
-#' @export
+#'@export
 read_stats <- function(file) {
   df <- read_csv(file)
   results <- split(df, df$identifier)
