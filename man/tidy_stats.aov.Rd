@@ -4,12 +4,8 @@
 \alias{tidy_stats.aov}
 \title{Tidystats method for an aov object}
 \usage{
-<<<<<<< HEAD:man/tidy_stats.aov.Rd
 \method{tidy_stats}{aov}(model, identifier, type = "other",
   description = NULL)
-=======
-tidystats.aov(model, identifier, type = "other", description = NULL)
->>>>>>> 58bf2534c4fadb02caf8d45d35a268e11d0bc56b:man/tidystats.aov.Rd
 }
 \description{
 Creates a tidystats data.frame for an aov object.
