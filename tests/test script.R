@@ -16,11 +16,18 @@ results <- new_stats_data_frame()
 sleep
 
 # Run model and add output to results
-model1 <- t.test(extra ~ group, data = sleep)
+model1_1 <- t.test(extra ~ group, data = sleep)
 
 # Add model output to results
-results <- add_stats(results, model1, identifier = "M1", type = "hypothesis",
-  description = "Test whether an independent t-test works.")
+results <- add_stats(results, model1_1, identifier = "M1_1", type = "hypothesis",
+  description = "Independent t-test with unequal variance.")
+
+# Run model and add output to results
+model1_2 <- t.test(extra ~ group, data = sleep, var.equal = TRUE)
+
+# Add model output to results
+results <- add_stats(results, model1_2, identifier = "M1_2", type = "hypothesis",
+                     description = "Independent t-test with equal variance.")
 
 # Test paired t-test ------------------------------------------------------
 
