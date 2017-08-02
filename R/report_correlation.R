@@ -1,4 +1,4 @@
-#' Report method for a correlation.
+#' Report method for correlations.
 #'
 #' Function to report a correlation in APA style.
 

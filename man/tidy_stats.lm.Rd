@@ -10,3 +10,7 @@
 \description{
 Creates a tidy_stats data frame for an lm object.
 }
+\examples{
+lm_model <- lm(extra ~ group, data = sleep)
+tidy_stats.lm(lm_model)
+}

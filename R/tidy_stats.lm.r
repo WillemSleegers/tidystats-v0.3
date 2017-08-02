@@ -4,7 +4,7 @@
 
 #' @examples
 #' lm_model <- lm(extra ~ group, data = sleep)
-#' tidy_stats.lm(lm_model")
+#' tidy_stats.lm(lm_model)
 
 #'@import dplyr
 #'@importFrom magrittr %>%

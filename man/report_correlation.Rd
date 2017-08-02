@@ -2,9 +2,9 @@
 % Please edit documentation in R/report_correlation.R
 \name{report_correlation}
 \alias{report_correlation}
-\title{Report method for a correlation.}
+\title{Report method for correlations.}
 \usage{
-report_correlation(results, ID, statistic = NULL)
+report_correlation(results, identifier, statistic = NULL)
 }
 \description{
 Function to report a correlation in APA style.
