@@ -1,5 +1,6 @@
 "identifier","type","method","term","estimate","std_error","parameter","statistic","p_value","effect_size","description"
-"M1","hypothesis","Welch Two Sample t-test",,-1.58,,17.7764735161785,-1.86081346748685,0.0793941401873582,-0.882693708576179,"Test whether an independent t-test works."
+"M1_1","hypothesis","Welch Two Sample t-test",,-1.58,,17.7764735161785,-1.86081346748685,0.0793941401873582,-0.882693708576179,"Independent t-test with unequal variance."
+"M1_2","hypothesis"," Two Sample t-test",,,,18,-1.86081346748685,0.0791867142159382,-0.877195880922138,"Independent t-test with equal variance."
 "M2","hypothesis","Paired t-test",,-1.58,,9,-4.06212768338204,0.00283289019738427,-2.70808512225469,"Test whether a paired t-test works."
 "M3","hypothesis","Pearson's product-moment correlation",,0.571181557563829,,7,1.84108263811534,0.108173054349494,,"Test whether a Pearson's product moment correlation works."
 "M4","hypothesis","Kendall's rank correlation tau",,0.444444444444445,,,26,0.1194389329806,,"Test whether a Kendall's rank correlation tau works."

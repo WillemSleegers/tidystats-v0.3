@@ -22,8 +22,12 @@ results <- read_csv("results.csv")
 
 Let's print the results to a table.
 
-`r kable(results)`
+```{r}
+results %>%
+  select(identifier, method, estimate, parameter, statistic, p_value, effect_size) %>%
+  kable()
+```
 
 ## Report t-test
 
-In our tests we conducted an independent t-test on Student's sleep data. We tested whether there was a difference between the two groups in how much extra sleep they got. The results show that this was not the case, `r report_t_test(results, "M1")`.  
+In our tests we conducted an independent t-test on Student's sleep data. We tested whether there was a difference between the two groups in how much extra sleep they got. The results show that this was not the case, `r report_t_test(results, "M1_1")`. Also if variances are assumed to be equal, there was no effect, `r report_t_test(results, "M1_2")`. However, the data was actually from a within-subjects design, so we should conduct a paired t-test! This does reveal a significant difference, `r report_t_test(results, "M2")`.
