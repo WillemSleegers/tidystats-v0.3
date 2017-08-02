@@ -32,7 +32,7 @@ report.htest <- function(results, identifier, statistic = NULL) {
                   cohens_d)
       )
     } else {
-      if (grepl("Pearson"), res$method) {
+      if (grepl("Pearson", res$method)) {
         res <- res %>%
           mutate_at(vars(estimate), ~ formatC(., digits = 2, format = "f")) %>%
           mutate(p_value = report_p_value(p_value)) %>%
@@ -40,7 +40,7 @@ report.htest <- function(results, identifier, statistic = NULL) {
 
         output <- with(res, paste0("*r*(", res$df, ") = ", estimate, ", ", p_value))
       } else {
-        if (grepl("Kendall"), res$method) {
+        if (grepl("Kendall", res$method)) {
           res <- res %>%
             mutate_at(vars(estimate), ~ formatC(., digits = 2, format = "f")) %>%
             mutate(p_value = report_p_value(p_value)) %>%
