@@ -9,23 +9,6 @@ tidystats
 ## Setup
 
 
-```
-## Loading tidyverse: ggplot2
-## Loading tidyverse: tibble
-## Loading tidyverse: tidyr
-## Loading tidyverse: readr
-## Loading tidyverse: purrr
-## Loading tidyverse: dplyr
-```
-
-```
-## Conflicts with tidy packages ----------------------------------------------
-```
-
-```
-## filter(): dplyr, stats
-## lag():    dplyr, stats
-```
 
 Start by creating an empty list to store the results of statistical models in.
 
@@ -69,6 +52,7 @@ results <- add_stats(results, model_correlation, "M2", "hypothesis")
 ## Result
 
 
-```
-## Error in overscope_eval_next(overscope, expr): object 'identifier' not found
-```
+|identifier |method                               |   estimate| statistic|       df|   p_value|alternative |  cohens_d|
+|:----------|:------------------------------------|----------:|---------:|--------:|---------:|:-----------|---------:|
+|M1         |Welch Two Sample t-test              | -8.0000000| -5.434930| 21.98221| 0.0000186|two.sided   | -2.318399|
+|M2         |Pearson's product-moment correlation |  0.5711816|  1.841083|  7.00000| 0.1081731|two.sided   |        NA|

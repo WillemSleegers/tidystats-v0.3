@@ -8,7 +8,7 @@ tidystats
 
 ## Setup
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, warning = FALSE}
 library(tidyverse)
 library(tidystats)
 library(knitr)
