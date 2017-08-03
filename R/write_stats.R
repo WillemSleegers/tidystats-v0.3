@@ -13,9 +13,7 @@
 
 #'@export
 write_stats <- function(results, file) {
-  df <- bind_rows(results)
-  df$identifier <- names(results)
-  df <- select(df, identifier, everything())
+  df <- list_to_df(results)
 
   write_csv(df, path = file, na = "")
 }
