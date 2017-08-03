@@ -9,6 +9,23 @@ tidystats
 ## Setup
 
 
+```
+## Loading tidyverse: ggplot2
+## Loading tidyverse: tibble
+## Loading tidyverse: tidyr
+## Loading tidyverse: readr
+## Loading tidyverse: purrr
+## Loading tidyverse: dplyr
+```
+
+```
+## Conflicts with tidy packages ----------------------------------------------
+```
+
+```
+## filter(): dplyr, stats
+## lag():    dplyr, stats
+```
 
 Start by creating an empty list to store the results of statistical models in.
 
@@ -53,5 +70,5 @@ results <- add_stats(results, model_correlation, "M2", "hypothesis")
 
 
 ```
-## Error in results %>% bind_rows() %>% select(identifier, method, estimate, : could not find function "%>%"
+## Error in overscope_eval_next(overscope, expr): object 'identifier' not found
 ```
