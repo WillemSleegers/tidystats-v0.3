@@ -10,36 +10,48 @@ tidystats
 
 
 
-
-Start by creating an empty data frame.
-
-
-```r
-results <- new_stats_data_frame()
-```
-
-Add a t-test:
+Start by creating an empty list to store the results of statistical models in.
 
 
 ```r
-ttest <- t.test(1:10, y = c(7:20))
-results <- add_stats(results, ttest, "ttest_x_y", "Hypothesis", "A t-test of x and y")
+results <- new_stats_list()
 ```
 
-Add a correlation:
+## Add a t-test:
+
+
+```r
+model_t_test <- t.test(1:10, y = c(7:20))
+results <- add_stats(results, model_t_test, identifier = "M1", "hypothesis")
+```
+
+`add_stats()` has 2 necessary arguments:
+
+- `results`: The list you want to add the statistical model to
+- `model`: The statistical model you want to add to the list
+
+Optionally you can also add an identifier, type, and description of the model using the `identifier`, `type`, and `description` argument, respectively. 
+
+The identifier is used to uniquely identify the model. If you do not provide one, one is automatically created for you. 
+
+The type argument is used to indicate whether the statistical test is a hypothesis test, manipulation check, contrast analysis, or 'other'. This can be used to distinguish the vital statistical tests from those less relevant (e.g., in the context of meta-analyses).
+
+The description argument is used to add additional information which you may find fruitful.
+
+## Add a correlation:
 
 
 ```r
 x <- c(44.4, 45.9, 41.9, 53.3, 44.7, 44.1, 50.7, 45.2, 60.1)
 y <- c( 2.6,  3.1,  2.5,  5.0,  3.6,  4.0,  5.2,  2.8,  3.8)
-corr <- cor.test(x, y)
-results <- add_stats(results, corr, "cor_x_y", "Hypothesis", "Correlation between x and y")
+
+model_correlation <- cor.test(x, y)
+results <- add_stats(results, model_correlation, "M2", "hypothesis")
 ```
 
-This is the resulting data.frame:
+## Result
 
 
-|  identifier  |    type    |                method                |  estimate  |  statistic  |  p.value  |  parameter  |         description         |
-|:------------:|:----------:|:------------------------------------:|:----------:|:-----------:|:---------:|:-----------:|:---------------------------:|
-|  ttest_x_y   | Hypothesis |       Welch Two Sample t-test        |     -8     |   -5.435    | 1.855e-05 |    21.98    |     A t-test of x and y     |
-|   cor_x_y    | Hypothesis | Pearson's product-moment correlation |   0.5712   |    1.841    |  0.1082   |      7      | Correlation between x and y |
+```
+## Error in results %>% bind_rows() %>% select(identifier, method, estimate, : could not find function "%>%"
+```
