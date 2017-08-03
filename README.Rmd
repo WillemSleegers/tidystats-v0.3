@@ -54,7 +54,6 @@ results <- add_stats(results, model_correlation, "M2", "hypothesis")
 
 ```{r, echo = FALSE}
 results %>%
-  bind_rows() %>%
-  select(identifier, method, estimate, df, statistic, p_value) %>%
+  list_to_df() %>%
   kable()
 ```
