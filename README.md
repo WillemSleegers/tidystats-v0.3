@@ -73,7 +73,24 @@ Having added the statistical results to the list, you can convert the list to a 
 
 
 ```
-## Error in results %>% list_to_df() %>% kable(): could not find function "%>%"
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```
+## Error in list_to_df(.): could not find function "list_to_df"
 ```
 
 In the 'example' folder you can also find examples of data files containing the output of multiple statistical tests, as well as a markdown file demonstrating how tidystats can be used to create APA-styled statistical reports.
