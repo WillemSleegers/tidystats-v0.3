@@ -11,4 +11,5 @@ list_to_df(results)
 }
 \examples{
 list_to_df(results)
+
 }
