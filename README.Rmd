@@ -67,8 +67,9 @@ results <- add_stats(results, model_correlation, "M2", "hypothesis")
 
 Having added the statistical results to the list, you can convert the list to a table or to a data file, ready for sharing. The example below shows how to produce a table containing all of the statistical results.
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, message = FALSE}
 library(dplyr)
+library(knitr)
 
 results %>%
   list_to_df() %>%
