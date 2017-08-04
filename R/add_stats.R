@@ -20,7 +20,7 @@ add_stats <- function(results, model, identifier = NULL, type = "other", descrip
   # Create an identifier if it is not specified
   if (is.null(identifier)) {
     identifier <- formatC(nrow(results), width = "2", format = "d", flag = "0") %>%
-      paste("Model", .)
+      paste0("M", .)
   }
 
   # Create the new element
