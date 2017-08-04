@@ -1,6 +1,6 @@
 #' tidy_stats method for an htest object
 #'
-#' Creates a tidy stats data frame for an htest object.
+#' Creates a tidystats data frame for an htest object.
 
 #' @examples
 #' tidy_stats.htest(t.test(1:10, y = c(7:20)))
