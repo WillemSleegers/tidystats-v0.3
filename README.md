@@ -6,7 +6,7 @@ tidystats
 **Authors:** [Willem Sleegers](http://willemsleegers.com/), [Arnoud Plantinga](http://www.arnoudplantinga.nl/)<br/>
 **License:** [MIT](https://opensource.org/licenses/MIT)
 
-tidytext is a package to easily create a text file containing the output of statistical models. The goal of this package is to have researchers accompany their manuscript with an organized data file of statistical results in order to greatly improve the reliability of meta-research, and especially to reduce the efforts needed to perform this kind of research.
+tidytext is a package to easily create a text file containing the output of statistical models. The goal of this package is to have researchers accompany their manuscript with an organized data file of statistical results in order to greatly improve the reliability of meta-research, and especially to reduce the efforts needed to perform this type of research.
 
 Besides enabling you to create an organized data file of statistical results, the tidytext package also contains functions to help you report statistics in APA style using [R Markdown](http://rmarkdown.rstudio.com). Additionally, the package also contains improved statistical tests that produce output that is often preferred but not necessarily delivered by standard methods (e.g., effect size estimates in *t*-tests).
 
@@ -72,9 +72,8 @@ results <- add_stats(results, model_correlation, "M2", "hypothesis")
 Having added the statistical results to the list, you can convert the list to a table or to a data file, ready for sharing. The example below shows how to produce a table containing all of the statistical results.
 
 
-|identifier |method                               |   estimate| statistic|       df|   p_value|alternative |  cohens_d|
-|:----------|:------------------------------------|----------:|---------:|--------:|---------:|:-----------|---------:|
-|M1         |Welch Two Sample t-test              | -8.0000000| -5.434930| 21.98221| 0.0000186|two.sided   | -2.318399|
-|M2         |Pearson's product-moment correlation |  0.5711816|  1.841083|  7.00000| 0.1081731|two.sided   |        NA|
+```
+## Error in list_to_df(.): could not find function "list_to_df"
+```
 
 In the 'example' folder you can also find examples of data files containing the output of multiple statistical tests, as well as a markdown file demonstrating how tidystats can be used to create APA-styled statistical reports.
