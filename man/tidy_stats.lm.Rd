@@ -4,11 +4,10 @@
 \alias{tidy_stats.lm}
 \title{tidy_stats method for an lm object}
 \usage{
-\method{tidy_stats}{lm}(model, identifier, type = "other",
-  description = NULL)
+\method{tidy_stats}{lm}(model)
 }
 \description{
-Creates a tidy_stats data frame for an lm object.
+Creates a tidystats data frame for an lm object.
 }
 \examples{
 lm_model <- lm(extra ~ group, data = sleep)

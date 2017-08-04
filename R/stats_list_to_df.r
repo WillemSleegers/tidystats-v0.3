@@ -2,14 +2,14 @@
 #'
 #' \code{stats_list_to_df} converts a tidystats list to a data frame
 #'
-#'@examples
+#' @examples
 #' stats_list_to_df(results)
 #'
-#'@import dplyr
-#'@importFrom magrittr %>%
-#'@import purrr
+#' @import dplyr
+#' @importFrom magrittr %>%
+#' @import purrr
 #'
-#'@export
+#' @export
 stats_list_to_df <- function(results) {
 
   # Loop over each element in the list and add the identifier information, then reorder
