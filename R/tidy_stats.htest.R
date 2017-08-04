@@ -31,17 +31,6 @@ tidy_stats.htest <- function(model) {
 
   # Add additional statistics
   output$p_value <- model$p.value
-  output$alternative <- model$alternative
-
-  # Add null.value if the test was a one sample t-test
-  if (grepl("One Sample t-test", model$method)) {
-    output$null_value <- model$null.value
-  }
-
-  # Add Cohen's d
-  if (grepl("t-test", model$method)) {
-    output$cohens_d <- 2 * model$statistic / sqrt(model$parameter)
-  }
 
   return(output)
 }
