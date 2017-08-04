@@ -6,6 +6,7 @@
 
 # install_github("willemsleegers/tidystats")
 library(tidystats)
+library(dplyr)
 
 # Create empty tidy stats data frame
 results <- list()
@@ -49,32 +50,23 @@ results <- add_stats(results, model2_2, identifier = "M2_2", type = "hypothesis"
 model2_3 <- cor.test(x, y, method = "spearman")
 results <- add_stats(results, model2_3, identifier = "M2_3", type = "hypothesis")
 
-# # Test regression ---------------------------------------------------------
-#
-# # Use the 'attitude' data set
-# attitude
-#
-# # Run model with 1 predictor
-# model6 <- lm(rating ~ complaints, data = attitude)
-#
-# # Add model output to results
-# results <- add_stats(results, model6, identifier = "M6", type = "hypothesis",
-#   description = "Test whether regression with 1 predictor works.")
-#
-# # Run model with 2 predictors
-# model7 <- lm(rating ~ complaints + critical, data = attitude)
-#
-# # Add model output to results
-# results <- add_stats(results, model7, identifier = "M7", type = "hypothesis",
-#   description = "Test whether regression with 2 predictors works.")
-#
-# # Run model with interaction effect
-# model8 <- lm(rating ~ complaints * critical, data = attitude)
-#
-# # Add model output to results
-# results <- add_stats(results, model8, identifier = "M8", type = "hypothesis",
-#   description = "Test whether regression with an interaction effect works.")
-#
+# Test regression ---------------------------------------------------------
+
+# Use the 'attitude' data set
+attitude
+
+# Model with 1 predictor
+model3_1 <- lm(rating ~ complaints, data = attitude)
+results <- add_stats(results, model3_1, identifier = "M3_1", type = "hypothesis")
+
+# Model with 2 predictors
+model3_2 <- lm(rating ~ complaints + critical, data = attitude)
+results <- add_stats(results, model3_2, identifier = "M3_2", type = "hypothesis")
+
+# Model with interaction effect
+model3_3 <- lm(rating ~ complaints * critical, data = attitude)
+results <- add_stats(results, model3_2, identifier = "M3_3", type = "hypothesis")
+
 # # Test ANOVA --------------------------------------------------------------
 #
 # # Use the 'affect' data from the psych package
@@ -91,6 +83,12 @@ results <- add_stats(results, model2_3, identifier = "M2_3", type = "hypothesis"
 # results <- add_stats(results, model9, identifier = "M9", type = "hypothesis",
 #   description = "Test whether regression with an interaction effect works.")
 
+
+# Convert to data frame -----------------------------------------------------------------------
+
+df <- list_to_df(results)
+View(df)
+
 # Save to file --------------------------------------------------------------------------------
 
-write_stats(results, file = "tests/results.csv")
+write_stats(df, file = "tests/results.csv")
