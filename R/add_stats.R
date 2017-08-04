@@ -1,11 +1,17 @@
 #' add_stats Generic Function
 #'
 #' \code{add_stats} is a generic function to add a line of tidy stats to a tidy stats data.frame.
-
+#'
+#' @param results a tidy stats list.
+#' @param model output of a statistical test.
+#' @param identifier a character string identifying the model. Automatically created if not provided.
+#' @param type a character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", or "other", can be abbreviated.
+#' @param description a character string to add additional information.
+#'
 #' @examples
-#' results <- new_stats_data_frame()
-#' ttest <- t.test(1:10, y = c(7:20))
-#' results <- add_stats(results, ttest, "ttest_x_y", "Hypothesis", "A t-test of x and y")
+#' results <- list()
+#' model <- t.test(1:10, y = c(7:20))
+#' results <- add_stats(results, model, "M1", "hypothesis")
 
 #'@import dplyr
 
@@ -25,6 +31,16 @@ add_stats <- function(results, model, identifier = NULL, type = "other", descrip
 
   # Create the new element
   new_element <- tidy_stats(model)
+
+  # Add the type
+  type <- match.arg(type, choices = c("hypothesis", "manipulation check", "contrast", "other"))
+
+  new_element$type <- case_when(
+    substr(type, 1, 1) == "h" ~ "hypothesis",
+    substr(type, 1, 1) == "m" ~ "manipulation check",
+    substr(type, 1, 1) == "c" ~ "contrast",
+    TRUE ~ "other"
+  )
 
   # Add the new element to the list
   results[[identifier]] <- new_element
