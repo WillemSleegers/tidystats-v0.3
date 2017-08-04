@@ -8,7 +8,7 @@
 library(tidystats)
 
 # Create empty tidy stats data frame
-results <- new_stats_list()
+results <- list()
 
 # Test t-tests --------------------------------------------------------------------------------
 

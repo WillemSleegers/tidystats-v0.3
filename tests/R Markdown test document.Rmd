@@ -12,7 +12,7 @@ library(knitr)
 library(tidystats)
 ```
 
-## Setup
+### Setup
 
 Start by reading in the data frame containing the output of all the statistical models.
 
@@ -29,7 +29,7 @@ results %>%
   kable()
 ```
 
-## Report t-test
+### Report t-test
 
 We currently support 4 different t-tests, tested on Student's sleep data:
 
@@ -38,7 +38,7 @@ We currently support 4 different t-tests, tested on Student's sleep data:
 - Welch's Two Sample *t*-test: `r report_t_test(results, "M1_3")`
 - Paired *t*-test: `r report_t_test(results, "M1_4")`
 
-## Report correlations
+### Report correlations
 
 We currently support 3 different correlations, tested on some random data:
 
