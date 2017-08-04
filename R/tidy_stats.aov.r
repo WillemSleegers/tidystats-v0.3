@@ -1,35 +1,34 @@
-#' Tidystats method for an aov object
+#' tidy_stats method for an aov object
 #'
-#' Creates a tidystats data.frame for an aov object.
+#' Creates a tidystats data frame for an aov object.
+#'
+#' @import dplyr
+#' @importFrom magrittr %>%
+#'
+#' @export
+tidy_stats.aov <- function(model) {
 
-#'@import dplyr
-#'@import broom
-#'@import tibble
-#'@importFrom magrittr %>%
+  # Create tidy stats data frame
+  output <- data_frame(
+    method = rep("ANOVA", length(attr(model$terms, "dataClasses")))
+  )
 
-#'@export
-tidy_stats.aov <- function(model, identifier, type = "other", description = NULL) {
+  # Add term(s)
+  output$term <- c(attr(model$terms, "term.labels"), "Residuals")
 
-  # Tidy the result to a data.frame
-  tidy(model) %>%
-    rename(
-      parameter = df,
-      p_value = p.value
-    ) %>%
-    mutate(
-      identifier = identifier,
-      type = type,
-      method = "ANOVA"
-    ) %>%
-    select(identifier, type, method, term, everything()) -> output
+  # Add sums of squares, mean squares, F statistic, degrees of freedom, and p value
+  output <- bind_cols(output, as_data_frame(anova(model)))
 
-  # Add description if provided
-  if (!is.null(description)) {
-    output %>%
-      mutate(
-        description = description
-      ) -> output
-  }
+  # Rename variables
+  output <- rename(output,
+                   sum_squares = `Sum Sq`,
+                   mean_squares = `Mean Sq`,
+                   statistic = `F value`,
+                   df = Df,
+                   p_value = `Pr(>F)`)
+
+  # Reorder variables
+  output <- select(output, method, term, sum_squares, mean_squares, statistic, df, p_value)
 
   return(output)
 }
