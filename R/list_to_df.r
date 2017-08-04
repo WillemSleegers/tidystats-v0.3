@@ -14,7 +14,7 @@ list_to_df <- function(results) {
   # Loop over each element in the list and add the identifier information, then reorder
   results %>%
     map2_df(names(results), mutate, identifier = `.y[[i]]`) %>%
-    select(identifier, method, term, everything(), -`.y[[i]]`) -> temp
+    select(identifier, method, everything(), -`.y[[i]]`) -> temp
 
   return(df)
 }
