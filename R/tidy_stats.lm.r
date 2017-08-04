@@ -49,5 +49,8 @@ tidy_stats.lm <- function(model) {
   # Add the model fit results to the coefficients results
   output <- bind_rows(output, output_fit)
 
+  # Reorder variables
+  output <- select(output, method, term, estimate, std_error, statistic, df, df_res, everything())
+
   return(output)
 }
