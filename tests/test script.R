@@ -68,25 +68,30 @@ model3_3 <- lm(rating ~ complaints * critical, data = attitude)
 results <- add_stats(results, model3_2, identifier = "M3_3", type = "hypothesis")
 
 # # Test ANOVA --------------------------------------------------------------
-#
-# # Use the 'affect' data from the psych package
-# library(psych)
-# affect
-#
-# # Convert the 'Film' variable to a factor
-# affect$Film <- factor(affect$Film)
-#
-# # Run model with Film as a factor and PA2 as DV
-# model9 <- aov(PA2 ~ Film, data = affect)
-#
-# # Add model output to results
-# results <- add_stats(results, model9, identifier = "M9", type = "hypothesis",
-#   description = "Test whether regression with an interaction effect works.")
 
+# Use the 'affect' data from the psych package
+library(psych)
+affect
+
+# Convert variables to factors
+affect$Film <- factor(affect$Film)
+affect$Study <- factor(affect$Study)
+
+# One-way ANOVA
+model4_1 <- aov(PA2 ~ Film, data = affect)
+results <- add_stats(results, model4_1, identifier = "M4_1", type = "hypothesis")
+
+# Two-way ANOVA
+model4_2 <- aov(PA2 ~ Film + Study, data = affect)
+results <- add_stats(results, model4_2, identifier = "M4_2", type = "hypothesis")
+
+# Two-way ANOVA with interaction
+model4_3 <- aov(PA2 ~ Film*Study, data = affect)
+results <- add_stats(results, model4_3, identifier = "M4_3", type = "hypothesis") # Breaks down
 
 # Convert to data frame -----------------------------------------------------------------------
 
-df <- list_to_df(results)
+df <- stats_list_to_df(results)
 View(df)
 
 # Save to file --------------------------------------------------------------------------------
