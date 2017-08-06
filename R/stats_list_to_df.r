@@ -5,9 +5,9 @@
 #' @examples
 #' stats_list_to_df(results)
 #'
-#' @import dplyr
+#' @importFrom dplyr select
 #' @importFrom magrittr %>%
-#' @import purrr
+#' @importFrom purrr map2_df
 #'
 #' @export
 stats_list_to_df <- function(results) {

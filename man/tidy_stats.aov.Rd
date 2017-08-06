@@ -2,11 +2,10 @@
 % Please edit documentation in R/tidy_stats.aov.r
 \name{tidy_stats.aov}
 \alias{tidy_stats.aov}
-\title{Tidystats method for an aov object}
+\title{tidy_stats method for an aov object}
 \usage{
-\method{tidy_stats}{aov}(model, identifier, type = "other",
-  description = NULL)
+\method{tidy_stats}{aov}(model)
 }
 \description{
-Creates a tidystats data.frame for an aov object.
+Creates a tidystats data frame for an aov object.
 }
