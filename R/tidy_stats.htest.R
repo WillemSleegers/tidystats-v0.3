@@ -26,7 +26,7 @@ tidy_stats.htest <- function(model) {
 
   # Add degrees of freedom, if possible
   if (!is.null(model$parameter)) {
-    output$df <- model$parameter
+    output$df_error <- model$parameter
   }
 
   # Add additional statistics
