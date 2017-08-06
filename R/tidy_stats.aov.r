@@ -10,7 +10,7 @@ tidy_stats.aov <- function(model) {
 
   # Create tidy stats data frame
   output <- data_frame(
-    method = rep("ANOVA", length(attr(model$terms, "variables")) - 2)
+    method = rep("ANOVA", length(attr(model$terms, "term.labels")))
   )
 
   # Add term(s)
