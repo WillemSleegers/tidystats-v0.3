@@ -8,9 +8,18 @@
 #' @export
 tidy_stats.aov <- function(model) {
 
+  # Determine the type of ANOVA
+  classes <- attr(model$terms, "dataClasses")[-1]
+  method <- case_when(
+    sum(classes == "numeric") > 0 ~ "ANCOVA",
+    sum(classes == "factor") == 1 ~ "One-way ANOVA",
+    sum(classes == "factor") == 2 ~ "Two-way ANOVA",
+    TRUE ~ "ANOVA"
+  )
+
   # Create tidy stats data frame
   output <- data_frame(
-    method = rep("ANOVA", length(attr(model$terms, "term.labels")))
+    method = rep(method, length(attr(model$terms, "term.labels")))
   )
 
   # Add term(s)
