@@ -17,7 +17,7 @@ tidy_stats.aov <- function(model) {
   output$term <- attr(model$terms, "term.labels")
 
   # Add sums of squares, mean squares, F statistic, degrees of freedom, and p value of the terms
-  output <- bind_cols(output, head(temp, nrow(output)))
+  output <- bind_cols(output, head(as_data_frame(anova(model)), nrow(output)))
 
   # Add degrees of freedom of the residuals
   output$df_error <- model$df.residual
