@@ -12,10 +12,11 @@
 #' @export
 stats_list_to_df <- function(results) {
 
-  # Loop over each element in the list and add the identifier information, then reorder
+  # Loop over each element in the list and add the identifier information, then reorder columns
   df <- results %>%
     map2_df(names(results), mutate, identifier = `.y[[i]]`) %>%
-    select(identifier, method, one_of("term"), everything(), -`.y[[i]]`)
+    select(identifier, method, one_of("term"), everything(), estimate, statistic, df_model,
+           df_error, -`.y[[i]]`)
 
   return(df)
 }
