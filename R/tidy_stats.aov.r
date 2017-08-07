@@ -27,6 +27,7 @@ tidy_stats.aov <- function(model) {
     sum(classes == "factor") == 2 ~ "Factorial ANOVA",
     TRUE ~ "ANOVA"
   )
+  output$method <- method
 
   # Rename variables
   output <- rename(output,
