@@ -7,6 +7,7 @@
 # install_github("willemsleegers/tidystats")
 library(tidystats)
 library(dplyr)
+library(tidyr)
 
 # Create empty tidy stats data frame
 results <- list()
@@ -87,7 +88,33 @@ results <- add_stats(results, model4_2, identifier = "M4_2", type = "hypothesis"
 
 # Two-way ANOVA with interaction
 model4_3 <- aov(PA2 ~ Film*Study, data = affect)
-results <- add_stats(results, model4_3, identifier = "M4_3", type = "hypothesis") # Breaks down
+results <- add_stats(results, model4_3, identifier = "M4_3", type = "hypothesis")
+
+# ANCOVA
+model4_4 <- aov(PA2 ~ Film + ext, data = affect)
+results <- add_stats(results, model4_4, identifier = "M4_4", type = "hypothesis")
+
+# Prepare for repeated measures ANOVAs
+as_data_frame(affect) %>%
+  mutate(subject = 1:nrow(affect)) %>%
+  select(subject, Film, ext, PA1, PA2) %>%
+  gather("time", "PA", PA1, PA2) %>%
+  arrange(subject) -> affect_long
+
+affect_long$subject <- factor(affect_long$subject)
+affect_long$time <- factor(affect_long$time)
+
+# One within subject factor
+model4_5 <- aov(PA ~ time + Error(subject/time), data = affect_long)
+results <- add_stats(results, model4_5, identifier = "M4_5", type = "hypothesis")
+
+# Mixed design
+model4_6 <- aov(PA ~ Film * time + Error(subject/time) + Film, data = affect_long)
+results <- add_stats(results, model4_6, identifier = "M4_6", type = "hypothesis")
+
+# ANCOVA with within subject factor
+model4_7 <- aov(PA ~ time + ext + Error(subject/time)+ext, data = affect_long)
+results <- add_stats(results, model4_7, identifier = "M4_7", type = "hypothesis")
 
 # Convert to data frame -----------------------------------------------------------------------
 
