@@ -12,7 +12,6 @@ tidy_stats.aovlist <- function(model) {
 
   # Custom function to extract stats with purrr:map2_df()
   extract_stats <- function(x, y) {
-
     df <- as_data_frame(summary(x)[[1]])
 
     if (nrow(df) > 0) {
