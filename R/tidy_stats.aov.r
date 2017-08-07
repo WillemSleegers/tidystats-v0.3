@@ -8,28 +8,25 @@
 #' @export
 tidy_stats.aov <- function(model) {
 
-  # Determine the type of ANOVA
-  classes <- attr(model$terms, "dataClasses")[-1]
-  method <- case_when(
-    sum(classes == "numeric") > 0 ~ "ANCOVA",
-    sum(classes == "factor") == 1 ~ "One-way ANOVA",
-    sum(classes == "factor") == 2 ~ "Two-way ANOVA",
-    TRUE ~ "ANOVA"
-  )
-
   # Create tidy stats data frame
   output <- data_frame(
-    method = rep(method, length(attr(model$terms, "term.labels")))
+    term = labels(model$terms)
   )
-
-  # Add term(s)
-  output$term <- attr(model$terms, "term.labels")
 
   # Add sums of squares, mean squares, F statistic, degrees of freedom, and p value of the terms
   output <- bind_cols(output, head(as_data_frame(as_data_frame(summary(model)[[1]])), nrow(output)))
 
   # Add degrees of freedom of the residuals
   output$df_error <- model$df.residual
+
+  # Determine the type of ANOVA
+  classes <- attr(model$terms, "dataClasses")[-1]
+  method <- case_when(
+    sum(classes == "numeric") > 0 ~ "ANCOVA",
+    sum(classes == "factor") == 1 ~ "One-way ANOVA",
+    sum(classes == "factor") == 2 ~ "Factorial ANOVA",
+    TRUE ~ "ANOVA"
+  )
 
   # Rename variables
   output <- rename(output,
@@ -40,8 +37,7 @@ tidy_stats.aov <- function(model) {
                    p_value = `Pr(>F)`)
 
   # Reorder variables
-  output <- select(output, method, term, sum_squares, mean_squares, statistic, df_model, df_error,
-                   p_value)
+  output <- select(output, method, term, sum_squares, mean_squares, statistic, df_model, df_error, p_value)
 
   return(output)
 }
