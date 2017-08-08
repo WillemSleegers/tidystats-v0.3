@@ -19,20 +19,24 @@ report_t_test <- function(results, identifier, statistic = NULL) {
 
   # Check if only a single statistic is asked, otherwise produce a full line of APA results
   if (!is.null(statistic)) {
-    output <- res[statistic]
+    output <- pull(res[statistic])
+
+    if (statistic == "df_error" & !grepl("Welch", res$method)) {
+      output <- formatC(output, digits = 0, format = "d")
+    } else {
+      output <- formatC(output, digits = 2, format = "f")
+    }
+
   } else {
     res <- res %>%
-      mutate_at(vars(estimate, cohens_d), ~ formatC(., digits = 2, format = "f")) %>%
-      mutate(df = if_else(grepl("Welch", method),
-                          formatC(df, digits = 2, format = "f"),
-                          formatC(df, digits = 0, format = "f"))) %>%
+      mutate_at(vars(statistic), ~ formatC(., digits = 2, format = "f")) %>%
+      mutate(df_error = if_else(grepl("Welch", method),
+                          formatC(df_error, digits = 2, format = "f"),
+                          formatC(df_error, digits = 0, format = "f"))) %>%
       mutate(p_value = report_p_value(p_value)) %>%
-      select(df, estimate, p_value, cohens_d)
+      select(df_error, statistic, p_value)
 
-    output <- with(res,
-                   paste0("*t*(", res$df, ") = ", estimate, ", ", p_value, ", *d* = ",
-                          cohens_d)
-    )
+    output <- with(res, paste0("*t*(", df_error, ") = ", statistic, ", ", p_value))
   }
 
   return(output)
