@@ -5,8 +5,7 @@
 #' @export
 report <- function(results, identifier, term = NULL, statistic = NULL) {
   # Find out which test was used
-  method <- filter(results, identifier == identifier) %>%
-    pull(method)
+  method <- results[[identifier]]$method[1]
 
   # Run the appropriate report function
   output <- case_when(
