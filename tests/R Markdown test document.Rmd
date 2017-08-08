@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(knitr)
 library(tidystats)
+library(stringr)
 ```
 
 ### Setup
@@ -20,28 +21,40 @@ Start by reading in the data frame containing the output of all the statistical 
 results <- read_stats("results.csv")
 ```
 
-Let's print the results to a table.
+### Reporting results
+
+The `tidystats` function to report statistics is `report()`. This function consists of two necessary arguments:
+
+- `results`: The list containing the output of the statistical models
+- `identifier`: The identifier of the model you want to report
+
+In some cases you also need to supply a term. Some (if not most) statistical models consist of multiple terms, so you need to provide the specific term you want to report, using the `term` argument.
+
+By default the function will return all of the required statistics to report in APA style. Optionally, you can also ask for just one specific statistic by using the `statistic` argument.
+
+### Supported statistical tests
+
+We currently support the following statistical tests:
+
+- t-tests
+
+### Examples
+
+#### t-tests
+
+We currently support 4 different t-tests, tested on Student's sleep data. The output is shown in the table below.
 
 ```{r}
-results %>%
-  bind_rows() %>%
-  select(identifier, method, estimate, df, statistic, p_value) %>%
+stats_list_to_df(results) %>%
+  filter(str_detect(method, "t-test")) %>%
+  select(identifier, method, estimate, statistic, df_error, p_value, type) %>%
   kable()
 ```
 
-### Report t-test
+A complete line of APA output can be produced using `report(results, "M1_1")`. Examples of four different t-tests are listed below.
 
-We currently support 4 different t-tests, tested on Student's sleep data:
+- One Sample *t*-test: `r report(results, "M1_1")`
+- Two Sample *t*-test: `r report(results, "M1_2")`
+- Welch's Two Sample *t*-test: `r report(results, "M1_3")`
+- Paired *t*-test: `r report(results, "M1_4")`
 
-- One Sample *t*-test: `r report_t_test(results, "M1_1")`
-- Two Sample *t*-test: `r report_t_test(results, "M1_2")`
-- Welch's Two Sample *t*-test: `r report_t_test(results, "M1_3")`
-- Paired *t*-test: `r report_t_test(results, "M1_4")`
-
-### Report correlations
-
-We currently support 3 different correlations, tested on some random data:
-
-- Pearson's product-moment correlation: `r report_correlation(results, "M2_1")`
-- Kendall's rank correlation tau: `r report_correlation(results, "M2_2")`
-- Spearman's rank correlation rho: `r report_correlation(results, "M2_3")`

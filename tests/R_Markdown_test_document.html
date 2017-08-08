@@ -124,10 +124,32 @@ $(document).ready(function () {
 <h3>Setup</h3>
 <p>Start by reading in the data frame containing the output of all the statistical models.</p>
 <pre class="r"><code>results &lt;- read_stats(&quot;results.csv&quot;)</code></pre>
-<p>Let’s print the results to a table.</p>
-<pre class="r"><code>results %&gt;%
-  bind_rows() %&gt;%
-  select(identifier, method, estimate, df, statistic, p_value) %&gt;%
+</div>
+<div id="reporting-results" class="section level3">
+<h3>Reporting results</h3>
+<p>The <code>tidystats</code> function to report statistics is <code>report()</code>. This function consists of two necessary arguments:</p>
+<ul>
+<li><code>results</code>: The list containing the output of the statistical models</li>
+<li><code>identifier</code>: The identifier of the model you want to report</li>
+</ul>
+<p>In some cases you also need to supply a term. Some (if not most) statistical models consist of multiple terms, so you need to provide the specific term you want to report, using the <code>term</code> argument.</p>
+<p>By default the function will return all of the required statistics to report in APA style. Optionally, you can also ask for just one specific statistic by using the <code>statistic</code> argument.</p>
+</div>
+<div id="supported-statistical-tests" class="section level3">
+<h3>Supported statistical tests</h3>
+<p>We currently support the following statistical tests:</p>
+<ul>
+<li>t-tests</li>
+</ul>
+</div>
+<div id="examples" class="section level3">
+<h3>Examples</h3>
+<div id="t-tests" class="section level4">
+<h4>t-tests</h4>
+<p>We currently support 4 different t-tests, tested on Student’s sleep data. The output is shown in the table below.</p>
+<pre class="r"><code>stats_list_to_df(results) %&gt;%
+  filter(str_detect(method, &quot;t-test&quot;)) %&gt;%
+  select(identifier, method, estimate, statistic, df_error, p_value, type) %&gt;%
   kable()</code></pre>
 <table>
 <thead>
@@ -135,89 +157,59 @@ $(document).ready(function () {
 <th align="left">identifier</th>
 <th align="left">method</th>
 <th align="right">estimate</th>
-<th align="right">df</th>
 <th align="right">statistic</th>
+<th align="right">df_error</th>
 <th align="right">p_value</th>
+<th align="left">type</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">M1_1</td>
 <td align="left">One Sample t-test</td>
-<td align="right">1.5400000</td>
-<td align="right">19.00000</td>
+<td align="right">1.54</td>
 <td align="right">3.412965</td>
+<td align="right">19.00000</td>
 <td align="right">0.0029176</td>
+<td align="left">hypothesis</td>
 </tr>
 <tr class="even">
 <td align="left">M1_2</td>
 <td align="left">Two Sample t-test</td>
-<td align="right">-1.5800000</td>
-<td align="right">18.00000</td>
+<td align="right">-1.58</td>
 <td align="right">-1.860813</td>
+<td align="right">18.00000</td>
 <td align="right">0.0791867</td>
+<td align="left">hypothesis</td>
 </tr>
 <tr class="odd">
 <td align="left">M1_3</td>
 <td align="left">Welch Two Sample t-test</td>
-<td align="right">-1.5800000</td>
-<td align="right">17.77647</td>
+<td align="right">-1.58</td>
 <td align="right">-1.860813</td>
+<td align="right">17.77647</td>
 <td align="right">0.0793941</td>
+<td align="left">hypothesis</td>
 </tr>
 <tr class="even">
 <td align="left">M1_4</td>
 <td align="left">Paired t-test</td>
-<td align="right">-1.5800000</td>
-<td align="right">9.00000</td>
+<td align="right">-1.58</td>
 <td align="right">-4.062128</td>
+<td align="right">9.00000</td>
 <td align="right">0.0028329</td>
-</tr>
-<tr class="odd">
-<td align="left">M2_1</td>
-<td align="left">Pearson’s product-moment correlation</td>
-<td align="right">0.5711816</td>
-<td align="right">7.00000</td>
-<td align="right">1.841083</td>
-<td align="right">0.1081731</td>
-</tr>
-<tr class="even">
-<td align="left">M2_2</td>
-<td align="left">Kendall’s rank correlation tau</td>
-<td align="right">0.4444444</td>
-<td align="right">NA</td>
-<td align="right">26.000000</td>
-<td align="right">0.1194389</td>
-</tr>
-<tr class="odd">
-<td align="left">M2_3</td>
-<td align="left">Spearman’s rank correlation rho</td>
-<td align="right">0.6000000</td>
-<td align="right">NA</td>
-<td align="right">48.000000</td>
-<td align="right">0.0967978</td>
+<td align="left">hypothesis</td>
 </tr>
 </tbody>
 </table>
-</div>
-<div id="report-t-test" class="section level3">
-<h3>Report t-test</h3>
-<p>We currently support 4 different t-tests, tested on Student’s sleep data:</p>
+<p>A complete line of APA output can be produced using <code>report(results, &quot;M1_1&quot;)</code>. Examples of four different t-tests are listed below.</p>
 <ul>
-<li>One Sample <em>t</em>-test: <em>t</em>(19) = 1.54, <em>p</em> = .003, <em>d</em> = 1.57</li>
-<li>Two Sample <em>t</em>-test: <em>t</em>(18) = -1.58, <em>p</em> = .079, <em>d</em> = -0.88</li>
-<li>Welch’s Two Sample <em>t</em>-test: <em>t</em>(17.78) = -1.58, <em>p</em> = .079, <em>d</em> = -0.88</li>
-<li>Paired <em>t</em>-test: <em>t</em>(9) = -1.58, <em>p</em> = .003, <em>d</em> = -2.71</li>
+<li>One Sample <em>t</em>-test: <em>t</em>(19) = 3.41, <em>p</em> = .003</li>
+<li>Two Sample <em>t</em>-test: <em>t</em>(18) = -1.86, <em>p</em> = .079</li>
+<li>Welch’s Two Sample <em>t</em>-test: <em>t</em>(17.78) = -1.86, <em>p</em> = .079</li>
+<li>Paired <em>t</em>-test: <em>t</em>(9) = -4.06, <em>p</em> = .003</li>
 </ul>
 </div>
-<div id="report-correlations" class="section level3">
-<h3>Report correlations</h3>
-<p>We currently support 3 different correlations, tested on some random data:</p>
-<ul>
-<li>Pearson’s product-moment correlation: <em>r</em>(7) = 0.57, <em>p</em> = .108</li>
-<li>Kendall’s rank correlation tau: <em>r</em><sub><span class="math inline">\(\tau\)</span></sub> = 0.44, <em>p</em> = .119</li>
-<li>Spearman’s rank correlation rho: <em>r</em><sub><em>s</em></sub> = 0.60, <em>p</em> = .097</li>
-</ul>
 </div>
 
 

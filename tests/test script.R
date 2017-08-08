@@ -123,4 +123,4 @@ View(df)
 
 # Save to file --------------------------------------------------------------------------------
 
-write_stats(df, file = "tests/results.csv")
+write_stats(results, path = "tests/results.csv")
