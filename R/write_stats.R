@@ -13,7 +13,7 @@
 
 #'@export
 write_stats <- function(results, file) {
-  df <- list_to_df(results)
+  df <- stats_list_to_df(results)
 
   write_csv(df, path = file, na = "")
 }
