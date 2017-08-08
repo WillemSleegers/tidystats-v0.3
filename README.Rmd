@@ -72,7 +72,7 @@ library(dplyr)
 library(knitr)
 
 results %>%
-  list_to_df() %>%
+  stats_list_to_df() %>%
   kable()
 ```
 

@@ -29,7 +29,29 @@ Load the package and start by creating an empty list to store the results of sta
 
 ```r
 library(tidystats)
+```
 
+```
+## Warning: replacing previous import 'dplyr::contains' by 'purrr::contains'
+## when loading 'tidystats'
+```
+
+```
+## Warning: replacing previous import 'dplyr::order_by' by 'purrr::order_by'
+## when loading 'tidystats'
+```
+
+```
+## Warning: replacing previous import 'magrittr::set_names' by
+## 'purrr::set_names' when loading 'tidystats'
+```
+
+```
+## Warning: replacing previous import 'magrittr::extract' by 'tidyr::extract'
+## when loading 'tidystats'
+```
+
+```r
 results <- list()
 ```
 
@@ -73,7 +95,18 @@ Having added the statistical results to the list, you can convert the list to a 
 
 
 ```
-## Error in list_to_df(.): could not find function "list_to_df"
+## Warning: Unknown variables: `term`, `std_error`
 ```
+
+```
+## Warning: Unknown variables: `df_model`
+```
+
+
+
+|identifier |method                               |   estimate| statistic| df_error|   p_value|type       |
+|:----------|:------------------------------------|----------:|---------:|--------:|---------:|:----------|
+|M1         |Welch Two Sample t-test              | -8.0000000| -5.434930| 21.98221| 0.0000186|hypothesis |
+|M2         |Pearson's product-moment correlation |  0.5711816|  1.841083|  7.00000| 0.1081731|hypothesis |
 
 In the 'example' folder you can also find examples of data files containing the output of multiple statistical tests, as well as a markdown file demonstrating how tidystats can be used to create APA-styled statistical reports.
