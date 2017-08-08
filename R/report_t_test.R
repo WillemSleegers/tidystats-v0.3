@@ -14,10 +14,11 @@
 #'@export
 report_t_test <- function(results, identifier, statistic = NULL) {
 
-  # Extract the results of the specific model through its identifier
+  # Extract model results
   res <- results[[identifier]]
 
-  # Check if only a single statistic is asked, otherwise produce a full line of APA results
+  # Check if only a single statistic is asked
+  # If not, produce a full line of APA results
   if (!is.null(statistic)) {
     output <- pull(res[statistic])
 
@@ -26,17 +27,18 @@ report_t_test <- function(results, identifier, statistic = NULL) {
     } else {
       output <- formatC(output, digits = 2, format = "f")
     }
-
   } else {
-    res <- res %>%
-      mutate_at(vars(statistic), ~ formatC(., digits = 2, format = "f")) %>%
-      mutate(df_error = if_else(grepl("Welch", method),
-                          formatC(df_error, digits = 2, format = "f"),
-                          formatC(df_error, digits = 0, format = "f"))) %>%
-      mutate(p_value = report_p_value(p_value)) %>%
-      select(df_error, statistic, p_value)
-
-    output <- with(res, paste0("*t*(", df_error, ") = ", statistic, ", ", p_value))
+    statistic <- formatC(res$statistic, digits = 2, format = "f")
+    
+    if (grepl("Welch", method)) {
+      df_error <- formatC(df_error, digits = 2, format = "f")
+    } else {
+      df_error <- formatC(df_error, digits = 0, format = "d")
+    }
+    
+    p_value <- report_p_value(res$p_value)
+    
+    output <- paste0("*t*(", df_error, ") = ", statistic, ", ", p_value)
   }
 
   return(output)
