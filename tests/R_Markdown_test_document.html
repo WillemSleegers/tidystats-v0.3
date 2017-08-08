@@ -140,13 +140,14 @@ $(document).ready(function () {
 <p>We currently support the following statistical tests:</p>
 <ul>
 <li>t-tests</li>
+<li>correlations</li>
 </ul>
 </div>
 <div id="examples" class="section level3">
 <h3>Examples</h3>
 <div id="t-tests" class="section level4">
 <h4>t-tests</h4>
-<p>We currently support 4 different t-tests, tested on Student’s sleep data. The output is shown in the table below.</p>
+<p>We currently support 4 different t-tests, tested on Student’s sleep data. The output is shown in the following table.</p>
 <pre class="r"><code>stats_list_to_df(results) %&gt;%
   filter(str_detect(method, &quot;t-test&quot;)) %&gt;%
   select(identifier, method, estimate, statistic, df_error, p_value, type) %&gt;%
@@ -202,12 +203,68 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p>A complete line of APA output can be produced using <code>report(results, &quot;M1_1&quot;)</code>. Examples of four different t-tests are listed below.</p>
+<p>Examples of APA output of the four different t-tests are listed below.</p>
 <ul>
 <li>One Sample <em>t</em>-test: <em>t</em>(19) = 3.41, <em>p</em> = .003</li>
 <li>Two Sample <em>t</em>-test: <em>t</em>(18) = -1.86, <em>p</em> = .079</li>
 <li>Welch’s Two Sample <em>t</em>-test: <em>t</em>(17.78) = -1.86, <em>p</em> = .079</li>
 <li>Paired <em>t</em>-test: <em>t</em>(9) = -4.06, <em>p</em> = .003</li>
+</ul>
+</div>
+<div id="correlations" class="section level4">
+<h4>Correlations</h4>
+<p>We currently support 3 different correlations, tested on some random data. The output is shown in the following table.</p>
+<pre class="r"><code>stats_list_to_df(results) %&gt;%
+  filter(str_detect(method, &quot;correlation&quot;)) %&gt;%
+  select(identifier, method, estimate, statistic, df_error, p_value, type) %&gt;%
+  kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">identifier</th>
+<th align="left">method</th>
+<th align="right">estimate</th>
+<th align="right">statistic</th>
+<th align="right">df_error</th>
+<th align="right">p_value</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">M2_1</td>
+<td align="left">Pearson’s product-moment correlation</td>
+<td align="right">0.5711816</td>
+<td align="right">1.841083</td>
+<td align="right">7</td>
+<td align="right">0.1081731</td>
+<td align="left">hypothesis</td>
+</tr>
+<tr class="even">
+<td align="left">M2_2</td>
+<td align="left">Kendall’s rank correlation tau</td>
+<td align="right">0.4444444</td>
+<td align="right">26.000000</td>
+<td align="right">NA</td>
+<td align="right">0.1194389</td>
+<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M2_3</td>
+<td align="left">Spearman’s rank correlation rho</td>
+<td align="right">0.6000000</td>
+<td align="right">48.000000</td>
+<td align="right">NA</td>
+<td align="right">0.0967978</td>
+<td align="left">hypothesis</td>
+</tr>
+</tbody>
+</table>
+<p>Examples of APA output of the three correlation methods are listed below.</p>
+<ul>
+<li>Pearson’s product-moment correlation: <em>r</em>(7) = 0.57, <em>p</em> = .108</li>
+<li>Kendall’s rank correlation tau: <em>r</em><sub><span class="math inline">\(\tau\)</span></sub> = 0.44, <em>p</em> = .119</li>
+<li>Spearman’s rank correlation rho: <em>r</em><sub><em>s</em></sub> = 0.60, <em>p</em> = .097</li>
 </ul>
 </div>
 </div>

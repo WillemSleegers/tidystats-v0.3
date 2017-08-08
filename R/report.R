@@ -9,7 +9,8 @@ report <- function(results, identifier, term = NULL, statistic = NULL) {
 
   # Run the appropriate report function
   output <- case_when(
-    grepl("t-test", method) ~ report_t_test(results, identifier, statistic)
+    grepl("t-test", method) ~ report_t_test(results, identifier, statistic),
+    grepl("correlation", method) ~ report_correlation(results, identifier, statistic)
   )
 
   return(output)

@@ -37,12 +37,13 @@ By default the function will return all of the required statistics to report in 
 We currently support the following statistical tests:
 
 - t-tests
+- correlations
 
 ### Examples
 
 #### t-tests
 
-We currently support 4 different t-tests, tested on Student's sleep data. The output is shown in the table below.
+We currently support 4 different t-tests, tested on Student's sleep data. The output is shown in the following table.
 
 ```{r}
 stats_list_to_df(results) %>%
@@ -51,10 +52,26 @@ stats_list_to_df(results) %>%
   kable()
 ```
 
-A complete line of APA output can be produced using `report(results, "M1_1")`. Examples of four different t-tests are listed below.
+Examples of APA output of the four different t-tests are listed below.
 
 - One Sample *t*-test: `r report(results, "M1_1")`
 - Two Sample *t*-test: `r report(results, "M1_2")`
 - Welch's Two Sample *t*-test: `r report(results, "M1_3")`
 - Paired *t*-test: `r report(results, "M1_4")`
 
+#### Correlations
+
+We currently support 3 different correlations, tested on some random data. The output is shown in the following table.
+
+```{r}
+stats_list_to_df(results) %>%
+  filter(str_detect(method, "correlation")) %>%
+  select(identifier, method, estimate, statistic, df_error, p_value, type) %>%
+  kable()
+```
+
+Examples of APA output of the three correlation methods are listed below.
+
+- Pearson’s product-moment correlation: `r report(results, "M2_1")`
+- Kendall’s rank correlation tau: `r report(results, "M2_2")`
+- Spearman’s rank correlation rho: `r report(results, "M2_3")`

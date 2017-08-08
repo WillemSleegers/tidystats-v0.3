@@ -25,17 +25,22 @@ report_correlation <- function(results, identifier, statistic = NULL) {
 
   # Check if only a single statistic is asked, otherwise produce a full line of APA results
   if (!is.null(statistic)) {
-    output <- res[statistic]
-  } else {
+    output <- pull(res[statistic])
 
+    if (statistic == "df_error") {
+      output <- formatC(output, digits = 0, format = "d")
+    } else {
+      output <- formatC(output, digits = 2, format = "f")
+    }
+  } else {
     if (grepl("Pearson", res$method)) {
       res <- res %>%
         mutate(estimate = formatC(estimate, digits = 2, format = "f")) %>%
-        mutate(df = formatC(df, digits = 0, format = "f")) %>%
+        mutate(df_error = formatC(df_error, digits = 0, format = "f")) %>%
         mutate(p_value = report_p_value(p_value))
 
       output <- with(res,
-                     paste0("*r*(", res$df, ") = ", estimate, ", ", p_value)
+                     paste0("*r*(", df_error, ") = ", estimate, ", ", p_value)
       )
     } else {
       res <- res %>%
