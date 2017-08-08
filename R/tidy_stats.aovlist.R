@@ -22,7 +22,8 @@ tidy_stats.aovlist <- function(model) {
     return(df)
   }
 
-  # Extract statistics
+  # Convert stats to data frame
+  # and repeat df_error across each term in a new variable
   model %>%
     map2_df(names(model), extract_stats) %>%
     group_by(error_term) %>%
