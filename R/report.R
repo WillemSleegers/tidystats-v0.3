@@ -1,11 +1,9 @@
-#' Report generic function
+#' Report function
 #'
-#' \code{report} is a generic function that reports a test in APA style.
+#' \code{report} is a general function that reports a test in APA style by checking what kind of statistical test is supplied and calling its associated report function.
 
-# @examples
-#
-
-report.data.frame <- function(results, identifier, term = NULL, statistic = NULL) {
+#' @export
+report <- function(results, identifier, term = NULL, statistic = NULL) {
   # Find out which test was used
   method <- filter(results, identifier == identifier) %>%
     pull(method)
