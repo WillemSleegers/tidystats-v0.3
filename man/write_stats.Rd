@@ -2,16 +2,10 @@
 % Please edit documentation in R/write_stats.R
 \name{write_stats}
 \alias{write_stats}
-\title{Write a .csv file with all stats}
+\title{Write a csv file with all stats}
 \usage{
-write_stats(results, file)
+write_stats(results, path)
 }
 \description{
-\code{write_stats} creates a \code{.csv} file with all stats
-}
-\examples{
-results <- new_stats_list()
-model <- t.test(1:10, y = c(7:20))
-results <- add_stats(results, model, "model1", "hypothesis")
-write_stats(results)
+\code{write_stats} creates a \code{csv} file with all stats
 }
