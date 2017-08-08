@@ -29,29 +29,7 @@ Load the package and start by creating an empty list to store the results of sta
 
 ```r
 library(tidystats)
-```
 
-```
-## Warning: replacing previous import 'dplyr::contains' by 'purrr::contains'
-## when loading 'tidystats'
-```
-
-```
-## Warning: replacing previous import 'dplyr::order_by' by 'purrr::order_by'
-## when loading 'tidystats'
-```
-
-```
-## Warning: replacing previous import 'magrittr::set_names' by
-## 'purrr::set_names' when loading 'tidystats'
-```
-
-```
-## Warning: replacing previous import 'magrittr::extract' by 'tidyr::extract'
-## when loading 'tidystats'
-```
-
-```r
 results <- list()
 ```
 
@@ -92,16 +70,6 @@ results <- add_stats(results, model_correlation, "M2", "hypothesis")
 ### Result
 
 Having added the statistical results to the list, you can convert the list to a table or to a data file, ready for sharing. The example below shows how to produce a table containing all of the statistical results.
-
-
-```
-## Warning: Unknown variables: `term`, `std_error`
-```
-
-```
-## Warning: Unknown variables: `df_model`
-```
-
 
 
 |identifier |method                               |   estimate| statistic| df_error|   p_value|type       |

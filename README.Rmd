@@ -25,7 +25,7 @@ install_github("willemsleegers/tidystats")
 
 Load the package and start by creating an empty list to store the results of statistical models in.
 
-```{r setup}
+```{r setup, warning = FALSE}
 library(tidystats)
 
 results <- list()
@@ -67,7 +67,7 @@ results <- add_stats(results, model_correlation, "M2", "hypothesis")
 
 Having added the statistical results to the list, you can convert the list to a table or to a data file, ready for sharing. The example below shows how to produce a table containing all of the statistical results.
 
-```{r, echo = FALSE, message = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 library(dplyr)
 library(knitr)
 
