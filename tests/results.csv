@@ -1,4 +1,4 @@
-identifier,method,term,estimate,std_error,statistic,df_model,df_error,p_value,type,r_squared,adjusted_r_squared,sum_squares,mean_squares
+identifier,method,term,estimate,std_error,statistic,df_model,df_error,p_value,type,r_squared,adj_r_squared,sum_squares,mean_squares
 M1_1,One Sample t-test,,1.54,,3.412964995270109,,19,0.002917620404154116,hypothesis,,,,
 M1_2, Two Sample t-test,,-1.58,,-1.8608134674868528,,18,0.07918671421593818,hypothesis,,,,
 M1_3,Welch Two Sample t-test,,-1.58,,-1.860813467486853,,17.7764735161785,0.07939414018735817,hypothesis,,,,

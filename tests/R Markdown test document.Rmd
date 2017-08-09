@@ -1,6 +1,7 @@
 ---
 title: "Tidystats R Markdown test document"
-output: html_document
+output:
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -11,6 +12,9 @@ library(tidyverse)
 library(knitr)
 library(tidystats)
 library(stringr)
+
+# Options
+options(digits = 2)
 ```
 
 ### Setup
@@ -34,7 +38,7 @@ By default the function will return all of the required statistics to report in 
 
 ### Supported statistical tests
 
-We currently support the following statistical tests:
+The following statistical tests can be used to produce APA output:
 
 - t-tests
 - correlations
@@ -43,7 +47,7 @@ We currently support the following statistical tests:
 
 #### t-tests
 
-We currently support 4 different t-tests, tested on Student's sleep data. The output is shown in the following table.
+We currently support 4 different t-tests, tested on Student's *sleep* data. The output is shown in the following table.
 
 ```{r}
 stats_list_to_df(results) %>%
@@ -54,10 +58,21 @@ stats_list_to_df(results) %>%
 
 Examples of APA output of the four different t-tests are listed below.
 
-- One Sample *t*-test: `r report(results, "M1_1")`
-- Two Sample *t*-test: `r report(results, "M1_2")`
-- Welch's Two Sample *t*-test: `r report(results, "M1_3")`
-- Paired *t*-test: `r report(results, "M1_4")`
+**One Sample *t*-test**
+
+- `report(results, "M1_1")`: `r report(results, "M1_1")`
+
+**Two Sample *t*-test:** 
+
+- `report(results, "M1_2")`: `r report(results, "M1_2")`
+
+**Welch's Two Sample *t*-test** 
+
+- `report(results, "M1_3")`: `r report(results, "M1_3")`
+
+**Paired *t*-test** 
+
+- `report(results, "M1_4")`: `r report(results, "M1_4")`
 
 #### Correlations
 
@@ -72,6 +87,36 @@ stats_list_to_df(results) %>%
 
 Examples of APA output of the three correlation methods are listed below.
 
-- Pearson’s product-moment correlation: `r report(results, "M2_1")`
-- Kendall’s rank correlation tau: `r report(results, "M2_2")`
-- Spearman’s rank correlation rho: `r report(results, "M2_3")`
+**Pearson’s product-moment correlation**
+
+- `report(results, "M2_1")`: `r report(results, "M2_1")`
+
+**Kendall’s rank correlation tau**
+
+- `report(results, "M2_2")`: `r report(results, "M2_2")`
+
+**Spearman’s rank correlation rho**
+
+- `report(results, "M2_3")`: `r report(results, "M2_3")`
+
+#### Regression
+
+We also support regression (of course), tested on the *affect* data frame from the `psych` package. The output of three regression models is shown in the following table.
+
+```{r regression}
+stats_list_to_df(results) %>%
+  filter(str_detect(method, "regression")) %>%
+  select(identifier, term, estimate, std_error, statistic, df_model, 
+         df_error, p_value, adj_r_squared, type) %>%
+  kable()
+```
+
+This table contains more missing data than the previous tables. This is because a regression models returns a row for each term in the model, as well as a row for the model itself. The terms have their estimate, *t*-statistic, and the like, while the model has adjusted *R*<sup>2</sup> squared, the *F*-statistic, and the model and error df. The model term is always called '(Model)', so if you want to produce APA output of the model, use this as the term in the `report()` function. Examples:
+
+**Single term**
+
+- `report(results, "M3_1", "complaints")`: `r report_lm(results, "M3_1", "complaints")`
+
+**Model fit**
+
+- `report(results, "M3_1", "(Model)")`: `r report_lm(results, "M3_1", "(Model)")`

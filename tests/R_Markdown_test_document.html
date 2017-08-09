@@ -137,7 +137,7 @@ $(document).ready(function () {
 </div>
 <div id="supported-statistical-tests" class="section level3">
 <h3>Supported statistical tests</h3>
-<p>We currently support the following statistical tests:</p>
+<p>The following statistical tests can be used to produce APA output:</p>
 <ul>
 <li>t-tests</li>
 <li>correlations</li>
@@ -147,7 +147,7 @@ $(document).ready(function () {
 <h3>Examples</h3>
 <div id="t-tests" class="section level4">
 <h4>t-tests</h4>
-<p>We currently support 4 different t-tests, tested on Student’s sleep data. The output is shown in the following table.</p>
+<p>We currently support 4 different t-tests, tested on Student’s <em>sleep</em> data. The output is shown in the following table.</p>
 <pre class="r"><code>stats_list_to_df(results) %&gt;%
   filter(str_detect(method, &quot;t-test&quot;)) %&gt;%
   select(identifier, method, estimate, statistic, df_error, p_value, type) %&gt;%
@@ -168,47 +168,57 @@ $(document).ready(function () {
 <tr class="odd">
 <td align="left">M1_1</td>
 <td align="left">One Sample t-test</td>
-<td align="right">1.54</td>
-<td align="right">3.412965</td>
-<td align="right">19.00000</td>
-<td align="right">0.0029176</td>
+<td align="right">1.5</td>
+<td align="right">3.4</td>
+<td align="right">19</td>
+<td align="right">0.00</td>
 <td align="left">hypothesis</td>
 </tr>
 <tr class="even">
 <td align="left">M1_2</td>
 <td align="left">Two Sample t-test</td>
-<td align="right">-1.58</td>
-<td align="right">-1.860813</td>
-<td align="right">18.00000</td>
-<td align="right">0.0791867</td>
+<td align="right">-1.6</td>
+<td align="right">-1.9</td>
+<td align="right">18</td>
+<td align="right">0.08</td>
 <td align="left">hypothesis</td>
 </tr>
 <tr class="odd">
 <td align="left">M1_3</td>
 <td align="left">Welch Two Sample t-test</td>
-<td align="right">-1.58</td>
-<td align="right">-1.860813</td>
-<td align="right">17.77647</td>
-<td align="right">0.0793941</td>
+<td align="right">-1.6</td>
+<td align="right">-1.9</td>
+<td align="right">18</td>
+<td align="right">0.08</td>
 <td align="left">hypothesis</td>
 </tr>
 <tr class="even">
 <td align="left">M1_4</td>
 <td align="left">Paired t-test</td>
-<td align="right">-1.58</td>
-<td align="right">-4.062128</td>
-<td align="right">9.00000</td>
-<td align="right">0.0028329</td>
+<td align="right">-1.6</td>
+<td align="right">-4.1</td>
+<td align="right">9</td>
+<td align="right">0.00</td>
 <td align="left">hypothesis</td>
 </tr>
 </tbody>
 </table>
 <p>Examples of APA output of the four different t-tests are listed below.</p>
+<p><strong>One Sample <em>t</em>-test</strong></p>
 <ul>
-<li>One Sample <em>t</em>-test: <em>t</em>(19) = 3.41, <em>p</em> = .003</li>
-<li>Two Sample <em>t</em>-test: <em>t</em>(18) = -1.86, <em>p</em> = .079</li>
-<li>Welch’s Two Sample <em>t</em>-test: <em>t</em>(17.78) = -1.86, <em>p</em> = .079</li>
-<li>Paired <em>t</em>-test: <em>t</em>(9) = -4.06, <em>p</em> = .003</li>
+<li><code>report(results, &quot;M1_1&quot;)</code>: <em>t</em>(19) = 3.41, <em>p</em> = .003</li>
+</ul>
+<p><strong>Two Sample <em>t</em>-test:</strong></p>
+<ul>
+<li><code>report(results, &quot;M1_2&quot;)</code>: <em>t</em>(18) = -1.86, <em>p</em> = .079</li>
+</ul>
+<p><strong>Welch’s Two Sample <em>t</em>-test</strong></p>
+<ul>
+<li><code>report(results, &quot;M1_3&quot;)</code>: <em>t</em>(17.78) = -1.86, <em>p</em> = .079</li>
+</ul>
+<p><strong>Paired <em>t</em>-test</strong></p>
+<ul>
+<li><code>report(results, &quot;M1_4&quot;)</code>: <em>t</em>(9) = -4.06, <em>p</em> = .003</li>
 </ul>
 </div>
 <div id="correlations" class="section level4">
@@ -234,37 +244,212 @@ $(document).ready(function () {
 <tr class="odd">
 <td align="left">M2_1</td>
 <td align="left">Pearson’s product-moment correlation</td>
-<td align="right">0.5711816</td>
-<td align="right">1.841083</td>
+<td align="right">0.57</td>
+<td align="right">1.8</td>
 <td align="right">7</td>
-<td align="right">0.1081731</td>
+<td align="right">0.11</td>
 <td align="left">hypothesis</td>
 </tr>
 <tr class="even">
 <td align="left">M2_2</td>
 <td align="left">Kendall’s rank correlation tau</td>
-<td align="right">0.4444444</td>
-<td align="right">26.000000</td>
+<td align="right">0.44</td>
+<td align="right">26.0</td>
 <td align="right">NA</td>
-<td align="right">0.1194389</td>
+<td align="right">0.12</td>
 <td align="left">hypothesis</td>
 </tr>
 <tr class="odd">
 <td align="left">M2_3</td>
 <td align="left">Spearman’s rank correlation rho</td>
-<td align="right">0.6000000</td>
-<td align="right">48.000000</td>
+<td align="right">0.60</td>
+<td align="right">48.0</td>
 <td align="right">NA</td>
-<td align="right">0.0967978</td>
+<td align="right">0.10</td>
 <td align="left">hypothesis</td>
 </tr>
 </tbody>
 </table>
 <p>Examples of APA output of the three correlation methods are listed below.</p>
+<p><strong>Pearson’s product-moment correlation</strong></p>
 <ul>
-<li>Pearson’s product-moment correlation: <em>r</em>(7) = 0.57, <em>p</em> = .108</li>
-<li>Kendall’s rank correlation tau: <em>r</em><sub><span class="math inline">\(\tau\)</span></sub> = 0.44, <em>p</em> = .119</li>
-<li>Spearman’s rank correlation rho: <em>r</em><sub><em>s</em></sub> = 0.60, <em>p</em> = .097</li>
+<li><code>report(results, &quot;M2_1&quot;)</code>: <em>r</em>(7) = 0.57, <em>p</em> = .108</li>
+</ul>
+<p><strong>Kendall’s rank correlation tau</strong></p>
+<ul>
+<li><code>report(results, &quot;M2_2&quot;)</code>: <em>r</em><sub><span class="math inline">\(\tau\)</span></sub> = 0.44, <em>p</em> = .119</li>
+</ul>
+<p><strong>Spearman’s rank correlation rho</strong></p>
+<ul>
+<li><code>report(results, &quot;M2_3&quot;)</code>: <em>r</em><sub><em>s</em></sub> = 0.60, <em>p</em> = .097</li>
+</ul>
+</div>
+<div id="regression" class="section level4">
+<h4>Regression</h4>
+<p>We also support regression (of course), tested on the <em>affect</em> data frame from the <code>psych</code> package. The output of three regression models is shown in the following table.</p>
+<pre class="r"><code>stats_list_to_df(results) %&gt;%
+  filter(str_detect(method, &quot;regression&quot;)) %&gt;%
+  select(identifier, term, estimate, std_error, statistic, df_model, 
+         df_error, p_value, adj_r_squared, type) %&gt;%
+  kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">identifier</th>
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std_error</th>
+<th align="right">statistic</th>
+<th align="right">df_model</th>
+<th align="right">df_error</th>
+<th align="right">p_value</th>
+<th align="right">adj_r_squared</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">(Intercept)</td>
+<td align="right">14.38</td>
+<td align="right">6.62</td>
+<td align="right">2.17</td>
+<td align="right">NA</td>
+<td align="right">28</td>
+<td align="right">0.04</td>
+<td align="right">NA</td>
+<td align="left">hypothesis</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">complaints</td>
+<td align="right">0.75</td>
+<td align="right">0.10</td>
+<td align="right">7.74</td>
+<td align="right">NA</td>
+<td align="right">28</td>
+<td align="right">0.00</td>
+<td align="right">NA</td>
+<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">(Model)</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">59.86</td>
+<td align="right">1</td>
+<td align="right">28</td>
+<td align="right">0.00</td>
+<td align="right">0.67</td>
+<td align="left">hypothesis</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">(Intercept)</td>
+<td align="right">14.25</td>
+<td align="right">11.17</td>
+<td align="right">1.28</td>
+<td align="right">NA</td>
+<td align="right">27</td>
+<td align="right">0.21</td>
+<td align="right">NA</td>
+<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">complaints</td>
+<td align="right">0.75</td>
+<td align="right">0.10</td>
+<td align="right">7.46</td>
+<td align="right">NA</td>
+<td align="right">27</td>
+<td align="right">0.00</td>
+<td align="right">NA</td>
+<td align="left">hypothesis</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">critical</td>
+<td align="right">0.00</td>
+<td align="right">0.14</td>
+<td align="right">0.01</td>
+<td align="right">NA</td>
+<td align="right">27</td>
+<td align="right">0.99</td>
+<td align="right">NA</td>
+<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">(Model)</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">28.86</td>
+<td align="right">2</td>
+<td align="right">27</td>
+<td align="right">0.00</td>
+<td align="right">0.66</td>
+<td align="left">hypothesis</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">(Intercept)</td>
+<td align="right">14.25</td>
+<td align="right">11.17</td>
+<td align="right">1.28</td>
+<td align="right">NA</td>
+<td align="right">27</td>
+<td align="right">0.21</td>
+<td align="right">NA</td>
+<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">complaints</td>
+<td align="right">0.75</td>
+<td align="right">0.10</td>
+<td align="right">7.46</td>
+<td align="right">NA</td>
+<td align="right">27</td>
+<td align="right">0.00</td>
+<td align="right">NA</td>
+<td align="left">hypothesis</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">critical</td>
+<td align="right">0.00</td>
+<td align="right">0.14</td>
+<td align="right">0.01</td>
+<td align="right">NA</td>
+<td align="right">27</td>
+<td align="right">0.99</td>
+<td align="right">NA</td>
+<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">(Model)</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">28.86</td>
+<td align="right">2</td>
+<td align="right">27</td>
+<td align="right">0.00</td>
+<td align="right">0.66</td>
+<td align="left">hypothesis</td>
+</tr>
+</tbody>
+</table>
+<p>This table contains more missing data than the previous tables. This is because a regression models returns a row for each term in the model, as well as a row for the model itself. The terms have their estimate, <em>t</em>-statistic, and the like, while the model has adjusted <em>R</em><sup>2</sup> squared, the <em>F</em>-statistic, the model and error df. The model term is always called ‘(Model)’, so if you want to produce APA output of the model, use this as the term in the <code>report()</code> function. Examples:</p>
+<p><strong>Single term</strong></p>
+<ul>
+<li><code>report(results, &quot;M3_1&quot;, &quot;complaints&quot;)</code>: <em>b</em> = 0.75, <em>SE</em> = 0.10, <em>t</em>(28) = 7.74, <em>p</em> &lt; .001</li>
+</ul>
+<p><strong>Model fit</strong></p>
+<ul>
+<li><code>report(results, &quot;M3_1&quot;, &quot;(Model)&quot;)</code>: adjusted <em>R</em><sup>2</sup> = 0.67, <em>F</em>(1, 28) = 59.86, <em>p</em> &lt; .001</li>
 </ul>
 </div>
 </div>
