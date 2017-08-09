@@ -40,7 +40,7 @@ tidy_stats.lm <- function(model) {
     df_model = summary(model)$fstatistic[2],
     df_error = summary(model)$fstatistic[3],
     r_squared = summary(model)$r.squared,
-    adjusted_r_squared = summary(model)$adj.r.squared
+    adj_r_squared = summary(model)$adj.r.squared
   )
 
   # Calculate p_value ourselves
