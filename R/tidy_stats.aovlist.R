@@ -2,10 +2,10 @@
 #'
 #' Creates a tidystats data frame for an aovlist object.
 #'
-#' @import purrr
 #' @import dplyr
 #' @import tidyr
-#' @import magrittr
+#' @importFrom magrittr %>%
+#' @importFrom purrr map2_df
 #'
 #' @export
 tidy_stats.aovlist <- function(model) {
