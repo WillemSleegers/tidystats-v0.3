@@ -7,5 +7,12 @@
 write_stats(results, path)
 }
 \description{
-\code{write_stats} creates a \code{csv} file with all stats
+\code{write_stats} creates a .csv file with all stats
+}
+\examples{
+results <- list()
+model <- t.test(1:10, y = 7:20)
+results <- add_stats(results, model)
+write_stats(results, "results.csv")
+
 }
