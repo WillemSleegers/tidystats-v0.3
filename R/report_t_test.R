@@ -29,15 +29,15 @@ report_t_test <- function(results, identifier, statistic = NULL) {
     }
   } else {
     statistic <- formatC(res$statistic, digits = 2, format = "f")
-    
-    if (grepl("Welch", method)) {
-      df_error <- formatC(df_error, digits = 2, format = "f")
+
+    if (grepl("Welch", res$method)) {
+      df_error <- formatC(res$df_error, digits = 2, format = "f")
     } else {
-      df_error <- formatC(df_error, digits = 0, format = "d")
+      df_error <- formatC(res$df_error, digits = 0, format = "d")
     }
-    
+
     p_value <- report_p_value(res$p_value)
-    
+
     output <- paste0("*t*(", df_error, ") = ", statistic, ", ", p_value)
   }
 
