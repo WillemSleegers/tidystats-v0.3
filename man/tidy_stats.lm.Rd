@@ -2,9 +2,12 @@
 % Please edit documentation in R/tidy_stats.lm.r
 \name{tidy_stats.lm}
 \alias{tidy_stats.lm}
-\title{tidy_stats method for an lm object}
+\title{tidy_stats method for lm objects}
 \usage{
 \method{tidy_stats}{lm}(model)
+}
+\arguments{
+\item{model}{An lm object}
 }
 \description{
 Creates a tidystats data frame for an lm object.
@@ -12,4 +15,5 @@ Creates a tidystats data frame for an lm object.
 \examples{
 lm_model <- lm(extra ~ group, data = sleep)
 tidy_stats.lm(lm_model)
+
 }

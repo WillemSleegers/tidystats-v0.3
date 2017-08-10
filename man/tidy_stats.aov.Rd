@@ -6,6 +6,9 @@
 \usage{
 \method{tidy_stats}{aov}(model)
 }
+\arguments{
+\item{model}{An aov object}
+}
 \description{
 Creates a tidystats data frame for an aov object.
 }

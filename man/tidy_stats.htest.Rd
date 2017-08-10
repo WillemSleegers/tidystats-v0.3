@@ -2,13 +2,17 @@
 % Please edit documentation in R/tidy_stats.htest.R
 \name{tidy_stats.htest}
 \alias{tidy_stats.htest}
-\title{tidy_stats method for an htest object}
+\title{tidy_stats method for htest objects}
 \usage{
 \method{tidy_stats}{htest}(model)
+}
+\arguments{
+\item{model}{An htest object}
 }
 \description{
 Creates a tidystats data frame for an htest object.
 }
 \examples{
 tidy_stats.htest(t.test(1:10, y = c(7:20)))
+
 }
