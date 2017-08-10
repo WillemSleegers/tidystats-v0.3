@@ -28,6 +28,7 @@ tidy_stats.lm <- function(model) {
       p = `Pr(>|t|)`
     ) %>%
     mutate(
+      df = summary$df[2],
       term = names(model$coefficients),
       order = 1:n()) %>%
     gather("statistic", "value", -term, -order) %>%
