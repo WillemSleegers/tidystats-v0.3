@@ -17,28 +17,31 @@ report_t_test <- function(results, identifier, statistic = NULL) {
   # Extract model results
   res <- results[[identifier]]
 
-  # Check if only a single statistic is asked
-  # If not, produce a full line of APA results
+  # Check if only a single statistic is asked; if not, produce a full line of APA results
   if (!is.null(statistic)) {
-    output <- pull(res[statistic])
 
-    if (statistic == "df_error" & !grepl("Welch", res$method)) {
-      output <- formatC(output, digits = 0, format = "d")
+    output <- res$value[res$statistic == statistic]
+
+    if (statistic == "p") {
+      output <- formatC(output, digits = 3, format = "f")
     } else {
-      output <- formatC(output, digits = 2, format = "f")
+      if (statistic != "df" | grepl("Welch", res$method[1])) {
+        output <- formatC(output, digits = 2, format = "f")
+      }
     }
+
   } else {
-    statistic <- formatC(res$statistic, digits = 2, format = "f")
+    t <- formatC(res$value[res$statistic == "t"], digits = 2, format = "f")
 
-    if (grepl("Welch", res$method)) {
-      df_error <- formatC(res$df_error, digits = 2, format = "f")
+    if (grepl("Welch", res$method[1])) {
+      df <- formatC(res$value[res$statistic == "df"], digits = 2, format = "f")
     } else {
-      df_error <- formatC(res$df_error, digits = 0, format = "d")
+      df <- formatC(res$value[res$statistic == "df"], digits = 0, format = "d")
     }
 
-    p_value <- report_p_value(res$p_value)
+    p <- report_p_value(res$value[res$statistic == "p"])
 
-    output <- paste0("*t*(", df_error, ") = ", statistic, ", ", p_value)
+    output <- paste0("*t*(", df, ") = ", t, ", ", p)
   }
 
   return(output)
