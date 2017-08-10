@@ -1,58 +1,54 @@
-#' tidy_stats method for an lm object
+#' tidy_stats method for lm objects
 #'
 #' Creates a tidystats data frame for an lm object.
-
+#'
+#' @param model An lm object
+#'
 #' @examples
 #' lm_model <- lm(extra ~ group, data = sleep)
 #' tidy_stats.lm(lm_model)
-
-#'@import dplyr
-#'@importFrom magrittr %>%
-
-#'@export
+#'
+#' @import dplyr
+#' @import tidyr
+#' @importFrom magrittr %>%
+#'
+#' @export
 tidy_stats.lm <- function(model) {
-  # Create tidy stats data frame
-  output <- data_frame(
-    method = rep("Linear regression", length(model$coefficients))
-  )
 
-  # Add term(s)
-  output$term <- names(model$coefficients)
+  # Get summary statistics
+  summary <- summary(model)
 
-  # Add estimates, standard errors, t values, and p values
-  output <- bind_cols(output, as_data_frame(summary(model)$coefficients))
+  # Extract statistics
+  # Not included: Descriptives of residuals, residual standard error, residual degrees of freedom
+  output <- as_data_frame(summary$coefficients) %>%
+    rename(
+      b = Estimate,
+      SE = `Std. Error`,
+      t = `t value`,
+      p = `Pr(>|t|)`
+    ) %>%
+    mutate(
+      term = names(model$coefficients),
+      order = 1:n()) %>%
+    gather("statistic", "value", -term, -order) %>%
+    arrange(order) %>%
+    select(-order) %>%
+    bind_rows(
+      data_frame(
+        term = "(Model)",
+        statistic = c("R squared", "adjusted R squared", "F", "numerator df", "denominator df"),
+        value = c(summary$r.squared, summary$adj.r.squared, summary$fstatistic[1],
+                summary$fstatistic[2], summary$fstatistic[3])
+        )
+    )
 
-  # Add df
-  output$df_error <- model$df.residual
+  # Calculate model fit p value ourselves
+  p <- pf(summary$fstatistic[1], summary$fstatistic[2], summary$fstatistic[3], lower.tail = FALSE)
 
-  # Rename variables
-  output <- rename(output,
-                   estimate = Estimate,
-                   std_error = `Std. Error`,
-                   statistic = `t value`,
-                   p_value = `Pr(>|t|)`)
+  output <- bind_rows(output, data_frame(term = "(Model)", statistic = "p", value = p))
 
-  # Create a separate data frame to store the model fit statistics in
-  output_fit <- data_frame(
-    method = "Linear regression",
-    term = "(Model)",
-    statistic = summary(model)$fstatistic[1],
-    df_model = summary(model)$fstatistic[2],
-    df_error = summary(model)$fstatistic[3],
-    r_squared = summary(model)$r.squared,
-    adj_r_squared = summary(model)$adj.r.squared
-  )
-
-  # Calculate p_value ourselves
-  output_fit$p_value <- pf(output_fit$statistic, output_fit$df_model, output_fit$df_error,
-                           lower.tail = FALSE)
-
-  # Add the model fit results to the coefficients results
-  output <- bind_rows(output, output_fit)
-
-  # Reorder variables
-  output <- select(output, method, term, estimate, std_error, statistic, df_model, df_error,
-                   everything())
+  # Add method
+  output$method <- "Linear regression"
 
   return(output)
 }

@@ -22,8 +22,7 @@ stats_list_to_df <- function(results) {
   # Merge the stats output together and reorder variables
   df <- results %>%
     map2_df(names(results), add_identifier) %>%
-    select(identifier, method, one_of("term", "estimate", "std_error"),
-           statistic, one_of("df_model"), df_error, everything())
+    select(identifier, one_of("term"), everything())
 
   return(df)
 }

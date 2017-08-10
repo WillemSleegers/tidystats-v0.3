@@ -1,36 +1,44 @@
-#' tidy_stats method for an htest object
+#' tidy_stats method for htest objects
 #'
 #' Creates a tidystats data frame for an htest object.
-
+#'
+#' @param model An htest object
+#'
 #' @examples
 #' tidy_stats.htest(t.test(1:10, y = c(7:20)))
-
-#'@import tibble
-
-#'@export
+#'
+#' @import tibble
+#' @importFrom dplyr bind_rows
+#'
+#' @export
 tidy_stats.htest <- function(model) {
-  # Create tidy stats data frame
-  output <- data_frame(
-    method = model$method
+
+  # Extract statistics
+  output <- bind_rows(
+    data_frame(statistic = names(model$estimate), value = model$estimate),
+    data_frame(statistic = names(model$statistic), value = model$statistic),
+    if (!is.null(model$parameter)) {
+      data_frame(statistic = names(model$parameter), value = model$parameter)
+    },
+    data_frame(statistic = "p", value = model$p.value),
+    if (!is.null(model$conf.int)) {
+      data_frame(
+        statistic = c("95% CI lower", "95% CI upper"),
+        value = c(model$conf.int[1], model$conf.int[2])
+      )
+    },
+    data_frame(statistic = "null value", value = model$null.value)
   )
 
-  # Add estimate
-  if (grepl("Two Sample", model$method)) {
-    output$estimate <- model$estimate[[1]]-model$estimate[[2]]
-  } else {
-    output$estimate <- model$estimate[[1]]
-  }
+  # Add the method
+  output$method <- model$method
 
-  # Add statistic
-  output$statistic <- model$statistic
-
-  # Add degrees of freedom, if possible
-  if (!is.null(model$parameter)) {
-    output$df_error <- model$parameter
-  }
-
-  # Add additional statistics
-  output$p_value <- model$p.value
+  # Add additional information
+  output$notes <- paste(model$alternative, "test")
 
   return(output)
 }
+
+
+
+

@@ -2,22 +2,31 @@
 #'
 #' Creates a tidystats data frame for an aov object.
 #'
+#' @param model An aov object
+#'
 #' @import dplyr
+#' @import tidyr
 #' @importFrom magrittr %>%
 #'
 #' @export
 tidy_stats.aov <- function(model) {
 
-  # Create tidy stats data frame
-  output <- data_frame(
-    term = labels(model$terms)
-  )
-
-  # Add sums of squares, mean squares, F statistic, degrees of freedom, and p value of the terms
-  output <- bind_cols(output, head(as_data_frame(as_data_frame(summary(model)[[1]])), nrow(output)))
-
-  # Add degrees of freedom of the residuals
-  output$df_error <- model$df.residual
+  # Extract statistics
+  output <- as_data_frame(summary(model)[[1]]) %>%
+    rename(
+      SS = `Sum Sq`,
+      MS = `Mean Sq`,
+      `F` = `F value`,
+      df = Df,
+      p = `Pr(>F)`
+    ) %>%
+    mutate(
+      term = c(labels(model$terms), "Residuals"),
+      order = 1:n()) %>%
+    gather("statistic", "value", -term, -order) %>%
+    filter(!is.na(value)) %>%
+    arrange(order) %>%
+    select(-order)
 
   # Determine the type of ANOVA
   classes <- attr(model$terms, "dataClasses")[-1]
@@ -28,17 +37,6 @@ tidy_stats.aov <- function(model) {
     TRUE ~ "ANOVA"
   )
   output$method <- method
-
-  # Rename variables
-  output <- rename(output,
-                   sum_squares = `Sum Sq`,
-                   mean_squares = `Mean Sq`,
-                   statistic = `F value`,
-                   df_model = Df,
-                   p_value = `Pr(>F)`)
-
-  # Reorder variables
-  output <- select(output, method, term, sum_squares, mean_squares, statistic, df_model, df_error, p_value)
 
   return(output)
 }
