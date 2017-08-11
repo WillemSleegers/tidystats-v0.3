@@ -2,7 +2,7 @@
 % Please edit documentation in R/report_correlation.R
 \name{report_correlation}
 \alias{report_correlation}
-\title{Report method for correlations.}
+\title{Report method for correlations}
 \usage{
 report_correlation(results, identifier, statistic = NULL)
 }
