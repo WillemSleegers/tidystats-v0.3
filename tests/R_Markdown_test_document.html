@@ -150,56 +150,197 @@ $(document).ready(function () {
 <p>We currently support 4 different t-tests, tested on Student’s <em>sleep</em> data. The output is shown in the following table.</p>
 <pre class="r"><code>stats_list_to_df(results) %&gt;%
   filter(str_detect(method, &quot;t-test&quot;)) %&gt;%
-  select(identifier, method, estimate, statistic, df_error, p_value, type) %&gt;%
+  select(identifier, method, statistic, value) %&gt;%
   kable()</code></pre>
 <table>
 <thead>
 <tr class="header">
 <th align="left">identifier</th>
 <th align="left">method</th>
-<th align="right">estimate</th>
-<th align="right">statistic</th>
-<th align="right">df_error</th>
-<th align="right">p_value</th>
-<th align="left">type</th>
+<th align="left">statistic</th>
+<th align="right">value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">M1_1</td>
 <td align="left">One Sample t-test</td>
-<td align="right">1.5</td>
-<td align="right">3.4</td>
-<td align="right">19</td>
+<td align="left">mean of x</td>
+<td align="right">1.54</td>
+</tr>
+<tr class="even">
+<td align="left">M1_1</td>
+<td align="left">One Sample t-test</td>
+<td align="left">t</td>
+<td align="right">3.41</td>
+</tr>
+<tr class="odd">
+<td align="left">M1_1</td>
+<td align="left">One Sample t-test</td>
+<td align="left">df</td>
+<td align="right">19.00</td>
+</tr>
+<tr class="even">
+<td align="left">M1_1</td>
+<td align="left">One Sample t-test</td>
+<td align="left">p</td>
 <td align="right">0.00</td>
-<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M1_1</td>
+<td align="left">One Sample t-test</td>
+<td align="left">95% CI lower</td>
+<td align="right">0.60</td>
+</tr>
+<tr class="even">
+<td align="left">M1_1</td>
+<td align="left">One Sample t-test</td>
+<td align="left">95% CI upper</td>
+<td align="right">2.48</td>
+</tr>
+<tr class="odd">
+<td align="left">M1_1</td>
+<td align="left">One Sample t-test</td>
+<td align="left">null value</td>
+<td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">M1_2</td>
 <td align="left">Two Sample t-test</td>
-<td align="right">-1.6</td>
-<td align="right">-1.9</td>
-<td align="right">18</td>
+<td align="left">mean in group 1</td>
+<td align="right">0.75</td>
+</tr>
+<tr class="odd">
+<td align="left">M1_2</td>
+<td align="left">Two Sample t-test</td>
+<td align="left">mean in group 2</td>
+<td align="right">2.33</td>
+</tr>
+<tr class="even">
+<td align="left">M1_2</td>
+<td align="left">Two Sample t-test</td>
+<td align="left">t</td>
+<td align="right">-1.86</td>
+</tr>
+<tr class="odd">
+<td align="left">M1_2</td>
+<td align="left">Two Sample t-test</td>
+<td align="left">df</td>
+<td align="right">18.00</td>
+</tr>
+<tr class="even">
+<td align="left">M1_2</td>
+<td align="left">Two Sample t-test</td>
+<td align="left">p</td>
 <td align="right">0.08</td>
-<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M1_2</td>
+<td align="left">Two Sample t-test</td>
+<td align="left">95% CI lower</td>
+<td align="right">-3.36</td>
+</tr>
+<tr class="even">
+<td align="left">M1_2</td>
+<td align="left">Two Sample t-test</td>
+<td align="left">95% CI upper</td>
+<td align="right">0.20</td>
+</tr>
+<tr class="odd">
+<td align="left">M1_2</td>
+<td align="left">Two Sample t-test</td>
+<td align="left">null value</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">M1_3</td>
+<td align="left">Welch Two Sample t-test</td>
+<td align="left">mean in group 1</td>
+<td align="right">0.75</td>
 </tr>
 <tr class="odd">
 <td align="left">M1_3</td>
 <td align="left">Welch Two Sample t-test</td>
-<td align="right">-1.6</td>
-<td align="right">-1.9</td>
-<td align="right">18</td>
+<td align="left">mean in group 2</td>
+<td align="right">2.33</td>
+</tr>
+<tr class="even">
+<td align="left">M1_3</td>
+<td align="left">Welch Two Sample t-test</td>
+<td align="left">t</td>
+<td align="right">-1.86</td>
+</tr>
+<tr class="odd">
+<td align="left">M1_3</td>
+<td align="left">Welch Two Sample t-test</td>
+<td align="left">df</td>
+<td align="right">17.78</td>
+</tr>
+<tr class="even">
+<td align="left">M1_3</td>
+<td align="left">Welch Two Sample t-test</td>
+<td align="left">p</td>
 <td align="right">0.08</td>
-<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M1_3</td>
+<td align="left">Welch Two Sample t-test</td>
+<td align="left">95% CI lower</td>
+<td align="right">-3.37</td>
+</tr>
+<tr class="even">
+<td align="left">M1_3</td>
+<td align="left">Welch Two Sample t-test</td>
+<td align="left">95% CI upper</td>
+<td align="right">0.21</td>
+</tr>
+<tr class="odd">
+<td align="left">M1_3</td>
+<td align="left">Welch Two Sample t-test</td>
+<td align="left">null value</td>
+<td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">M1_4</td>
 <td align="left">Paired t-test</td>
-<td align="right">-1.6</td>
-<td align="right">-4.1</td>
-<td align="right">9</td>
+<td align="left">mean of the differences</td>
+<td align="right">-1.58</td>
+</tr>
+<tr class="odd">
+<td align="left">M1_4</td>
+<td align="left">Paired t-test</td>
+<td align="left">t</td>
+<td align="right">-4.06</td>
+</tr>
+<tr class="even">
+<td align="left">M1_4</td>
+<td align="left">Paired t-test</td>
+<td align="left">df</td>
+<td align="right">9.00</td>
+</tr>
+<tr class="odd">
+<td align="left">M1_4</td>
+<td align="left">Paired t-test</td>
+<td align="left">p</td>
 <td align="right">0.00</td>
-<td align="left">hypothesis</td>
+</tr>
+<tr class="even">
+<td align="left">M1_4</td>
+<td align="left">Paired t-test</td>
+<td align="left">95% CI lower</td>
+<td align="right">-2.46</td>
+</tr>
+<tr class="odd">
+<td align="left">M1_4</td>
+<td align="left">Paired t-test</td>
+<td align="left">95% CI upper</td>
+<td align="right">-0.70</td>
+</tr>
+<tr class="even">
+<td align="left">M1_4</td>
+<td align="left">Paired t-test</td>
+<td align="left">null value</td>
+<td align="right">0.00</td>
 </tr>
 </tbody>
 </table>
@@ -226,47 +367,107 @@ $(document).ready(function () {
 <p>We currently support 3 different correlations, tested on some random data. The output is shown in the following table.</p>
 <pre class="r"><code>stats_list_to_df(results) %&gt;%
   filter(str_detect(method, &quot;correlation&quot;)) %&gt;%
-  select(identifier, method, estimate, statistic, df_error, p_value, type) %&gt;%
+  select(identifier, method, statistic, value) %&gt;%
   kable()</code></pre>
 <table>
 <thead>
 <tr class="header">
 <th align="left">identifier</th>
 <th align="left">method</th>
-<th align="right">estimate</th>
-<th align="right">statistic</th>
-<th align="right">df_error</th>
-<th align="right">p_value</th>
-<th align="left">type</th>
+<th align="left">statistic</th>
+<th align="right">value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">M2_1</td>
 <td align="left">Pearson’s product-moment correlation</td>
+<td align="left">cor</td>
 <td align="right">0.57</td>
-<td align="right">1.8</td>
-<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">M2_1</td>
+<td align="left">Pearson’s product-moment correlation</td>
+<td align="left">t</td>
+<td align="right">1.84</td>
+</tr>
+<tr class="odd">
+<td align="left">M2_1</td>
+<td align="left">Pearson’s product-moment correlation</td>
+<td align="left">df</td>
+<td align="right">7.00</td>
+</tr>
+<tr class="even">
+<td align="left">M2_1</td>
+<td align="left">Pearson’s product-moment correlation</td>
+<td align="left">p</td>
 <td align="right">0.11</td>
-<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M2_1</td>
+<td align="left">Pearson’s product-moment correlation</td>
+<td align="left">95% CI lower</td>
+<td align="right">-0.15</td>
+</tr>
+<tr class="even">
+<td align="left">M2_1</td>
+<td align="left">Pearson’s product-moment correlation</td>
+<td align="left">95% CI upper</td>
+<td align="right">0.90</td>
+</tr>
+<tr class="odd">
+<td align="left">M2_1</td>
+<td align="left">Pearson’s product-moment correlation</td>
+<td align="left">null value</td>
+<td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">M2_2</td>
 <td align="left">Kendall’s rank correlation tau</td>
+<td align="left">tau</td>
 <td align="right">0.44</td>
-<td align="right">26.0</td>
-<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">M2_2</td>
+<td align="left">Kendall’s rank correlation tau</td>
+<td align="left">T</td>
+<td align="right">26.00</td>
+</tr>
+<tr class="even">
+<td align="left">M2_2</td>
+<td align="left">Kendall’s rank correlation tau</td>
+<td align="left">p</td>
 <td align="right">0.12</td>
-<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M2_2</td>
+<td align="left">Kendall’s rank correlation tau</td>
+<td align="left">null value</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">M2_3</td>
+<td align="left">Spearman’s rank correlation rho</td>
+<td align="left">rho</td>
+<td align="right">0.60</td>
 </tr>
 <tr class="odd">
 <td align="left">M2_3</td>
 <td align="left">Spearman’s rank correlation rho</td>
-<td align="right">0.60</td>
-<td align="right">48.0</td>
-<td align="right">NA</td>
+<td align="left">S</td>
+<td align="right">48.00</td>
+</tr>
+<tr class="even">
+<td align="left">M2_3</td>
+<td align="left">Spearman’s rank correlation rho</td>
+<td align="left">p</td>
 <td align="right">0.10</td>
-<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M2_3</td>
+<td align="left">Spearman’s rank correlation rho</td>
+<td align="left">null value</td>
+<td align="right">0.00</td>
 </tr>
 </tbody>
 </table>
@@ -289,160 +490,463 @@ $(document).ready(function () {
 <p>We also support regression (of course), tested on the <em>affect</em> data frame from the <code>psych</code> package. The output of three regression models is shown in the following table.</p>
 <pre class="r"><code>stats_list_to_df(results) %&gt;%
   filter(str_detect(method, &quot;regression&quot;)) %&gt;%
-  select(identifier, term, estimate, std_error, statistic, df_model, 
-         df_error, p_value, adj_r_squared, type) %&gt;%
+  select(identifier, term, method, statistic, value) %&gt;%
   kable()</code></pre>
 <table>
 <thead>
 <tr class="header">
 <th align="left">identifier</th>
 <th align="left">term</th>
-<th align="right">estimate</th>
-<th align="right">std_error</th>
-<th align="right">statistic</th>
-<th align="right">df_model</th>
-<th align="right">df_error</th>
-<th align="right">p_value</th>
-<th align="right">adj_r_squared</th>
-<th align="left">type</th>
+<th align="left">method</th>
+<th align="left">statistic</th>
+<th align="right">value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">M3_1</td>
 <td align="left">(Intercept)</td>
+<td align="left">Linear regression</td>
+<td align="left">b</td>
 <td align="right">14.38</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">(Intercept)</td>
+<td align="left">Linear regression</td>
+<td align="left">SE</td>
 <td align="right">6.62</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">(Intercept)</td>
+<td align="left">Linear regression</td>
+<td align="left">t</td>
 <td align="right">2.17</td>
-<td align="right">NA</td>
-<td align="right">28</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">(Intercept)</td>
+<td align="left">Linear regression</td>
+<td align="left">p</td>
 <td align="right">0.04</td>
-<td align="right">NA</td>
-<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">(Intercept)</td>
+<td align="left">Linear regression</td>
+<td align="left">df</td>
+<td align="right">28.00</td>
 </tr>
 <tr class="even">
 <td align="left">M3_1</td>
 <td align="left">complaints</td>
+<td align="left">Linear regression</td>
+<td align="left">b</td>
 <td align="right">0.75</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">complaints</td>
+<td align="left">Linear regression</td>
+<td align="left">SE</td>
 <td align="right">0.10</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">complaints</td>
+<td align="left">Linear regression</td>
+<td align="left">t</td>
 <td align="right">7.74</td>
-<td align="right">NA</td>
-<td align="right">28</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">complaints</td>
+<td align="left">Linear regression</td>
+<td align="left">p</td>
 <td align="right">0.00</td>
-<td align="right">NA</td>
-<td align="left">hypothesis</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">complaints</td>
+<td align="left">Linear regression</td>
+<td align="left">df</td>
+<td align="right">28.00</td>
 </tr>
 <tr class="odd">
 <td align="left">M3_1</td>
 <td align="left">(Model)</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">59.86</td>
-<td align="right">1</td>
-<td align="right">28</td>
-<td align="right">0.00</td>
+<td align="left">Linear regression</td>
+<td align="left">R squared</td>
+<td align="right">0.68</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">(Model)</td>
+<td align="left">Linear regression</td>
+<td align="left">adjusted R squared</td>
 <td align="right">0.67</td>
-<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">(Model)</td>
+<td align="left">Linear regression</td>
+<td align="left">F</td>
+<td align="right">59.86</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">(Model)</td>
+<td align="left">Linear regression</td>
+<td align="left">numerator df</td>
+<td align="right">1.00</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">(Model)</td>
+<td align="left">Linear regression</td>
+<td align="left">denominator df</td>
+<td align="right">28.00</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">(Model)</td>
+<td align="left">Linear regression</td>
+<td align="left">p</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">(Intercept)</td>
+<td align="left">Linear regression</td>
+<td align="left">b</td>
+<td align="right">14.25</td>
 </tr>
 <tr class="even">
 <td align="left">M3_2</td>
 <td align="left">(Intercept)</td>
-<td align="right">14.25</td>
+<td align="left">Linear regression</td>
+<td align="left">SE</td>
 <td align="right">11.17</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">(Intercept)</td>
+<td align="left">Linear regression</td>
+<td align="left">t</td>
 <td align="right">1.28</td>
-<td align="right">NA</td>
-<td align="right">27</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">(Intercept)</td>
+<td align="left">Linear regression</td>
+<td align="left">p</td>
 <td align="right">0.21</td>
-<td align="right">NA</td>
-<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">(Intercept)</td>
+<td align="left">Linear regression</td>
+<td align="left">df</td>
+<td align="right">27.00</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">complaints</td>
+<td align="left">Linear regression</td>
+<td align="left">b</td>
+<td align="right">0.75</td>
 </tr>
 <tr class="odd">
 <td align="left">M3_2</td>
 <td align="left">complaints</td>
-<td align="right">0.75</td>
+<td align="left">Linear regression</td>
+<td align="left">SE</td>
 <td align="right">0.10</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">complaints</td>
+<td align="left">Linear regression</td>
+<td align="left">t</td>
 <td align="right">7.46</td>
-<td align="right">NA</td>
-<td align="right">27</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">complaints</td>
+<td align="left">Linear regression</td>
+<td align="left">p</td>
 <td align="right">0.00</td>
-<td align="right">NA</td>
-<td align="left">hypothesis</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">complaints</td>
+<td align="left">Linear regression</td>
+<td align="left">df</td>
+<td align="right">27.00</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">critical</td>
+<td align="left">Linear regression</td>
+<td align="left">b</td>
+<td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">M3_2</td>
 <td align="left">critical</td>
-<td align="right">0.00</td>
+<td align="left">Linear regression</td>
+<td align="left">SE</td>
 <td align="right">0.14</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">critical</td>
+<td align="left">Linear regression</td>
+<td align="left">t</td>
 <td align="right">0.01</td>
-<td align="right">NA</td>
-<td align="right">27</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">critical</td>
+<td align="left">Linear regression</td>
+<td align="left">p</td>
 <td align="right">0.99</td>
-<td align="right">NA</td>
-<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">critical</td>
+<td align="left">Linear regression</td>
+<td align="left">df</td>
+<td align="right">27.00</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">(Model)</td>
+<td align="left">Linear regression</td>
+<td align="left">R squared</td>
+<td align="right">0.68</td>
 </tr>
 <tr class="odd">
 <td align="left">M3_2</td>
 <td align="left">(Model)</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">28.86</td>
-<td align="right">2</td>
-<td align="right">27</td>
-<td align="right">0.00</td>
+<td align="left">Linear regression</td>
+<td align="left">adjusted R squared</td>
 <td align="right">0.66</td>
-<td align="left">hypothesis</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">(Model)</td>
+<td align="left">Linear regression</td>
+<td align="left">F</td>
+<td align="right">28.86</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">(Model)</td>
+<td align="left">Linear regression</td>
+<td align="left">numerator df</td>
+<td align="right">2.00</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">(Model)</td>
+<td align="left">Linear regression</td>
+<td align="left">denominator df</td>
+<td align="right">27.00</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">(Model)</td>
+<td align="left">Linear regression</td>
+<td align="left">p</td>
+<td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">M3_3</td>
 <td align="left">(Intercept)</td>
-<td align="right">14.25</td>
-<td align="right">11.17</td>
-<td align="right">1.28</td>
-<td align="right">NA</td>
-<td align="right">27</td>
-<td align="right">0.21</td>
-<td align="right">NA</td>
-<td align="left">hypothesis</td>
+<td align="left">Linear regression</td>
+<td align="left">b</td>
+<td align="right">26.92</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">(Intercept)</td>
+<td align="left">Linear regression</td>
+<td align="left">SE</td>
+<td align="right">41.64</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">(Intercept)</td>
+<td align="left">Linear regression</td>
+<td align="left">t</td>
+<td align="right">0.65</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">(Intercept)</td>
+<td align="left">Linear regression</td>
+<td align="left">p</td>
+<td align="right">0.52</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">(Intercept)</td>
+<td align="left">Linear regression</td>
+<td align="left">df</td>
+<td align="right">26.00</td>
 </tr>
 <tr class="odd">
 <td align="left">M3_3</td>
 <td align="left">complaints</td>
-<td align="right">0.75</td>
-<td align="right">0.10</td>
-<td align="right">7.46</td>
-<td align="right">NA</td>
-<td align="right">27</td>
-<td align="right">0.00</td>
-<td align="right">NA</td>
-<td align="left">hypothesis</td>
+<td align="left">Linear regression</td>
+<td align="left">b</td>
+<td align="right">0.55</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">complaints</td>
+<td align="left">Linear regression</td>
+<td align="left">SE</td>
+<td align="right">0.65</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">complaints</td>
+<td align="left">Linear regression</td>
+<td align="left">t</td>
+<td align="right">0.85</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">complaints</td>
+<td align="left">Linear regression</td>
+<td align="left">p</td>
+<td align="right">0.40</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">complaints</td>
+<td align="left">Linear regression</td>
+<td align="left">df</td>
+<td align="right">26.00</td>
 </tr>
 <tr class="even">
 <td align="left">M3_3</td>
 <td align="left">critical</td>
+<td align="left">Linear regression</td>
+<td align="left">b</td>
+<td align="right">-0.18</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">critical</td>
+<td align="left">Linear regression</td>
+<td align="left">SE</td>
+<td align="right">0.60</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">critical</td>
+<td align="left">Linear regression</td>
+<td align="left">t</td>
+<td align="right">-0.30</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">critical</td>
+<td align="left">Linear regression</td>
+<td align="left">p</td>
+<td align="right">0.76</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">critical</td>
+<td align="left">Linear regression</td>
+<td align="left">df</td>
+<td align="right">26.00</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">complaints:critical</td>
+<td align="left">Linear regression</td>
+<td align="left">b</td>
 <td align="right">0.00</td>
-<td align="right">0.14</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">complaints:critical</td>
+<td align="left">Linear regression</td>
+<td align="left">SE</td>
 <td align="right">0.01</td>
-<td align="right">NA</td>
-<td align="right">27</td>
-<td align="right">0.99</td>
-<td align="right">NA</td>
-<td align="left">hypothesis</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">complaints:critical</td>
+<td align="left">Linear regression</td>
+<td align="left">t</td>
+<td align="right">0.32</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">complaints:critical</td>
+<td align="left">Linear regression</td>
+<td align="left">p</td>
+<td align="right">0.75</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">complaints:critical</td>
+<td align="left">Linear regression</td>
+<td align="left">df</td>
+<td align="right">26.00</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">(Model)</td>
+<td align="left">Linear regression</td>
+<td align="left">R squared</td>
+<td align="right">0.68</td>
 </tr>
 <tr class="odd">
 <td align="left">M3_3</td>
 <td align="left">(Model)</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">28.86</td>
-<td align="right">2</td>
-<td align="right">27</td>
+<td align="left">Linear regression</td>
+<td align="left">adjusted R squared</td>
+<td align="right">0.65</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">(Model)</td>
+<td align="left">Linear regression</td>
+<td align="left">F</td>
+<td align="right">18.63</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">(Model)</td>
+<td align="left">Linear regression</td>
+<td align="left">numerator df</td>
+<td align="right">3.00</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">(Model)</td>
+<td align="left">Linear regression</td>
+<td align="left">denominator df</td>
+<td align="right">26.00</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">(Model)</td>
+<td align="left">Linear regression</td>
+<td align="left">p</td>
 <td align="right">0.00</td>
-<td align="right">0.66</td>
-<td align="left">hypothesis</td>
 </tr>
 </tbody>
 </table>
-<p>This table contains more missing data than the previous tables. This is because a regression models returns a row for each term in the model, as well as a row for the model itself. The terms have their estimate, <em>t</em>-statistic, and the like, while the model has adjusted <em>R</em><sup>2</sup> squared, the <em>F</em>-statistic, the model and error df. The model term is always called ‘(Model)’, so if you want to produce APA output of the model, use this as the term in the <code>report()</code> function. Examples:</p>
+<p>This table contains more missing data than the previous tables. This is because a regression models returns a row for each term in the model, as well as a row for the model itself. The terms have their estimate, <em>t</em>-statistic, and the like, while the model has adjusted <em>R</em><sup>2</sup> squared, the <em>F</em>-statistic, and the model and error df. The model term is always called ‘(Model)’, so if you want to produce APA output of the model, use this as the term in the <code>report()</code> function. Examples:</p>
 <p><strong>Single term</strong></p>
 <ul>
 <li><code>report(results, &quot;M3_1&quot;, &quot;complaints&quot;)</code>: <em>b</em> = 0.75, <em>SE</em> = 0.10, <em>t</em>(28) = 7.74, <em>p</em> &lt; .001</li>

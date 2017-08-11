@@ -1,33 +1,209 @@
-identifier,method,term,estimate,std_error,statistic,df_model,df_error,p_value,type,r_squared,adj_r_squared,sum_squares,mean_squares
-M1_1,One Sample t-test,,1.54,,3.412964995270109,,19,0.002917620404154116,hypothesis,,,,
-M1_2, Two Sample t-test,,-1.58,,-1.8608134674868528,,18,0.07918671421593818,hypothesis,,,,
-M1_3,Welch Two Sample t-test,,-1.58,,-1.860813467486853,,17.7764735161785,0.07939414018735817,hypothesis,,,,
-M1_4,Paired t-test,,-1.58,,-4.062127683382037,,9,0.00283289019738427,hypothesis,,,,
-M2_1,Pearson's product-moment correlation,,0.5711815575638287,,1.8410826381153382,,7,0.10817305434949379,hypothesis,,,,
-M2_2,Kendall's rank correlation tau,,0.44444444444444453,,26,,,0.1194389329805996,hypothesis,,,,
-M2_3,Spearman's rank correlation rho,,0.6,,48,,,0.09679783950617284,hypothesis,,,,
-M3_1,Linear regression,(Intercept),14.376319406623642,6.619986012769413,2.1716540456268176,,28,0.038508329120426635,hypothesis,,,,
-M3_1,Linear regression,complaints,0.7546098187193652,0.09753289336995029,7.736977676413926,,28,1.9876822082839802e-8,hypothesis,,,,
-M3_1,Linear regression,(Model),,,59.86082356532742,1,28,1.987682208283987e-8,hypothesis,0.6813141641088639,0.6699325271127519,,
-M3_2,Linear regression,(Intercept),14.251378068007815,11.172337466063627,1.2755950230913524,,27,0.21296468815648728,hypothesis,,,,
-M3_2,Linear regression,complaints,0.7543436235064488,0.10111981372846428,7.45989925903224,,27,5.032087635419804e-8,hypothesis,,,,
-M3_2,Linear regression,critical,0.0019082024939285223,0.13606855432277606,0.014023831615069307,,27,0.9889140820392992,hypothesis,,,,
-M3_2,Linear regression,(Model),,,28.861777065417666,2,27,1.974033756115206e-7,hypothesis,0.6813164853978513,0.6577102991310254,,
-M3_3,Linear regression,(Intercept),14.251378068007815,11.172337466063627,1.2755950230913524,,27,0.21296468815648728,hypothesis,,,,
-M3_3,Linear regression,complaints,0.7543436235064488,0.10111981372846428,7.45989925903224,,27,5.032087635419804e-8,hypothesis,,,,
-M3_3,Linear regression,critical,0.0019082024939285223,0.13606855432277606,0.014023831615069307,,27,0.9889140820392992,hypothesis,,,,
-M3_3,Linear regression,(Model),,,28.861777065417666,2,27,1.974033756115206e-7,hypothesis,0.6813164853978513,0.6577102991310254,,
-M4_1,One-way ANOVA,Film,,,8.24429828028225,3,326,2.651563660127547e-5,hypothesis,,,957.9402727125258,319.3134242375086
-M4_2,Factorial ANOVA,Film,,,8.659955236459732,3,325,1.520553018508857e-5,hypothesis,,,957.9402727125258,319.3134242375086
-M4_2,Factorial ANOVA,Study,,,17.436106883461708,1,325,3.8206393282187103e-5,hypothesis,,,642.9112902211064,642.9112902211064
-M4_3,Factorial ANOVA,Film,,,8.669412871903996,3,322,1.5074988169330349e-5,hypothesis,,,957.9402727125258,319.3134242375086
-M4_3,Factorial ANOVA,Study,,,17.455149053769556,1,322,3.793091022406209e-5,hypothesis,,,642.9112902211064,642.9112902211064
-M4_3,Factorial ANOVA,Film:Study,,,1.1183120634175026,3,322,0.3417367665446859,hypothesis,,,123.56963255028293,41.18987751676098
-M4_4,ANCOVA,Film,,,8.400230860126142,3,325,2.1536723728786128e-5,hypothesis,,,957.9402727125258,319.3134242375086
-M4_4,ANCOVA,ext,,,7.165960922433749,1,325,0.0078069808285435366,hypothesis,,,272.39578985334407,272.39578985334407
-M4_5,One-way repeated measures ANOVA,time,,,0.10675207108614287,1,329,0.7440803559230651,hypothesis,,,1.4938787878783024,1.4938787878783024
-M4_6,Mixed ANOVA,Film,,,3.5391310335636263,3,326,0.015006263886577897,hypothesis,,,761.4964949002781,253.83216496675936
-M4_6,Mixed ANOVA,time,,,0.1163043641280052,1,326,0.7332974801514499,hypothesis,,,1.4938787878783024,1.4938787878783024
-M4_6,Mixed ANOVA,Film:time,,,10.813094268484114,3,326,8.61676536256786e-7,hypothesis,,,416.66842719431304,138.88947573143767
-M4_7,ANCOVA,ext,,,14.262576525718066,1,328,1.887391202104141e-4,hypothesis,,,1006.062904896743,1006.062904896743
-M4_7,ANCOVA,time,,,0.10675207108614287,1,329,0.7440803559230651,hypothesis,,,1.4938787878783024,1.4938787878783024
+identifier,term,statistic,value,method,notes,type
+M1_1,,mean of x,1.54,One Sample t-test,two.sided test,hypothesis
+M1_1,,t,3.412964995270109,One Sample t-test,two.sided test,hypothesis
+M1_1,,df,19,One Sample t-test,two.sided test,hypothesis
+M1_1,,p,0.002917620404154116,One Sample t-test,two.sided test,hypothesis
+M1_1,,95% CI lower,0.5955844996196039,One Sample t-test,two.sided test,hypothesis
+M1_1,,95% CI upper,2.484415500380396,One Sample t-test,two.sided test,hypothesis
+M1_1,,null value,0,One Sample t-test,two.sided test,hypothesis
+M1_2,,mean in group 1,0.75, Two Sample t-test,two.sided test,hypothesis
+M1_2,,mean in group 2,2.33, Two Sample t-test,two.sided test,hypothesis
+M1_2,,t,-1.8608134674868528, Two Sample t-test,two.sided test,hypothesis
+M1_2,,df,18, Two Sample t-test,two.sided test,hypothesis
+M1_2,,p,0.07918671421593818, Two Sample t-test,two.sided test,hypothesis
+M1_2,,95% CI lower,-3.3638740322875984, Two Sample t-test,two.sided test,hypothesis
+M1_2,,95% CI upper,0.2038740322875986, Two Sample t-test,two.sided test,hypothesis
+M1_2,,null value,0, Two Sample t-test,two.sided test,hypothesis
+M1_3,,mean in group 1,0.75,Welch Two Sample t-test,two.sided test,hypothesis
+M1_3,,mean in group 2,2.33,Welch Two Sample t-test,two.sided test,hypothesis
+M1_3,,t,-1.860813467486853,Welch Two Sample t-test,two.sided test,hypothesis
+M1_3,,df,17.7764735161785,Welch Two Sample t-test,two.sided test,hypothesis
+M1_3,,p,0.07939414018735817,Welch Two Sample t-test,two.sided test,hypothesis
+M1_3,,95% CI lower,-3.3654832307117104,Welch Two Sample t-test,two.sided test,hypothesis
+M1_3,,95% CI upper,0.20548323071171018,Welch Two Sample t-test,two.sided test,hypothesis
+M1_3,,null value,0,Welch Two Sample t-test,two.sided test,hypothesis
+M1_4,,mean of the differences,-1.58,Paired t-test,two.sided test,hypothesis
+M1_4,,t,-4.062127683382037,Paired t-test,two.sided test,hypothesis
+M1_4,,df,9,Paired t-test,two.sided test,hypothesis
+M1_4,,p,0.00283289019738427,Paired t-test,two.sided test,hypothesis
+M1_4,,95% CI lower,-2.4598857632769824,Paired t-test,two.sided test,hypothesis
+M1_4,,95% CI upper,-0.7001142367230175,Paired t-test,two.sided test,hypothesis
+M1_4,,null value,0,Paired t-test,two.sided test,hypothesis
+M2_1,,cor,0.5711815575638287,Pearson's product-moment correlation,two.sided test,hypothesis
+M2_1,,t,1.8410826381153382,Pearson's product-moment correlation,two.sided test,hypothesis
+M2_1,,df,7,Pearson's product-moment correlation,two.sided test,hypothesis
+M2_1,,p,0.10817305434949379,Pearson's product-moment correlation,two.sided test,hypothesis
+M2_1,,95% CI lower,-0.14974263303675717,Pearson's product-moment correlation,two.sided test,hypothesis
+M2_1,,95% CI upper,0.8955794618387393,Pearson's product-moment correlation,two.sided test,hypothesis
+M2_1,,null value,0,Pearson's product-moment correlation,two.sided test,hypothesis
+M2_2,,tau,0.44444444444444453,Kendall's rank correlation tau,two.sided test,hypothesis
+M2_2,,T,26,Kendall's rank correlation tau,two.sided test,hypothesis
+M2_2,,p,0.1194389329805996,Kendall's rank correlation tau,two.sided test,hypothesis
+M2_2,,null value,0,Kendall's rank correlation tau,two.sided test,hypothesis
+M2_3,,rho,0.6,Spearman's rank correlation rho,two.sided test,hypothesis
+M2_3,,S,48,Spearman's rank correlation rho,two.sided test,hypothesis
+M2_3,,p,0.09679783950617284,Spearman's rank correlation rho,two.sided test,hypothesis
+M2_3,,null value,0,Spearman's rank correlation rho,two.sided test,hypothesis
+M3_1,(Intercept),b,14.376319406623642,Linear regression,,hypothesis
+M3_1,(Intercept),SE,6.619986012769413,Linear regression,,hypothesis
+M3_1,(Intercept),t,2.1716540456268176,Linear regression,,hypothesis
+M3_1,(Intercept),p,0.038508329120426635,Linear regression,,hypothesis
+M3_1,(Intercept),df,28,Linear regression,,hypothesis
+M3_1,complaints,b,0.7546098187193652,Linear regression,,hypothesis
+M3_1,complaints,SE,0.09753289336995029,Linear regression,,hypothesis
+M3_1,complaints,t,7.736977676413926,Linear regression,,hypothesis
+M3_1,complaints,p,1.9876822082839802e-8,Linear regression,,hypothesis
+M3_1,complaints,df,28,Linear regression,,hypothesis
+M3_1,(Model),R squared,0.6813141641088639,Linear regression,,hypothesis
+M3_1,(Model),adjusted R squared,0.6699325271127519,Linear regression,,hypothesis
+M3_1,(Model),F,59.86082356532742,Linear regression,,hypothesis
+M3_1,(Model),numerator df,1,Linear regression,,hypothesis
+M3_1,(Model),denominator df,28,Linear regression,,hypothesis
+M3_1,(Model),p,1.987682208283987e-8,Linear regression,,hypothesis
+M3_2,(Intercept),b,14.251378068007815,Linear regression,,hypothesis
+M3_2,(Intercept),SE,11.172337466063627,Linear regression,,hypothesis
+M3_2,(Intercept),t,1.2755950230913524,Linear regression,,hypothesis
+M3_2,(Intercept),p,0.21296468815648728,Linear regression,,hypothesis
+M3_2,(Intercept),df,27,Linear regression,,hypothesis
+M3_2,complaints,b,0.7543436235064488,Linear regression,,hypothesis
+M3_2,complaints,SE,0.10111981372846428,Linear regression,,hypothesis
+M3_2,complaints,t,7.45989925903224,Linear regression,,hypothesis
+M3_2,complaints,p,5.032087635419804e-8,Linear regression,,hypothesis
+M3_2,complaints,df,27,Linear regression,,hypothesis
+M3_2,critical,b,0.0019082024939285223,Linear regression,,hypothesis
+M3_2,critical,SE,0.13606855432277606,Linear regression,,hypothesis
+M3_2,critical,t,0.014023831615069307,Linear regression,,hypothesis
+M3_2,critical,p,0.9889140820392992,Linear regression,,hypothesis
+M3_2,critical,df,27,Linear regression,,hypothesis
+M3_2,(Model),R squared,0.6813164853978513,Linear regression,,hypothesis
+M3_2,(Model),adjusted R squared,0.6577102991310254,Linear regression,,hypothesis
+M3_2,(Model),F,28.861777065417666,Linear regression,,hypothesis
+M3_2,(Model),numerator df,2,Linear regression,,hypothesis
+M3_2,(Model),denominator df,27,Linear regression,,hypothesis
+M3_2,(Model),p,1.974033756115206e-7,Linear regression,,hypothesis
+M3_3,(Intercept),b,26.923536079083885,Linear regression,,hypothesis
+M3_3,(Intercept),SE,41.64387205571416,Linear regression,,hypothesis
+M3_3,(Intercept),t,0.6465185572336705,Linear regression,,hypothesis
+M3_3,(Intercept),p,0.5236102268883964,Linear regression,,hypothesis
+M3_3,(Intercept),df,26,Linear regression,,hypothesis
+M3_3,complaints,b,0.5513818163235605,Linear regression,,hypothesis
+M3_3,complaints,SE,0.6498620149884538,Linear regression,,hypothesis
+M3_3,complaints,t,0.8484598324051253,Linear regression,,hypothesis
+M3_3,complaints,p,0.4039260198967952,Linear regression,,hypothesis
+M3_3,complaints,df,26,Linear regression,,hypothesis
+M3_3,critical,b,-0.18135258487163186,Linear regression,,hypothesis
+M3_3,critical,SE,0.5956858189449107,Linear regression,,hypothesis
+M3_3,critical,t,-0.30444334765740566,Linear regression,,hypothesis
+M3_3,critical,p,0.763213635653048,Linear regression,,hypothesis
+M3_3,critical,df,26,Linear regression,,hypothesis
+M3_3,complaints:critical,b,0.0029074216459589264,Linear regression,,hypothesis
+M3_3,complaints:critical,SE,0.009191930454106162,Linear regression,,hypothesis
+M3_3,complaints:critical,t,0.31630152778844633,Linear regression,,hypothesis
+M3_3,complaints:critical,p,0.7542991055794769,Linear regression,,hypothesis
+M3_3,complaints:critical,df,26,Linear regression,,hypothesis
+M3_3,(Model),R squared,0.682538062528777,Linear regression,,hypothesis
+M3_3,(Model),adjusted R squared,0.6459078389744051,Linear regression,,hypothesis
+M3_3,(Model),F,18.633194021206435,Linear regression,,hypothesis
+M3_3,(Model),numerator df,3,Linear regression,,hypothesis
+M3_3,(Model),denominator df,26,Linear regression,,hypothesis
+M3_3,(Model),p,1.1688176612938873e-6,Linear regression,,hypothesis
+M4_1,Film,df,3,One-way ANOVA,,hypothesis
+M4_1,Film,SS,957.9402727125258,One-way ANOVA,,hypothesis
+M4_1,Film,MS,319.3134242375086,One-way ANOVA,,hypothesis
+M4_1,Film,F,8.24429828028225,One-way ANOVA,,hypothesis
+M4_1,Film,p,2.651563660127547e-5,One-way ANOVA,,hypothesis
+M4_1,Residuals,df,326,One-way ANOVA,,hypothesis
+M4_1,Residuals,SS,12626.444696984447,One-way ANOVA,,hypothesis
+M4_1,Residuals,MS,38.731425450872536,One-way ANOVA,,hypothesis
+M4_2,Film,df,3,Factorial ANOVA,,hypothesis
+M4_2,Film,SS,957.9402727125258,Factorial ANOVA,,hypothesis
+M4_2,Film,MS,319.3134242375086,Factorial ANOVA,,hypothesis
+M4_2,Film,F,8.659955236459732,Factorial ANOVA,,hypothesis
+M4_2,Film,p,1.520553018508857e-5,Factorial ANOVA,,hypothesis
+M4_2,Study,df,1,Factorial ANOVA,,hypothesis
+M4_2,Study,SS,642.9112902211064,Factorial ANOVA,,hypothesis
+M4_2,Study,MS,642.9112902211064,Factorial ANOVA,,hypothesis
+M4_2,Study,F,17.436106883461708,Factorial ANOVA,,hypothesis
+M4_2,Study,p,3.8206393282187103e-5,Factorial ANOVA,,hypothesis
+M4_2,Residuals,df,325,Factorial ANOVA,,hypothesis
+M4_2,Residuals,SS,11983.53340676334,Factorial ANOVA,,hypothesis
+M4_2,Residuals,MS,36.872410482348734,Factorial ANOVA,,hypothesis
+M4_3,Film,df,3,Factorial ANOVA,,hypothesis
+M4_3,Film,SS,957.9402727125258,Factorial ANOVA,,hypothesis
+M4_3,Film,MS,319.3134242375086,Factorial ANOVA,,hypothesis
+M4_3,Film,F,8.669412871903996,Factorial ANOVA,,hypothesis
+M4_3,Film,p,1.5074988169330349e-5,Factorial ANOVA,,hypothesis
+M4_3,Study,df,1,Factorial ANOVA,,hypothesis
+M4_3,Study,SS,642.9112902211064,Factorial ANOVA,,hypothesis
+M4_3,Study,MS,642.9112902211064,Factorial ANOVA,,hypothesis
+M4_3,Study,F,17.455149053769556,Factorial ANOVA,,hypothesis
+M4_3,Study,p,3.793091022406209e-5,Factorial ANOVA,,hypothesis
+M4_3,Film:Study,df,3,Factorial ANOVA,,hypothesis
+M4_3,Film:Study,SS,123.56963255028293,Factorial ANOVA,,hypothesis
+M4_3,Film:Study,MS,41.18987751676098,Factorial ANOVA,,hypothesis
+M4_3,Film:Study,F,1.1183120634175026,Factorial ANOVA,,hypothesis
+M4_3,Film:Study,p,0.3417367665446859,Factorial ANOVA,,hypothesis
+M4_3,Residuals,df,322,Factorial ANOVA,,hypothesis
+M4_3,Residuals,SS,11859.963774213058,Factorial ANOVA,,hypothesis
+M4_3,Residuals,MS,36.83218563420204,Factorial ANOVA,,hypothesis
+M4_4,Film,df,3,ANCOVA,,hypothesis
+M4_4,Film,SS,957.9402727125258,ANCOVA,,hypothesis
+M4_4,Film,MS,319.3134242375086,ANCOVA,,hypothesis
+M4_4,Film,F,8.400230860126142,ANCOVA,,hypothesis
+M4_4,Film,p,2.1536723728786128e-5,ANCOVA,,hypothesis
+M4_4,ext,df,1,ANCOVA,,hypothesis
+M4_4,ext,SS,272.39578985334407,ANCOVA,,hypothesis
+M4_4,ext,MS,272.39578985334407,ANCOVA,,hypothesis
+M4_4,ext,F,7.165960922433749,ANCOVA,,hypothesis
+M4_4,ext,p,0.0078069808285435366,ANCOVA,,hypothesis
+M4_4,Residuals,df,325,ANCOVA,,hypothesis
+M4_4,Residuals,SS,12354.0489071311,ANCOVA,,hypothesis
+M4_4,Residuals,MS,38.012458175788,ANCOVA,,hypothesis
+M4_5,subject-Residuals,df,329,One-way repeated measures ANOVA,,hypothesis
+M4_5,subject-Residuals,SS,24142.74036363648,One-way repeated measures ANOVA,,hypothesis
+M4_5,subject-Residuals,MS,73.38218955512608,One-way repeated measures ANOVA,,hypothesis
+M4_5,subject:time-time,df,1,One-way repeated measures ANOVA,,hypothesis
+M4_5,subject:time-time,SS,1.4938787878783024,One-way repeated measures ANOVA,,hypothesis
+M4_5,subject:time-time,MS,1.4938787878783024,One-way repeated measures ANOVA,,hypothesis
+M4_5,subject:time-time,F,0.10675207108614287,One-way repeated measures ANOVA,,hypothesis
+M4_5,subject:time-time,p,0.7440803559230651,One-way repeated measures ANOVA,,hypothesis
+M4_5,subject:time-Residuals,df,329,One-way repeated measures ANOVA,,hypothesis
+M4_5,subject:time-Residuals,SS,4603.9961212121125,One-way repeated measures ANOVA,,hypothesis
+M4_5,subject:time-Residuals,MS,13.993909183015539,One-way repeated measures ANOVA,,hypothesis
+M4_6,subject-Film,df,3,Mixed ANOVA,,hypothesis
+M4_6,subject-Film,SS,761.4964949002781,Mixed ANOVA,,hypothesis
+M4_6,subject-Film,MS,253.83216496675936,Mixed ANOVA,,hypothesis
+M4_6,subject-Film,F,3.5391310335636263,Mixed ANOVA,,hypothesis
+M4_6,subject-Film,p,0.015006263886577897,Mixed ANOVA,,hypothesis
+M4_6,subject-Residuals,df,326,Mixed ANOVA,,hypothesis
+M4_6,subject-Residuals,SS,23381.2438687362,Mixed ANOVA,,hypothesis
+M4_6,subject-Residuals,MS,71.7216069593135,Mixed ANOVA,,hypothesis
+M4_6,subject:time-time,df,1,Mixed ANOVA,,hypothesis
+M4_6,subject:time-time,SS,1.4938787878783024,Mixed ANOVA,,hypothesis
+M4_6,subject:time-time,MS,1.4938787878783024,Mixed ANOVA,,hypothesis
+M4_6,subject:time-time,F,0.1163043641280052,Mixed ANOVA,,hypothesis
+M4_6,subject:time-time,p,0.7332974801514499,Mixed ANOVA,,hypothesis
+M4_6,subject:time-Film:time,df,3,Mixed ANOVA,,hypothesis
+M4_6,subject:time-Film:time,SS,416.66842719431304,Mixed ANOVA,,hypothesis
+M4_6,subject:time-Film:time,MS,138.88947573143767,Mixed ANOVA,,hypothesis
+M4_6,subject:time-Film:time,F,10.813094268484114,Mixed ANOVA,,hypothesis
+M4_6,subject:time-Film:time,p,8.61676536256786e-7,Mixed ANOVA,,hypothesis
+M4_6,subject:time-Residuals,df,326,Mixed ANOVA,,hypothesis
+M4_6,subject:time-Residuals,SS,4187.3276940178,Mixed ANOVA,,hypothesis
+M4_6,subject:time-Residuals,MS,12.84456347858221,Mixed ANOVA,,hypothesis
+M4_7,subject-ext,df,1,ANCOVA,,hypothesis
+M4_7,subject-ext,SS,1006.062904896743,ANCOVA,,hypothesis
+M4_7,subject-ext,MS,1006.062904896743,ANCOVA,,hypothesis
+M4_7,subject-ext,F,14.262576525718066,ANCOVA,,hypothesis
+M4_7,subject-ext,p,1.887391202104141e-4,ANCOVA,,hypothesis
+M4_7,subject-Residuals,df,328,ANCOVA,,hypothesis
+M4_7,subject-Residuals,SS,23136.677458739738,ANCOVA,,hypothesis
+M4_7,subject-Residuals,MS,70.53865078884067,ANCOVA,,hypothesis
+M4_7,subject:time-time,df,1,ANCOVA,,hypothesis
+M4_7,subject:time-time,SS,1.4938787878783024,ANCOVA,,hypothesis
+M4_7,subject:time-time,MS,1.4938787878783024,ANCOVA,,hypothesis
+M4_7,subject:time-time,F,0.10675207108614287,ANCOVA,,hypothesis
+M4_7,subject:time-time,p,0.7440803559230651,ANCOVA,,hypothesis
+M4_7,subject:time-Residuals,df,329,ANCOVA,,hypothesis
+M4_7,subject:time-Residuals,SS,4603.9961212121125,ANCOVA,,hypothesis
+M4_7,subject:time-Residuals,MS,13.993909183015539,ANCOVA,,hypothesis

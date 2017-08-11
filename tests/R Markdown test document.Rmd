@@ -52,7 +52,7 @@ We currently support 4 different t-tests, tested on Student's *sleep* data. The 
 ```{r}
 stats_list_to_df(results) %>%
   filter(str_detect(method, "t-test")) %>%
-  select(identifier, method, estimate, statistic, df_error, p_value, type) %>%
+  select(identifier, method, statistic, value) %>%
   kable()
 ```
 
@@ -81,7 +81,7 @@ We currently support 3 different correlations, tested on some random data. The o
 ```{r}
 stats_list_to_df(results) %>%
   filter(str_detect(method, "correlation")) %>%
-  select(identifier, method, estimate, statistic, df_error, p_value, type) %>%
+  select(identifier, method, statistic, value) %>%
   kable()
 ```
 
@@ -106,8 +106,7 @@ We also support regression (of course), tested on the *affect* data frame from t
 ```{r regression}
 stats_list_to_df(results) %>%
   filter(str_detect(method, "regression")) %>%
-  select(identifier, term, estimate, std_error, statistic, df_model, 
-         df_error, p_value, adj_r_squared, type) %>%
+  select(identifier, term, method, statistic, value) %>%
   kable()
 ```
 
