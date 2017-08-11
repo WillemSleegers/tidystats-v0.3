@@ -66,7 +66,7 @@ results <- add_stats(results, model3_2, identifier = "M3_2", type = "hypothesis"
 
 # Model with interaction effect
 model3_3 <- lm(rating ~ complaints * critical, data = attitude)
-results <- add_stats(results, model3_2, identifier = "M3_3", type = "hypothesis")
+results <- add_stats(results, model3_3, identifier = "M3_3", type = "hypothesis")
 
 # # Test ANOVA --------------------------------------------------------------
 
@@ -120,6 +120,12 @@ results <- add_stats(results, model4_7, identifier = "M4_7", type = "hypothesis"
 
 df <- stats_list_to_df(results)
 View(df)
+
+# Show output of 1 model (wide) ---------------------------------------------------------------
+
+results$M3_3 %>%
+  spread(statistic, value) %>%
+  View()
 
 # Save to file --------------------------------------------------------------------------------
 
