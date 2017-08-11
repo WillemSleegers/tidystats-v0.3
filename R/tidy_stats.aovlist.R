@@ -61,7 +61,7 @@ tidy_stats.aovlist <- function(model) {
   # TODO: Get rid of the for loop and use a vectorized solution?
   for (i in 1:nrow(output)) {
     if (output$term[i] == "Residuals") {
-      output$term[i] <- paste(term, "residuals", sep = "-")
+      output$term[i] <- paste(term, "Residual", sep = "-")
     } else {
       term <- output$term[i]
     }
