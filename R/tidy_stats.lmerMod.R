@@ -21,8 +21,8 @@ tidy_stats.lmerMod <- function(model) {
   # Extract statistics of random effects
   random <- as_data_frame(summary$varcor) %>%
     mutate(
-      term = paste(grp, var1, var2, "(R)", sep = "-"),
-      term = gsub("NA-", "", term),
+      term = paste("(R)", grp, var1, var2, sep = "-"),
+      term = gsub("-NA", "", term),
       order = 1:n()
     ) %>%
     rename(
@@ -36,7 +36,7 @@ tidy_stats.lmerMod <- function(model) {
   # Extract statistics of fixed effects
   fixed <- as_data_frame(summary$coefficients) %>%
     mutate(
-      term = paste(rownames(summary$coefficients), "(F)", sep = "-"),
+      term = paste("(F)", rownames(summary$coefficients), sep = "-"),
       order = 1:n()
     ) %>%
     rename(
