@@ -21,42 +21,34 @@ report_lm <- function(results, identifier, term, statistic = NULL) {
 
   # Check if only a single statistic is asked, otherwise produce a full line of APA results
   if (!is.null(statistic)) {
-    output <- pull(res[statistic])
+    output <- res$value[res$statistic == statistic]
 
-    if (grepl("df", statistic)) {
-      output <- formatC(output, digits = 0, format = "d")
+    if (statistic == "p") {
+      output <- formatC(output, digits = 3, format = "f")
     } else {
-      output <- formatC(output, digits = 2, format = "f")
+      if (statistic != "df") {
+        output <- formatC(output, digits = 2, format = "f")
+      }
     }
   } else {
     if (term == "(Model)") {
-      res <- res %>%
-        mutate(
-          adj_r_squared = formatC(adj_r_squared, digits = 2, format = "f"),
-          statistic = formatC(statistic, digits = 2, format = "f")) %>%
-        mutate(
-          df_model = formatC(df_model, digits = 0, format = "f"),
-          df_error = formatC(df_error, digits = 0, format = "f")) %>%
-        mutate(p_value = report_p_value(p_value))
+      adj_r <- formatC(res$value[res$statistic == "adjusted R squared"], digits = 2, format = "f")
+      f <- formatC(res$value[res$statistic == "F"], digits = 2, format = "f")
+      df_num <- res$value[res$statistic == "numerator df"]
+      df_den <- res$value[res$statistic == "denominator df"]
+      p <- report_p_value(res$value[res$statistic == "p"])
 
-      output <- with(res,
-                     paste0("adjusted *R*<sup>2</sup> = ", adj_r_squared, ", *F*(", df_model, ", ",
-                            df_error, ") = ", statistic, ", ", p_value)
-      )
+      output <- paste0("adjusted *R*<sup>2</sup> = ", adj_r, ", *F*(", df_num, ", ",
+                            df_den, ") = ", f, ", ", p)
     } else {
-      res <- res %>%
-        mutate_at(
-          vars(estimate, std_error, statistic),
-          funs(formatC(., digits = 2, format = "f"))) %>%
-        mutate(df_error = formatC(df_error, digits = 0, format = "f")) %>%
-        mutate(p_value = report_p_value(p_value))
+      b <- formatC(res$value[res$statistic == "b"], digits = 2, format = "f")
+      SE <- formatC(res$value[res$statistic == "SE"], digits = 2, format = "f")
+      t <- formatC(res$value[res$statistic == "t"], digits = 2, format = "f")
+      df <- res$value[res$statistic == "df"]
+      p = report_p_value(res$value[res$statistic == "p"])
 
-      output <- with(res,
-                     paste0("*b* = ", estimate, ", *SE* = ", std_error,
-                            ", *t*(",  df_error, ") = ", statistic, ", ", p_value)
-      )
+      output <- paste0("*b* = ", b, ", *SE* = ", SE, ", *t*(",  df, ") = ", t, ", ", p)
     }
-
   }
 
   return(output)

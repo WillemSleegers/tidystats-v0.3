@@ -1,7 +1,7 @@
-#' Report method for correlations.
+#' Report method for correlations
 #'
 #' Function to report a correlation in APA style.
-
+#'
 #' @examples
 #' results <- new_stats_data_frame()
 #'
@@ -13,11 +13,10 @@
 #' results <- add_stats(results, cor_test, "cor_test1")
 #' report_correlation(results, "cor_test1")
 #'
-
-#'@import dplyr
-#'@importFrom magrittr %>%
-
-#'@export
+#' @import dplyr
+#' @importFrom magrittr %>%
+#'
+#' @export
 report_correlation <- function(results, identifier, statistic = NULL) {
 
   # Extract the results of the specific model through its identifier
@@ -25,39 +24,36 @@ report_correlation <- function(results, identifier, statistic = NULL) {
 
   # Check if only a single statistic is asked, otherwise produce a full line of APA results
   if (!is.null(statistic)) {
-    output <- pull(res[statistic])
+    output <- res$value[res$statistic == statistic]
 
-    if (statistic == "df_error") {
-      output <- formatC(output, digits = 0, format = "d")
+    if (statistic == "p") {
+      output <- formatC(output, digits = 3, format = "f")
     } else {
-      output <- formatC(output, digits = 2, format = "f")
-    }
-  } else {
-    if (grepl("Pearson", res$method)) {
-      res <- res %>%
-        mutate(estimate = formatC(estimate, digits = 2, format = "f")) %>%
-        mutate(df_error = formatC(df_error, digits = 0, format = "f")) %>%
-        mutate(p_value = report_p_value(p_value))
-
-      output <- with(res,
-                     paste0("*r*(", df_error, ") = ", estimate, ", ", p_value)
-      )
-    } else {
-      res <- res %>%
-        mutate(estimate = formatC(estimate, digits = 2, format = "f")) %>%
-        mutate(p_value = report_p_value(p_value))
-
-      if (grepl("Kendall", res$method)) {
-        output <- with(res,
-                       paste0("*r*<sub>$\\tau$</sub> = ", estimate, ", ", p_value)
-        )
-      } else {
-        output <- with(res,
-                       paste0("*r*<sub>*s*</sub> = ", estimate, ", ", p_value)
-        )
+      if (statistic != "df") {
+        output <- formatC(output, digits = 2, format = "f")
       }
     }
 
+  } else {
+    if (grepl("Pearson", res$method[1])) {
+      cor <- formatC(res$value[res$statistic == "cor"], digits = 2, format = "f")
+      df <- res$value[res$statistic == "df"]
+      p <- report_p_value(res$value[res$statistic == "p"])
+
+      output <- paste0("*r*(", df, ") = ", cor, ", ", p)
+    } else {
+      if (grepl("Kendall", res$method[1])) {
+        tau <- formatC(res$value[res$statistic == "tau"], digits = 2, format = "f")
+        p <- report_p_value(res$value[res$statistic == "p"])
+
+        output <- paste0("*r*<sub>$\\tau$</sub> = ", tau, ", ", p)
+      } else {
+        rho <- formatC(res$value[res$statistic == "rho"], digits = 2, format = "f")
+        p <- report_p_value(res$value[res$statistic == "p"])
+
+        output <- paste0("*r*<sub>*s*</sub> = ", rho, ", ", p)
+      }
+    }
   }
 
   return(output)
