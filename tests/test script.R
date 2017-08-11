@@ -12,6 +12,9 @@ library(tidyr)
 # Create empty tidy stats data frame
 results <- list()
 
+# Set options
+# options(scipen = 9999)
+
 # Test t-tests --------------------------------------------------------------------------------
 
 # Use the 'sleep' data set
@@ -115,6 +118,25 @@ results <- add_stats(results, model4_6, identifier = "M4_6", type = "hypothesis"
 # ANCOVA with within subject factor
 model4_7 <- aov(PA ~ time + ext + Error(subject/time)+ext, data = affect_long)
 results <- add_stats(results, model4_7, identifier = "M4_7", type = "hypothesis")
+
+
+# Multilevel models ---------------------------------------------------------------------------
+
+# Use the politeness data from http://www.bodowinter.com/tutorial/bw_LME_tutorial2.pdf
+politeness <- read.csv("http://www.bodowinter.com/tutorial/politeness_data.csv")
+
+# 1 fixed effect
+model5_1 <- lmer(frequency ~ attitude + (1|subject) + (1|scenario), data = politeness)
+results <- add_stats(results, model5_1, identifier = "M5_1", type = "hypothesis")
+
+# 2 fixed effects
+model5_2 <- lmer(frequency ~ attitude + gender + (1|subject) + (1|scenario), data = politeness)
+results <- add_stats(results, model5_2, identifier = "M5_2", type = "hypothesis")
+
+# Random slope
+model5_3 = lmer(frequency ~ attitude + gender + (1+attitude|subject) + (1+attitude|scenario),
+                        data=politeness)
+results <- add_stats(results, model5_3, identifier = "M5_3", type = "hypothesis")
 
 # Convert to data frame -----------------------------------------------------------------------
 
