@@ -125,6 +125,9 @@ results <- add_stats(results, model4_7, identifier = "M4_7", type = "hypothesis"
 # Use the politeness data from http://www.bodowinter.com/tutorial/bw_LME_tutorial2.pdf
 politeness <- read.csv("http://www.bodowinter.com/tutorial/politeness_data.csv")
 
+library(lme4)
+# library(lmerTest)
+
 # 1 fixed effect
 model5_1 <- lmer(frequency ~ attitude + (1|subject) + (1|scenario), data = politeness)
 results <- add_stats(results, model5_1, identifier = "M5_1", type = "hypothesis")
