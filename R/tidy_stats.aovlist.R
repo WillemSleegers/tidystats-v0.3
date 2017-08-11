@@ -15,7 +15,7 @@ tidy_stats.aovlist <- function(model) {
     df <- as_data_frame(summary(x)[[1]])
 
     if (nrow(df) > 0) {
-      df$term <- paste(y, rownames(summary(x)[[1]]), sep = "-")
+      df$term <- rownames(summary(x)[[1]])
     }
 
     return(df)
@@ -40,7 +40,7 @@ tidy_stats.aovlist <- function(model) {
   # Remove spaces from the term variable
   output$term <- gsub(" ", "", output$term)
 
-  # Get classes of each variable
+  # Get classes of the predictors
   classes <- unlist(lapply(model.frame(model), class))[-1]
 
   # Add kind of ANOVA
@@ -51,6 +51,21 @@ tidy_stats.aovlist <- function(model) {
     sum(!is.na(classes)) == 3 ~ "Factorial repeated measures ANOVA",
     TRUE ~ "Repeated measures ANOVA"
   ))
+
+  # Remove between subject residuals if there are no between subject effects
+  if (!output$method[1] %in% c("ANCOVA", "Mixed ANOVA")) {
+    output <- output[-1:-3, ]
+  }
+
+  # Change term names
+  # TODO: Get rid of the for loop and use a vectorized solution?
+  for (i in 1:nrow(output)) {
+    if (output$term[i] == "Residuals") {
+      output$term[i] <- paste(term, "residuals", sep = "-")
+    } else {
+      term <- output$term[i]
+    }
+  }
 
   return(output)
 }
