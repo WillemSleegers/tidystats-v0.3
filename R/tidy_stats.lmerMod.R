@@ -5,6 +5,8 @@
 #' @param model An lmerMod object
 #'
 #' @examples
+#' library(lme4)
+#'
 #' lme4_model <- lmer(extra ~ group + (1|ID), data = sleep)
 #' tidy_stats.lmerMod(lme4_model)
 #'
