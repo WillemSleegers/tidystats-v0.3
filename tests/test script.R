@@ -129,17 +129,29 @@ library(lme4)
 # library(lmerTest)
 
 # 1 fixed effect
-model5_1 <- lmer(frequency ~ attitude + (1|subject) + (1|scenario), data = politeness)
+model5_1 <- lmer(frequency ~ attitude + (1|subject) + (1|scenario), data = politeness, REML = F)
 results <- add_stats(results, model5_1, identifier = "M5_1", type = "hypothesis")
 
 # 2 fixed effects
-model5_2 <- lmer(frequency ~ attitude + gender + (1|subject) + (1|scenario), data = politeness)
+model5_2 <- lmer(frequency ~ attitude + gender + (1|subject) + (1|scenario), data = politeness, REML = F)
 results <- add_stats(results, model5_2, identifier = "M5_2", type = "hypothesis")
 
 # Random slope
 model5_3 = lmer(frequency ~ attitude + gender + (1+attitude|subject) + (1+attitude|scenario),
                         data=politeness)
 results <- add_stats(results, model5_3, identifier = "M5_3", type = "hypothesis")
+
+
+# Model comparison with anova() ---------------------------------------------------------------
+
+anova(model3_1)
+
+anova(model3_1, model3_2)
+
+anova(model5_1)
+
+anova(model5_1, model5_2)
+
 
 # Convert to data frame -----------------------------------------------------------------------
 
