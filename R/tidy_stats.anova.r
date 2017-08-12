@@ -39,14 +39,14 @@ tidy_stats.anova <- function(model) {
       select(-order)
   } else {
     output <- as_data_frame(model) %>%
-      mutate(
-        term = strsplit(attr(model, "heading")[2], split = "\n")[[1]],
-        order = 1:n()
-      ) %>%
+      mutate(order = 1:n()) %>%
       rename(df = Df)
 
     if ("AIC" %in% names(output)) {
       output <- output %>%
+        mutate(
+          term = row.names(model)
+        ) %>%
         rename(
           `log likelihood` = logLik,
           `chi-squared` = Chisq,
@@ -55,6 +55,7 @@ tidy_stats.anova <- function(model) {
         )
     } else {
       output <- output %>%
+        mutate(term = strsplit(attr(model, "heading")[2], split = "\n")[[1]]) %>%
         rename(
           `df residual` = `Res.Df`,
           SS = `Sum of Sq`
