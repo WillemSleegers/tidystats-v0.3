@@ -33,6 +33,8 @@ library(tidystats)
 results <- list()
 ```
 
+### Usage
+
 The main function is `add_stats()`. The function has 2 necessary arguments:
 
 - `results`: The list you want to add the statistical model to
@@ -45,8 +47,6 @@ The identifier is used to identify the model (e.g., 'M1'). If you do not provide
 The type argument is used to indicate whether the statistical test is a hypothesis test, manipulation check, contrast analysis, or other kind of analysis. This can be used to distinguish the vital statistical tests from those less relevant.
 
 The description argument is used to add additional information which you may find fruitful.
-
-### Add statistical tests
 
 The example below shows how to perform a *t*-test and add it to the results list.
 
