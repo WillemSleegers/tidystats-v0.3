@@ -6,8 +6,7 @@
 
 # install_github("willemsleegers/tidystats")
 library(tidystats)
-library(dplyr)
-library(tidyr)
+library(tidyverse)
 
 # Create empty tidy stats data frame
 results <- list()
@@ -152,6 +151,28 @@ anova(model5_1)
 
 anova(model5_1, model5_2)
 
+
+# Logistic regression -------------------------------------------------------------------------
+
+data <- data_frame(
+  DV = sample(c(0, 1), 20, replace = TRUE),
+  IV1 = rnorm(20),
+  IV2 = rnorm(20)
+)
+
+model6_1 <- glm(DV ~ IV1, data = data, family = binomial)
+
+
+
+# MANOVA --------------------------------------------------------------------------------------
+
+data <- iris
+
+model7_1 <- summary(manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris), test = "Roy")
+model7_2 <- summary(manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris), test = "")
+model7_3 <- summary(manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris), test = "Roy")
+
+model7_4 <- summary(manova(cbind(Sepal.Length, Petal.Length) ~ Species*Petal.Width , data = iris), test = "Roy")
 
 # Convert to data frame -----------------------------------------------------------------------
 
