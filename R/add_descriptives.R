@@ -19,25 +19,24 @@
 #'
 #' @import dplyr
 #' @export
-add_descriptives <- function(descriptives, list, identifier, group = NULL, description = NULL) {
+add_descriptives <- function(descriptives, list, identifier = NULL, description = NULL) {
 
-  # Check if the identifier already exists
-  if (identifier %in% names(list)) {
-    stop("Identifier already exists.")
-  }
-
-  # Create an identifier if it is not specified
+  # Create an identifier if it is not specified, else check whether it already exists
   if (is.null(identifier)) {
-    identifier <- formatC(nrow(list), width = "2", format = "d", flag = "0") %>%
-      paste0("D", .)
+    identifier <- paste0("D", formatC(length(list)+1, width = "1", format = "d"))
+  } else {
+    if (identifier %in% names(list)) {
+      stop("Identifier already exists.")
+    }
   }
 
   # Gather the data
-  if (is.null(group)) {
+  if (is.null(descriptives$group)) {
     descriptives <- gather(descriptives, "descriptive", "value")
   } else {
-    descriptives <- rename(descriptives, "group" = group) %>%
-      gather("descriptive", "value", -group)
+    descriptives <- descriptives %>%
+      gather("descriptive", "value", -group) %>%
+      arrange(group)
   }
 
   # Add the description, if given

@@ -7,33 +7,31 @@ library(tidystats)
 # Create empty list to store descriptives in
 descriptives <- list()
 
-# Load example data
-data <- sleep
+# Test descriptives ---------------------------------------------------------------------------
 
-# Sample size ---------------------------------------------------------------------------------
+# Sleep data
+glimpse(sleep)
 
-# Total N
+# 1 variable, no groups
+describe(sleep, DV = "extra")
+
+# Add to the list
 descriptives <- sleep %>%
-  summarize(
-    N = n()
-  ) %>%
-  add_descriptives(descriptives, identifier = "total_N")
+  describe(DV = "extra") %>%
+  add_descriptives(descriptives)
 
-# N per group
+# 1 variable, 1 group
+describe(sleep, variable = "extra", group = "group")
+
+# Add to the list
 descriptives <- sleep %>%
-  group_by(group) %>%
-  summarize(
-    N = n()
-  ) %>%
-  add_descriptives(descriptives, identifier = "total_N", group = "group")
+  describe(variable = "extra", group = "group") %>%
+  add_descriptives(descriptives)
 
-# Descriptives --------------------------------------------------------------------------------
+# Save results --------------------------------------------------------------------------------
 
-descriptives <- sleep %>%
-  group_by(group) %>%
-  summarize(
-    extra_mean = mean(extra),
-    extra_sd = sd(extra)
-  ) %>%
-  add_descriptives(descriptives, identifier = "extra", group = "group")
+# Convert to data frame
+descriptives_list_to_df(descriptives)
 
+# Save to disk
+write_descriptives(descriptives, "tests/descriptives.csv")

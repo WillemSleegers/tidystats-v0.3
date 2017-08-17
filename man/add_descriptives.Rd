@@ -4,8 +4,7 @@
 \alias{add_descriptives}
 \title{add_descriptives Function}
 \usage{
-add_descriptives(descriptives, list, identifier, group = NULL,
-  description = NULL)
+add_descriptives(descriptives, list, identifier = NULL, description = NULL)
 }
 \description{
 \code{add_descriptives} is a generic function to add descriptive information to a tidy descriptives data frame.
