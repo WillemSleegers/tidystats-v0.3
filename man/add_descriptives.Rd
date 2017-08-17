@@ -4,14 +4,14 @@
 \alias{add_descriptives}
 \title{add_descriptives Function}
 \usage{
-add_descriptives(descriptives, new_descriptives, identifier,
-  outcome_variable = NULL)
+add_descriptives(descriptives, list, identifier, group = NULL,
+  description = NULL)
 }
 \description{
 \code{add_descriptives} is a generic function to add descriptive information to a tidy descriptives data frame.
 }
 \examples{
-descriptives <- new_descriptives_data_frame()
+descriptives <- list()
 
 # Use Student's sleep data
 sleep \%>\%
@@ -23,5 +23,6 @@ sleep \%>\%
   ) -> sleep_descriptives
 
 descriptives <- add_descriptives(descriptives, sleep_descriptives,
-                                 identifier = "D1", outcome_variable = "extra")
+                                 identifier = "D1")
+
 }
