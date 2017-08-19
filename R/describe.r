@@ -1,14 +1,19 @@
-#' describe function
+#' Calculate common descriptive statistics
 #'
-#' \code{describe} is a function to produce descriptives.
+#' \code{describe} returns a set of common descriptive statistics (e.g., n, mean, sd).
+#'
+#' @param data A data frame
+#' @param variable The variable you want to calculate the descriptives of
+#' @param ... A variable number of grouping variables. If provided, descriptives will be calculated
+#' for each level of the grouping variables
+#' @param na.rm Boolean to indicate whether missing data should be removed. The default is TRUE.
 #'
 #' @examples
 #' describe(sleep, extra)
-#' describe(sleep, extra, group = group)
+#' describe(sleep, extra, group)
 #'
 #' @import dplyr
-#' @import tidyr
-#' @import lazyeval
+#' @importFrom tidyr unite
 #'
 #' @export
 describe <- function(data, variable, ..., na.rm = TRUE) {
@@ -43,6 +48,5 @@ describe <- function(data, variable, ..., na.rm = TRUE) {
   # Reorder columns
   output <- select(output, var, everything())
 
-  # Return the descriptives
   return(output)
 }

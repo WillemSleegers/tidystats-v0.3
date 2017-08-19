@@ -2,15 +2,25 @@
 % Please edit documentation in R/describe.r
 \name{describe}
 \alias{describe}
-\title{describe function}
+\title{Calculate common descriptive statistics}
 \usage{
-describe(data, variable, group = NULL, na.rm = TRUE)
+describe(data, variable, ..., na.rm = TRUE)
+}
+\arguments{
+\item{data}{A data frame}
+
+\item{variable}{The variable you want to calculate the descriptives of}
+
+\item{...}{A variable number of grouping variables. If provided, descriptives will be calculated
+for each level of the grouping variables}
+
+\item{na.rm}{Boolean to indicate whether missing data should be removed. The default is TRUE.}
 }
 \description{
-\code{describe} is a function to produce descriptives.
+\code{describe} returns a set of common descriptive statistics (e.g., n, mean, sd).
 }
 \examples{
 describe(sleep, extra)
-describe(sleep, extra, group = group)
+describe(sleep, extra, group)
 
 }
