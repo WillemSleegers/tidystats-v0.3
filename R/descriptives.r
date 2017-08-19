@@ -1,6 +1,6 @@
 #' Calculate common descriptive statistics
 #'
-#' \code{describe} returns a set of common descriptive statistics (e.g., n, mean, sd).
+#' \code{descriptives} returns a set of common descriptive statistics (e.g., n, mean, sd).
 #'
 #' @param data A data frame
 #' @param variable The variable you want to calculate the descriptives of
@@ -9,14 +9,14 @@
 #' @param na.rm Boolean to indicate whether missing data should be removed. The default is TRUE.
 #'
 #' @examples
-#' describe(sleep, extra)
-#' describe(sleep, extra, group)
+#' descriptives(sleep, extra)
+#' descriptives(sleep, extra, group)
 #'
 #' @import dplyr
 #' @importFrom tidyr unite
 #'
 #' @export
-describe <- function(data, variable, ..., na.rm = TRUE) {
+descriptives <- function(data, variable, ..., na.rm = TRUE) {
 
   var <- enquo(variable)
 
