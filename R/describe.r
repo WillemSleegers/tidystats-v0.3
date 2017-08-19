@@ -18,6 +18,13 @@
 #' @export
 describe <- function(data, variable, ..., na.rm = TRUE) {
 
+  var <- enquo(variable)
+
+  # Check whether the variable is numeric
+  if (!class(pull(select(data, !!var))) %in% c("numeric","integer")) {
+    stop(paste("non-numeric variable."))
+  }
+
   # Group the data, if group variables are provided
   group_by <- quos(...)
 
@@ -28,8 +35,6 @@ describe <- function(data, variable, ..., na.rm = TRUE) {
   }
 
   # Calculate descriptives
-  var <- enquo(variable)
-
   output <- data %>%
     summarize(
       var     = paste(var)[2],
