@@ -30,8 +30,7 @@ describe <- function(data, variable, ..., na.rm = TRUE) {
 
   if (length(group_by) > 0) {
     data <- data %>%
-      unite(group, !!!group_by) %>%
-      group_by(group)
+      group_by(!!!group_by)
   }
 
   # Calculate descriptives
@@ -50,8 +49,15 @@ describe <- function(data, variable, ..., na.rm = TRUE) {
       mode    = unique(!!var)[which.max(tabulate(match(!!var, unique(!!var))))]
     )
 
-  # Reorder columns
-  output <- select(output, var, everything())
+  # Combine the grouping variables into 'group', if provided
+  if (length(group_by) > 0) {
+    output <- output %>%
+      unite(group, !!!group_by)
+  }
 
-  return(output)
+  # Reorder variables
+  output <- output %>%
+    select(var, everything())
+
+  return(as_data_frame(output))
 }
