@@ -40,6 +40,9 @@ describe <- function(data, variable, ..., na.rm = TRUE) {
       mode    = unique(!!var)[which.max(tabulate(match(!!var, unique(!!var))))]
     )
 
+  # Reorder columns
+  output <- select(output, var, everything())
+
   # Return the descriptives
   return(output)
 }
