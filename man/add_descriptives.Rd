@@ -13,15 +13,8 @@ add_descriptives(descriptives, list, identifier = NULL, description = NULL)
 descriptives <- list()
 
 # Use Student's sleep data
-sleep \%>\%
-  group_by(group) \%>\%
-  summarize(
-    mean = mean(extra),
-    sd = sd(extra),
-    n = n()
-  ) -> sleep_descriptives
+results <- descriptives(sleep, extra)
 
-descriptives <- add_descriptives(descriptives, sleep_descriptives,
-                                 identifier = "D1")
+descriptives <- add_descriptives(results, descriptives, identifier = "D1")
 
 }
