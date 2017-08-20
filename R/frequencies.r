@@ -29,7 +29,7 @@ frequencies <- function(data, ..., na.rm = TRUE) {
   # Combine all grouping variables into 'group'
   if (length(group_by) > 0) {
     output <- output %>%
-      mutate(var = paste(gsub("~", "", group_by), collapse = ", ")) %>%
+      mutate(var = paste(gsub("~", "", group_by), collapse = " ~ ")) %>%
       unite(group, !!!group_by, sep = ", ") %>%
       select(var, group, everything())
   } else {
