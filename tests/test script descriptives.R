@@ -7,26 +7,46 @@ library(tidystats)
 # Create empty list to store descriptives in
 descriptives <- list()
 
-# Test descriptives ---------------------------------------------------------------------------
+# Test data: starwars
+glimpse(starwars)
 
-# Sleep data
-glimpse(sleep)
+# Test descriptives: continuous data ----------------------------------------------------------
 
 # 1 variable, no groups
-describe(sleep, DV = "extra")
+View(descriptives(starwars, height))
 
 # Add to the list
-descriptives <- sleep %>%
-  describe(DV = "extra") %>%
-  add_descriptives(descriptives)
+starwars %>%
+  descriptives(height) %>%
+  add_descriptives(descriptives, "height") -> descriptives
 
 # 1 variable, 1 group
-describe(sleep, variable = "extra", group = "group")
+View(descriptives(starwars, height, species))
 
 # Add to the list
-descriptives <- sleep %>%
-  describe(variable = "extra", group = "group") %>%
-  add_descriptives(descriptives)
+starwars %>%
+  descriptives(height, species) %>%
+  add_descriptives(descriptives, "height_by_species") -> descriptives
+
+# 1 variable, 2 groups
+View(descriptives(starwars, height, species, gender))
+
+# Add to the list
+starwars %>%
+  descriptives(height, species, gender) %>%
+  add_descriptives(descriptives, "height_by_species_by_gender") -> descriptives
+
+# Test descriptives: count data ---------------------------------------------------------------
+
+# 1 group
+View(frequencies(starwars, gender))
+
+# Add to the list
+starwars %>%
+  frequencies(gender) -> descriptives
+
+# 2 groups
+View(frequencies(starwars, gender, species))
 
 # Save results --------------------------------------------------------------------------------
 
