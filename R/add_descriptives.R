@@ -30,22 +30,16 @@ add_descriptives <- function(descriptives, list, identifier = NULL, description 
     }
   }
 
-  # Gather the data
-  if (is.null(descriptives$group)) {
-    descriptives <- gather(descriptives, "descriptive", "value")
-  } else {
-    descriptives <- descriptives %>%
-      gather("descriptive", "value", -group) %>%
-      arrange(group)
-  }
+  # Tidy the data
+  output <- tidy_descriptives(descriptives)
 
   # Add the description, if given
   if (!is.null(description)) {
-    descriptives$description <- description
+    output$description <- description
   }
 
   # Add descriptives to the list
-  list[[identifier]] <- descriptives
+  list[[identifier]] <- output
 
   # Return the new results data.frame
   return(list)

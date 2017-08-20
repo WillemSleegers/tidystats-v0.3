@@ -52,7 +52,7 @@ descriptives <- function(data, variable, ..., na.rm = TRUE) {
   # Combine the grouping variables into 'group', if provided
   if (length(group_by) > 0) {
     output <- output %>%
-      unite(group, !!!group_by)
+      unite(group, !!!group_by, sep = ", ")
   }
 
   # Reorder variables
