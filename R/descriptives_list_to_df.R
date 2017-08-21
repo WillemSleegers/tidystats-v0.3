@@ -22,7 +22,7 @@ descriptives_list_to_df <- function(descriptives) {
   # Merge the stats output together and reorder variables
   df <- descriptives %>%
     map2_df(names(descriptives), add_identifier) %>%
-    select(identifier, one_of("group"), everything())
+    select(identifier, one_of("var", "group"), everything())
 
   return(df)
 }
