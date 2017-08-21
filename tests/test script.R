@@ -21,19 +21,19 @@ sleep
 
 # One sample t-test
 model1_1 <- t.test(sleep$extra)
-results <- add_stats(results, model1_1, identifier = "M1_1", type = "hypothesis")
+results <- add_stats(model1_1, results, identifier = "M1_1", type = "hypothesis")
 
 # Two sample t-test
 model1_2 <- t.test(extra ~ group, data = sleep, var.equal = TRUE)
-results <- add_stats(results, model1_2, identifier = "M1_2", type = "hypothesis")
+results <- add_stats(model1_2, results, identifier = "M1_2", type = "hypothesis")
 
 # Welch's Two sample t-test
 model1_3 <- t.test(extra ~ group, data = sleep, var.equal = FALSE)
-results <- add_stats(results, model1_3, identifier = "M1_3", type = "hypothesis")
+results <- add_stats(model1_3, results, identifier = "M1_3", type = "hypothesis")
 
 # Paired t-test
 model1_4 <- t.test(extra ~ group, data = sleep, paired = TRUE)
-results <- add_stats(results, model1_4, identifier = "M1_4", type = "hypothesis")
+results <- add_stats(model1_4, results, identifier = "M1_4", type = "hypothesis")
 
 # Test correlation --------------------------------------------------------
 
@@ -43,15 +43,15 @@ y <- c( 2.6,  3.1,  2.5,  5.0,  3.6,  4.0,  5.2,  2.8,  3.8)
 
 # Pearson's product-moment correlation
 model2_1 <- cor.test(x, y, method = "pearson")
-results <- add_stats(results, model2_1, identifier = "M2_1", type = "hypothesis")
+results <- add_stats(model2_1, results, identifier = "M2_1", type = "hypothesis")
 
 # Kendall's rank correlation tau
 model2_2 <- cor.test(x, y, method = "kendall")
-results <- add_stats(results, model2_2, identifier = "M2_2", type = "hypothesis")
+results <- add_stats(model2_2, results, identifier = "M2_2", type = "hypothesis")
 
 # Spearman's rank correlation rho
 model2_3 <- cor.test(x, y, method = "spearman")
-results <- add_stats(results, model2_3, identifier = "M2_3", type = "hypothesis")
+results <- add_stats(model2_3, results, identifier = "M2_3", type = "hypothesis")
 
 # Test regression ---------------------------------------------------------
 
@@ -60,15 +60,15 @@ attitude
 
 # Model with 1 predictor
 model3_1 <- lm(rating ~ complaints, data = attitude)
-results <- add_stats(results, model3_1, identifier = "M3_1", type = "hypothesis")
+results <- add_stats(model3_1, results, identifier = "M3_1", type = "hypothesis")
 
 # Model with 2 predictors
 model3_2 <- lm(rating ~ complaints + critical, data = attitude)
-results <- add_stats(results, model3_2, identifier = "M3_2", type = "hypothesis")
+results <- add_stats(model3_2, results, identifier = "M3_2", type = "hypothesis")
 
 # Model with interaction effect
 model3_3 <- lm(rating ~ complaints * critical, data = attitude)
-results <- add_stats(results, model3_3, identifier = "M3_3", type = "hypothesis")
+results <- add_stats(model3_3, results, identifier = "M3_3", type = "hypothesis")
 
 # # Test ANOVA --------------------------------------------------------------
 
@@ -82,19 +82,19 @@ affect$Study <- factor(affect$Study)
 
 # One-way ANOVA
 model4_1 <- aov(PA2 ~ Film, data = affect)
-results <- add_stats(results, model4_1, identifier = "M4_1", type = "hypothesis")
+results <- add_stats(model4_1, results, identifier = "M4_1", type = "hypothesis")
 
 # Two-way ANOVA
 model4_2 <- aov(PA2 ~ Film + Study, data = affect)
-results <- add_stats(results, model4_2, identifier = "M4_2", type = "hypothesis")
+results <- add_stats(model4_2, results, identifier = "M4_2", type = "hypothesis")
 
 # Two-way ANOVA with interaction
 model4_3 <- aov(PA2 ~ Film*Study, data = affect)
-results <- add_stats(results, model4_3, identifier = "M4_3", type = "hypothesis")
+results <- add_stats(model4_3, results, identifier = "M4_3", type = "hypothesis")
 
 # ANCOVA
 model4_4 <- aov(PA2 ~ Film + ext, data = affect)
-results <- add_stats(results, model4_4, identifier = "M4_4", type = "hypothesis")
+results <- add_stats(model4_4, results, identifier = "M4_4", type = "hypothesis")
 
 # Prepare for repeated measures ANOVAs
 as_data_frame(affect) %>%
@@ -108,15 +108,15 @@ affect_long$time <- factor(affect_long$time)
 
 # One within subject factor
 model4_5 <- aov(PA ~ time + Error(subject/time), data = affect_long)
-results <- add_stats(results, model4_5, identifier = "M4_5", type = "hypothesis")
+results <- add_stats(model4_5, results, identifier = "M4_5", type = "hypothesis")
 
 # Mixed design
 model4_6 <- aov(PA ~ Film * time + Error(subject/time) + Film, data = affect_long)
-results <- add_stats(results, model4_6, identifier = "M4_6", type = "hypothesis")
+results <- add_stats(model4_6, results, identifier = "M4_6", type = "hypothesis")
 
 # ANCOVA with within subject factor
 model4_7 <- aov(PA ~ time + ext + Error(subject/time)+ext, data = affect_long)
-results <- add_stats(results, model4_7, identifier = "M4_7", type = "hypothesis")
+results <- add_stats(model4_7, results, identifier = "M4_7", type = "hypothesis")
 
 
 # Multilevel models ---------------------------------------------------------------------------
@@ -129,16 +129,16 @@ library(lme4)
 
 # 1 fixed effect
 model5_1 <- lmer(frequency ~ attitude + (1|subject) + (1|scenario), data = politeness, REML = F)
-results <- add_stats(results, model5_1, identifier = "M5_1", type = "hypothesis")
+results <- add_stats(model5_1, results, identifier = "M5_1", type = "hypothesis")
 
 # 2 fixed effects
 model5_2 <- lmer(frequency ~ attitude + gender + (1|subject) + (1|scenario), data = politeness, REML = F)
-results <- add_stats(results, model5_2, identifier = "M5_2", type = "hypothesis")
+results <- add_stats(model5_2, results, identifier = "M5_2", type = "hypothesis")
 
 # Random slope
 model5_3 = lmer(frequency ~ attitude + gender + (1+attitude|subject) + (1+attitude|scenario),
                         data=politeness)
-results <- add_stats(results, model5_3, identifier = "M5_3", type = "hypothesis")
+results <- add_stats(model5_3, results, identifier = "M5_3", type = "hypothesis")
 
 
 # Model comparison with anova() ---------------------------------------------------------------
@@ -162,8 +162,6 @@ data <- data_frame(
 
 model6_1 <- glm(DV ~ IV1, data = data, family = binomial)
 
-
-
 # MANOVA --------------------------------------------------------------------------------------
 
 data <- iris
@@ -173,6 +171,19 @@ model7_2 <- summary(manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = i
 model7_3 <- summary(manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris), test = "Roy")
 
 model7_4 <- summary(manova(cbind(Sepal.Length, Petal.Length) ~ Species*Petal.Width , data = iris), test = "Roy")
+
+# Reliability ---------------------------------------------------------------------------------
+
+# Use the 'bfi' data from the psych package
+library(psych)
+bfi
+
+# Cronbach's alpha
+bfi %>%
+  select(A1, A2, A3, A4, A5) %>%
+  alpha(check.keys = TRUE) -> model8_1
+
+results <- add_stats(model_alpha, results, identifier = "M8_1")
 
 # Convert to data frame -----------------------------------------------------------------------
 
