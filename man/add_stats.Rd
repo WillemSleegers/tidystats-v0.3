@@ -4,13 +4,13 @@
 \alias{add_stats}
 \title{add_stats Generic Function}
 \usage{
-add_stats(results, model, identifier = NULL, type = "other",
+add_stats(model, results, identifier = NULL, type = "other",
   description = NULL)
 }
 \arguments{
-\item{results}{a tidy stats list.}
-
 \item{model}{output of a statistical test.}
+
+\item{results}{a tidy stats list.}
 
 \item{identifier}{a character string identifying the model. Automatically created if not provided.}
 
