@@ -16,7 +16,7 @@
 #'@import dplyr
 
 #'@export
-add_stats <- function(results, model, identifier = NULL, type = "other", description = NULL) {
+add_stats <- function(model, results, identifier = NULL, type = "other", description = NULL) {
 
   # Check if the identifier already exists
   if (identifier %in% names(results)) {
