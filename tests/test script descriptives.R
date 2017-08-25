@@ -60,4 +60,4 @@ results <- starwars %>%
 View(descriptives_list_to_df(results))
 
 # Save to disk
-write_descriptives(descriptives, "tests/descriptives.csv")
+write_descriptives(results, "tests/descriptives.csv")
