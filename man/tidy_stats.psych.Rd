@@ -7,7 +7,7 @@
 \method{tidy_stats}{psych}(model)
 }
 \arguments{
-\item{model}{An alpha object}
+\item{model}{An psych alpha object}
 }
 \description{
 Creates a tidystats data frame for a psych's alpha object.
