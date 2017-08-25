@@ -12,7 +12,7 @@
 #'
 #' @import dplyr
 #' @export
-add_descriptives <- function(descriptives, list, identifier = NULL, description = NULL) {
+add_descriptives <- function(descriptives, list, identifier = NULL, subset = NULL, description = NULL) {
 
   # Create an identifier if it is not specified, else check whether it already exists
   if (is.null(identifier)) {
@@ -25,6 +25,15 @@ add_descriptives <- function(descriptives, list, identifier = NULL, description 
 
   # Tidy the data
   output <- tidy_descriptives(descriptives)
+
+  # Select values to keep
+  if (!is.null(subset)) {
+    if (sum(!subset %in% output$descriptive) > 0) {
+      stop(paste(subset[which(!subset %in% descriptives$descriptive)], "not valid descriptives."))
+    } else {
+      output <- filter(output, descriptive %in% subset)
+    }
+  }
 
   # Add the description, if given
   if (!is.null(description)) {
