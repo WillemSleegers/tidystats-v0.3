@@ -2,8 +2,8 @@
 #'
 #' \code{add_stats} is a generic function to add a line of tidy stats to a tidy stats data.frame.
 #'
-#' @param results a tidy stats list.
 #' @param model output of a statistical test.
+#' @param results a tidy stats list.
 #' @param identifier a character string identifying the model. Automatically created if not provided.
 #' @param type a character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", or "other", can be abbreviated.
 #' @param description a character string to add additional information.
@@ -11,11 +11,11 @@
 #' @examples
 #' results <- list()
 #' model <- t.test(1:10, y = c(7:20))
-#' results <- add_stats(results, model, "M1", "hypothesis")
-
-#'@import dplyr
-
-#'@export
+#' results <- add_stats(model, results, "M1", "hypothesis")
+#'
+#' @import dplyr
+#'
+#' @export
 add_stats <- function(model, results, identifier = NULL, type = "other", description = NULL) {
 
   # Check if the identifier already exists

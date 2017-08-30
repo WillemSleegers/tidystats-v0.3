@@ -24,5 +24,6 @@ add_stats(model, results, identifier = NULL, type = "other",
 \examples{
 results <- list()
 model <- t.test(1:10, y = c(7:20))
-results <- add_stats(results, model, "M1", "hypothesis")
+results <- add_stats(model, results, "M1", "hypothesis")
+
 }
