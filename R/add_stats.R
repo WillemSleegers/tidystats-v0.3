@@ -11,22 +11,23 @@
 #' @examples
 #' results <- list()
 #' model <- t.test(1:10, y = c(7:20))
-#' results <- add_stats(model, results, "M1", "hypothesis")
+#' results <- add_stats(model, results, identifier = "M1", type = "hypothesis")
 #'
 #' @import dplyr
 #'
 #' @export
 add_stats <- function(model, results, identifier = NULL, type = "other", description = NULL) {
 
-  # Check if the identifier already exists
-  if (identifier %in% names(results)) {
-    stop("Identifier already exists.")
-  }
-
   # Create an identifier if it is not specified
+  # If one is specified, check whether it already exists
   if (is.null(identifier)) {
-    identifier <- formatC(nrow(results), width = "2", format = "d", flag = "0") %>%
-      paste0("M", .)
+    identifier <- paste0("M", formatC(length(results)+1, width = "1", format = "d"))
+  } else {
+    if (!is.null(names(results))) {
+      if (identifier %in% names(results)) {
+        stop("Identifier already exists.")
+      }
+    }
   }
 
   # Create the new element
