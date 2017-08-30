@@ -19,8 +19,10 @@
 add_stats <- function(model, results, identifier = NULL, type = "other", description = NULL) {
 
   # Check if the identifier already exists
-  if (identifier %in% names(results)) {
-    stop("Identifier already exists.")
+  if (!is.null(names(results))) {
+    if (identifier %in% names(results)) {
+      stop("Identifier already exists.")
+    }
   }
 
   # Create an identifier if it is not specified
