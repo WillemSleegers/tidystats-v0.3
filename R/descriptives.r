@@ -36,17 +36,17 @@ descriptives <- function(data, variable, ..., na.rm = TRUE) {
   # Calculate descriptives
   output <- data %>%
     summarize(
-      var     = paste(var)[2],
+      var     = paste(!!var)[2],
       missing = sum(is.na(!!var)),
-      n       = n() - missing,
       M       = mean(!!var, na.rm = na.rm),
       SD      = sd(!!var, na.rm = na.rm),
-      SE      = SD/sqrt(n),
       min     = min(!!var, na.rm = na.rm),
       max     = max(!!var, na.rm = na.rm),
       range   = diff(range(!!var, na.rm = na.rm)),
       median  = median(!!var, na.rm = na.rm),
-      mode    = unique(!!var)[which.max(tabulate(match(!!var, unique(!!var))))]
+      mode    = unique(!!var)[which.max(tabulate(match(!!var, unique(!!var))))],
+      n       = n() - missing,
+      SE      = SD/sqrt(n)
     )
 
   # Combine the grouping variables into 'group', if provided
