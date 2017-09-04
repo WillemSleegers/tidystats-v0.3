@@ -36,7 +36,7 @@ descriptives <- function(data, variable, ..., na.rm = TRUE) {
   # Calculate descriptives
   output <- data %>%
     summarize(
-      var     = paste(!!var)[2],
+      var     = paste(var)[2],
       missing = sum(is.na(!!var)),
       M       = mean(!!var, na.rm = na.rm),
       SD      = sd(!!var, na.rm = na.rm),
