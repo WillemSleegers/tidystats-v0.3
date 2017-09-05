@@ -57,7 +57,7 @@ descriptives <- function(data, variable, ..., na.rm = TRUE) {
 
   # Reorder variables
   output <- output %>%
-    select(var, missing, n, M, SD, SE, everything())
+    select(var, one_of("group"), missing, n, M, SD, SE, everything())
 
   return(as_data_frame(output))
 }
