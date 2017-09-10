@@ -8,18 +8,20 @@
 #' library(lme4)
 #' library(lmerTest)
 #'
-#' lme4_model <- lmer(extra ~ group + (1|ID), data = sleep)
-#' tidy_stats.lmerMod(lme4_model)
+#' model <- lmer(extra ~ group + (1|ID), data = sleep)
+#' tidy_stats.lmerMod(model)
 #'
+#' @import tibble
 #' @import dplyr
 #' @import tidyr
 #' @importFrom magrittr %>%
+#' @import lmerTest
 #'
 #' @export
 tidy_stats.merModLmerTest <- function(model) {
 
   # Get summary statistics
-  summary <- summary(model)
+  summary <- lmerTest::summary(model)
 
   # Extract statistics of random effects
   random <- as_data_frame(summary$varcor) %>%

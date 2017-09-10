@@ -16,7 +16,7 @@ Creates a tidystats data frame for an merModLmerTest object.
 library(lme4)
 library(lmerTest)
 
-lme4_model <- lmer(extra ~ group + (1|ID), data = sleep)
-tidy_stats.lmerMod(lme4_model)
+model <- lmer(extra ~ group + (1|ID), data = sleep)
+tidy_stats.lmerMod(model)
 
 }
