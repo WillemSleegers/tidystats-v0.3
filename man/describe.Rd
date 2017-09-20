@@ -17,7 +17,7 @@ describe(data, variable, na.rm = TRUE)
 \code{describe} returns a set of common descriptive statistics for a numeric variable (e.g., n, mean, sd) or for a non-numeric variable (e.g., n, pct).
 }
 \details{
-\code{describe} returns an ungrouped data frame.
+Unlike dplyr's \code{summarize}, \code{describe} does not automatically peel off a grouping variable. The function keeps the supplied grouping. However, when descriptives are requested of a non-numeric variable, the function will return a data frame that is grouped by that variable. If the data frame was already grouped, the non-numeric variable will be added to the existing grouping variables.
 }
 \examples{
 # Descriptives of a single variable

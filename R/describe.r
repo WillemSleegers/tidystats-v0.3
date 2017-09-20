@@ -7,7 +7,7 @@
 #' @param na.rm Boolean to indicate whether missing data should be removed. The default is TRUE.
 #'
 #' @details
-#' \code{describe} returns an ungrouped data frame.
+#' Unlike dplyr's \code{summarize}, \code{describe} does not automatically peel off a grouping variable. The function keeps the supplied grouping. However, when descriptives are requested of a non-numeric variable, the function will return a data frame that is grouped by that variable. If the data frame was already grouped, the non-numeric variable will be added to the existing grouping variables.
 #'
 #' @examples
 #' # Descriptives of a single variable
@@ -27,7 +27,7 @@ describe <- function(data, variable, na.rm = TRUE) {
   var <- enquo(variable)
 
   # Save grouping data
-  groups <- attr(data, "vars")
+  groups <- group_vars(data)
 
   # Check variable type
   if (sapply(data, class)[quo_name(var)] %in% c("numeric", "integer")) {
@@ -56,6 +56,9 @@ describe <- function(data, variable, na.rm = TRUE) {
       data <- group_by(data, !!var)
     }
 
+    # Save new grouping data
+    groups <- group_vars(data)
+
     # Calculate frequencies
     output <- data %>%
       summarize(
@@ -73,13 +76,14 @@ describe <- function(data, variable, na.rm = TRUE) {
       output <- output %>%
         mutate(pct = n / sum(n)*100)
     }
-
   } else {
     stop("Non-supported variable type.")
   }
 
-  # Ungroup output
-  output <- ungroup(output)
+  # Add grouping to output
+  output <- output %>%
+    ungroup() %>%
+    group_by_at(vars(one_of(groups)))
 
   return(output)
 }
