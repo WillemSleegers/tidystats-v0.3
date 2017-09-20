@@ -66,7 +66,7 @@ describe <- function(data, variable, na.rm = TRUE) {
       )
 
     # Add percentages when grouping variables are provided
-    if (length(groups) > 0) {
+    if (length(groups) > 1) {
       output <- output %>%
         mutate(pct_group = n / sum(n)*100) %>%
         ungroup() %>%
