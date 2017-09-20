@@ -77,3 +77,49 @@ results %>%
 ```
 
 To write the results to a file, use `write_stats()`. This produces a .csv file that can be shared online and that can also be used to write your Results section. In the 'example' folder you can find an examples of a data file containing the output of multiple statistical tests, as well as a markdown file demonstrating how `tidystats` can be used to create APA-styled statistical reports.
+
+### Helper functions
+
+#### Descriptives
+
+Since it's common to also report descriptives in addition to the statistical results, we have added a hopefully useful `describe()` function to calculate common descriptive statistics that can be tidied and added to a results data frame. Several examples follow using the `starwars` data.
+
+```{r}
+# Descriptives of the 'height' variable
+describe(starwars, height)
+```
+
+```{r}
+# By gender
+starwars %>%
+  group_by(gender) %>%
+  describe(height)
+```
+
+```{r}
+# Descriptives of a non-numeric variable
+describe(starwars, gender)
+```
+
+If you use the `describe()` function from the `tidystats` package to get the descriptives, you can use the `tidy_descriptives()` function to tidy the output, and consequently add it to a results list. 
+
+```{r}
+# Adding descriptives to a results list
+results <- list()
+
+starwars %>%
+  describe(height) %>%
+  tidy_descriptives() %>%
+  add_stats(results, identifier = "height", type = "d")
+```
+In the `add_stats()` function you can also specify which of the statistics you would like to store in the results list.
+
+```{r}
+# Adding some of the descriptives to a results list
+results <- list()
+
+starwars %>%
+  describe(height) %>%
+  tidy_descriptives() %>%
+  add_stats(results, identifier = "height", type = "d", statistics = c("n", "M", "SD"))
+```
