@@ -216,28 +216,27 @@ starwars %>%
   group_by(gender) %>%
   describe(height) %>%
   tidy_descriptives() %>%
-  add_stats(results, identifier = "height", type = "d", statistics = c("n", "M", "SD"), 
-            notes = "Height by gender")
+  add_stats(results, identifier = "height_by_gender", type = "d", statistics = c("n", "M", "SD"))
 ```
 
 ```
-## $height
-## # A tibble: 15 x 5
-##            group statistic value         type            notes
-##            <chr>     <chr> <dbl>        <chr>            <chr>
-##  1        female         n    17 descriptives Height by gender
-##  2        female         M   165 descriptives Height by gender
-##  3        female        SD    23 descriptives Height by gender
-##  4 hermaphrodite         n     1 descriptives Height by gender
-##  5 hermaphrodite         M   175 descriptives Height by gender
-##  6 hermaphrodite        SD    NA descriptives Height by gender
-##  7          male         n    59 descriptives Height by gender
-##  8          male         M   179 descriptives Height by gender
-##  9          male        SD    35 descriptives Height by gender
-## 10          none         n     1 descriptives Height by gender
-## 11          none         M   200 descriptives Height by gender
-## 12          none        SD    NA descriptives Height by gender
-## 13            NA         n     3 descriptives Height by gender
-## 14            NA         M   120 descriptives Height by gender
-## 15            NA        SD    41 descriptives Height by gender
+## $height_by_gender
+## # A tibble: 15 x 4
+##            group statistic value         type
+##            <chr>     <chr> <dbl>        <chr>
+##  1        female         n    17 descriptives
+##  2        female         M   165 descriptives
+##  3        female        SD    23 descriptives
+##  4 hermaphrodite         n     1 descriptives
+##  5 hermaphrodite         M   175 descriptives
+##  6 hermaphrodite        SD    NA descriptives
+##  7          male         n    59 descriptives
+##  8          male         M   179 descriptives
+##  9          male        SD    35 descriptives
+## 10          none         n     1 descriptives
+## 11          none         M   200 descriptives
+## 12          none        SD    NA descriptives
+## 13            NA         n     3 descriptives
+## 14            NA         M   120 descriptives
+## 15            NA        SD    41 descriptives
 ```

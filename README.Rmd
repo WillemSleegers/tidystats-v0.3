@@ -134,6 +134,5 @@ starwars %>%
   group_by(gender) %>%
   describe(height) %>%
   tidy_descriptives() %>%
-  add_stats(results, identifier = "height", type = "d", statistics = c("n", "M", "SD"), 
-            notes = "Height by gender")
+  add_stats(results, identifier = "height_by_gender", type = "d", statistics = c("n", "M", "SD"))
 ```
