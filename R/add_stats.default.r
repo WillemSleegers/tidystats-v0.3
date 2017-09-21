@@ -50,9 +50,9 @@ add_stats.default <- function(output, results, identifier = NULL, statistics = N
   # Add information whether the analysis was confirmatory or not
   if (!is.null(confirmatory)) {
     new_element$confirmatory <- case_when(
-      confirmatory == TRUE ~ "yes",
-      confirmatory == FALSE ~ "no",
-      TRUE ~ NA_character_
+      confirmatory == TRUE ~ TRUE,
+      confirmatory == FALSE ~ FALSE,
+      TRUE ~ NA
     )
   }
 
