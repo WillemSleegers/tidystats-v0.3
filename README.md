@@ -57,7 +57,7 @@ results <- add_stats(results, model_t_test, identifier = "M1", "hypothesis")
 ```
 
 ```
-## Error in tidy_stats(model): object 'model' not found
+## Error in UseMethod("tidy_stats"): no applicable method for 'tidy_stats' applied to an object of class "list"
 ```
 
 This example shows how to add a correlation test.
@@ -72,7 +72,7 @@ results <- add_stats(results, model_correlation, "M2", "other")
 ```
 
 ```
-## Error in tidy_stats(model): object 'model' not found
+## Error in UseMethod("tidy_stats"): no applicable method for 'tidy_stats' applied to an object of class "list"
 ```
 
 ### Output
@@ -163,24 +163,24 @@ results <- list()
 starwars %>%
   describe(height) %>%
   tidy_descriptives() %>%
-  add_stats(results, identifier = "height", type = "d")
+  add_stats(results, identifier = "height", type = "d", notes = "Height of starwars characters")
 ```
 
 ```
 ## $height
-## # A tibble: 10 x 3
-##    statistic value         type
-##        <chr> <dbl>        <chr>
-##  1   missing   6.0 descriptives
-##  2         n  81.0 descriptives
-##  3         M 174.4 descriptives
-##  4        SD  34.8 descriptives
-##  5        SE   3.9 descriptives
-##  6       min  66.0 descriptives
-##  7       max 264.0 descriptives
-##  8     range 198.0 descriptives
-##  9    median 180.0 descriptives
-## 10      mode 183.0 descriptives
+## # A tibble: 10 x 4
+##    statistic value         type                         notes
+##        <chr> <dbl>        <chr>                         <chr>
+##  1   missing   6.0 descriptives Height of starwars characters
+##  2         n  81.0 descriptives Height of starwars characters
+##  3         M 174.4 descriptives Height of starwars characters
+##  4        SD  34.8 descriptives Height of starwars characters
+##  5        SE   3.9 descriptives Height of starwars characters
+##  6       min  66.0 descriptives Height of starwars characters
+##  7       max 264.0 descriptives Height of starwars characters
+##  8     range 198.0 descriptives Height of starwars characters
+##  9    median 180.0 descriptives Height of starwars characters
+## 10      mode 183.0 descriptives Height of starwars characters
 ```
 In the `add_stats()` function you can also specify which of the statistics you would like to store in the results list.
 
@@ -203,4 +203,41 @@ starwars %>%
 ## 1         n    81 descriptives
 ## 2         M   174 descriptives
 ## 3        SD    35 descriptives
+```
+
+And of course it also works when you have groups.
+
+
+```r
+# Adding some of the descriptives to a results list
+results <- list()
+
+starwars %>%
+  group_by(gender) %>%
+  describe(height) %>%
+  tidy_descriptives() %>%
+  add_stats(results, identifier = "height", type = "d", statistics = c("n", "M", "SD"), notes = "Height by gender descriptives")
+```
+
+```
+## $height
+## # A tibble: 15 x 5
+##            group statistic value         type
+##            <chr>     <chr> <dbl>        <chr>
+##  1        female         n    17 descriptives
+##  2        female         M   165 descriptives
+##  3        female        SD    23 descriptives
+##  4 hermaphrodite         n     1 descriptives
+##  5 hermaphrodite         M   175 descriptives
+##  6 hermaphrodite        SD    NA descriptives
+##  7          male         n    59 descriptives
+##  8          male         M   179 descriptives
+##  9          male        SD    35 descriptives
+## 10          none         n     1 descriptives
+## 11          none         M   200 descriptives
+## 12          none        SD    NA descriptives
+## 13            NA         n     3 descriptives
+## 14            NA         M   120 descriptives
+## 15            NA        SD    41 descriptives
+## # ... with 1 more variables: notes <chr>
 ```

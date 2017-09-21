@@ -110,7 +110,7 @@ results <- list()
 starwars %>%
   describe(height) %>%
   tidy_descriptives() %>%
-  add_stats(results, identifier = "height", type = "d")
+  add_stats(results, identifier = "height", type = "d", notes = "Height of starwars characters")
 ```
 In the `add_stats()` function you can also specify which of the statistics you would like to store in the results list.
 
@@ -122,4 +122,17 @@ starwars %>%
   describe(height) %>%
   tidy_descriptives() %>%
   add_stats(results, identifier = "height", type = "d", statistics = c("n", "M", "SD"))
+```
+
+And of course it also works when you have groups.
+
+```{r}
+# Adding some of the descriptives to a results list
+results <- list()
+
+starwars %>%
+  group_by(gender) %>%
+  describe(height) %>%
+  tidy_descriptives() %>%
+  add_stats(results, identifier = "height", type = "d", statistics = c("n", "M", "SD"), notes = "Height by gender descriptives")
 ```
