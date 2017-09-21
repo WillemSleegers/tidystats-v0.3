@@ -10,13 +10,17 @@
 #' @export
 tidy_descriptives <- function(descriptives) {
 
+  # Retrieve grouping information
+  groups <- group_vars(descriptives)
+
   # Gather the data
-  if (!"group" %in% names(descriptives)) {
-    output <- gather(descriptives, "descriptive", "value", -var)
-  } else {
+  if (length(groups) > 0) {
     output <- descriptives %>%
-      gather("descriptive", "value", -var, -group) %>%
-      arrange(group)
+      gather("statistic", "value", -one_of(groups)) %>%
+      arrange(.by_group = TRUE) %>%
+      unite(col = "group", groups, sep = "_")
+  } else {
+    output <- gather(descriptives, "statistic", "value")
   }
 
   return(output)
