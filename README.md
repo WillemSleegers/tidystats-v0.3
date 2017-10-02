@@ -37,45 +37,54 @@ results <- list()
 
 The main function is `add_stats()`. The function has 2 necessary arguments:
 
-- `results`: The list you want to add the statistical model to
-- `model`: The statistical model you want to add to the list
+- `model`: The statistical model you want to add to the list (e.g., the output of `t.test()`)
+- `results`: The list you want to add the statistical output to
 
-Optionally you can also add an identifier, type, and description of the model using the `identifier`, `type`, and `description` arguments, respectively. 
+Optionally you can also add an identifier, type, a subset of the statistics, whether the analysis was confirmatory or exploratory, and additional notes using the `identifier`, `type`, `statistics`, `confirmatory`, and `notes` arguments, respectively. 
 
-The identifier is used to identify the model (e.g., 'M1'). If you do not provide one, one is automatically created for you. 
+The identifier is used to identify the model (e.g., 'weight_height_correlation'). If you do not provide one, one is automatically created for you (albeit not a very descriptive one).
 
-The type argument is used to indicate whether the statistical test is a hypothesis test, manipulation check, contrast analysis, or other kind of analysis. This can be used to distinguish the vital statistical tests from those less relevant.
+The `type` argument is used to indicate whether the statistical test is a hypothesis test, manipulation check, contrast analysis, or other kind of analysis. This can be used to distinguish the vital statistical tests from those less relevant.
 
-The description argument is used to add additional information which you may find fruitful.
+The `statistics` argument is used to select a subset of statistics that you want to add to the results list, in case this is desired.
 
-The example below shows how to perform a *t*-test and add it to the results list.
+The `confirmatory` argument is used to indicate whether the test was confirmatory or exploratory. It can also be ommitted.
+
+The `notes` argument is used to add additional information which you may find fruitful. Some statistical tests have default `notes` output (e.g., t-tests), which will be overwritten when a `notes` argument is supplied to the `add_stats()` function.
+
+### Supported statistical functions
+
+**Package:** stats
+
+- `t.test()`
+- `cor.test()`
+- `lm()`
+- `aov()`
+
+### Example
+
+In the following example we perform several statistical tests on a data set, add the output of these results to a list, and save the results to a data file.
+
+The data set is called `cox` and contains the data of a replication attempt of CR Cox, J Arndt, T Pyszczynski, J Greenberg, A Abdollahi, S Solomon (2008, JPSP 94(4), Exp. 6) by Wissink et al. The data set is part of the `tidystats` package.
 
 
 ```r
-model_t_test <- t.test(1:10, y = c(7:20))
-results <- add_stats(results, model_t_test, identifier = "M1", "hypothesis")
+# Paired t-test
+model1 <- t.test(call_parent ~ condition, data = cox, paired = TRUE)
+results <- add_stats(model1, results, identifier = "M1")
+
+# Correlation
+model2 <- cor.test(cox$call_parent, cox$call_siblings, method = "kendall", alternative = "greater")
+results <- add_stats(model2, results, identifier = "M2")
+
+# Regression
+model3 <- lm(call_parent ~ condition * anxiety , data = cox)
+results <- add_stats(model3, results, identifier = "M3")
+
+# ANOVA
+model4 <- aov(call_parent ~ condition * sex, data = cox)
+results <- add_stats(model4, results, identifier = "M4")
 ```
-
-```
-## Error in UseMethod("tidy_stats"): no applicable method for 'tidy_stats' applied to an object of class "list"
-```
-
-This example shows how to add a correlation test.
-
-
-```r
-x <- c(44.4, 45.9, 41.9, 53.3, 44.7, 44.1, 50.7, 45.2, 60.1)
-y <- c( 2.6,  3.1,  2.5,  5.0,  3.6,  4.0,  5.2,  2.8,  3.8)
-
-model_correlation <- cor.test(x, y)
-results <- add_stats(results, model_correlation, "M2", "other")
-```
-
-```
-## Error in UseMethod("tidy_stats"): no applicable method for 'tidy_stats' applied to an object of class "list"
-```
-
-### Output
 
 Having added the statistical results to the list, you can convert the list to a table or to a data file, ready for sharing. The example below shows how to produce a table containing all of the statistical results.
 
@@ -89,68 +98,119 @@ results %>%
   kable()
 ```
 
-```
-## Error in overscope_eval_next(overscope, expr): object 'identifier' not found
-```
 
-To write the results to a file, use `write_stats()`. This produces a .csv file that can be shared online and that can also be used to write your Results section. In the 'example' folder you can find an examples of a data file containing the output of multiple statistical tests, as well as a markdown file demonstrating how `tidystats` can be used to create APA-styled statistical reports.
+
+|identifier |term                                |statistic               |         value|method                         |notes          |
+|:----------|:-----------------------------------|:-----------------------|-------------:|:------------------------------|:--------------|
+|M1         |NA                                  |mean of the differences |    -2.7700000|Paired t-test                  |two.sided test |
+|M1         |NA                                  |t                       |    -1.2614135|Paired t-test                  |two.sided test |
+|M1         |NA                                  |df                      |    99.0000000|Paired t-test                  |two.sided test |
+|M1         |NA                                  |p                       |     0.2101241|Paired t-test                  |two.sided test |
+|M1         |NA                                  |95% CI lower            |    -7.1272396|Paired t-test                  |two.sided test |
+|M1         |NA                                  |95% CI upper            |     1.5872396|Paired t-test                  |two.sided test |
+|M1         |NA                                  |null value              |     0.0000000|Paired t-test                  |two.sided test |
+|M2         |NA                                  |tau                     |     0.0706669|Kendall's rank correlation tau |greater test   |
+|M2         |NA                                  |z                       |     1.2956623|Kendall's rank correlation tau |greater test   |
+|M2         |NA                                  |p                       |     0.0975459|Kendall's rank correlation tau |greater test   |
+|M2         |NA                                  |null value              |     0.0000000|Kendall's rank correlation tau |greater test   |
+|M3         |(Intercept)                         |b                       |    29.4466534|Linear regression              |NA             |
+|M3         |(Intercept)                         |SE                      |     9.9311192|Linear regression              |NA             |
+|M3         |(Intercept)                         |t                       |     2.9650891|Linear regression              |NA             |
+|M3         |(Intercept)                         |p                       |     0.0034017|Linear regression              |NA             |
+|M3         |(Intercept)                         |df                      |   196.0000000|Linear regression              |NA             |
+|M3         |conditionmortality salience         |b                       |    20.2945974|Linear regression              |NA             |
+|M3         |conditionmortality salience         |SE                      |    14.0193962|Linear regression              |NA             |
+|M3         |conditionmortality salience         |t                       |     1.4476085|Linear regression              |NA             |
+|M3         |conditionmortality salience         |p                       |     0.1493242|Linear regression              |NA             |
+|M3         |conditionmortality salience         |df                      |   196.0000000|Linear regression              |NA             |
+|M3         |anxiety                             |b                       |    -1.5511207|Linear regression              |NA             |
+|M3         |anxiety                             |SE                      |     3.0119376|Linear regression              |NA             |
+|M3         |anxiety                             |t                       |    -0.5149910|Linear regression              |NA             |
+|M3         |anxiety                             |p                       |     0.6071396|Linear regression              |NA             |
+|M3         |anxiety                             |df                      |   196.0000000|Linear regression              |NA             |
+|M3         |conditionmortality salience:anxiety |b                       |    -5.5666889|Linear regression              |NA             |
+|M3         |conditionmortality salience:anxiety |SE                      |     4.3104789|Linear regression              |NA             |
+|M3         |conditionmortality salience:anxiety |t                       |    -1.2914316|Linear regression              |NA             |
+|M3         |conditionmortality salience:anxiety |p                       |     0.1980750|Linear regression              |NA             |
+|M3         |conditionmortality salience:anxiety |df                      |   196.0000000|Linear regression              |NA             |
+|M3         |(Model)                             |R squared               |     0.0360246|Linear regression              |NA             |
+|M3         |(Model)                             |adjusted R squared      |     0.0212698|Linear regression              |NA             |
+|M3         |(Model)                             |F                       |     2.4415618|Linear regression              |NA             |
+|M3         |(Model)                             |numerator df            |     3.0000000|Linear regression              |NA             |
+|M3         |(Model)                             |denominator df          |   196.0000000|Linear regression              |NA             |
+|M3         |(Model)                             |p                       |     0.0655150|Linear regression              |NA             |
+|M4         |condition                           |df                      |     1.0000000|ANOVA                          |NA             |
+|M4         |condition                           |SS                      |   383.6450000|ANOVA                          |NA             |
+|M4         |condition                           |MS                      |   383.6450000|ANOVA                          |NA             |
+|M4         |condition                           |F                       |     1.7299360|ANOVA                          |NA             |
+|M4         |condition                           |p                       |     0.1899557|ANOVA                          |NA             |
+|M4         |sex                                 |df                      |     1.0000000|ANOVA                          |NA             |
+|M4         |sex                                 |SS                      |  1140.4861329|ANOVA                          |NA             |
+|M4         |sex                                 |MS                      |  1140.4861329|ANOVA                          |NA             |
+|M4         |sex                                 |F                       |     5.1426918|ANOVA                          |NA             |
+|M4         |sex                                 |p                       |     0.0244352|ANOVA                          |NA             |
+|M4         |condition:sex                       |df                      |     1.0000000|ANOVA                          |NA             |
+|M4         |condition:sex                       |SS                      |    66.1529617|ANOVA                          |NA             |
+|M4         |condition:sex                       |MS                      |    66.1529617|ANOVA                          |NA             |
+|M4         |condition:sex                       |F                       |     0.2982976|ANOVA                          |NA             |
+|M4         |condition:sex                       |p                       |     0.5855728|ANOVA                          |NA             |
+|M4         |Residuals                           |df                      |   196.0000000|ANOVA                          |NA             |
+|M4         |Residuals                           |SS                      | 43466.5909054|ANOVA                          |NA             |
+|M4         |Residuals                           |MS                      |   221.7683209|ANOVA                          |NA             |
+
+To write the results to a file, use `write_stats()` with the results list as the first argument. This produces a .csv file that can be shared online and that can also be used to write your Results section. In the 'example' folder you can find an examples of a data file containing the output of multiple statistical tests, as well as a markdown file demonstrating how `tidystats` can be used to create APA-styled statistical reports.
 
 ### Helper functions
 
 #### Descriptives
 
-Since it's common to also report descriptives in addition to the statistical results, we have added a hopefully useful `describe()` function to calculate common descriptive statistics that can be tidied and added to a results data frame. Several examples follow using the `starwars` data.
+Since it's common to also report descriptives in addition to the statistical results, we have added a hopefully useful `describe()` function to calculate common descriptive statistics that can be tidied and added to a results data frame. Several examples follow using the `cox` data.
 
 
 ```r
-# Descriptives of the 'height' variable
-describe(starwars, height)
+# Descriptives of the 'anxiety' variable
+describe(cox, anxiety)
 ```
 
 ```
 ## # A tibble: 1 x 10
-##   missing     n     M    SD    SE   min   max range median  mode
-##     <int> <int> <dbl> <dbl> <dbl> <int> <int> <int>  <int> <int>
-## 1       6    81   174    35   3.9    66   264   198    180   183
+##   missing     n       M        SD         SE   min   max range median
+##     <int> <int>   <dbl>     <dbl>      <dbl> <dbl> <dbl> <dbl>  <dbl>
+## 1       0   200 3.21625 0.4917201 0.03476986 1.375 4.375     3   3.25
+## # ... with 1 more variables: mode <dbl>
 ```
 
 
 ```r
-# By gender
-starwars %>%
-  group_by(gender) %>%
-  describe(height)
+# By condition
+cox %>%
+  group_by(condition) %>%
+  describe(anxiety)
 ```
 
 ```
-## # A tibble: 5 x 11
-## # Groups:   gender [5]
-##          gender missing     n     M    SD    SE   min   max range median
-##           <chr>   <int> <int> <dbl> <dbl> <dbl> <int> <int> <int>  <int>
-## 1        female       2    17   165    23   5.6    96   213   117    166
-## 2 hermaphrodite       0     1   175    NA    NA   175   175     0    175
-## 3          male       3    59   179    35   4.6    66   264   198    183
-## 4          none       1     1   200    NA    NA   200   200     0    200
-## 5          <NA>       0     3   120    41  23.5    96   167    71     97
-## # ... with 1 more variables: mode <int>
+## # A tibble: 2 x 11
+## # Groups:   condition [2]
+##            condition missing     n      M        SD         SE   min   max
+##                <chr>   <int> <int>  <dbl>     <dbl>      <dbl> <dbl> <dbl>
+## 1        dental pain       0   100 3.2600 0.4967317 0.04967317 1.625 4.375
+## 2 mortality salience       0   100 3.1725 0.4851910 0.04851910 1.375 4.375
+## # ... with 3 more variables: range <dbl>, median <dbl>, mode <dbl>
 ```
 
 
 ```r
 # Descriptives of a non-numeric variable
-describe(starwars, gender)
+describe(cox, condition)
 ```
 
 ```
-## # A tibble: 5 x 3
-## # Groups:   gender [5]
-##          gender     n   pct
-##           <chr> <int> <dbl>
-## 1        female    19  21.8
-## 2 hermaphrodite     1   1.1
-## 3          male    62  71.3
-## 4          none     2   2.3
-## 5          <NA>     3   3.4
+## # A tibble: 2 x 3
+## # Groups:   condition [2]
+##            condition     n   pct
+##                <chr> <int> <dbl>
+## 1        dental pain   100    50
+## 2 mortality salience   100    50
 ```
 
 If you use the `describe()` function from the `tidystats` package to get the descriptives, you can use the `tidy_descriptives()` function to tidy the output, and consequently add it to a results list. 
@@ -160,27 +220,27 @@ If you use the `describe()` function from the `tidystats` package to get the des
 # Adding descriptives to a results list
 results <- list()
 
-starwars %>%
-  describe(height) %>%
+cox %>%
+  describe(anxiety) %>%
   tidy_descriptives() %>%
-  add_stats(results, identifier = "height", type = "d", notes = "Height of starwars characters")
+  add_stats(results, identifier = "anxiety", type = "d", notes = "Anxious attachment style")
 ```
 
 ```
-## $height
+## $anxiety
 ## # A tibble: 10 x 4
-##    statistic value         type                         notes
-##        <chr> <dbl>        <chr>                         <chr>
-##  1   missing   6.0 descriptives Height of starwars characters
-##  2         n  81.0 descriptives Height of starwars characters
-##  3         M 174.4 descriptives Height of starwars characters
-##  4        SD  34.8 descriptives Height of starwars characters
-##  5        SE   3.9 descriptives Height of starwars characters
-##  6       min  66.0 descriptives Height of starwars characters
-##  7       max 264.0 descriptives Height of starwars characters
-##  8     range 198.0 descriptives Height of starwars characters
-##  9    median 180.0 descriptives Height of starwars characters
-## 10      mode 183.0 descriptives Height of starwars characters
+##    statistic        value         type                    notes
+##        <chr>        <dbl>        <chr>                    <chr>
+##  1   missing   0.00000000 descriptives Anxious attachment style
+##  2         n 200.00000000 descriptives Anxious attachment style
+##  3         M   3.21625000 descriptives Anxious attachment style
+##  4        SD   0.49172007 descriptives Anxious attachment style
+##  5        SE   0.03476986 descriptives Anxious attachment style
+##  6       min   1.37500000 descriptives Anxious attachment style
+##  7       max   4.37500000 descriptives Anxious attachment style
+##  8     range   3.00000000 descriptives Anxious attachment style
+##  9    median   3.25000000 descriptives Anxious attachment style
+## 10      mode   3.50000000 descriptives Anxious attachment style
 ```
 In the `add_stats()` function you can also specify which of the statistics you would like to store in the results list.
 
@@ -189,20 +249,20 @@ In the `add_stats()` function you can also specify which of the statistics you w
 # Adding some of the descriptives to a results list
 results <- list()
 
-starwars %>%
-  describe(height) %>%
+cox %>%
+  describe(anxiety) %>%
   tidy_descriptives() %>%
-  add_stats(results, identifier = "height", type = "d", statistics = c("n", "M", "SD"))
+  add_stats(results, identifier = "anxiety", type = "d", statistics = c("n", "M", "SD"))
 ```
 
 ```
-## $height
+## $anxiety
 ## # A tibble: 3 x 3
-##   statistic value         type
-##       <chr> <dbl>        <chr>
-## 1         n    81 descriptives
-## 2         M   174 descriptives
-## 3        SD    35 descriptives
+##   statistic       value         type
+##       <chr>       <dbl>        <chr>
+## 1         n 200.0000000 descriptives
+## 2         M   3.2162500 descriptives
+## 3        SD   0.4917201 descriptives
 ```
 
 And of course it also works when you have groups.
@@ -212,31 +272,22 @@ And of course it also works when you have groups.
 # Adding some of the descriptives to a results list
 results <- list()
 
-starwars %>%
-  group_by(gender) %>%
-  describe(height) %>%
+cox %>%
+  group_by(sex) %>%
+  describe(anxiety) %>%
   tidy_descriptives() %>%
-  add_stats(results, identifier = "height_by_gender", type = "d", statistics = c("n", "M", "SD"))
+  add_stats(results, identifier = "anxiety_by_sex", type = "d", statistics = c("n", "M", "SD"))
 ```
 
 ```
-## $height_by_gender
-## # A tibble: 15 x 4
-##            group statistic value         type
-##            <chr>     <chr> <dbl>        <chr>
-##  1        female         n    17 descriptives
-##  2        female         M   165 descriptives
-##  3        female        SD    23 descriptives
-##  4 hermaphrodite         n     1 descriptives
-##  5 hermaphrodite         M   175 descriptives
-##  6 hermaphrodite        SD    NA descriptives
-##  7          male         n    59 descriptives
-##  8          male         M   179 descriptives
-##  9          male        SD    35 descriptives
-## 10          none         n     1 descriptives
-## 11          none         M   200 descriptives
-## 12          none        SD    NA descriptives
-## 13            NA         n     3 descriptives
-## 14            NA         M   120 descriptives
-## 15            NA        SD    41 descriptives
+## $anxiety_by_sex
+## # A tibble: 6 x 4
+##    group statistic       value         type
+##    <chr>     <chr>       <dbl>        <chr>
+## 1 female         n 159.0000000 descriptives
+## 2 female         M   3.2122642 descriptives
+## 3 female        SD   0.4875334 descriptives
+## 4   male         n  41.0000000 descriptives
+## 5   male         M   3.2317073 descriptives
+## 6   male        SD   0.5135363 descriptives
 ```

@@ -35,35 +35,54 @@ results <- list()
 
 The main function is `add_stats()`. The function has 2 necessary arguments:
 
-- `results`: The list you want to add the statistical model to
-- `model`: The statistical model you want to add to the list
+- `model`: The statistical model you want to add to the list (e.g., the output of `t.test()`)
+- `results`: The list you want to add the statistical output to
 
-Optionally you can also add an identifier, type, and description of the model using the `identifier`, `type`, and `description` arguments, respectively. 
+Optionally you can also add an identifier, type, a subset of the statistics, whether the analysis was confirmatory or exploratory, and additional notes using the `identifier`, `type`, `statistics`, `confirmatory`, and `notes` arguments, respectively. 
 
-The identifier is used to identify the model (e.g., 'M1'). If you do not provide one, one is automatically created for you. 
+The identifier is used to identify the model (e.g., 'weight_height_correlation'). If you do not provide one, one is automatically created for you (albeit not a very descriptive one).
 
-The type argument is used to indicate whether the statistical test is a hypothesis test, manipulation check, contrast analysis, or other kind of analysis. This can be used to distinguish the vital statistical tests from those less relevant.
+The `type` argument is used to indicate whether the statistical test is a hypothesis test, manipulation check, contrast analysis, or other kind of analysis. This can be used to distinguish the vital statistical tests from those less relevant.
 
-The description argument is used to add additional information which you may find fruitful.
+The `statistics` argument is used to select a subset of statistics that you want to add to the results list, in case this is desired.
 
-The example below shows how to perform a *t*-test and add it to the results list.
+The `confirmatory` argument is used to indicate whether the test was confirmatory or exploratory. It can also be ommitted.
+
+The `notes` argument is used to add additional information which you may find fruitful. Some statistical tests have default `notes` output (e.g., t-tests), which will be overwritten when a `notes` argument is supplied to the `add_stats()` function.
+
+### Supported statistical functions
+
+**Package:** stats
+
+- `t.test()`
+- `cor.test()`
+- `lm()`
+- `aov()`
+
+### Example
+
+In the following example we perform several statistical tests on a data set, add the output of these results to a list, and save the results to a data file.
+
+The data set is called `cox` and contains the data of a replication attempt of CR Cox, J Arndt, T Pyszczynski, J Greenberg, A Abdollahi, S Solomon (2008, JPSP 94(4), Exp. 6) by Wissink et al. The data set is part of the `tidystats` package.
 
 ```{r}
-model_t_test <- t.test(1:10, y = c(7:20))
-results <- add_stats(results, model_t_test, identifier = "M1", "hypothesis")
+
+# Paired t-test
+model1 <- t.test(call_parent ~ condition, data = cox, paired = TRUE)
+results <- add_stats(model1, results, identifier = "M1")
+
+# Correlation
+model2 <- cor.test(cox$call_parent, cox$call_siblings, method = "kendall", alternative = "greater")
+results <- add_stats(model2, results, identifier = "M2")
+
+# Regression
+model3 <- lm(call_parent ~ condition * anxiety , data = cox)
+results <- add_stats(model3, results, identifier = "M3")
+
+# ANOVA
+model4 <- aov(call_parent ~ condition * sex, data = cox)
+results <- add_stats(model4, results, identifier = "M4")
 ```
-
-This example shows how to add a correlation test.
-
-```{r}
-x <- c(44.4, 45.9, 41.9, 53.3, 44.7, 44.1, 50.7, 45.2, 60.1)
-y <- c( 2.6,  3.1,  2.5,  5.0,  3.6,  4.0,  5.2,  2.8,  3.8)
-
-model_correlation <- cor.test(x, y)
-results <- add_stats(results, model_correlation, "M2", "other")
-```
-
-### Output
 
 Having added the statistical results to the list, you can convert the list to a table or to a data file, ready for sharing. The example below shows how to produce a table containing all of the statistical results.
 
@@ -76,29 +95,29 @@ results %>%
   kable()
 ```
 
-To write the results to a file, use `write_stats()`. This produces a .csv file that can be shared online and that can also be used to write your Results section. In the 'example' folder you can find an examples of a data file containing the output of multiple statistical tests, as well as a markdown file demonstrating how `tidystats` can be used to create APA-styled statistical reports.
+To write the results to a file, use `write_stats()` with the results list as the first argument. This produces a .csv file that can be shared online and that can also be used to write your Results section. In the 'example' folder you can find an examples of a data file containing the output of multiple statistical tests, as well as a markdown file demonstrating how `tidystats` can be used to create APA-styled statistical reports.
 
 ### Helper functions
 
 #### Descriptives
 
-Since it's common to also report descriptives in addition to the statistical results, we have added a hopefully useful `describe()` function to calculate common descriptive statistics that can be tidied and added to a results data frame. Several examples follow using the `starwars` data.
+Since it's common to also report descriptives in addition to the statistical results, we have added a hopefully useful `describe()` function to calculate common descriptive statistics that can be tidied and added to a results data frame. Several examples follow using the `cox` data.
 
 ```{r}
-# Descriptives of the 'height' variable
-describe(starwars, height)
+# Descriptives of the 'anxiety' variable
+describe(cox, anxiety)
 ```
 
 ```{r}
-# By gender
-starwars %>%
-  group_by(gender) %>%
-  describe(height)
+# By condition
+cox %>%
+  group_by(condition) %>%
+  describe(anxiety)
 ```
 
 ```{r}
 # Descriptives of a non-numeric variable
-describe(starwars, gender)
+describe(cox, condition)
 ```
 
 If you use the `describe()` function from the `tidystats` package to get the descriptives, you can use the `tidy_descriptives()` function to tidy the output, and consequently add it to a results list. 
@@ -107,10 +126,10 @@ If you use the `describe()` function from the `tidystats` package to get the des
 # Adding descriptives to a results list
 results <- list()
 
-starwars %>%
-  describe(height) %>%
+cox %>%
+  describe(anxiety) %>%
   tidy_descriptives() %>%
-  add_stats(results, identifier = "height", type = "d", notes = "Height of starwars characters")
+  add_stats(results, identifier = "anxiety", type = "d", notes = "Anxious attachment style")
 ```
 In the `add_stats()` function you can also specify which of the statistics you would like to store in the results list.
 
@@ -118,10 +137,10 @@ In the `add_stats()` function you can also specify which of the statistics you w
 # Adding some of the descriptives to a results list
 results <- list()
 
-starwars %>%
-  describe(height) %>%
+cox %>%
+  describe(anxiety) %>%
   tidy_descriptives() %>%
-  add_stats(results, identifier = "height", type = "d", statistics = c("n", "M", "SD"))
+  add_stats(results, identifier = "anxiety", type = "d", statistics = c("n", "M", "SD"))
 ```
 
 And of course it also works when you have groups.
@@ -130,9 +149,9 @@ And of course it also works when you have groups.
 # Adding some of the descriptives to a results list
 results <- list()
 
-starwars %>%
-  group_by(gender) %>%
-  describe(height) %>%
+cox %>%
+  group_by(sex) %>%
+  describe(anxiety) %>%
   tidy_descriptives() %>%
-  add_stats(results, identifier = "height_by_gender", type = "d", statistics = c("n", "M", "SD"))
+  add_stats(results, identifier = "anxiety_by_sex", type = "d", statistics = c("n", "M", "SD"))
 ```
