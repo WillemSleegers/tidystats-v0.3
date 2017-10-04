@@ -22,7 +22,7 @@ stats_list_to_df <- function(results) {
   # Merge the stats output together and reorder variables
   df <- results %>%
     map2_df(names(results), add_identifier) %>%
-    select(identifier, one_of("term"), everything())
+    select(identifier, contains("term"), everything(), -contains("notes"), contains("notes"))
 
   return(df)
 }
