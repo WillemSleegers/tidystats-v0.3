@@ -6,7 +6,7 @@
 #' @param results a tidy stats list.
 #' @param identifier a character string identifying the model. Automatically created if not provided.
 #' @param statistics a vector of statistics to select from the output and add to the tidy stats list.
-#' @param type a character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", or "other". Can be abbreviated.
+#' @param type a character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.
 #' @param confirmatory a boolean to indicate whether the statistical test was confirmatory (TRUE) or exploratory (FALSE). Can be NA.
 #' @param notes a character string to add additional information. Some statistical tests produce notes information, which will be overwritten if notes are provided.
 #'

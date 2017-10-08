@@ -16,7 +16,7 @@ add_stats(output, results, identifier = NULL, statistics = NULL,
 
 \item{statistics}{a vector of statistics to select from the output and add to the tidy stats list.}
 
-\item{type}{a character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", or "other". Can be abbreviated.}
+\item{type}{a character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.}
 
 \item{confirmatory}{a boolean to indicate whether the statistical test was confirmatory (TRUE) or exploratory (FALSE). Can be NA.}
 
