@@ -1,17 +1,6 @@
-#' add_stats generic function
+#' add_stats default function
 #'
-#' \code{add_stats} is a generic function to add a line of tidy stats to a tidy stats data.frame.
-#'
-#' @param output output of a statistical test.
-#' @param results a tidy stats list.
-#' @param identifier a character string identifying the model. Automatically created if not provided.
-#' @param type a character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", or "other", can be abbreviated.
-#' @param description a character string to add additional information.
-#'
-#' @examples
-#' results <- list()
-#' model <- t.test(1:10, y = c(7:20))
-#' results <- add_stats(model, results, identifier = "M1", type = "hypothesis")
+#' \code{add_stats.default} is the default add_stats function, which takes the output of a statistical test, tidies the output, and adds it to a results list.
 #'
 #' @import dplyr
 #'

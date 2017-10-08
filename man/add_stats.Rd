@@ -7,6 +7,39 @@
 add_stats(output, results, identifier = NULL, statistics = NULL,
   type = NULL, confirmatory = NULL, notes = NULL)
 }
+\arguments{
+\item{output}{output of a statistical test or a data frame. If a data frame is provided, it must already be in a tidy format.}
+
+\item{results}{a tidy stats list.}
+
+\item{identifier}{a character string identifying the model. Automatically created if not provided.}
+
+\item{statistics}{a vector of statistics to select from the output and add to the tidy stats list.}
+
+\item{type}{a character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", or "other". Can be abbreviated.}
+
+\item{confirmatory}{a boolean to indicate whether the statistical test was confirmatory (TRUE) or exploratory (FALSE). Can be NA.}
+
+\item{notes}{a character string to add additional information. Some statistical tests produce notes information, which will be overwritten if notes are provided.}
+}
 \description{
 \code{add_stats} is a generic function that adds output to a results list. It can take either a statistical model as input or a data frame.
+}
+\examples{
+# Create an empty list to store the results in
+results <- list()
+
+# Conduct statistical tests
+x <- rnorm(10, mean = 0)
+y <- rnorm(10, mean = 1)
+
+model1 <- t.test(x, y)
+model2 <- cor.test(x, y)
+
+# Add output to the results list
+results <- add_stats(model1, results, identifier = "M1",
+                     statistics = c("t", "df", "p"), type = "h",
+                     confirmatory = TRUE, notes = "An example t-test")
+results <- add_stats(model2, results, identifier = "M2")
+
 }
