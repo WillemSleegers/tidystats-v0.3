@@ -1,8 +1,8 @@
 
-# Setup -------------------------------------------------------------------
+# Setup ---------------------------------------------------------------------------------------
 
 # Load packages
-# library(devtools)
+library(devtools)
 
 # install_github("willemsleegers/tidystats")
 library(tidystats)
@@ -12,112 +12,161 @@ library(tidyverse)
 results <- list()
 
 # Set options
-# options(scipen = 9999)
+options(digits = 7, scipen = 99)
 
 # Test t-tests --------------------------------------------------------------------------------
 
-# Use the 'sleep' data set
-sleep
+# Use the 'cox' data set
+cox
 
 # One sample t-test
-model1_1 <- t.test(sleep$extra)
-results <- add_stats(model1_1, results, identifier = "M1_1", type = "hypothesis")
+model1_1 <- t.test(cox$call_parent)
+model1_1
+results <- add_stats(model1_1, results, identifier = "M1_1", statistics = c("t", "df", "p"),
+                     type = "h", confirmatory = TRUE)
 
 # Two sample t-test
-model1_2 <- t.test(extra ~ group, data = sleep, var.equal = TRUE)
-results <- add_stats(model1_2, results, identifier = "M1_2", type = "hypothesis")
+model1_2 <- t.test(call_parent ~ condition, data = cox, var.equal = TRUE)
+model1_2
+results <- add_stats(model1_2, results, identifier = "M1_2")
 
 # Welch's Two sample t-test
-model1_3 <- t.test(extra ~ group, data = sleep, var.equal = FALSE)
-results <- add_stats(model1_3, results, identifier = "M1_3", type = "hypothesis")
+model1_3 <- t.test(call_parent ~ condition, data = cox, var.equal = FALSE)
+model1_3
+results <- add_stats(model1_3, results, identifier = "M1_3")
 
 # Paired t-test
-model1_4 <- t.test(extra ~ group, data = sleep, paired = TRUE)
-results <- add_stats(model1_4, results, identifier = "M1_4", type = "hypothesis")
+model1_4 <- t.test(cox$affect_positive, cox$affect_negative, data = cox, paired = TRUE)
+model1_4
+results <- add_stats(model1_4, results, identifier = "M1_4")
 
 # Test correlation --------------------------------------------------------
 
-# Create data
-x <- c(44.4, 45.9, 41.9, 53.3, 44.7, 44.1, 50.7, 45.2, 60.1)
-y <- c( 2.6,  3.1,  2.5,  5.0,  3.6,  4.0,  5.2,  2.8,  3.8)
-
 # Pearson's product-moment correlation
-model2_1 <- cor.test(x, y, method = "pearson")
-results <- add_stats(model2_1, results, identifier = "M2_1", type = "hypothesis")
+model2_1 <- cor.test(cox$call_parent, cox$anxiety, method = "pearson")
+model2_1
+results <- add_stats(model2_1, results, identifier = "M2_1")
 
 # Kendall's rank correlation tau
-model2_2 <- cor.test(x, y, method = "kendall")
-results <- add_stats(model2_2, results, identifier = "M2_2", type = "hypothesis")
+model2_2 <- cor.test(cox$call_parent, cox$anxiety, method = "kendall")
+model2_2
+results <- add_stats(model2_2, results, identifier = "M2_2")
 
 # Spearman's rank correlation rho
-model2_3 <- cor.test(x, y, method = "spearman")
-results <- add_stats(model2_3, results, identifier = "M2_3", type = "hypothesis")
+model2_3 <- cor.test(cox$call_parent, cox$anxiety, method = "spearman")
+model2_3
+results <- add_stats(model2_3, results, identifier = "M2_3")
 
 # Test regression ---------------------------------------------------------
 
-# Use the 'attitude' data set
-attitude
-
 # Model with 1 predictor
-model3_1 <- lm(rating ~ complaints, data = attitude)
-results <- add_stats(model3_1, results, identifier = "M3_1", type = "hypothesis")
+model3_1 <- lm(call_parent ~ condition, data = cox)
+summary(model3_1)
+results <- add_stats(model3_1, results, identifier = "M3_1")
 
 # Model with 2 predictors
-model3_2 <- lm(rating ~ complaints + critical, data = attitude)
-results <- add_stats(model3_2, results, identifier = "M3_2", type = "hypothesis")
+model3_2 <- lm(call_parent ~ condition + anxiety, data = cox)
+summary(model3_2)
+results <- add_stats(model3_2, results, identifier = "M3_2")
 
 # Model with interaction effect
-model3_3 <- lm(rating ~ complaints * critical, data = attitude)
-results <- add_stats(model3_3, results, identifier = "M3_3", type = "hypothesis")
+model3_3 <- lm(call_parent ~ condition * anxiety, data = cox)
+summary(model3_3)
+results <- add_stats(model3_3, results, identifier = "M3_3")
 
 # # Test ANOVA --------------------------------------------------------------
 
-# Use the 'affect' data from the psych package
-library(psych)
-affect
-
 # Convert variables to factors
-affect$Film <- factor(affect$Film)
-affect$Study <- factor(affect$Study)
+cox$condition <- factor(cox$condition)
 
 # One-way ANOVA
-model4_1 <- aov(PA2 ~ Film, data = affect)
-results <- add_stats(model4_1, results, identifier = "M4_1", type = "hypothesis")
+model4_1 <- aov(call_parent ~ condition, data = cox)
+summary(model4_1)
+results <- add_stats(model4_1, results, identifier = "M4_1")
 
 # Two-way ANOVA
-model4_2 <- aov(PA2 ~ Film + Study, data = affect)
-results <- add_stats(model4_2, results, identifier = "M4_2", type = "hypothesis")
+model4_2 <- aov(call_parent ~ condition + sex, data = cox)
+summary(model4_2)
+results <- add_stats(model4_2, results, identifier = "M4_2")
 
 # Two-way ANOVA with interaction
-model4_3 <- aov(PA2 ~ Film*Study, data = affect)
-results <- add_stats(model4_3, results, identifier = "M4_3", type = "hypothesis")
+model4_3 <- aov(call_parent ~ condition * sex, data = cox)
+summary(model4_3)
+results <- add_stats(model4_3, results, identifier = "M4_3")
 
 # ANCOVA
-model4_4 <- aov(PA2 ~ Film + ext, data = affect)
-results <- add_stats(model4_4, results, identifier = "M4_4", type = "hypothesis")
+model4_4 <- aov(call_parent ~ condition + affect_negative, data = cox)
+summary(model4_4)
+results <- add_stats(model4_4, results, identifier = "M4_4")
 
 # Prepare for repeated measures ANOVAs
-as_data_frame(affect) %>%
-  mutate(subject = 1:nrow(affect)) %>%
-  select(subject, Film, ext, PA1, PA2) %>%
-  gather("time", "PA", PA1, PA2) %>%
-  arrange(subject) -> affect_long
+cox %>%
+  select(ID, condition, anxiety, affect_positive, affect_negative) %>%
+  gather("affect", "score", affect_positive, affect_negative) %>%
+  arrange(ID) -> cox_long
 
-affect_long$subject <- factor(affect_long$subject)
-affect_long$time <- factor(affect_long$time)
+cox_long$ID <- factor(cox_long$ID)
+cox_long$affect <- factor(cox_long$affect)
 
 # One within subject factor
-model4_5 <- aov(PA ~ time + Error(subject/time), data = affect_long)
-results <- add_stats(model4_5, results, identifier = "M4_5", type = "hypothesis")
+model4_5 <- aov(score ~ affect + Error(ID/affect), data = cox_long)
+summary(model4_5)
+results <- add_stats(model4_5, results, identifier = "M4_5")
 
 # Mixed design
-model4_6 <- aov(PA ~ Film * time + Error(subject/time) + Film, data = affect_long)
-results <- add_stats(model4_6, results, identifier = "M4_6", type = "hypothesis")
+model4_6 <- aov(score ~ condition * affect + Error(ID/affect) + condition, data = cox_long)
+summary(model4_6)
+results <- add_stats(model4_6, results, identifier = "M4_6")
 
 # ANCOVA with within subject factor
-model4_7 <- aov(PA ~ time + ext + Error(subject/time)+ext, data = affect_long)
-results <- add_stats(model4_7, results, identifier = "M4_7", type = "hypothesis")
+model4_7 <- aov(score ~ affect + anxiety + Error(ID/affect) + anxiety, data = cox_long)
+summary(model4_7)
+results <- add_stats(model4_7, results, identifier = "M4_7")
 
+# Convert to data frame -----------------------------------------------------------------------
+
+df <- stats_list_to_df(results)
+View(df)
+
+# Show output of 1 model (wide) ---------------------------------------------------------------
+
+results$M3_1 %>%
+  spread(statistic, value) %>%
+  View()
+
+# Save to file --------------------------------------------------------------------------------
+
+write_stats(results, path = "tests/results.csv")
+
+# Output functions ----------------------------------------------------------------------------
+
+report(results, "M1_1")
+report(results, "M1_1", statistic = "p")
+report(results, "M1_2")
+report(results, "M1_2", statistic = "p")
+report(results, "M1_3")
+report(results, "M1_4")
+report(results, "M2_1")
+report(results, "M2_1", statistic = "cor")
+report(results, "M2_2")
+report(results, "M2_2", statistic = "tau")
+report(results, "M2_3")
+report(results, "M2_3", statistic = "rho")
+report(results, "M3_1", term = "conditionmortality salience")
+report(results, "M3_1", term_nr = 2)
+report(results, "M3_1", term = "(Model)")
+report(results, "M3_1", term_nr = 3)
+report(results, "M4_1", term = "condition")
+report(results, "M4_1", term = "condition", statistic = "F")
+report(results, "M4_1", term = "Residuals", statistic = "df")
+report(results, "M4_3", term = "condition:sex")
+report(results, "M4_6", term = "condition")
+report(results, "M4_6", term = "affect")
+report(results, "M4_6", term = "condition:affect")
+report(results, "M4_7", term = "anxiety")
+report(results, "M4_7", term = "affect")
+
+# Unfinished statistical models ---------------------------------------------------------------
 
 # Multilevel models ---------------------------------------------------------------------------
 
@@ -185,17 +234,3 @@ bfi %>%
 
 results <- add_stats(model_alpha, results, identifier = "M8_1")
 
-# Convert to data frame -----------------------------------------------------------------------
-
-df <- stats_list_to_df(results)
-View(df)
-
-# Show output of 1 model (wide) ---------------------------------------------------------------
-
-results$M3_3 %>%
-  spread(statistic, value) %>%
-  View()
-
-# Save to file --------------------------------------------------------------------------------
-
-write_stats(results, path = "tests/results.csv")

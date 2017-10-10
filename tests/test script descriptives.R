@@ -7,52 +7,64 @@ library(tidystats)
 # Create empty list to store descriptives in
 results <- list()
 
-# Test data: starwars
-glimpse(starwars)
+# Test data
+glimpse(mpg)
+
+# Set options
+options(digits = 2)
 
 # Test descriptives: continuous data ----------------------------------------------------------
 
 # 1 variable, no groups
-View(descriptives(starwars, height))
+mpg %>%
+  describe(cty)
 
-results <- starwars %>%
-  descriptives(height) %>%
-  add_descriptives(results, "D1")
-
-# 1 variable, no groups, select subset of values
-results <- starwars %>%
-  descriptives(height) %>%
-  add_descriptives(results, "D1_1", subset = c("n", "M", "SD"))
+mpg %>%
+  describe(cty) %>%
+  tidy_descriptives() %>%
+  add_stats(results, identifier = "cty", statistics = c("n", "M", "SD"), type = "d",
+            confirmatory = T, notes = "This is a test.")
 
 # 1 variable, 1 group
-View(descriptives(starwars, height, species))
+mpg %>%
+  group_by(year) %>%
+  describe(cyl)
 
-results <- starwars %>%
-  descriptives(height, species) %>%
-  add_descriptives(results, "D2")
+results <- mpg %>%
+  group_by(year) %>%
+  describe(cty) %>%
+  tidy_descriptives() %>%
+  add_stats(results, identifier = "cty_by_year")
 
 # 1 variable, 2 groups
-View(descriptives(starwars, height, species, gender))
+mpg %>%
+  group_by(year, class) %>%
+  describe(cyl) %>%
+  tidy_descriptives() %>%
+  add_stats(results, identifier = "cty_by_year_class")
 
-results <- starwars %>%
-  descriptives(height, species, gender) %>%
-  add_descriptives(results, "D3")
+# 1 variable, 3 groups
+mpg %>%
+  group_by(year, class, cyl) %>%
+  describe(cty) %>%
+  tidy_descriptives() %>%
+  add_stats(results, identifier = "cty_by_year_class_cyl")
 
 # Test descriptives: count data ---------------------------------------------------------------
 
 # 1 group
-View(frequencies(starwars, gender))
-
-results <- starwars %>%
-  frequencies(gender) %>%
-  add_descriptives(results, "D4")
+mpg %>%
+  describe(class)
 
 # 2 groups
-View(frequencies(starwars, gender, species))
+mpg %>%
+  group_by(cyl) %>%
+  describe(class)
 
-results <- starwars %>%
-  frequencies(gender, species) %>%
-  add_descriptives(results, "D5")
+# 3 groups
+mpg %>%
+  group_by(cyl, fl) %>%
+  describe(class)
 
 # Save results --------------------------------------------------------------------------------
 
