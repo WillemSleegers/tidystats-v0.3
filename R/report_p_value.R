@@ -13,7 +13,7 @@ report_p_value <- function(p_value) {
     paste("*p* =", gsub(
                      pattern = "0\\.",
                      replacement = ".",
-                     x = formatC(p_value, digits = 3, format = "f"))
+                     x = format(p_value, digits = 2))
     )
   } else {
     paste("*p* < .001")

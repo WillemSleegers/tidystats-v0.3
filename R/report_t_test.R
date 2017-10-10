@@ -23,20 +23,24 @@ report_t_test <- function(results, identifier, statistic = NULL) {
     output <- res$value[res$statistic == statistic]
 
     if (statistic == "p") {
-      output <- formatC(output, digits = 3, format = "f")
+      if (output < .001) {
+        output <- "< .001"
+      } else {
+        output <- gsub(pattern = "0\\.", replacement = ".",
+                       x = format(output, digits = 2, nsmall = 2))
+      }
     } else {
       if (statistic != "df" | grepl("Welch", res$method[1])) {
-        output <- formatC(output, digits = 2, format = "f")
+        output <- format(output, nsmall = 2, digits = 2, nsmall = 2)
       }
     }
-
   } else {
-    t <- formatC(res$value[res$statistic == "t"], digits = 2, format = "f")
+    t <- format(res$value[res$statistic == "t"], digits = 2, nsmall = 2)
 
     if (grepl("Welch", res$method[1])) {
-      df <- formatC(res$value[res$statistic == "df"], digits = 2, format = "f")
+      df <- format(res$value[res$statistic == "df"], digits = 2, nsmall = 2)
     } else {
-      df <- formatC(res$value[res$statistic == "df"], digits = 0, format = "d")
+      df <- format(res$value[res$statistic == "df"], digits = 0)
     }
 
     p <- report_p_value(res$value[res$statistic == "p"])
