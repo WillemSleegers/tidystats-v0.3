@@ -30,26 +30,32 @@ tidy_stats.lm <- function(model) {
     mutate(
       df = summary$df[2],
       term = names(model$coefficients),
-      order = 1:n()) %>%
-    gather("statistic", "value", -term, -order) %>%
-    arrange(order) %>%
-    select(-order) %>%
-    bind_rows(
-      data_frame(
-        term = "(Model)",
+      term_nr = 1:n()) %>%
+    gather("statistic", "value", -term, -term_nr) %>%
+    arrange(term_nr)
+
+  output <- bind_rows(output,
+    data_frame(
+      term = "(Model)",
+      term_nr = max(output$term_nr) + 1,
         statistic = c("R squared", "adjusted R squared", "F", "numerator df", "denominator df"),
-        value = c(summary$r.squared, summary$adj.r.squared, summary$fstatistic[1],
+      value = c(summary$r.squared, summary$adj.r.squared, summary$fstatistic[1],
                 summary$fstatistic[2], summary$fstatistic[3])
-        )
     )
+  )
+
 
   # Calculate model fit p value ourselves
   p <- pf(summary$fstatistic[1], summary$fstatistic[2], summary$fstatistic[3], lower.tail = FALSE)
 
-  output <- bind_rows(output, data_frame(term = "(Model)", statistic = "p", value = p))
+  output <- bind_rows(output, data_frame(term = "(Model)", term_nr = max(output$term_nr),
+                                         statistic = "p", value = p))
 
   # Add method
   output$method <- "Linear regression"
+
+  # Reorder columns
+  output <- select(output, term_nr, everything())
 
   return(output)
 }

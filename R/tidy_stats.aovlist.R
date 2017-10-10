@@ -31,11 +31,10 @@ tidy_stats.aovlist <- function(model) {
       `F` = `F value`,
       p = `Pr(>F)`
     ) %>%
-    mutate(order = 1:n()) %>%
-    gather("statistic", "value", -term, -order) %>%
+    mutate(term_nr = 1:n()) %>%
+    gather("statistic", "value", -term, -term_nr) %>%
     filter(!is.na(value)) %>%
-    arrange(order) %>%
-    select(-order)
+    arrange(term_nr)
 
   # Remove spaces from the term variable
   output$term <- gsub(" ", "", output$term)
@@ -66,6 +65,9 @@ tidy_stats.aovlist <- function(model) {
       term <- output$term[i]
     }
   }
+
+  # Reorder columns
+  output <- select(output, term_nr, everything())
 
   return(output)
 }

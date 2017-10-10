@@ -22,11 +22,10 @@ tidy_stats.aov <- function(model) {
     ) %>%
     mutate(
       term = c(labels(model$terms), "Residuals"),
-      order = 1:n()) %>%
-    gather("statistic", "value", -term, -order) %>%
+      term_nr = 1:n()) %>%
+    gather("statistic", "value", -term, -term_nr) %>%
     filter(!is.na(value)) %>%
-    arrange(order) %>%
-    select(-order)
+    arrange(term_nr)
 
   # Determine the type of ANOVA
   classes <- attr(model$terms, "dataClasses")[-1]
@@ -37,6 +36,9 @@ tidy_stats.aov <- function(model) {
     TRUE ~ "ANOVA"
   )
   output$method <- method
+
+  # Reorder columns
+  output <- select(output, term_nr, everything())
 
   return(output)
 }
