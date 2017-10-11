@@ -31,7 +31,7 @@ report_t_test <- function(results, identifier, statistic = NULL) {
       }
     } else {
       if (statistic != "df" | grepl("Welch", res$method[1])) {
-        output <- format(output, nsmall = 2, digits = 2, nsmall = 2)
+        output <- format(output, digits = 2, nsmall = 2)
       }
     }
   } else {
