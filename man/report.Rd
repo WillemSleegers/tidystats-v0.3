@@ -4,7 +4,7 @@
 \alias{report}
 \title{Report function}
 \usage{
-report(results, identifier, term = NULL, statistic = NULL)
+report(results, identifier, term = NULL, term_nr = NULL, statistic = NULL)
 }
 \description{
 \code{report} is a general function that reports a test in APA style by checking what kind of statistical test is supplied and calling its associated report function.

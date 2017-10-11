@@ -4,7 +4,8 @@
 \alias{report_lm}
 \title{Report method for linear regression models}
 \usage{
-report_lm(results, identifier, term, statistic = NULL)
+report_lm(results, identifier, term = NULL, term_nr = NULL,
+  statistic = NULL)
 }
 \description{
 Function to report a regression in APA style.
