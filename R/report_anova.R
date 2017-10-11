@@ -13,12 +13,13 @@ report_anova <- function(results, identifier, term = NULL, term_nr = NULL, stati
   # Check whether a term is provided, extract data if so, otherwise throw an error
   # Also store the residuals degree of freedom
   if (!is.null(term)) {
-    df_den <- res$value[grepl("Residuals", res$term) & grepl(term, res$term) &
-                          res$statistic == "df"][1]
+
+    df_den <- res$value[grepl("Residuals", res$term) & res$statistic == "df" &
+                          res$term_nr > res$term_nr[res$term == term][1]]
     res <- res[res$term == term, ]
   } else if (!is.null(term_nr)) {
-    df_den <- res$value[grepl("Residuals", res$term) & grepl(res$term[res$term_nr==term_nr][1],
-                                                             res$term) & res$statistic == "df"][1]
+    df_den <- res$value[grepl("Residuals", res$term) & res$term_nr > term_nr &
+                          res$statistic == "df"][1]
     res <- res[res$term_nr == term_nr, ]
   } else {
     stop("No term provided")
