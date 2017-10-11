@@ -6,7 +6,7 @@ tidystats
 **Authors:** [Willem Sleegers](http://willemsleegers.com/), [Arnoud Plantinga](http://www.arnoudplantinga.nl/)<br/>
 **License:** [MIT](https://opensource.org/licenses/MIT)
 
-`tidystats` is a package to easily create a text file containing the output of statistical models. The goal of this package is to have researchers accompany their manuscript with an organized data file of statistical results, based on [tidy data](http://vita.had.co.nz/papers/tidy-data.html) principles, in order to greatly improve the reliability of meta-research, and especially to reduce the efforts needed to perform this type of research.
+`tidystats` is a package to easily create a text file containing the output of statistical models. The goal of this package is to have researchers accompany their manuscript with an organized data file of statistical results, based on [tidy data](http://vita.had.co.nz/papers/tidy-data.html) principles, in order to greatly improve the reliability of meta-research and  to reduce the efforts needed to perform this type of research.
 
 Besides enabling you to create an organized data file of statistical results, the `tidystats` package also contains functions to help you report statistics in APA style using [R Markdown](http://rmarkdown.rstudio.com).
 
@@ -37,14 +37,14 @@ results <- list()
 
 The main function is `add_stats()`. The function has 2 necessary arguments:
 
-- `model`: The statistical model you want to add to the list (e.g., the output of `t.test()`)
+- `model`: The statistical model you want to add to the list (e.g., the output of `t.test()` or `lm()`)
 - `results`: The list you want to add the statistical output to
 
 Optionally you can also add an identifier, type, a subset of the statistics, whether the analysis was confirmatory or exploratory, and additional notes using the `identifier`, `type`, `statistics`, `confirmatory`, and `notes` arguments, respectively. 
 
-The identifier is used to identify the model (e.g., 'weight_height_correlation'). If you do not provide one, one is automatically created for you (albeit not a very descriptive one).
+The `identifier` is used to identify the model (e.g., 'weight_height_correlation'). If you do not provide one, one is automatically created for you (albeit not a very descriptive one).
 
-The `type` argument is used to indicate whether the statistical test is a hypothesis test, manipulation check, contrast analysis, or other kind of analysis. This can be used to distinguish the vital statistical tests from those less relevant.
+The `type` argument is used to indicate whether the statistical test is a hypothesis test, manipulation check, contrast analysis, or other kind of analysis such as descriptives. This can be used to distinguish the vital statistical tests from those less relevant.
 
 The `statistics` argument is used to select a subset of statistics that you want to add to the results list, in case this is desired.
 
@@ -63,9 +63,9 @@ The `notes` argument is used to add additional information which you may find fr
 
 ### Example
 
-In the following example we perform several statistical tests on a data set, add the output of these results to a list, and save the results to a data file.
+In the following example we perform several statistical tests on a data set, add the output of these results to a list, and save the results to a file.
 
-The data set is called `cox` and contains the data of a replication attempt of CR Cox, J Arndt, T Pyszczynski, J Greenberg, A Abdollahi, S Solomon (2008, JPSP 94(4), Exp. 6) by Wissink et al. The data set is part of the `tidystats` package.
+The data set is called `cox` and contains the data of a replication attempt of C.R. Cox, J. Arndt, T. Pyszczynski, J. Greenberg, A. Abdollahi, and S. Solomon (2008, JPSP, 94(4), Exp. 6) by Wissink et al. The replication study was part of the Reproducibility Project (see https://osf.io/ezcuj/). The data set is part of the `tidystats` package.
 
 
 ```r
@@ -92,6 +92,7 @@ Having added the statistical results to the list, you can convert the list to a 
 ```r
 library(dplyr)
 library(knitr)
+options(knitr.kable.NA = '-')
 
 results %>%
   stats_list_to_df() %>%
@@ -100,65 +101,103 @@ results %>%
 
 
 
-|identifier |term                                |statistic               |         value|method                         |notes          |
-|:----------|:-----------------------------------|:-----------------------|-------------:|:------------------------------|:--------------|
-|M1         |NA                                  |mean of the differences |    -2.7700000|Paired t-test                  |two.sided test |
-|M1         |NA                                  |t                       |    -1.2614135|Paired t-test                  |two.sided test |
-|M1         |NA                                  |df                      |    99.0000000|Paired t-test                  |two.sided test |
-|M1         |NA                                  |p                       |     0.2101241|Paired t-test                  |two.sided test |
-|M1         |NA                                  |95% CI lower            |    -7.1272396|Paired t-test                  |two.sided test |
-|M1         |NA                                  |95% CI upper            |     1.5872396|Paired t-test                  |two.sided test |
-|M1         |NA                                  |null value              |     0.0000000|Paired t-test                  |two.sided test |
-|M2         |NA                                  |tau                     |     0.0706669|Kendall's rank correlation tau |greater test   |
-|M2         |NA                                  |z                       |     1.2956623|Kendall's rank correlation tau |greater test   |
-|M2         |NA                                  |p                       |     0.0975459|Kendall's rank correlation tau |greater test   |
-|M2         |NA                                  |null value              |     0.0000000|Kendall's rank correlation tau |greater test   |
-|M3         |(Intercept)                         |b                       |    29.4466534|Linear regression              |NA             |
-|M3         |(Intercept)                         |SE                      |     9.9311192|Linear regression              |NA             |
-|M3         |(Intercept)                         |t                       |     2.9650891|Linear regression              |NA             |
-|M3         |(Intercept)                         |p                       |     0.0034017|Linear regression              |NA             |
-|M3         |(Intercept)                         |df                      |   196.0000000|Linear regression              |NA             |
-|M3         |conditionmortality salience         |b                       |    20.2945974|Linear regression              |NA             |
-|M3         |conditionmortality salience         |SE                      |    14.0193962|Linear regression              |NA             |
-|M3         |conditionmortality salience         |t                       |     1.4476085|Linear regression              |NA             |
-|M3         |conditionmortality salience         |p                       |     0.1493242|Linear regression              |NA             |
-|M3         |conditionmortality salience         |df                      |   196.0000000|Linear regression              |NA             |
-|M3         |anxiety                             |b                       |    -1.5511207|Linear regression              |NA             |
-|M3         |anxiety                             |SE                      |     3.0119376|Linear regression              |NA             |
-|M3         |anxiety                             |t                       |    -0.5149910|Linear regression              |NA             |
-|M3         |anxiety                             |p                       |     0.6071396|Linear regression              |NA             |
-|M3         |anxiety                             |df                      |   196.0000000|Linear regression              |NA             |
-|M3         |conditionmortality salience:anxiety |b                       |    -5.5666889|Linear regression              |NA             |
-|M3         |conditionmortality salience:anxiety |SE                      |     4.3104789|Linear regression              |NA             |
-|M3         |conditionmortality salience:anxiety |t                       |    -1.2914316|Linear regression              |NA             |
-|M3         |conditionmortality salience:anxiety |p                       |     0.1980750|Linear regression              |NA             |
-|M3         |conditionmortality salience:anxiety |df                      |   196.0000000|Linear regression              |NA             |
-|M3         |(Model)                             |R squared               |     0.0360246|Linear regression              |NA             |
-|M3         |(Model)                             |adjusted R squared      |     0.0212698|Linear regression              |NA             |
-|M3         |(Model)                             |F                       |     2.4415618|Linear regression              |NA             |
-|M3         |(Model)                             |numerator df            |     3.0000000|Linear regression              |NA             |
-|M3         |(Model)                             |denominator df          |   196.0000000|Linear regression              |NA             |
-|M3         |(Model)                             |p                       |     0.0655150|Linear regression              |NA             |
-|M4         |condition                           |df                      |     1.0000000|ANOVA                          |NA             |
-|M4         |condition                           |SS                      |   383.6450000|ANOVA                          |NA             |
-|M4         |condition                           |MS                      |   383.6450000|ANOVA                          |NA             |
-|M4         |condition                           |F                       |     1.7299360|ANOVA                          |NA             |
-|M4         |condition                           |p                       |     0.1899557|ANOVA                          |NA             |
-|M4         |sex                                 |df                      |     1.0000000|ANOVA                          |NA             |
-|M4         |sex                                 |SS                      |  1140.4861329|ANOVA                          |NA             |
-|M4         |sex                                 |MS                      |  1140.4861329|ANOVA                          |NA             |
-|M4         |sex                                 |F                       |     5.1426918|ANOVA                          |NA             |
-|M4         |sex                                 |p                       |     0.0244352|ANOVA                          |NA             |
-|M4         |condition:sex                       |df                      |     1.0000000|ANOVA                          |NA             |
-|M4         |condition:sex                       |SS                      |    66.1529617|ANOVA                          |NA             |
-|M4         |condition:sex                       |MS                      |    66.1529617|ANOVA                          |NA             |
-|M4         |condition:sex                       |F                       |     0.2982976|ANOVA                          |NA             |
-|M4         |condition:sex                       |p                       |     0.5855728|ANOVA                          |NA             |
-|M4         |Residuals                           |df                      |   196.0000000|ANOVA                          |NA             |
-|M4         |Residuals                           |SS                      | 43466.5909054|ANOVA                          |NA             |
-|M4         |Residuals                           |MS                      |   221.7683209|ANOVA                          |NA             |
+|identifier | term_nr|term                                |statistic               |         value|method                         |notes          |
+|:----------|-------:|:-----------------------------------|:-----------------------|-------------:|:------------------------------|:--------------|
+|M1         |       -|-                                   |mean of the differences |    -2.7700000|Paired t-test                  |two.sided test |
+|M1         |       -|-                                   |t                       |    -1.2614135|Paired t-test                  |two.sided test |
+|M1         |       -|-                                   |df                      |    99.0000000|Paired t-test                  |two.sided test |
+|M1         |       -|-                                   |p                       |     0.2101241|Paired t-test                  |two.sided test |
+|M1         |       -|-                                   |95% CI lower            |    -7.1272396|Paired t-test                  |two.sided test |
+|M1         |       -|-                                   |95% CI upper            |     1.5872396|Paired t-test                  |two.sided test |
+|M1         |       -|-                                   |null value              |     0.0000000|Paired t-test                  |two.sided test |
+|M2         |       -|-                                   |tau                     |     0.0706669|Kendall's rank correlation tau |greater test   |
+|M2         |       -|-                                   |z                       |     1.2956623|Kendall's rank correlation tau |greater test   |
+|M2         |       -|-                                   |p                       |     0.0975459|Kendall's rank correlation tau |greater test   |
+|M2         |       -|-                                   |null value              |     0.0000000|Kendall's rank correlation tau |greater test   |
+|M3         |       1|(Intercept)                         |b                       |    29.4466534|Linear regression              |-              |
+|M3         |       1|(Intercept)                         |SE                      |     9.9311192|Linear regression              |-              |
+|M3         |       1|(Intercept)                         |t                       |     2.9650891|Linear regression              |-              |
+|M3         |       1|(Intercept)                         |p                       |     0.0034017|Linear regression              |-              |
+|M3         |       1|(Intercept)                         |df                      |   196.0000000|Linear regression              |-              |
+|M3         |       2|conditionmortality salience         |b                       |    20.2945974|Linear regression              |-              |
+|M3         |       2|conditionmortality salience         |SE                      |    14.0193962|Linear regression              |-              |
+|M3         |       2|conditionmortality salience         |t                       |     1.4476085|Linear regression              |-              |
+|M3         |       2|conditionmortality salience         |p                       |     0.1493242|Linear regression              |-              |
+|M3         |       2|conditionmortality salience         |df                      |   196.0000000|Linear regression              |-              |
+|M3         |       3|anxiety                             |b                       |    -1.5511207|Linear regression              |-              |
+|M3         |       3|anxiety                             |SE                      |     3.0119376|Linear regression              |-              |
+|M3         |       3|anxiety                             |t                       |    -0.5149910|Linear regression              |-              |
+|M3         |       3|anxiety                             |p                       |     0.6071396|Linear regression              |-              |
+|M3         |       3|anxiety                             |df                      |   196.0000000|Linear regression              |-              |
+|M3         |       4|conditionmortality salience:anxiety |b                       |    -5.5666889|Linear regression              |-              |
+|M3         |       4|conditionmortality salience:anxiety |SE                      |     4.3104789|Linear regression              |-              |
+|M3         |       4|conditionmortality salience:anxiety |t                       |    -1.2914316|Linear regression              |-              |
+|M3         |       4|conditionmortality salience:anxiety |p                       |     0.1980750|Linear regression              |-              |
+|M3         |       4|conditionmortality salience:anxiety |df                      |   196.0000000|Linear regression              |-              |
+|M3         |       5|(Model)                             |R squared               |     0.0360246|Linear regression              |-              |
+|M3         |       5|(Model)                             |adjusted R squared      |     0.0212698|Linear regression              |-              |
+|M3         |       5|(Model)                             |F                       |     2.4415618|Linear regression              |-              |
+|M3         |       5|(Model)                             |numerator df            |     3.0000000|Linear regression              |-              |
+|M3         |       5|(Model)                             |denominator df          |   196.0000000|Linear regression              |-              |
+|M3         |       5|(Model)                             |p                       |     0.0655150|Linear regression              |-              |
+|M4         |       1|condition                           |df                      |     1.0000000|One-way ANOVA                  |-              |
+|M4         |       1|condition                           |SS                      |   383.6450000|One-way ANOVA                  |-              |
+|M4         |       1|condition                           |MS                      |   383.6450000|One-way ANOVA                  |-              |
+|M4         |       1|condition                           |F                       |     1.7299360|One-way ANOVA                  |-              |
+|M4         |       1|condition                           |p                       |     0.1899557|One-way ANOVA                  |-              |
+|M4         |       2|sex                                 |df                      |     1.0000000|One-way ANOVA                  |-              |
+|M4         |       2|sex                                 |SS                      |  1140.4861329|One-way ANOVA                  |-              |
+|M4         |       2|sex                                 |MS                      |  1140.4861329|One-way ANOVA                  |-              |
+|M4         |       2|sex                                 |F                       |     5.1426918|One-way ANOVA                  |-              |
+|M4         |       2|sex                                 |p                       |     0.0244352|One-way ANOVA                  |-              |
+|M4         |       3|condition:sex                       |df                      |     1.0000000|One-way ANOVA                  |-              |
+|M4         |       3|condition:sex                       |SS                      |    66.1529617|One-way ANOVA                  |-              |
+|M4         |       3|condition:sex                       |MS                      |    66.1529617|One-way ANOVA                  |-              |
+|M4         |       3|condition:sex                       |F                       |     0.2982976|One-way ANOVA                  |-              |
+|M4         |       3|condition:sex                       |p                       |     0.5855728|One-way ANOVA                  |-              |
+|M4         |       4|Residuals                           |df                      |   196.0000000|One-way ANOVA                  |-              |
+|M4         |       4|Residuals                           |SS                      | 43466.5909054|One-way ANOVA                  |-              |
+|M4         |       4|Residuals                           |MS                      |   221.7683209|One-way ANOVA                  |-              |
 
-To write the results to a file, use `write_stats()` with the results list as the first argument. This produces a .csv file that can be shared online and that can also be used to write your Results section. In the 'example' folder you can find an examples of a data file containing the output of multiple statistical tests, as well as a markdown file demonstrating how `tidystats` can be used to create APA-styled statistical reports.
+To write the results to a file, use `write_stats()` with the results list as the first argument.
+
+
+```r
+write_stats(results, "data/results.csv")
+```
+
+This produces a .csv file that can be shared and that can also be used to write your Results section. The report functions will be demonstrated below.
+
+### Report functions
+
+To start reporting your results, first load in the previously saved data file containing the results. This will create a list, just like it was when it was originally saved.
+
+
+```r
+results <- read_stats("data/results.csv")
+```
+
+The main function for reporting is `report()`. To figure out how to report the output in APA style, `tidystats` uses the **method** information stored in the results list. For example, the model with identifier 'M1' is a paired t-test. `tidystats` will parse this, see that it is part of the t-test family, and produce results accordingly. `tidystats()` also has test-specific reporting functions, such as `report_t_test()` that are used under the hood, but they are also available for you to use.
+
+Below we show a list of common report examples:
+
+| code                                                         | output                                                          |
+|--------------------------------------------------------------|-----------------------------------------------------------------|
+|`report(results, "M1")`                                       | *t*(99) = -1.26, *p* = .21                                       |
+|`report(results, "M1", statistic = "t")`                      | -1.26                      |
+|`report(results, "M2")`                                       | *r*<sub>$\tau$</sub> = .071, *p* = .098                                       |
+|`report(results, "M3", term = "conditionmortality salience")` | *b* = 20.29, *SE* = 14.02, *t*(196) = 1.45, *p* = .15 |
+|`report(results, "M3", term_nr = 2`                           | *b* = 20.29, *SE* = 14.02, *t*(196) = 1.45, *p* = .15                          |
+|`report(results, "M3", term = "(Model)")`                     | adjusted *R*<sup>2</sup> = .021, *F*(3, 196) = 2.44, *p* = .066                     |
+|`report(results, "M4", term = "condition:sex")`               | *F*(1, 196) = 0.30, *p* = .59               |
+
+As you can see in the examples above, you can use `report()` to produce a full line of output when a model identifier is provided (and a term when the model consists of multiple terms). You can also only retrieve a single statistic by using the `statistic` argument. Additionally, you can refer to terms using either the term label or the term number. Although this latter method might be less descriptive, it reduces the amount of code clutter in your Markdown document. Our philosophy is, in line with Markdown's general writing philosophy, that the code should not distract from writing. To illustrate, writing part of a results section will now, using `tidystats` look like this:
+
+> We found no significant difference between the mortality salience condition and the dental pain condition on the number of minutes allocated to calling one's parents, <code>r report(results, "M1")</code>.
+
+To execute the code, the code segment should be surrounded by backward ticks (see http://rmarkdown.rstudio.com/lesson-4.html), which results in:
+
+> We found no significant difference between the mortality salience condition and the dental pain condition on the number of minutes allocated to calling one's parents, *t*(99) = -1.26, *p* = .21.
 
 ### Helper functions
 
@@ -192,7 +231,7 @@ cox %>%
 ## # A tibble: 2 x 11
 ## # Groups:   condition [2]
 ##            condition missing     n      M        SD         SE   min   max
-##                <chr>   <int> <int>  <dbl>     <dbl>      <dbl> <dbl> <dbl>
+##               <fctr>   <int> <int>  <dbl>     <dbl>      <dbl> <dbl> <dbl>
 ## 1        dental pain       0   100 3.2600 0.4967317 0.04967317 1.625 4.375
 ## 2 mortality salience       0   100 3.1725 0.4851910 0.04851910 1.375 4.375
 ## # ... with 3 more variables: range <dbl>, median <dbl>, mode <dbl>
@@ -208,7 +247,7 @@ describe(cox, condition)
 ## # A tibble: 2 x 3
 ## # Groups:   condition [2]
 ##            condition     n   pct
-##                <chr> <int> <dbl>
+##               <fctr> <int> <dbl>
 ## 1        dental pain   100    50
 ## 2 mortality salience   100    50
 ```
@@ -242,52 +281,4 @@ cox %>%
 ##  9    median   3.25000000 descriptives Anxious attachment style
 ## 10      mode   3.50000000 descriptives Anxious attachment style
 ```
-In the `add_stats()` function you can also specify which of the statistics you would like to store in the results list.
-
-
-```r
-# Adding some of the descriptives to a results list
-results <- list()
-
-cox %>%
-  describe(anxiety) %>%
-  tidy_descriptives() %>%
-  add_stats(results, identifier = "anxiety", type = "d", statistics = c("n", "M", "SD"))
-```
-
-```
-## $anxiety
-## # A tibble: 3 x 3
-##   statistic       value         type
-##       <chr>       <dbl>        <chr>
-## 1         n 200.0000000 descriptives
-## 2         M   3.2162500 descriptives
-## 3        SD   0.4917201 descriptives
-```
-
-And of course it also works when you have groups.
-
-
-```r
-# Adding some of the descriptives to a results list
-results <- list()
-
-cox %>%
-  group_by(sex) %>%
-  describe(anxiety) %>%
-  tidy_descriptives() %>%
-  add_stats(results, identifier = "anxiety_by_sex", type = "d", statistics = c("n", "M", "SD"))
-```
-
-```
-## $anxiety_by_sex
-## # A tibble: 6 x 4
-##    group statistic       value         type
-##    <chr>     <chr>       <dbl>        <chr>
-## 1 female         n 159.0000000 descriptives
-## 2 female         M   3.2122642 descriptives
-## 3 female        SD   0.4875334 descriptives
-## 4   male         n  41.0000000 descriptives
-## 5   male         M   3.2317073 descriptives
-## 6   male        SD   0.5135363 descriptives
-```
+In the `add_stats()` function you can also specify which of the statistics you would like to store in the results list, using the `statistics` argument. Of course, the results can also be tidied when the data is grouped.

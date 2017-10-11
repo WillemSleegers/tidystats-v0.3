@@ -6,7 +6,7 @@ tidystats
 **Authors:** [Willem Sleegers](http://willemsleegers.com/), [Arnoud Plantinga](http://www.arnoudplantinga.nl/)<br/>
 **License:** [MIT](https://opensource.org/licenses/MIT)
 
-`tidystats` is a package to easily create a text file containing the output of statistical models. The goal of this package is to have researchers accompany their manuscript with an organized data file of statistical results, based on [tidy data](http://vita.had.co.nz/papers/tidy-data.html) principles, in order to greatly improve the reliability of meta-research, and especially to reduce the efforts needed to perform this type of research.
+`tidystats` is a package to easily create a text file containing the output of statistical models. The goal of this package is to have researchers accompany their manuscript with an organized data file of statistical results, based on [tidy data](http://vita.had.co.nz/papers/tidy-data.html) principles, in order to greatly improve the reliability of meta-research and  to reduce the efforts needed to perform this type of research.
 
 Besides enabling you to create an organized data file of statistical results, the `tidystats` package also contains functions to help you report statistics in APA style using [R Markdown](http://rmarkdown.rstudio.com).
 
@@ -35,14 +35,14 @@ results <- list()
 
 The main function is `add_stats()`. The function has 2 necessary arguments:
 
-- `model`: The statistical model you want to add to the list (e.g., the output of `t.test()`)
+- `model`: The statistical model you want to add to the list (e.g., the output of `t.test()` or `lm()`)
 - `results`: The list you want to add the statistical output to
 
 Optionally you can also add an identifier, type, a subset of the statistics, whether the analysis was confirmatory or exploratory, and additional notes using the `identifier`, `type`, `statistics`, `confirmatory`, and `notes` arguments, respectively. 
 
-The identifier is used to identify the model (e.g., 'weight_height_correlation'). If you do not provide one, one is automatically created for you (albeit not a very descriptive one).
+The `identifier` is used to identify the model (e.g., 'weight_height_correlation'). If you do not provide one, one is automatically created for you (albeit not a very descriptive one).
 
-The `type` argument is used to indicate whether the statistical test is a hypothesis test, manipulation check, contrast analysis, or other kind of analysis. This can be used to distinguish the vital statistical tests from those less relevant.
+The `type` argument is used to indicate whether the statistical test is a hypothesis test, manipulation check, contrast analysis, or other kind of analysis such as descriptives. This can be used to distinguish the vital statistical tests from those less relevant.
 
 The `statistics` argument is used to select a subset of statistics that you want to add to the results list, in case this is desired.
 
@@ -61,9 +61,9 @@ The `notes` argument is used to add additional information which you may find fr
 
 ### Example
 
-In the following example we perform several statistical tests on a data set, add the output of these results to a list, and save the results to a data file.
+In the following example we perform several statistical tests on a data set, add the output of these results to a list, and save the results to a file.
 
-The data set is called `cox` and contains the data of a replication attempt of CR Cox, J Arndt, T Pyszczynski, J Greenberg, A Abdollahi, S Solomon (2008, JPSP 94(4), Exp. 6) by Wissink et al. The data set is part of the `tidystats` package.
+The data set is called `cox` and contains the data of a replication attempt of C.R. Cox, J. Arndt, T. Pyszczynski, J. Greenberg, A. Abdollahi, and S. Solomon (2008, JPSP, 94(4), Exp. 6) by Wissink et al. The replication study was part of the Reproducibility Project (see https://osf.io/ezcuj/). The data set is part of the `tidystats` package.
 
 ```{r}
 
@@ -89,13 +89,50 @@ Having added the statistical results to the list, you can convert the list to a 
 ```{r, message = FALSE, warning = FALSE}
 library(dplyr)
 library(knitr)
+options(knitr.kable.NA = '-')
 
 results %>%
   stats_list_to_df() %>%
   kable()
 ```
 
-To write the results to a file, use `write_stats()` with the results list as the first argument. This produces a .csv file that can be shared online and that can also be used to write your Results section. In the 'example' folder you can find an examples of a data file containing the output of multiple statistical tests, as well as a markdown file demonstrating how `tidystats` can be used to create APA-styled statistical reports.
+To write the results to a file, use `write_stats()` with the results list as the first argument.
+
+```{r, message = FALSE, warning = FALSE}
+write_stats(results, "data/results.csv")
+```
+
+This produces a .csv file that can be shared and that can also be used to write your Results section. The report functions will be demonstrated below.
+
+### Report functions
+
+To start reporting your results, first load in the previously saved data file containing the results. This will create a list, just like it was when it was originally saved.
+
+```{r, message = FALSE, warning = FALSE}
+results <- read_stats("data/results.csv")
+```
+
+The main function for reporting is `report()`. To figure out how to report the output in APA style, `tidystats` uses the **method** information stored in the results list. For example, the model with identifier 'M1' is a paired t-test. `tidystats` will parse this, see that it is part of the t-test family, and produce results accordingly. `tidystats()` also has test-specific reporting functions, such as `report_t_test()` that are used under the hood, but they are also available for you to use.
+
+Below we show a list of common report examples:
+
+| code                                                         | output                                                          |
+|--------------------------------------------------------------|-----------------------------------------------------------------|
+|`report(results, "M1")`                                       | `r report(results, "M1")`                                       |
+|`report(results, "M1", statistic = "t")`                      | `r report(results, "M1", statistic = "t")`                      |
+|`report(results, "M2")`                                       | `r report(results, "M2")`                                       |
+|`report(results, "M3", term = "conditionmortality salience")` | `r report(results, "M3", term = "conditionmortality salience")` |
+|`report(results, "M3", term_nr = 2`                           | `r report(results, "M3", term_nr = 2)`                          |
+|`report(results, "M3", term = "(Model)")`                     | `r report(results, "M3", term = "(Model)")`                     |
+|`report(results, "M4", term = "condition:sex")`               | `r report(results, "M4", term = "condition:sex")`               |
+
+As you can see in the examples above, you can use `report()` to produce a full line of output when a model identifier is provided (and a term when the model consists of multiple terms). You can also only retrieve a single statistic by using the `statistic` argument. Additionally, you can refer to terms using either the term label or the term number. Although this latter method might be less descriptive, it reduces the amount of code clutter in your Markdown document. Our philosophy is, in line with Markdown's general writing philosophy, that the code should not distract from writing. To illustrate, writing part of a results section will now, using `tidystats` look like this:
+
+> We found no significant difference between the mortality salience condition and the dental pain condition on the number of minutes allocated to calling one's parents, <code>r report(results, "M1")</code>.
+
+To execute the code, the code segment should be surrounded by backward ticks (see http://rmarkdown.rstudio.com/lesson-4.html), which results in:
+
+> We found no significant difference between the mortality salience condition and the dental pain condition on the number of minutes allocated to calling one's parents, `r report(results, "M1")`.
 
 ### Helper functions
 
@@ -131,27 +168,4 @@ cox %>%
   tidy_descriptives() %>%
   add_stats(results, identifier = "anxiety", type = "d", notes = "Anxious attachment style")
 ```
-In the `add_stats()` function you can also specify which of the statistics you would like to store in the results list.
-
-```{r}
-# Adding some of the descriptives to a results list
-results <- list()
-
-cox %>%
-  describe(anxiety) %>%
-  tidy_descriptives() %>%
-  add_stats(results, identifier = "anxiety", type = "d", statistics = c("n", "M", "SD"))
-```
-
-And of course it also works when you have groups.
-
-```{r}
-# Adding some of the descriptives to a results list
-results <- list()
-
-cox %>%
-  group_by(sex) %>%
-  describe(anxiety) %>%
-  tidy_descriptives() %>%
-  add_stats(results, identifier = "anxiety_by_sex", type = "d", statistics = c("n", "M", "SD"))
-```
+In the `add_stats()` function you can also specify which of the statistics you would like to store in the results list, using the `statistics` argument. Of course, the results can also be tidied when the data is grouped.
