@@ -72,7 +72,7 @@ model1 <- t.test(call_parent ~ condition, data = cox, paired = TRUE)
 results <- add_stats(model1, results, identifier = "M1")
 
 # Correlation
-model2 <- cor.test(cox$call_parent, cox$call_siblings, method = "kendall", alternative = "greater")
+model2 <- cor.test(cox$call_parent, cox$call_siblings, alternative = "greater")
 results <- add_stats(model2, results, identifier = "M2")
 
 # Regression
