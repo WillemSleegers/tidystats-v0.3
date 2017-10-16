@@ -9,8 +9,3 @@ report_p_value(p_value)
 \description{
 A helper function to report p values in APA style.
 }
-\examples{
-report_p_value(.45)
-report_p_value(.002)
-report_p_value(.00000122)
-}

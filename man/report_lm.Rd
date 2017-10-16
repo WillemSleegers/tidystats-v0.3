@@ -10,12 +10,3 @@ report_lm(results, identifier, term = NULL, term_nr = NULL,
 \description{
 Function to report a regression in APA style.
 }
-\examples{
-results <- new_stats_data_frame()
-
-lm_test <- lm(extra ~ sleep, data = data)
-
-results <- add_stats(results, lm_test, "lm_test1")
-report_lm(results, "lm_test1")
-
-}

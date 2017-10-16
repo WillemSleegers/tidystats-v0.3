@@ -2,15 +2,24 @@
 % Please edit documentation in R/tidy_descriptives.r
 \name{tidy_descriptives}
 \alias{tidy_descriptives}
-\title{tidy_descriptives Function}
+\title{Convert descriptives to a tidy data frame}
 \usage{
 tidy_descriptives(descriptives)
+}
+\arguments{
+\item{descriptives}{A descriptives data frame}
 }
 \description{
 \code{tidy_descriptives} returns a tidy data frame of descriptive statistics.
 }
 \examples{
+# Create an empty list to store the results in
+results <- list()
+
+# Get descriptives
 results <- descriptives(sleep, group)
+
+# Create a tidy data frame of the descriptives
 tidy_descriptives(results)
 
 }

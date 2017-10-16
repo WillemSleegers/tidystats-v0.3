@@ -2,10 +2,31 @@
 % Please edit documentation in R/tidy_stats.R
 \name{tidy_stats}
 \alias{tidy_stats}
-\title{tidy_stats generic function}
+\title{Create a tidy stats data frame from a statistical output object}
 \usage{
 tidy_stats(model)
 }
+\arguments{
+\item{model}{Output of a statistical test}
+}
 \description{
-\code{tidy_stats} is a generic function that returns a new element of tidy stats.
+\code{tidy_stats} is a generic function that calls one of the specific \code{tidy_stats} functions dependent on the type of model (e.g., htest, lm, aov).
+}
+\examples{
+# Create an empty list to store the results in
+results <- list()
+
+# Conduct statistical tests
+x <- rnorm(10, mean = 0)
+y <- rnorm(10, mean = 1)
+
+model1 <- t.test(x, y)
+model2 <- cor.test(x, y)
+model3 <- lm(y ~ x)
+
+# Convert the output to tidy stats data frames
+tidy_stats(model1)
+tidy_stats(model2)
+tidy_stats(model3)
+
 }

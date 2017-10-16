@@ -2,7 +2,7 @@
 % Please edit documentation in R/tidy_stats.lm.r
 \name{tidy_stats.lm}
 \alias{tidy_stats.lm}
-\title{tidy_stats method for lm objects}
+\title{Create a tidy stats data frame from an lm object}
 \usage{
 \method{tidy_stats}{lm}(model)
 }
@@ -10,10 +10,10 @@
 \item{model}{An lm object}
 }
 \description{
-Creates a tidystats data frame for an lm object.
+\code{tidy_stats.lm} takes an lm object and converts the object to a tidy stats data frame.
 }
 \examples{
-lm_model <- lm(extra ~ group, data = sleep)
-tidy_stats.lm(lm_model)
+model <- lm(extra ~ group, data = sleep)
+tidy_stats.lm(model)
 
 }

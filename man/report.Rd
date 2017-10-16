@@ -7,5 +7,22 @@
 report(results, identifier, term = NULL, term_nr = NULL, statistic = NULL)
 }
 \description{
-\code{report} is a general function that reports a test in APA style by checking what kind of statistical test is supplied and calling its associated report function.
+\code{report} is a general function that returns Markdown code of a statistical test in 6th edition APA style.
+}
+\details{
+\code{report} calls a specific report function dependent on the type of statistical test that is supplied. The 'method' column of the statistical test is used to determine which report function to run.
+}
+\examples{
+# Create an empty list to store the results in
+results <- list()
+
+# Conduct statistical tests
+model <- t.test(extra ~ group, data = sleep, paired = TRUE)
+
+# Add output to the results list
+results <- add_stats(model, results, identifier = "M1")
+
+# Report results
+report(results, identifier = "M1")
+
 }

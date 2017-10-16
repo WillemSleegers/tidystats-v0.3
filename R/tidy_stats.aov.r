@@ -1,8 +1,12 @@
-#' tidy_stats method for an aov object
+#' Create a tidy stats data frame from an aov object
 #'
-#' Creates a tidystats data frame for an aov object.
+#' \code{tidy_stats.aov} takes an aov object and converts the object to a tidy stats data frame.
 #'
 #' @param model An aov object
+#'
+#' #' @examples
+#' model <- aov(extra ~ group, data = sleep)
+#' tidy_stats.aov(model)
 #'
 #' @import dplyr
 #' @import tidyr

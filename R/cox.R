@@ -1,6 +1,6 @@
-#' Replication of C.R. Cox, J. Arndt, T. Pyszczynski, J. Greenberg, A. Abdollahi, S. Solomon (2008, JPSP, 94(4), Exp. 6)
+#' Data of a replication study of C.R. Cox, J. Arndt, T. Pyszczynski, J. Greenberg, A. Abdollahi, S. Solomon (2008, JPSP, 94(4), Exp. 6)
 #'
-#' @description Data of a replication study performed by J. Wissink, G. Hoogendoorn, H. Brohmer, M. Verschoor, J. Krijnen, and M. Zeelenberg as part of the Reproducibility Project: Psychology. The target of replication was the finding in Experiment 6 of Cox et al. (2008) that participants who scored low on avoidance but high on anxiety demonstrated an increased relative preference for a parent after MS as opposed to dental pain, b = -32.04, SE = 14.47, t = -2.22, p = .03.
+#' @description This is the data of a replication study performed by J. Wissink, G. Hoogendoorn, H. Brohmer, M. Verschoor, J. Krijnen, and M. Zeelenberg as part of the Reproducibility Project: Psychology. The target of replication was the finding in Experiment 6 of Cox et al. (2008) that participants who scored low on avoidance but high on anxiety demonstrated an increased relative preference for a parent after mortality salience as opposed to dental pain, b = -32.04, SE = 14.47, t = -2.22, p = .03.
 #'
 #' @format A data frame with 200 rows and 67 variables.
 #' \describe{

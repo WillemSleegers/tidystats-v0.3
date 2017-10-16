@@ -1,17 +1,12 @@
-#' Report method for a t-test.
+#' Report method for a t-test
 #'
 #' Function to report a t-test in APA style.
-
-#' @examples
-#' results <- new_stats_data_frame()
-#' ttest <- t.test(1:10, y = c(7:20))
-#' results <- add_stats(results, ttest, "ttest1")
-#' report_t_test(results, "ttest1")
 #'
 #' @import dplyr
 #' @importFrom magrittr %>%
+#'
+#' @export
 
-#'@export
 report_t_test <- function(results, identifier, statistic = NULL) {
 
   # Extract model results

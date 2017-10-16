@@ -2,7 +2,7 @@
 % Please edit documentation in R/tidy_stats.anova.r
 \name{tidy_stats.anova}
 \alias{tidy_stats.anova}
-\title{tidy_stats method for anova objects}
+\title{Create a tidy stats data frame from an anova object}
 \usage{
 \method{tidy_stats}{anova}(model)
 }
@@ -10,7 +10,7 @@
 \item{model}{An anova object}
 }
 \description{
-Creates a tidystats data frame for an anova object.
+\code{tidy_stats.anova} takes an anova object and converts the object to a tidy stats data frame.
 }
 \examples{
 lm1 <- lm(extra ~ 1, data = sleep)

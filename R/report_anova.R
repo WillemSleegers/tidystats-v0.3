@@ -5,6 +5,7 @@
 #' @import dplyr
 #' @importFrom magrittr %>%
 #' @export
+
 report_anova <- function(results, identifier, term = NULL, term_nr = NULL, statistic = NULL) {
 
   # Extract the results of the specific model through its identifier

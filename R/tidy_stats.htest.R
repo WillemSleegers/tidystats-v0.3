@@ -1,6 +1,6 @@
-#' tidy_stats method for htest objects
+#' Create a tidy stats data frame from an htest object
 #'
-#' Creates a tidystats data frame for an htest object.
+#' \code{tidy_stats.htest} takes an htest object and converts the object to a tidy stats data frame.
 #'
 #' @param model An htest object
 #'

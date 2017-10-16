@@ -1,6 +1,10 @@
-#' tidy_stats method for an aovlist object
+#' Create a tidy stats data frame from an aovlist object
 #'
-#' Creates a tidystats data frame for an aovlist object.
+#' \code{tidy_stats.aovlist} takes an aovlist object and converts the object to a tidy stats data frame.
+#'
+#' @examples
+#' model <- aov(extra ~ group + Error(ID/group), data = sleep)
+#' tidy_stats.aovlist(model)
 #'
 #' @import dplyr
 #' @import tidyr
@@ -8,6 +12,7 @@
 #' @importFrom purrr map2_df
 #'
 #' @export
+
 tidy_stats.aovlist <- function(model) {
 
   # Custom function to extract stats with purrr:map2_df()

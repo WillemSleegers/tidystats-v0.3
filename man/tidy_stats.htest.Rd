@@ -2,7 +2,7 @@
 % Please edit documentation in R/tidy_stats.htest.R
 \name{tidy_stats.htest}
 \alias{tidy_stats.htest}
-\title{tidy_stats method for htest objects}
+\title{Create a tidy stats data frame from an htest object}
 \usage{
 \method{tidy_stats}{htest}(model)
 }
@@ -10,7 +10,7 @@
 \item{model}{An htest object}
 }
 \description{
-Creates a tidystats data frame for an htest object.
+\code{tidy_stats.htest} takes an htest object and converts the object to a tidy stats data frame.
 }
 \examples{
 tidy_stats.htest(t.test(1:10, y = c(7:20)))

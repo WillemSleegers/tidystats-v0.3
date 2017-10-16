@@ -1,6 +1,6 @@
-#' tidy_stats method for anova objects
+#' Create a tidy stats data frame from an anova object
 #'
-#' Creates a tidystats data frame for an anova object.
+#' \code{tidy_stats.anova} takes an anova object and converts the object to a tidy stats data frame.
 #'
 #' @param model An anova object
 #'
@@ -16,6 +16,7 @@
 #' @importFrom magrittr %>%
 #'
 #' @export
+
 tidy_stats.anova <- function(model) {
 
   # Check whether it's a one model ANOVA or multiple

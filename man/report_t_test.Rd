@@ -2,17 +2,10 @@
 % Please edit documentation in R/report_t_test.R
 \name{report_t_test}
 \alias{report_t_test}
-\title{Report method for a t-test.}
+\title{Report method for a t-test}
 \usage{
 report_t_test(results, identifier, statistic = NULL)
 }
 \description{
 Function to report a t-test in APA style.
-}
-\examples{
-results <- new_stats_data_frame()
-ttest <- t.test(1:10, y = c(7:20))
-results <- add_stats(results, ttest, "ttest1")
-report_t_test(results, "ttest1")
-
 }

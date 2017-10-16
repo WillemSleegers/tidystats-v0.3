@@ -1,18 +1,19 @@
-#' tidy_stats method for lm objects
+#' Create a tidy stats data frame from an lm object
 #'
-#' Creates a tidystats data frame for an lm object.
+#' \code{tidy_stats.lm} takes an lm object and converts the object to a tidy stats data frame.
 #'
 #' @param model An lm object
 #'
 #' @examples
-#' lm_model <- lm(extra ~ group, data = sleep)
-#' tidy_stats.lm(lm_model)
+#' model <- lm(extra ~ group, data = sleep)
+#' tidy_stats.lm(model)
 #'
 #' @import dplyr
 #' @import tidyr
 #' @importFrom magrittr %>%
 #'
 #' @export
+
 tidy_stats.lm <- function(model) {
 
   # Get summary statistics

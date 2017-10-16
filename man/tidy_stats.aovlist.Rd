@@ -2,10 +2,15 @@
 % Please edit documentation in R/tidy_stats.aovlist.R
 \name{tidy_stats.aovlist}
 \alias{tidy_stats.aovlist}
-\title{tidy_stats method for an aovlist object}
+\title{Create a tidy stats data frame from an aovlist object}
 \usage{
 \method{tidy_stats}{aovlist}(model)
 }
 \description{
-Creates a tidystats data frame for an aovlist object.
+\code{tidy_stats.aovlist} takes an aovlist object and converts the object to a tidy stats data frame.
+}
+\examples{
+model <- aov(extra ~ group + Error(ID/group), data = sleep)
+tidy_stats.aovlist(model)
+
 }

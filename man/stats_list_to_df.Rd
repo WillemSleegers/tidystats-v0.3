@@ -2,14 +2,24 @@
 % Please edit documentation in R/stats_list_to_df.r
 \name{stats_list_to_df}
 \alias{stats_list_to_df}
-\title{Convert a tidystats list to a data frame}
+\title{Convert a tidy stats list to a data frame}
 \usage{
 stats_list_to_df(results)
 }
 \description{
-\code{stats_list_to_df} converts a tidystats list to a data frame
+\code{stats_list_to_df} converts a tidy stats list to a data frame.
 }
 \examples{
+# Create an empty list to store the results in
+results <- list()
+
+# Conduct statistical tests
+model <- t.test(extra ~ group, data = sleep, paired = TRUE)
+
+# Add output to the results list
+results <- add_stats(model, results, identifier = "M1")
+
+# Convert list to a data frame
 stats_list_to_df(results)
 
 }

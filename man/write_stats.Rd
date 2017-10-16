@@ -2,17 +2,24 @@
 % Please edit documentation in R/write_stats.R
 \name{write_stats}
 \alias{write_stats}
-\title{Write a csv file with all stats}
+\title{Save the results in a tidy stats list to a .csv file}
 \usage{
 write_stats(results, path)
 }
 \description{
-\code{write_stats} creates a .csv file with all stats
+\code{write_stats} converts a tidy stats results list to a data frame and then saves the data to a .csv file.
 }
 \examples{
+# Create an empty list to store the results in
 results <- list()
-model <- t.test(1:10, y = 7:20)
-results <- add_stats(results, model)
+
+# Conduct statistical tests
+model <- t.test(extra ~ group, data = sleep, paired = TRUE)
+
+# Add output to the results list
+results <- add_stats(model, results, identifier = "M1")
+
+# Save the results
 write_stats(results, "results.csv")
 
 }

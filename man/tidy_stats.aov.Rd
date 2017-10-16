@@ -2,13 +2,17 @@
 % Please edit documentation in R/tidy_stats.aov.r
 \name{tidy_stats.aov}
 \alias{tidy_stats.aov}
-\title{tidy_stats method for an aov object}
+\title{Create a tidy stats data frame from an aov object}
 \usage{
 \method{tidy_stats}{aov}(model)
 }
 \arguments{
-\item{model}{An aov object}
+\item{model}{An aov object
+
+#' @examples
+model <- aov(extra ~ group, data = sleep)
+tidy_stats.aov(model)}
 }
 \description{
-Creates a tidystats data frame for an aov object.
+\code{tidy_stats.aov} takes an aov object and converts the object to a tidy stats data frame.
 }

@@ -2,17 +2,11 @@
 #'
 #' Function to report a regression in APA style.
 #'
-#' @examples
-#' results <- new_stats_data_frame()
-#'
-#' lm_test <- lm(extra ~ sleep, data = data)
-#'
-#' results <- add_stats(results, lm_test, "lm_test1")
-#' report_lm(results, "lm_test1")
-#'
 #' @import dplyr
 #' @importFrom magrittr %>%
+#'
 #' @export
+
 report_lm <- function(results, identifier, term = NULL, term_nr = NULL, statistic = NULL) {
 
   # Extract the results of the specific model through its identifier
