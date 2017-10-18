@@ -47,12 +47,4 @@ results <- add_stats(model1, results, identifier = "M1",
 results <- add_stats(model2, results, identifier = "M2")
 results <- add_stats(model3, results, identifier = "M3")
 
-# Get confidence intervals of model3
-ci <- confint(model3)
-
-# Produce a tidy data frame of the CIs and add it to the results list
-results <- ci \%>\%
-  tidy_stats_confint() \%>\%
-  add_stats(results, identifier = "M3_CIs")
-
 }
