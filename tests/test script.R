@@ -2,7 +2,7 @@
 # Setup ---------------------------------------------------------------------------------------
 
 # Load packages
-library(devtools)
+# library(devtools)
 
 # install_github("willemsleegers/tidystats")
 library(tidystats)
@@ -74,7 +74,7 @@ model3_3 <- lm(call_parent ~ condition * anxiety, data = cox)
 summary(model3_3)
 results <- add_stats(model3_3, results, identifier = "M3_3")
 
-# # Test ANOVA --------------------------------------------------------------
+# Test ANOVA --------------------------------------------------------------
 
 # Convert variables to factors
 cox$condition <- factor(cox$condition)
@@ -123,6 +123,16 @@ model4_7 <- aov(score ~ affect + anxiety + Error(ID/affect) + anxiety, data = co
 summary(model4_7)
 results <- add_stats(model4_7, results, identifier = "M4_7")
 
+# Add results to existing model ---------------------------------------------------------------
+
+# Calculate confidence intervals
+model3_1_CIs <- confint(model3_1)
+
+# Tidy results and add results to existing model
+results <- model3_1_CIs %>%
+  tidy_stats_confint() %>%
+  add_stats_to_model(results, identifier = "M3_1")
+
 # Convert to data frame -----------------------------------------------------------------------
 
 df <- stats_list_to_df(results)
@@ -130,7 +140,7 @@ View(df)
 
 # Show output of 1 model (wide) ---------------------------------------------------------------
 
-results$M3_1 %>%
+results$M4_6 %>%
   spread(statistic, value) %>%
   View()
 
@@ -232,5 +242,4 @@ bfi %>%
   select(A1, A2, A3, A4, A5) %>%
   alpha(check.keys = TRUE) -> model8_1
 
-results <- add_stats(model_alpha, results, identifier = "M8_1")
 
