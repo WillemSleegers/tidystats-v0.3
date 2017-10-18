@@ -22,6 +22,11 @@ add_stats.default <- function(output, results, identifier = NULL, statistics = N
   # Create the new element
   new_element <- tidy_stats(output)
 
+  # Filter out statistics
+  if (!is.null(statistics)) {
+    new_element <- filter(new_element, statistic %in% statistics)
+  }
+
   # Add the type
   if (!is.null(type)) {
     type <- match.arg(type, choices = c("hypothesis", "manipulation check", "contrast",
