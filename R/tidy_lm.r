@@ -51,7 +51,7 @@ tidy_lm <- function(formula, data, subset, weights, na.action,
     else lm.wfit(x, y, w, offset = offset, singular.ok = singular.ok,
                  ...)
   }
-  class(z) <- c(if (is.matrix(y)) c("mlm", "tidy_mlm"), c("lm", "tidy_lm"))
+  class(z) <- c(if (is.matrix(y)) c("mlm", "tidy_mlm"), c("tidy_lm", "lm"))
   z$na.action <- attr(mf, "na.action")
   z$offset <- offset
   z$contrasts <- attr(x, "contrasts")
