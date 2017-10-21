@@ -1,12 +1,12 @@
 Package: tidystats
-Title: Convience Functions for Producing Tidy Statistics Output
-Version: 0.0.0.9000
+Title: Produce a Tidy Statistics Output File
+Version: 0.1
 Authors@R: person("Willem", "Sleegers", email = "w.sleegers@me.com", role = c("aut", "cre"))
-Description: Set of convenience functions to produce a data file containing the output of statistical models and to assist with a workflow aimed at writing scientific papers using R Markdown. The package is based on tidy principles (i.e., the tidyverse; Wickham, 2017).
+Description: Set of functions to produce a data file containing the output of statistical models and to assist with a workflow aimed at writing scientific papers using R Markdown. The package is based on tidy principles (i.e., the tidyverse; Wickham, 2017).
 Depends: R (>= 3.4.1)
 Imports: broom, tibble, dplyr, magrittr
+Suggests: lme4, lmerTest
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1.9000
-Suggests: testthat
