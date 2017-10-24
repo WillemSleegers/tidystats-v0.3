@@ -4,13 +4,6 @@
 #'
 #' @param model An merModLmerTest object
 #'
-#' @examples
-#' library(lme4)
-#' library(lmerTest)
-#'
-#' model <- lmer(extra ~ group + (1|ID), data = sleep)
-#' tidy_stats.lmerMod(model)
-#'
 #' @import tibble
 #' @import dplyr
 #' @import tidyr
