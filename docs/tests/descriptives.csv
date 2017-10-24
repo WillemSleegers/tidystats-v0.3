@@ -1,0 +1,821 @@
+identifier,group,var,descriptive,value
+D1,,height,missing,6
+D1,,height,n,81
+D1,,height,M,174.35802469135803
+D1,,height,SD,34.77042875849222
+D1,,height,SE,3.8633809731658024
+D1,,height,min,66
+D1,,height,max,264
+D1,,height,range,198
+D1,,height,median,180
+D1,,height,mode,183
+D2,Aleena,height,missing,0
+D2,Aleena,height,n,1
+D2,Aleena,height,M,79
+D2,Aleena,height,SD,
+D2,Aleena,height,SE,
+D2,Aleena,height,min,79
+D2,Aleena,height,max,79
+D2,Aleena,height,range,0
+D2,Aleena,height,median,79
+D2,Aleena,height,mode,79
+D2,Besalisk,height,missing,0
+D2,Besalisk,height,n,1
+D2,Besalisk,height,M,198
+D2,Besalisk,height,SD,
+D2,Besalisk,height,SE,
+D2,Besalisk,height,min,198
+D2,Besalisk,height,max,198
+D2,Besalisk,height,range,0
+D2,Besalisk,height,median,198
+D2,Besalisk,height,mode,198
+D2,Cerean,height,missing,0
+D2,Cerean,height,n,1
+D2,Cerean,height,M,198
+D2,Cerean,height,SD,
+D2,Cerean,height,SE,
+D2,Cerean,height,min,198
+D2,Cerean,height,max,198
+D2,Cerean,height,range,0
+D2,Cerean,height,median,198
+D2,Cerean,height,mode,198
+D2,Chagrian,height,missing,0
+D2,Chagrian,height,n,1
+D2,Chagrian,height,M,196
+D2,Chagrian,height,SD,
+D2,Chagrian,height,SE,
+D2,Chagrian,height,min,196
+D2,Chagrian,height,max,196
+D2,Chagrian,height,range,0
+D2,Chagrian,height,median,196
+D2,Chagrian,height,mode,196
+D2,Clawdite,height,missing,0
+D2,Clawdite,height,n,1
+D2,Clawdite,height,M,168
+D2,Clawdite,height,SD,
+D2,Clawdite,height,SE,
+D2,Clawdite,height,min,168
+D2,Clawdite,height,max,168
+D2,Clawdite,height,range,0
+D2,Clawdite,height,median,168
+D2,Clawdite,height,mode,168
+D2,Droid,height,missing,1
+D2,Droid,height,n,4
+D2,Droid,height,M,140
+D2,Droid,height,SD,52.00640986134946
+D2,Droid,height,SE,26.00320493067473
+D2,Droid,height,min,96
+D2,Droid,height,max,200
+D2,Droid,height,range,104
+D2,Droid,height,median,132
+D2,Droid,height,mode,167
+D2,Dug,height,missing,0
+D2,Dug,height,n,1
+D2,Dug,height,M,112
+D2,Dug,height,SD,
+D2,Dug,height,SE,
+D2,Dug,height,min,112
+D2,Dug,height,max,112
+D2,Dug,height,range,0
+D2,Dug,height,median,112
+D2,Dug,height,mode,112
+D2,Ewok,height,missing,0
+D2,Ewok,height,n,1
+D2,Ewok,height,M,88
+D2,Ewok,height,SD,
+D2,Ewok,height,SE,
+D2,Ewok,height,min,88
+D2,Ewok,height,max,88
+D2,Ewok,height,range,0
+D2,Ewok,height,median,88
+D2,Ewok,height,mode,88
+D2,Geonosian,height,missing,0
+D2,Geonosian,height,n,1
+D2,Geonosian,height,M,183
+D2,Geonosian,height,SD,
+D2,Geonosian,height,SE,
+D2,Geonosian,height,min,183
+D2,Geonosian,height,max,183
+D2,Geonosian,height,range,0
+D2,Geonosian,height,median,183
+D2,Geonosian,height,mode,183
+D2,Gungan,height,missing,0
+D2,Gungan,height,n,3
+D2,Gungan,height,M,208.66666666666666
+D2,Gungan,height,SD,14.189197769195175
+D2,Gungan,height,SE,8.192137151629673
+D2,Gungan,height,min,196
+D2,Gungan,height,max,224
+D2,Gungan,height,range,28
+D2,Gungan,height,median,206
+D2,Gungan,height,mode,196
+D2,Human,height,missing,4
+D2,Human,height,n,31
+D2,Human,height,M,176.6451612903226
+D2,Human,height,SD,12.53674170082156
+D2,Human,height,SE,2.25166527960772
+D2,Human,height,min,150
+D2,Human,height,max,202
+D2,Human,height,range,52
+D2,Human,height,median,180
+D2,Human,height,mode,183
+D2,Hutt,height,missing,0
+D2,Hutt,height,n,1
+D2,Hutt,height,M,175
+D2,Hutt,height,SD,
+D2,Hutt,height,SE,
+D2,Hutt,height,min,175
+D2,Hutt,height,max,175
+D2,Hutt,height,range,0
+D2,Hutt,height,median,175
+D2,Hutt,height,mode,175
+D2,Iktotchi,height,missing,0
+D2,Iktotchi,height,n,1
+D2,Iktotchi,height,M,188
+D2,Iktotchi,height,SD,
+D2,Iktotchi,height,SE,
+D2,Iktotchi,height,min,188
+D2,Iktotchi,height,max,188
+D2,Iktotchi,height,range,0
+D2,Iktotchi,height,median,188
+D2,Iktotchi,height,mode,188
+D2,Kaleesh,height,missing,0
+D2,Kaleesh,height,n,1
+D2,Kaleesh,height,M,216
+D2,Kaleesh,height,SD,
+D2,Kaleesh,height,SE,
+D2,Kaleesh,height,min,216
+D2,Kaleesh,height,max,216
+D2,Kaleesh,height,range,0
+D2,Kaleesh,height,median,216
+D2,Kaleesh,height,mode,216
+D2,Kaminoan,height,missing,0
+D2,Kaminoan,height,n,2
+D2,Kaminoan,height,M,221
+D2,Kaminoan,height,SD,11.313708498984761
+D2,Kaminoan,height,SE,8
+D2,Kaminoan,height,min,213
+D2,Kaminoan,height,max,229
+D2,Kaminoan,height,range,16
+D2,Kaminoan,height,median,221
+D2,Kaminoan,height,mode,229
+D2,Kel Dor,height,missing,0
+D2,Kel Dor,height,n,1
+D2,Kel Dor,height,M,188
+D2,Kel Dor,height,SD,
+D2,Kel Dor,height,SE,
+D2,Kel Dor,height,min,188
+D2,Kel Dor,height,max,188
+D2,Kel Dor,height,range,0
+D2,Kel Dor,height,median,188
+D2,Kel Dor,height,mode,188
+D2,Mirialan,height,missing,0
+D2,Mirialan,height,n,2
+D2,Mirialan,height,M,168
+D2,Mirialan,height,SD,2.8284271247461903
+D2,Mirialan,height,SE,2
+D2,Mirialan,height,min,166
+D2,Mirialan,height,max,170
+D2,Mirialan,height,range,4
+D2,Mirialan,height,median,168
+D2,Mirialan,height,mode,170
+D2,Mon Calamari,height,missing,0
+D2,Mon Calamari,height,n,1
+D2,Mon Calamari,height,M,180
+D2,Mon Calamari,height,SD,
+D2,Mon Calamari,height,SE,
+D2,Mon Calamari,height,min,180
+D2,Mon Calamari,height,max,180
+D2,Mon Calamari,height,range,0
+D2,Mon Calamari,height,median,180
+D2,Mon Calamari,height,mode,180
+D2,Muun,height,missing,0
+D2,Muun,height,n,1
+D2,Muun,height,M,191
+D2,Muun,height,SD,
+D2,Muun,height,SE,
+D2,Muun,height,min,191
+D2,Muun,height,max,191
+D2,Muun,height,range,0
+D2,Muun,height,median,191
+D2,Muun,height,mode,191
+D2,NA,height,missing,1
+D2,NA,height,n,4
+D2,NA,height,M,160
+D2,NA,height,SD,42.731721238442994
+D2,NA,height,SE,21.365860619221497
+D2,NA,height,min,96
+D2,NA,height,max,183
+D2,NA,height,range,87
+D2,NA,height,median,180.5
+D2,NA,height,mode,183
+D2,Nautolan,height,missing,0
+D2,Nautolan,height,n,1
+D2,Nautolan,height,M,196
+D2,Nautolan,height,SD,
+D2,Nautolan,height,SE,
+D2,Nautolan,height,min,196
+D2,Nautolan,height,max,196
+D2,Nautolan,height,range,0
+D2,Nautolan,height,median,196
+D2,Nautolan,height,mode,196
+D2,Neimodian,height,missing,0
+D2,Neimodian,height,n,1
+D2,Neimodian,height,M,191
+D2,Neimodian,height,SD,
+D2,Neimodian,height,SE,
+D2,Neimodian,height,min,191
+D2,Neimodian,height,max,191
+D2,Neimodian,height,range,0
+D2,Neimodian,height,median,191
+D2,Neimodian,height,mode,191
+D2,Pau'an,height,missing,0
+D2,Pau'an,height,n,1
+D2,Pau'an,height,M,206
+D2,Pau'an,height,SD,
+D2,Pau'an,height,SE,
+D2,Pau'an,height,min,206
+D2,Pau'an,height,max,206
+D2,Pau'an,height,range,0
+D2,Pau'an,height,median,206
+D2,Pau'an,height,mode,206
+D2,Quermian,height,missing,0
+D2,Quermian,height,n,1
+D2,Quermian,height,M,264
+D2,Quermian,height,SD,
+D2,Quermian,height,SE,
+D2,Quermian,height,min,264
+D2,Quermian,height,max,264
+D2,Quermian,height,range,0
+D2,Quermian,height,median,264
+D2,Quermian,height,mode,264
+D2,Rodian,height,missing,0
+D2,Rodian,height,n,1
+D2,Rodian,height,M,173
+D2,Rodian,height,SD,
+D2,Rodian,height,SE,
+D2,Rodian,height,min,173
+D2,Rodian,height,max,173
+D2,Rodian,height,range,0
+D2,Rodian,height,median,173
+D2,Rodian,height,mode,173
+D2,Skakoan,height,missing,0
+D2,Skakoan,height,n,1
+D2,Skakoan,height,M,193
+D2,Skakoan,height,SD,
+D2,Skakoan,height,SE,
+D2,Skakoan,height,min,193
+D2,Skakoan,height,max,193
+D2,Skakoan,height,range,0
+D2,Skakoan,height,median,193
+D2,Skakoan,height,mode,193
+D2,Sullustan,height,missing,0
+D2,Sullustan,height,n,1
+D2,Sullustan,height,M,160
+D2,Sullustan,height,SD,
+D2,Sullustan,height,SE,
+D2,Sullustan,height,min,160
+D2,Sullustan,height,max,160
+D2,Sullustan,height,range,0
+D2,Sullustan,height,median,160
+D2,Sullustan,height,mode,160
+D2,Tholothian,height,missing,0
+D2,Tholothian,height,n,1
+D2,Tholothian,height,M,184
+D2,Tholothian,height,SD,
+D2,Tholothian,height,SE,
+D2,Tholothian,height,min,184
+D2,Tholothian,height,max,184
+D2,Tholothian,height,range,0
+D2,Tholothian,height,median,184
+D2,Tholothian,height,mode,184
+D2,Togruta,height,missing,0
+D2,Togruta,height,n,1
+D2,Togruta,height,M,178
+D2,Togruta,height,SD,
+D2,Togruta,height,SE,
+D2,Togruta,height,min,178
+D2,Togruta,height,max,178
+D2,Togruta,height,range,0
+D2,Togruta,height,median,178
+D2,Togruta,height,mode,178
+D2,Toong,height,missing,0
+D2,Toong,height,n,1
+D2,Toong,height,M,163
+D2,Toong,height,SD,
+D2,Toong,height,SE,
+D2,Toong,height,min,163
+D2,Toong,height,max,163
+D2,Toong,height,range,0
+D2,Toong,height,median,163
+D2,Toong,height,mode,163
+D2,Toydarian,height,missing,0
+D2,Toydarian,height,n,1
+D2,Toydarian,height,M,137
+D2,Toydarian,height,SD,
+D2,Toydarian,height,SE,
+D2,Toydarian,height,min,137
+D2,Toydarian,height,max,137
+D2,Toydarian,height,range,0
+D2,Toydarian,height,median,137
+D2,Toydarian,height,mode,137
+D2,Trandoshan,height,missing,0
+D2,Trandoshan,height,n,1
+D2,Trandoshan,height,M,190
+D2,Trandoshan,height,SD,
+D2,Trandoshan,height,SE,
+D2,Trandoshan,height,min,190
+D2,Trandoshan,height,max,190
+D2,Trandoshan,height,range,0
+D2,Trandoshan,height,median,190
+D2,Trandoshan,height,mode,190
+D2,Twi'lek,height,missing,0
+D2,Twi'lek,height,n,2
+D2,Twi'lek,height,M,179
+D2,Twi'lek,height,SD,1.4142135623730951
+D2,Twi'lek,height,SE,1
+D2,Twi'lek,height,min,178
+D2,Twi'lek,height,max,180
+D2,Twi'lek,height,range,2
+D2,Twi'lek,height,median,179
+D2,Twi'lek,height,mode,180
+D2,Vulptereen,height,missing,0
+D2,Vulptereen,height,n,1
+D2,Vulptereen,height,M,94
+D2,Vulptereen,height,SD,
+D2,Vulptereen,height,SE,
+D2,Vulptereen,height,min,94
+D2,Vulptereen,height,max,94
+D2,Vulptereen,height,range,0
+D2,Vulptereen,height,median,94
+D2,Vulptereen,height,mode,94
+D2,Wookiee,height,missing,0
+D2,Wookiee,height,n,2
+D2,Wookiee,height,M,231
+D2,Wookiee,height,SD,4.242640687119285
+D2,Wookiee,height,SE,2.9999999999999996
+D2,Wookiee,height,min,228
+D2,Wookiee,height,max,234
+D2,Wookiee,height,range,6
+D2,Wookiee,height,median,231
+D2,Wookiee,height,mode,228
+D2,Xexto,height,missing,0
+D2,Xexto,height,n,1
+D2,Xexto,height,M,122
+D2,Xexto,height,SD,
+D2,Xexto,height,SE,
+D2,Xexto,height,min,122
+D2,Xexto,height,max,122
+D2,Xexto,height,range,0
+D2,Xexto,height,median,122
+D2,Xexto,height,mode,122
+D2,Yoda's species,height,missing,0
+D2,Yoda's species,height,n,1
+D2,Yoda's species,height,M,66
+D2,Yoda's species,height,SD,
+D2,Yoda's species,height,SE,
+D2,Yoda's species,height,min,66
+D2,Yoda's species,height,max,66
+D2,Yoda's species,height,range,0
+D2,Yoda's species,height,median,66
+D2,Yoda's species,height,mode,66
+D2,Zabrak,height,missing,0
+D2,Zabrak,height,n,2
+D2,Zabrak,height,M,173
+D2,Zabrak,height,SD,2.8284271247461903
+D2,Zabrak,height,SE,2
+D2,Zabrak,height,min,171
+D2,Zabrak,height,max,175
+D2,Zabrak,height,range,4
+D2,Zabrak,height,median,173
+D2,Zabrak,height,mode,175
+D3,"Aleena, male",height,missing,0
+D3,"Aleena, male",height,n,1
+D3,"Aleena, male",height,M,79
+D3,"Aleena, male",height,SD,
+D3,"Aleena, male",height,SE,
+D3,"Aleena, male",height,min,79
+D3,"Aleena, male",height,max,79
+D3,"Aleena, male",height,range,0
+D3,"Aleena, male",height,median,79
+D3,"Aleena, male",height,mode,79
+D3,"Besalisk, male",height,missing,0
+D3,"Besalisk, male",height,n,1
+D3,"Besalisk, male",height,M,198
+D3,"Besalisk, male",height,SD,
+D3,"Besalisk, male",height,SE,
+D3,"Besalisk, male",height,min,198
+D3,"Besalisk, male",height,max,198
+D3,"Besalisk, male",height,range,0
+D3,"Besalisk, male",height,median,198
+D3,"Besalisk, male",height,mode,198
+D3,"Cerean, male",height,missing,0
+D3,"Cerean, male",height,n,1
+D3,"Cerean, male",height,M,198
+D3,"Cerean, male",height,SD,
+D3,"Cerean, male",height,SE,
+D3,"Cerean, male",height,min,198
+D3,"Cerean, male",height,max,198
+D3,"Cerean, male",height,range,0
+D3,"Cerean, male",height,median,198
+D3,"Cerean, male",height,mode,198
+D3,"Chagrian, male",height,missing,0
+D3,"Chagrian, male",height,n,1
+D3,"Chagrian, male",height,M,196
+D3,"Chagrian, male",height,SD,
+D3,"Chagrian, male",height,SE,
+D3,"Chagrian, male",height,min,196
+D3,"Chagrian, male",height,max,196
+D3,"Chagrian, male",height,range,0
+D3,"Chagrian, male",height,median,196
+D3,"Chagrian, male",height,mode,196
+D3,"Clawdite, female",height,missing,0
+D3,"Clawdite, female",height,n,1
+D3,"Clawdite, female",height,M,168
+D3,"Clawdite, female",height,SD,
+D3,"Clawdite, female",height,SE,
+D3,"Clawdite, female",height,min,168
+D3,"Clawdite, female",height,max,168
+D3,"Clawdite, female",height,range,0
+D3,"Clawdite, female",height,median,168
+D3,"Clawdite, female",height,mode,168
+D3,"Droid, NA",height,missing,0
+D3,"Droid, NA",height,n,3
+D3,"Droid, NA",height,M,120
+D3,"Droid, NA",height,SD,40.70626487409524
+D3,"Droid, NA",height,SE,23.501772982763097
+D3,"Droid, NA",height,min,96
+D3,"Droid, NA",height,max,167
+D3,"Droid, NA",height,range,71
+D3,"Droid, NA",height,median,97
+D3,"Droid, NA",height,mode,167
+D3,"Droid, none",height,missing,1
+D3,"Droid, none",height,n,1
+D3,"Droid, none",height,M,200
+D3,"Droid, none",height,SD,
+D3,"Droid, none",height,SE,
+D3,"Droid, none",height,min,200
+D3,"Droid, none",height,max,200
+D3,"Droid, none",height,range,0
+D3,"Droid, none",height,median,200
+D3,"Droid, none",height,mode,200
+D3,"Dug, male",height,missing,0
+D3,"Dug, male",height,n,1
+D3,"Dug, male",height,M,112
+D3,"Dug, male",height,SD,
+D3,"Dug, male",height,SE,
+D3,"Dug, male",height,min,112
+D3,"Dug, male",height,max,112
+D3,"Dug, male",height,range,0
+D3,"Dug, male",height,median,112
+D3,"Dug, male",height,mode,112
+D3,"Ewok, male",height,missing,0
+D3,"Ewok, male",height,n,1
+D3,"Ewok, male",height,M,88
+D3,"Ewok, male",height,SD,
+D3,"Ewok, male",height,SE,
+D3,"Ewok, male",height,min,88
+D3,"Ewok, male",height,max,88
+D3,"Ewok, male",height,range,0
+D3,"Ewok, male",height,median,88
+D3,"Ewok, male",height,mode,88
+D3,"Geonosian, male",height,missing,0
+D3,"Geonosian, male",height,n,1
+D3,"Geonosian, male",height,M,183
+D3,"Geonosian, male",height,SD,
+D3,"Geonosian, male",height,SE,
+D3,"Geonosian, male",height,min,183
+D3,"Geonosian, male",height,max,183
+D3,"Geonosian, male",height,range,0
+D3,"Geonosian, male",height,median,183
+D3,"Geonosian, male",height,mode,183
+D3,"Gungan, male",height,missing,0
+D3,"Gungan, male",height,n,3
+D3,"Gungan, male",height,M,208.66666666666666
+D3,"Gungan, male",height,SD,14.189197769195175
+D3,"Gungan, male",height,SE,8.192137151629673
+D3,"Gungan, male",height,min,196
+D3,"Gungan, male",height,max,224
+D3,"Gungan, male",height,range,28
+D3,"Gungan, male",height,median,206
+D3,"Gungan, male",height,mode,196
+D3,"Human, female",height,missing,1
+D3,"Human, female",height,n,8
+D3,"Human, female",height,M,160.25
+D3,"Human, female",height,SD,6.98467710676122
+D3,"Human, female",height,SE,2.4694562732946466
+D3,"Human, female",height,min,150
+D3,"Human, female",height,max,167
+D3,"Human, female",height,range,17
+D3,"Human, female",height,median,164
+D3,"Human, female",height,mode,165
+D3,"Human, male",height,missing,3
+D3,"Human, male",height,n,23
+D3,"Human, male",height,M,182.34782608695653
+D3,"Human, male",height,SD,8.188732256483872
+D3,"Human, male",height,SE,1.7074687083310025
+D3,"Human, male",height,min,170
+D3,"Human, male",height,max,202
+D3,"Human, male",height,range,32
+D3,"Human, male",height,median,183
+D3,"Human, male",height,mode,183
+D3,"Hutt, hermaphrodite",height,missing,0
+D3,"Hutt, hermaphrodite",height,n,1
+D3,"Hutt, hermaphrodite",height,M,175
+D3,"Hutt, hermaphrodite",height,SD,
+D3,"Hutt, hermaphrodite",height,SE,
+D3,"Hutt, hermaphrodite",height,min,175
+D3,"Hutt, hermaphrodite",height,max,175
+D3,"Hutt, hermaphrodite",height,range,0
+D3,"Hutt, hermaphrodite",height,median,175
+D3,"Hutt, hermaphrodite",height,mode,175
+D3,"Iktotchi, male",height,missing,0
+D3,"Iktotchi, male",height,n,1
+D3,"Iktotchi, male",height,M,188
+D3,"Iktotchi, male",height,SD,
+D3,"Iktotchi, male",height,SE,
+D3,"Iktotchi, male",height,min,188
+D3,"Iktotchi, male",height,max,188
+D3,"Iktotchi, male",height,range,0
+D3,"Iktotchi, male",height,median,188
+D3,"Iktotchi, male",height,mode,188
+D3,"Kaleesh, male",height,missing,0
+D3,"Kaleesh, male",height,n,1
+D3,"Kaleesh, male",height,M,216
+D3,"Kaleesh, male",height,SD,
+D3,"Kaleesh, male",height,SE,
+D3,"Kaleesh, male",height,min,216
+D3,"Kaleesh, male",height,max,216
+D3,"Kaleesh, male",height,range,0
+D3,"Kaleesh, male",height,median,216
+D3,"Kaleesh, male",height,mode,216
+D3,"Kaminoan, female",height,missing,0
+D3,"Kaminoan, female",height,n,1
+D3,"Kaminoan, female",height,M,213
+D3,"Kaminoan, female",height,SD,
+D3,"Kaminoan, female",height,SE,
+D3,"Kaminoan, female",height,min,213
+D3,"Kaminoan, female",height,max,213
+D3,"Kaminoan, female",height,range,0
+D3,"Kaminoan, female",height,median,213
+D3,"Kaminoan, female",height,mode,213
+D3,"Kaminoan, male",height,missing,0
+D3,"Kaminoan, male",height,n,1
+D3,"Kaminoan, male",height,M,229
+D3,"Kaminoan, male",height,SD,
+D3,"Kaminoan, male",height,SE,
+D3,"Kaminoan, male",height,min,229
+D3,"Kaminoan, male",height,max,229
+D3,"Kaminoan, male",height,range,0
+D3,"Kaminoan, male",height,median,229
+D3,"Kaminoan, male",height,mode,229
+D3,"Kel Dor, male",height,missing,0
+D3,"Kel Dor, male",height,n,1
+D3,"Kel Dor, male",height,M,188
+D3,"Kel Dor, male",height,SD,
+D3,"Kel Dor, male",height,SE,
+D3,"Kel Dor, male",height,min,188
+D3,"Kel Dor, male",height,max,188
+D3,"Kel Dor, male",height,range,0
+D3,"Kel Dor, male",height,median,188
+D3,"Kel Dor, male",height,mode,188
+D3,"Mirialan, female",height,missing,0
+D3,"Mirialan, female",height,n,2
+D3,"Mirialan, female",height,M,168
+D3,"Mirialan, female",height,SD,2.8284271247461903
+D3,"Mirialan, female",height,SE,2
+D3,"Mirialan, female",height,min,166
+D3,"Mirialan, female",height,max,170
+D3,"Mirialan, female",height,range,4
+D3,"Mirialan, female",height,median,168
+D3,"Mirialan, female",height,mode,170
+D3,"Mon Calamari, male",height,missing,0
+D3,"Mon Calamari, male",height,n,1
+D3,"Mon Calamari, male",height,M,180
+D3,"Mon Calamari, male",height,SD,
+D3,"Mon Calamari, male",height,SE,
+D3,"Mon Calamari, male",height,min,180
+D3,"Mon Calamari, male",height,max,180
+D3,"Mon Calamari, male",height,range,0
+D3,"Mon Calamari, male",height,median,180
+D3,"Mon Calamari, male",height,mode,180
+D3,"Muun, male",height,missing,0
+D3,"Muun, male",height,n,1
+D3,"Muun, male",height,M,191
+D3,"Muun, male",height,SD,
+D3,"Muun, male",height,SE,
+D3,"Muun, male",height,min,191
+D3,"Muun, male",height,max,191
+D3,"Muun, male",height,range,0
+D3,"Muun, male",height,median,191
+D3,"Muun, male",height,mode,191
+D3,"NA, female",height,missing,1
+D3,"NA, female",height,n,2
+D3,"NA, female",height,M,137
+D3,"NA, female",height,SD,57.982756057296896
+D3,"NA, female",height,SE,41
+D3,"NA, female",height,min,96
+D3,"NA, female",height,max,178
+D3,"NA, female",height,range,82
+D3,"NA, female",height,median,137
+D3,"NA, female",height,mode,96
+D3,"NA, male",height,missing,0
+D3,"NA, male",height,n,2
+D3,"NA, male",height,M,183
+D3,"NA, male",height,SD,0
+D3,"NA, male",height,SE,0
+D3,"NA, male",height,min,183
+D3,"NA, male",height,max,183
+D3,"NA, male",height,range,0
+D3,"NA, male",height,median,183
+D3,"NA, male",height,mode,183
+D3,"Nautolan, male",height,missing,0
+D3,"Nautolan, male",height,n,1
+D3,"Nautolan, male",height,M,196
+D3,"Nautolan, male",height,SD,
+D3,"Nautolan, male",height,SE,
+D3,"Nautolan, male",height,min,196
+D3,"Nautolan, male",height,max,196
+D3,"Nautolan, male",height,range,0
+D3,"Nautolan, male",height,median,196
+D3,"Nautolan, male",height,mode,196
+D3,"Neimodian, male",height,missing,0
+D3,"Neimodian, male",height,n,1
+D3,"Neimodian, male",height,M,191
+D3,"Neimodian, male",height,SD,
+D3,"Neimodian, male",height,SE,
+D3,"Neimodian, male",height,min,191
+D3,"Neimodian, male",height,max,191
+D3,"Neimodian, male",height,range,0
+D3,"Neimodian, male",height,median,191
+D3,"Neimodian, male",height,mode,191
+D3,"Pau'an, male",height,missing,0
+D3,"Pau'an, male",height,n,1
+D3,"Pau'an, male",height,M,206
+D3,"Pau'an, male",height,SD,
+D3,"Pau'an, male",height,SE,
+D3,"Pau'an, male",height,min,206
+D3,"Pau'an, male",height,max,206
+D3,"Pau'an, male",height,range,0
+D3,"Pau'an, male",height,median,206
+D3,"Pau'an, male",height,mode,206
+D3,"Quermian, male",height,missing,0
+D3,"Quermian, male",height,n,1
+D3,"Quermian, male",height,M,264
+D3,"Quermian, male",height,SD,
+D3,"Quermian, male",height,SE,
+D3,"Quermian, male",height,min,264
+D3,"Quermian, male",height,max,264
+D3,"Quermian, male",height,range,0
+D3,"Quermian, male",height,median,264
+D3,"Quermian, male",height,mode,264
+D3,"Rodian, male",height,missing,0
+D3,"Rodian, male",height,n,1
+D3,"Rodian, male",height,M,173
+D3,"Rodian, male",height,SD,
+D3,"Rodian, male",height,SE,
+D3,"Rodian, male",height,min,173
+D3,"Rodian, male",height,max,173
+D3,"Rodian, male",height,range,0
+D3,"Rodian, male",height,median,173
+D3,"Rodian, male",height,mode,173
+D3,"Skakoan, male",height,missing,0
+D3,"Skakoan, male",height,n,1
+D3,"Skakoan, male",height,M,193
+D3,"Skakoan, male",height,SD,
+D3,"Skakoan, male",height,SE,
+D3,"Skakoan, male",height,min,193
+D3,"Skakoan, male",height,max,193
+D3,"Skakoan, male",height,range,0
+D3,"Skakoan, male",height,median,193
+D3,"Skakoan, male",height,mode,193
+D3,"Sullustan, male",height,missing,0
+D3,"Sullustan, male",height,n,1
+D3,"Sullustan, male",height,M,160
+D3,"Sullustan, male",height,SD,
+D3,"Sullustan, male",height,SE,
+D3,"Sullustan, male",height,min,160
+D3,"Sullustan, male",height,max,160
+D3,"Sullustan, male",height,range,0
+D3,"Sullustan, male",height,median,160
+D3,"Sullustan, male",height,mode,160
+D3,"Tholothian, female",height,missing,0
+D3,"Tholothian, female",height,n,1
+D3,"Tholothian, female",height,M,184
+D3,"Tholothian, female",height,SD,
+D3,"Tholothian, female",height,SE,
+D3,"Tholothian, female",height,min,184
+D3,"Tholothian, female",height,max,184
+D3,"Tholothian, female",height,range,0
+D3,"Tholothian, female",height,median,184
+D3,"Tholothian, female",height,mode,184
+D3,"Togruta, female",height,missing,0
+D3,"Togruta, female",height,n,1
+D3,"Togruta, female",height,M,178
+D3,"Togruta, female",height,SD,
+D3,"Togruta, female",height,SE,
+D3,"Togruta, female",height,min,178
+D3,"Togruta, female",height,max,178
+D3,"Togruta, female",height,range,0
+D3,"Togruta, female",height,median,178
+D3,"Togruta, female",height,mode,178
+D3,"Toong, male",height,missing,0
+D3,"Toong, male",height,n,1
+D3,"Toong, male",height,M,163
+D3,"Toong, male",height,SD,
+D3,"Toong, male",height,SE,
+D3,"Toong, male",height,min,163
+D3,"Toong, male",height,max,163
+D3,"Toong, male",height,range,0
+D3,"Toong, male",height,median,163
+D3,"Toong, male",height,mode,163
+D3,"Toydarian, male",height,missing,0
+D3,"Toydarian, male",height,n,1
+D3,"Toydarian, male",height,M,137
+D3,"Toydarian, male",height,SD,
+D3,"Toydarian, male",height,SE,
+D3,"Toydarian, male",height,min,137
+D3,"Toydarian, male",height,max,137
+D3,"Toydarian, male",height,range,0
+D3,"Toydarian, male",height,median,137
+D3,"Toydarian, male",height,mode,137
+D3,"Trandoshan, male",height,missing,0
+D3,"Trandoshan, male",height,n,1
+D3,"Trandoshan, male",height,M,190
+D3,"Trandoshan, male",height,SD,
+D3,"Trandoshan, male",height,SE,
+D3,"Trandoshan, male",height,min,190
+D3,"Trandoshan, male",height,max,190
+D3,"Trandoshan, male",height,range,0
+D3,"Trandoshan, male",height,median,190
+D3,"Trandoshan, male",height,mode,190
+D3,"Twi'lek, female",height,missing,0
+D3,"Twi'lek, female",height,n,1
+D3,"Twi'lek, female",height,M,178
+D3,"Twi'lek, female",height,SD,
+D3,"Twi'lek, female",height,SE,
+D3,"Twi'lek, female",height,min,178
+D3,"Twi'lek, female",height,max,178
+D3,"Twi'lek, female",height,range,0
+D3,"Twi'lek, female",height,median,178
+D3,"Twi'lek, female",height,mode,178
+D3,"Twi'lek, male",height,missing,0
+D3,"Twi'lek, male",height,n,1
+D3,"Twi'lek, male",height,M,180
+D3,"Twi'lek, male",height,SD,
+D3,"Twi'lek, male",height,SE,
+D3,"Twi'lek, male",height,min,180
+D3,"Twi'lek, male",height,max,180
+D3,"Twi'lek, male",height,range,0
+D3,"Twi'lek, male",height,median,180
+D3,"Twi'lek, male",height,mode,180
+D3,"Vulptereen, male",height,missing,0
+D3,"Vulptereen, male",height,n,1
+D3,"Vulptereen, male",height,M,94
+D3,"Vulptereen, male",height,SD,
+D3,"Vulptereen, male",height,SE,
+D3,"Vulptereen, male",height,min,94
+D3,"Vulptereen, male",height,max,94
+D3,"Vulptereen, male",height,range,0
+D3,"Vulptereen, male",height,median,94
+D3,"Vulptereen, male",height,mode,94
+D3,"Wookiee, male",height,missing,0
+D3,"Wookiee, male",height,n,2
+D3,"Wookiee, male",height,M,231
+D3,"Wookiee, male",height,SD,4.242640687119285
+D3,"Wookiee, male",height,SE,2.9999999999999996
+D3,"Wookiee, male",height,min,228
+D3,"Wookiee, male",height,max,234
+D3,"Wookiee, male",height,range,6
+D3,"Wookiee, male",height,median,231
+D3,"Wookiee, male",height,mode,228
+D3,"Xexto, male",height,missing,0
+D3,"Xexto, male",height,n,1
+D3,"Xexto, male",height,M,122
+D3,"Xexto, male",height,SD,
+D3,"Xexto, male",height,SE,
+D3,"Xexto, male",height,min,122
+D3,"Xexto, male",height,max,122
+D3,"Xexto, male",height,range,0
+D3,"Xexto, male",height,median,122
+D3,"Xexto, male",height,mode,122
+D3,"Yoda's species, male",height,missing,0
+D3,"Yoda's species, male",height,n,1
+D3,"Yoda's species, male",height,M,66
+D3,"Yoda's species, male",height,SD,
+D3,"Yoda's species, male",height,SE,
+D3,"Yoda's species, male",height,min,66
+D3,"Yoda's species, male",height,max,66
+D3,"Yoda's species, male",height,range,0
+D3,"Yoda's species, male",height,median,66
+D3,"Yoda's species, male",height,mode,66
+D3,"Zabrak, male",height,missing,0
+D3,"Zabrak, male",height,n,2
+D3,"Zabrak, male",height,M,173
+D3,"Zabrak, male",height,SD,2.8284271247461903
+D3,"Zabrak, male",height,SE,2
+D3,"Zabrak, male",height,min,171
+D3,"Zabrak, male",height,max,175
+D3,"Zabrak, male",height,range,4
+D3,"Zabrak, male",height,median,173
+D3,"Zabrak, male",height,mode,175

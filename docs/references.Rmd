@@ -1,0 +1,19 @@
+---
+title: "Related references"
+author: "Willem Sleegers"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This document is a working file to keep a list of references to papers relevant for the tidystats project.
+
+## List of references
+
+- http://statcheck.io: A tool to extract statistics from papers for errors in statistical reporting
+- https://cran.r-project.org/web/packages/broom/vignettes/broom.html: An R package to turn output of statistical models into tidy data frames
+- https://ropensci.org/blog/blog/2017/04/18/tabulizer: An R package to help extract tabular data from their PDF prisons
+- https://arxiv.org/abs/1709.02261: Extract values from graphs in PDFs
+- https://github.com/jtleek/tidypvals: The tidypvals package organizes a large subset of published p-values.

@@ -1,0 +1,206 @@
+identifier,term,statistic,value,method,type,confirmatory,notes
+M1_1,,mean of x,25.775,One Sample t-test,hypothesis,TRUE,two.sided test
+M1_1,,t,24.224770783150714,One Sample t-test,hypothesis,TRUE,two.sided test
+M1_1,,df,199,One Sample t-test,hypothesis,TRUE,two.sided test
+M1_1,,p,2.9161308597123277e-61,One Sample t-test,hypothesis,TRUE,two.sided test
+M1_1,,95% CI lower,23.67685094492447,One Sample t-test,hypothesis,TRUE,two.sided test
+M1_1,,95% CI upper,27.87314905507553,One Sample t-test,hypothesis,TRUE,two.sided test
+M1_1,,null value,0,One Sample t-test,hypothesis,TRUE,two.sided test
+M1_2,,mean in group dental pain,24.39, Two Sample t-test,,,two.sided test
+M1_2,,mean in group mortality salience,27.16, Two Sample t-test,,,two.sided test
+M1_2,,t,-1.303988283445383, Two Sample t-test,,,two.sided test
+M1_2,,df,198, Two Sample t-test,,,two.sided test
+M1_2,,p,0.19375150224546822, Two Sample t-test,,,two.sided test
+M1_2,,95% CI lower,-6.9590624961549965, Two Sample t-test,,,two.sided test
+M1_2,,95% CI upper,1.4190624961549971, Two Sample t-test,,,two.sided test
+M1_2,,null value,0, Two Sample t-test,,,two.sided test
+M1_3,,mean in group dental pain,24.39,Welch Two Sample t-test,,,two.sided test
+M1_3,,mean in group mortality salience,27.16,Welch Two Sample t-test,,,two.sided test
+M1_3,,t,-1.303988283445383,Welch Two Sample t-test,,,two.sided test
+M1_3,,df,183.48318075655274,Welch Two Sample t-test,,,two.sided test
+M1_3,,p,0.193871109248638,Welch Two Sample t-test,,,two.sided test
+M1_3,,95% CI lower,-6.961101467278815,Welch Two Sample t-test,,,two.sided test
+M1_3,,95% CI upper,1.4211014672788163,Welch Two Sample t-test,,,two.sided test
+M1_3,,null value,0,Welch Two Sample t-test,,,two.sided test
+M1_4,,mean of the differences,8.27,Paired t-test,,,two.sided test
+M1_4,,t,14.175905445175326,Paired t-test,,,two.sided test
+M1_4,,df,199,Paired t-test,,,two.sided test
+M1_4,,p,5.4317889190474e-32,Paired t-test,,,two.sided test
+M1_4,,95% CI lower,7.119591605697939,Paired t-test,,,two.sided test
+M1_4,,95% CI upper,9.42040839430206,Paired t-test,,,two.sided test
+M1_4,,null value,0,Paired t-test,,,two.sided test
+M2_1,,cor,-0.14662737521615885,Pearson's product-moment correlation,,,two.sided test
+M2_1,,t,-2.085773516513573,Pearson's product-moment correlation,,,two.sided test
+M2_1,,df,198,Pearson's product-moment correlation,,,two.sided test
+M2_1,,p,0.038280560318125136,Pearson's product-moment correlation,,,two.sided test
+M2_1,,95% CI lower,-0.2796788196247178,Pearson's product-moment correlation,,,two.sided test
+M2_1,,95% CI upper,-0.008050125566538842,Pearson's product-moment correlation,,,two.sided test
+M2_1,,null value,0,Pearson's product-moment correlation,,,two.sided test
+M2_2,,tau,-0.08808241638068011,Kendall's rank correlation tau,,,two.sided test
+M2_2,,z,-1.683931398818463,Kendall's rank correlation tau,,,two.sided test
+M2_2,,p,0.09219492736090586,Kendall's rank correlation tau,,,two.sided test
+M2_2,,null value,0,Kendall's rank correlation tau,,,two.sided test
+M2_3,,rho,-0.11990660724034446,Spearman's rank correlation rho,,,two.sided test
+M2_3,,S,1493171.4794335514,Spearman's rank correlation rho,,,two.sided test
+M2_3,,p,0.0907959979263752,Spearman's rank correlation rho,,,two.sided test
+M2_3,,null value,0,Spearman's rank correlation rho,,,two.sided test
+M3_1,(Intercept),b,24.39000000000009,Linear regression,,,
+M3_1,(Intercept),SE,1.5020731464791384,Linear regression,,,
+M3_1,(Intercept),t,16.237558109051005,Linear regression,,,
+M3_1,(Intercept),p,2.9867107618382997e-38,Linear regression,,,
+M3_1,(Intercept),df,198,Linear regression,,,
+M3_1,conditionmortality salience,b,2.7700000000000062,Linear regression,,,
+M3_1,conditionmortality salience,SE,2.124252215427228,Linear regression,,,
+M3_1,conditionmortality salience,t,1.3039882834453846,Linear regression,,,
+M3_1,conditionmortality salience,p,0.1937515022454677,Linear regression,,,
+M3_1,conditionmortality salience,df,198,Linear regression,,,
+M3_1,(Model),R squared,0.008514682831421335,Linear regression,,,
+M3_1,(Model),adjusted R squared,0.0035071812295598415,Linear regression,,,
+M3_1,(Model),F,1.7003854433628245,Linear regression,,,
+M3_1,(Model),numerator df,1,Linear regression,,,
+M3_1,(Model),denominator df,198,Linear regression,,,
+M3_1,(Model),p,0.19375150224546978,Linear regression,,,
+M3_2,(Intercept),b,38.307096356042095,Linear regression,,,
+M3_2,(Intercept),SE,7.192308854444866,Linear regression,,,
+M3_2,(Intercept),t,5.326119488370999,Linear regression,,,
+M3_2,(Intercept),p,2.7244864906649516e-7,Linear regression,,,
+M3_2,(Intercept),df,197,Linear regression,,,
+M3_2,conditionmortality salience,b,2.3964583033271003,Linear regression,,,
+M3_2,conditionmortality salience,SE,2.1172389040771464,Linear regression,,,
+M3_2,conditionmortality salience,t,1.1318790235302514,Linear regression,,,
+M3_2,conditionmortality salience,p,0.2590611815297221,Linear regression,,,
+M3_2,conditionmortality salience,df,197,Linear regression,,,
+M3_2,anxiety,b,-4.2690479619760735,Linear regression,,,
+M3_2,anxiety,SE,2.158292947593086,Linear regression,,,
+M3_2,anxiety,t,-1.9779742906248605,Linear regression,,,
+M3_2,anxiety,p,0.04932565863247526,Linear regression,,,
+M3_2,anxiety,df,197,Linear regression,,,
+M3_2,(Model),R squared,0.02782195277527937,Linear regression,,,
+M3_2,(Model),adjusted R squared,0.017952124884673015,Linear regression,,,
+M3_2,(Model),F,2.81888935487509,Linear regression,,,
+M3_2,(Model),numerator df,2,Linear regression,,,
+M3_2,(Model),denominator df,197,Linear regression,,,
+M3_2,(Model),p,0.062081512404424326,Linear regression,,,
+M3_3,(Intercept),b,29.446653361989746,Linear regression,,,
+M3_3,(Intercept),SE,9.931119167963804,Linear regression,,,
+M3_3,(Intercept),t,2.965089116741235,Linear regression,,,
+M3_3,(Intercept),p,0.0034016550527776255,Linear regression,,,
+M3_3,(Intercept),df,196,Linear regression,,,
+M3_3,conditionmortality salience,b,20.294597409015044,Linear regression,,,
+M3_3,conditionmortality salience,SE,14.019396230732603,Linear regression,,,
+M3_3,conditionmortality salience,t,1.4476085185841503,Linear regression,,,
+M3_3,conditionmortality salience,p,0.1493241796312979,Linear regression,,,
+M3_3,conditionmortality salience,df,196,Linear regression,,,
+M3_3,anxiety,b,-1.5511206631870076,Linear regression,,,
+M3_3,anxiety,SE,3.0119375854588104,Linear regression,,,
+M3_3,anxiety,t,-0.5149909714847973,Linear regression,,,
+M3_3,anxiety,p,0.6071396232951569,Linear regression,,,
+M3_3,anxiety,df,196,Linear regression,,,
+M3_3,conditionmortality salience:anxiety,b,-5.566688878500832,Linear regression,,,
+M3_3,conditionmortality salience:anxiety,SE,4.3104789125922105,Linear regression,,,
+M3_3,conditionmortality salience:anxiety,t,-1.2914316463163416,Linear regression,,,
+M3_3,conditionmortality salience:anxiety,p,0.19807495918324164,Linear regression,,,
+M3_3,conditionmortality salience:anxiety,df,196,Linear regression,,,
+M3_3,(Model),R squared,0.036024575555917406,Linear regression,,,
+M3_3,(Model),adjusted R squared,0.021269849671569196,Linear regression,,,
+M3_3,(Model),F,2.4415618316658962,Linear regression,,,
+M3_3,(Model),numerator df,3,Linear regression,,,
+M3_3,(Model),denominator df,196,Linear regression,,,
+M3_3,(Model),p,0.06551503025610501,Linear regression,,,
+M4_1,condition,df,1,One-way ANOVA,,,
+M4_1,condition,SS,383.6450000000016,One-way ANOVA,,,
+M4_1,condition,MS,383.6450000000016,One-way ANOVA,,,
+M4_1,condition,F,1.7003854433628407,One-way ANOVA,,,
+M4_1,condition,p,0.1937515022454677,One-way ANOVA,,,
+M4_1,Residuals,df,198,One-way ANOVA,,,
+M4_1,Residuals,SS,44673.23000000009,One-way ANOVA,,,
+M4_1,Residuals,MS,225.6223737373742,One-way ANOVA,,,
+M4_2,condition,df,1,One-way ANOVA,,,
+M4_2,condition,SS,383.6450000000016,One-way ANOVA,,,
+M4_2,condition,MS,383.6450000000016,One-way ANOVA,,,
+M4_2,condition,F,1.73611994756791,One-way ANOVA,,,
+M4_2,condition,p,0.18916148664357574,One-way ANOVA,,,
+M4_2,sex,df,1,One-way ANOVA,,,
+M4_2,sex,SS,1140.4861329211765,One-way ANOVA,,,
+M4_2,sex,MS,1140.4861329211765,One-way ANOVA,,,
+M4_2,sex,F,5.161075278679595,One-way ANOVA,,,
+M4_2,sex,p,0.02417907513748531,One-way ANOVA,,,
+M4_2,Residuals,df,197,One-way ANOVA,,,
+M4_2,Residuals,SS,43532.74386707892,One-way ANOVA,,,
+M4_2,Residuals,MS,220.97839526436,One-way ANOVA,,,
+M4_3,condition,df,1,One-way ANOVA,,,
+M4_3,condition,SS,383.6450000000016,One-way ANOVA,,,
+M4_3,condition,MS,383.6450000000016,One-way ANOVA,,,
+M4_3,condition,F,1.7299359906927627,One-way ANOVA,,,
+M4_3,condition,p,0.18995567834305857,One-way ANOVA,,,
+M4_3,sex,df,1,One-way ANOVA,,,
+M4_3,sex,SS,1140.4861329211765,One-way ANOVA,,,
+M4_3,sex,MS,1140.4861329211765,One-way ANOVA,,,
+M4_3,sex,F,5.142691832882861,One-way ANOVA,,,
+M4_3,sex,p,0.024435177917286468,One-way ANOVA,,,
+M4_3,condition:sex,df,1,One-way ANOVA,,,
+M4_3,condition:sex,SS,66.15296166149102,One-way ANOVA,,,
+M4_3,condition:sex,MS,66.15296166149102,One-way ANOVA,,,
+M4_3,condition:sex,F,0.2982976169874007,One-way ANOVA,,,
+M4_3,condition:sex,p,0.5855727748687267,One-way ANOVA,,,
+M4_3,Residuals,df,196,One-way ANOVA,,,
+M4_3,Residuals,SS,43466.59090541742,One-way ANOVA,,,
+M4_3,Residuals,MS,221.76832094600724,One-way ANOVA,,,
+M4_4,condition,df,1,ANCOVA,,,
+M4_4,condition,SS,383.6450000000016,ANCOVA,,,
+M4_4,condition,MS,383.6450000000016,ANCOVA,,,
+M4_4,condition,F,1.6930759008952176,ANCOVA,,,
+M4_4,condition,p,0.19471575056251034,ANCOVA,,,
+M4_4,affect_negative,df,1,ANCOVA,,,
+M4_4,affect_negative,SS,33.72803789771007,ANCOVA,,,
+M4_4,affect_negative,MS,33.72803789771007,ANCOVA,,,
+M4_4,affect_negative,F,0.14884627233273803,ANCOVA,,,
+M4_4,affect_negative,p,0.700056652717608,ANCOVA,,,
+M4_4,Residuals,df,197,ANCOVA,,,
+M4_4,Residuals,SS,44639.501962102375,ANCOVA,,,
+M4_4,Residuals,MS,226.59645666041814,ANCOVA,,,
+M4_5,affect,df,1,One-way repeated measures ANOVA,,,
+M4_5,affect,SS,6839.289999999954,One-way repeated measures ANOVA,,,
+M4_5,affect,MS,6839.289999999954,One-way repeated measures ANOVA,,,
+M4_5,affect,F,200.9562951905509,One-way repeated measures ANOVA,,,
+M4_5,affect,p,5.431788919048176e-32,One-way repeated measures ANOVA,,,
+M4_5,affect_Residuals,df,199,One-way repeated measures ANOVA,,,
+M4_5,affect_Residuals,SS,6772.709999999975,One-way repeated measures ANOVA,,,
+M4_5,affect_Residuals,MS,34.033718592964696,One-way repeated measures ANOVA,,,
+M4_6,condition,df,1,Mixed ANOVA,,,
+M4_6,condition,SS,64.00000000000011,Mixed ANOVA,,,
+M4_6,condition,MS,64.00000000000011,Mixed ANOVA,,,
+M4_6,condition,F,1.913690620016439,Mixed ANOVA,,,
+M4_6,condition,p,0.168111637623063,Mixed ANOVA,,,
+M4_6,condition_Residuals,df,198,Mixed ANOVA,,,
+M4_6,condition_Residuals,SS,6621.759999999983,Mixed ANOVA,,,
+M4_6,condition_Residuals,MS,33.44323232323224,Mixed ANOVA,,,
+M4_6,affect,df,1,Mixed ANOVA,,,
+M4_6,affect,SS,6839.289999999954,Mixed ANOVA,,,
+M4_6,affect,MS,6839.289999999954,Mixed ANOVA,,,
+M4_6,affect,F,205.14450924845806,Mixed ANOVA,,,
+M4_6,affect,p,2.1228914409670422e-32,Mixed ANOVA,,,
+M4_6,condition:affect,df,1,Mixed ANOVA,,,
+M4_6,condition:affect,SS,171.6100000000024,Mixed ANOVA,,,
+M4_6,condition:affect,MS,171.6100000000024,Mixed ANOVA,,,
+M4_6,condition:affect,F,5.147442092984597,Mixed ANOVA,,,
+M4_6,condition:affect,p,0.02435909952773705,Mixed ANOVA,,,
+M4_6,condition:affect_Residuals,df,198,Mixed ANOVA,,,
+M4_6,condition:affect_Residuals,SS,6601.099999999972,Mixed ANOVA,,,
+M4_6,condition:affect_Residuals,MS,33.33888888888875,Mixed ANOVA,,,
+M4_7,anxiety,df,1,ANCOVA,,,
+M4_7,anxiety,SS,0.13920127816269412,ANCOVA,,,
+M4_7,anxiety,MS,0.13920127816269412,ANCOVA,,,
+M4_7,anxiety,F,0.004122557037856949,ANCOVA,,,
+M4_7,anxiety,p,0.9488700667532411,ANCOVA,,,
+M4_7,anxiety_Residuals,df,198,ANCOVA,,,
+M4_7,anxiety_Residuals,SS,6685.62079872182,ANCOVA,,,
+M4_7,anxiety_Residuals,MS,33.76576160970616,ANCOVA,,,
+M4_7,affect,df,1,ANCOVA,,,
+M4_7,affect,SS,6839.289999999954,ANCOVA,,,
+M4_7,affect,MS,6839.289999999954,ANCOVA,,,
+M4_7,affect,F,200.9562951905509,ANCOVA,,,
+M4_7,affect,p,5.431788919048176e-32,ANCOVA,,,
+M4_7,affect_Residuals,df,199,ANCOVA,,,
+M4_7,affect_Residuals,SS,6772.709999999975,ANCOVA,,,
+M4_7,affect_Residuals,MS,34.033718592964696,ANCOVA,,,
