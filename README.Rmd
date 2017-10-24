@@ -98,7 +98,7 @@ results %>%
 
 To write the results to a file, use `write_stats()` with the results list as the first argument.
 
-```{r, message = FALSE, warning = FALSE}
+```{r, eval = FALSE}
 write_stats(results, "data/results.csv")
 ```
 
@@ -108,7 +108,7 @@ This produces a .csv file that can be shared and that can also be used to write 
 
 To start reporting your results, first load in the previously saved data file containing the results. This will create a list, just like it was when it was originally saved.
 
-```{r, message = FALSE, warning = FALSE}
+```{r, eval = FALSE}
 results <- read_stats("data/results.csv")
 ```
 
