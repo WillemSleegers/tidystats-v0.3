@@ -25,8 +25,7 @@ summary.tidy_lm<- function(object, correlation = FALSE, symbolic.cor = FALSE, ..
     ans$residuals <- r
     ans$df <- c(0L, n, length(ans$aliased))
     ans$coefficients <- matrix(NA, 0L, 4L)
-    dimnames(ans$coefficients) <- list(NULL, c("Estimate",
-                                               "Std. Error", "t value", "Pr(>|t|)"))
+    dimnames(ans$coefficients) <- list(NULL, c("b", "SE", "beta", "t", "p"))
     ans$sigma <- sqrt(resvar)
     ans$r.squared <- ans$adj.r.squared <- 0
     return(ans)
@@ -65,11 +64,12 @@ summary.tidy_lm<- function(object, correlation = FALSE, symbolic.cor = FALSE, ..
   R <- chol2inv(Qr$qr[p1, p1, drop = FALSE])
   se <- sqrt(diag(R) * resvar)
   est <- z$coefficients[Qr$pivot[p1]]
+  betas <- c(NA, z$beta)
   tval <- est/se
   ans <- z[c("call", "terms", if (!is.null(z$weights)) "weights")]
   ans$residuals <- r
-  ans$coefficients <- cbind(Estimate = est, `Std. Error` = se, `t value` = tval,
-                            `Pr(>|t|)` = 2 * pt(abs(tval), rdf,lower.tail = FALSE),
+  ans$coefficients <- cbind(b = est, SE = se, beta = betas, t = tval,
+                            p = 2 * pt(abs(tval), rdf,lower.tail = FALSE),
                             z$confidence.intervals[[1]])
   ans$aliased <- is.na(z$coefficients)
   ans$sigma <- sqrt(resvar)

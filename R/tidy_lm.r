@@ -51,7 +51,7 @@ tidy_lm <- function(formula, data, subset, weights, na.action,
     else lm.wfit(x, y, w, offset = offset, singular.ok = singular.ok,
                  ...)
   }
-  class(z) <- c(if (is.matrix(y)) c("mlm", "tidy_mlm"), c("tidy_lm", "lm"))
+  class(z) <- c(if (is.matrix(y)) c("tidy_mlm", "mlm"), c("tidy_lm", "lm"))
   z$na.action <- attr(mf, "na.action")
   z$offset <- offset
   z$contrasts <- attr(x, "contrasts")
@@ -67,7 +67,16 @@ tidy_lm <- function(formula, data, subset, weights, na.action,
   if (!qr)
     z$qr <- NULL
 
+  # Confidence intervals
   z$confidence.intervals <- list(confidence.intervals = confint(z))
+
+  # Standardized coefficients
+  if (length(z$coefficients) > 1) {
+    b <- summary(z)$coef[-1, 1]
+    sx <- sapply(lapply(z$model[-1], function(x) if (is.factor(x)) as.numeric(as.character(x))), sd)
+    sy <- sapply(z$model[1], sd)
+    z$beta <- b * sx /  sy
+  }
 
   return(z)
 }
