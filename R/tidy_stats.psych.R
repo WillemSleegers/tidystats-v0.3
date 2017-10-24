@@ -4,7 +4,7 @@
 #'
 #' @param model An psych alpha object
 #'
-#' @example
+#' @examples
 #' library(psych)
 #' results <- list()
 #'

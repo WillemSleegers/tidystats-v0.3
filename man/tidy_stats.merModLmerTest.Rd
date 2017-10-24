@@ -12,11 +12,3 @@
 \description{
 Creates a tidystats data frame for an merModLmerTest object.
 }
-\examples{
-library(lme4)
-library(lmerTest)
-
-model <- lmer(extra ~ group + (1|ID), data = sleep)
-tidy_stats.lmerMod(model)
-
-}

@@ -12,3 +12,13 @@
 \description{
 Creates a tidystats data frame for a psych's alpha object.
 }
+\examples{
+library(psych)
+results <- list()
+
+bfi \%>\%
+  select(A1, A2, A3, A4, A5) \%>\%
+  alpha(check.keys = TRUE) \%>\%
+  add_stats(results, identifier = 'alpha_agreeableness')
+
+}

@@ -8,7 +8,7 @@
 #' tidy_stats.htest(t.test(1:10, y = c(7:20)))
 #'
 #' @import tibble
-#' @importFrom dplyr bind_rows
+#' @import dplyr
 #'
 #' @export
 tidy_stats.htest <- function(model) {

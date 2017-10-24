@@ -20,12 +20,33 @@ tidy_stats.lmerMod <- function(model) {
   # Get summary statistics
   summary <- summary(model)
 
-  # Extract statistics of random effects
-  random <- as_data_frame(summary$varcor) %>%
+  # Extract model statistics
+  model <- as_data_frame(summary$AICtab) %>%
     mutate(
-      term = paste(grp, var1, var2, "(R)", sep = "-"),
+      statistic = names(summary$AICtab),
+      group = "model",
+    ) %>%
+    bind_rows(data_frame(
+      value = summary$devcomp$dims[1],
+      statistic = "N",
+      group = "model"))
+
+  model_terms <- as_data_frame(summary$ngrps) %>%
+    mutate(
+      statistic = "N",
+      term = names(summary$ngrps),
+      group = "model"
+    )
+
+  model <- bind_rows(model, model_terms)
+
+  # Extract random effects statistics
+  as_data_frame(summary$varcor) %>%
+    mutate(
+      term = paste(grp, var1, var2, sep = "_"),
       term = gsub("-NA", "", term),
-      order = 1:n()
+      order = 1:n(),
+      group = "random effect"
     ) %>%
     rename(
       variance = vcov,
@@ -38,15 +59,16 @@ tidy_stats.lmerMod <- function(model) {
   # Extract statistics of fixed effects
   fixed <- as_data_frame(summary$coefficients) %>%
     mutate(
-      term = paste(rownames(summary$coefficients), "(F)", sep = "-"),
-      order = 1:n()
+      term = rownames(summary$coefficients),
+      order = 1:n(),
+      group = "fixed effect"
     ) %>%
     rename(
       estimate = `Estimate`,
       SE = `Std. Error`,
       t = `t value`
     ) %>%
-    gather("statistic", "value", -term, -order) %>%
+    gather("statistic", "value", -term, -order, -notes) %>%
     arrange(order) %>%
     select(-order)
 
@@ -60,6 +82,9 @@ tidy_stats.lmerMod <- function(model) {
 
   # Add method
   output$method <- "Linear mixed model"
+
+  # Order variables
+  output <- select(output, term, statistic, value, method, notes)
 
   return(output)
 }

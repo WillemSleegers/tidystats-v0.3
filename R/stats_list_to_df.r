@@ -15,7 +15,7 @@
 #' # Convert list to a data frame
 #' stats_list_to_df(results)
 #'
-#' @importFrom dplyr select
+#' @import dplyr
 #' @importFrom magrittr %>%
 #' @importFrom purrr map2_df
 #'
