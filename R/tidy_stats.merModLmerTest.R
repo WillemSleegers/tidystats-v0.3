@@ -15,7 +15,6 @@
 #' @import dplyr
 #' @import tidyr
 #' @importFrom magrittr %>%
-#' @import lmerTest
 #'
 #' @export
 tidy_stats.merModLmerTest <- function(model) {
