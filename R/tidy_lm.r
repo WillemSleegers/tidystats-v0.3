@@ -73,7 +73,7 @@ tidy_lm <- function(formula, data, subset, weights, na.action,
   # Standardized coefficients
   if (length(z$coefficients) > 1) {
     b <- summary(z)$coef[-1, 1]
-    sx <- sapply(lapply(z$model[-1], function(x) if (is.factor(x)) as.numeric(as.character(x))), sd)
+    sx <- sapply(lapply(z$model[-1], function(x) if (is.factor(x)) as.numeric(x)-1), sd)
     sy <- sapply(z$model[1], sd)
     z$beta <- b * sx /  sy
   }
