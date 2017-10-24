@@ -8,6 +8,8 @@
 #' @param statistics a vector of statistics to select from the output and add to the model in the tidy stats list.
 #'
 #' @examples
+#' library(magrittr)
+#'
 #' # Create an empty list to store the results in
 #' results <- list()
 #'
@@ -24,6 +26,9 @@
 #' results <- model_CIs %>%
 #'   tidy_stats_confint() %>%
 #'   add_stats_to_model(results, identifier = "M1")
+#'
+#' @import dplyr
+#' @importFrom magrittr %>%
 #'
 #' @export
 

@@ -5,6 +5,7 @@
 #' @import dplyr
 #'
 #' @export
+
 add_stats.default <- function(output, results, identifier = NULL, statistics = NULL, type = NULL,
                               confirmatory = NULL, notes = NULL) {
 

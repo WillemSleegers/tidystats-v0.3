@@ -6,10 +6,9 @@
 \usage{
 read_stats(file)
 }
+\arguments{
+\item{file}{Path to the tidy stats data file}
+}
 \description{
 \code{read_stats} can convert a .csv file containing the statistical results that was produced with \code{write_stats}. It returns a list containing the results, with the identifier as the name for each list element.
-}
-\examples{
-results <- read_stats("results.csv")
-
 }

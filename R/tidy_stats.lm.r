@@ -4,10 +4,6 @@
 #'
 #' @param model An lm object
 #'
-#' @examples
-#' model <- lm(extra ~ group, data = sleep)
-#' tidy_stats.lm(model)
-#'
 #' @import dplyr
 #' @import tidyr
 #' @importFrom magrittr %>%

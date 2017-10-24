@@ -5,11 +5,12 @@
 #' @param descriptives A descriptives data frame
 #'
 #' @examples
+#'
 #' # Create an empty list to store the results in
 #' results <- list()
 #'
 #' # Get descriptives
-#' results <- descriptives(sleep, group)
+#' results <- describe(sleep, group)
 #'
 #' # Create a tidy data frame of the descriptives
 #' tidy_descriptives(results)

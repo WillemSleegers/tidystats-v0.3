@@ -4,10 +4,6 @@
 #'
 #' @param model An aov object
 #'
-#' #' @examples
-#' model <- aov(extra ~ group, data = sleep)
-#' tidy_stats.aov(model)
-#'
 #' @import dplyr
 #' @import tidyr
 #' @importFrom magrittr %>%

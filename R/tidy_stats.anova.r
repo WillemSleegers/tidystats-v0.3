@@ -4,19 +4,11 @@
 #'
 #' @param model An anova object
 #'
-#' @examples
-#' lm1 <- lm(extra ~ 1, data = sleep)
-#' tidy_stats.anova(lm1)
-#'
-#' lm2 <- lm(extra ~ group, data = sleep)
-#' tidy_stats.anova(lm1, lm2)
-#'
 #' @import dplyr
 #' @import tidyr
 #' @importFrom magrittr %>%
 #'
 #' @export
-
 tidy_stats.anova <- function(model) {
 
   # Check whether it's a one model ANOVA or multiple

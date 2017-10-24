@@ -7,11 +7,7 @@
 \method{tidy_stats}{aov}(model)
 }
 \arguments{
-\item{model}{An aov object
-
-#' @examples
-model <- aov(extra ~ group, data = sleep)
-tidy_stats.aov(model)}
+\item{model}{An aov object}
 }
 \description{
 \code{tidy_stats.aov} takes an aov object and converts the object to a tidy stats data frame.

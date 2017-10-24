@@ -2,10 +2,6 @@
 #'
 #' \code{tidy_stats.aovlist} takes an aovlist object and converts the object to a tidy stats data frame.
 #'
-#' @examples
-#' model <- aov(extra ~ group + Error(ID/group), data = sleep)
-#' tidy_stats.aovlist(model)
-#'
 #' @import dplyr
 #' @import tidyr
 #' @importFrom magrittr %>%
@@ -45,7 +41,7 @@ tidy_stats.aovlist <- function(model) {
   output$term <- gsub(" ", "", output$term)
 
   # Get classes of the predictors
-  classes <- unlist(lapply(model.frame(model), class))[-1]
+  classes <- unlist(lapply(stats::model.frame(model), class))[-1]
 
   # Add kind of ANOVA
   output <- mutate(output, method = case_when(

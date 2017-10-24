@@ -12,11 +12,3 @@
 \description{
 \code{tidy_stats.anova} takes an anova object and converts the object to a tidy stats data frame.
 }
-\examples{
-lm1 <- lm(extra ~ 1, data = sleep)
-tidy_stats.anova(lm1)
-
-lm2 <- lm(extra ~ group, data = sleep)
-tidy_stats.anova(lm1, lm2)
-
-}

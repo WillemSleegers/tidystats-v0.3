@@ -4,9 +4,6 @@
 #'
 #' @param model An htest object
 #'
-#' @examples
-#' tidy_stats.htest(t.test(1:10, y = c(7:20)))
-#'
 #' @import tibble
 #' @import dplyr
 #'

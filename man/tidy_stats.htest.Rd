@@ -12,7 +12,3 @@
 \description{
 \code{tidy_stats.htest} takes an htest object and converts the object to a tidy stats data frame.
 }
-\examples{
-tidy_stats.htest(t.test(1:10, y = c(7:20)))
-
-}

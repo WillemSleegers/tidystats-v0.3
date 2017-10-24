@@ -9,6 +9,9 @@
 #' @details The data set can be grouped so that descriptives will be calculated for each group level. Unlike dplyr's \code{summarize}, \code{describe} does not automatically peel off a grouping variable. The function keeps the supplied grouping. However, when descriptives are requested of a non-numeric variable, the function will return a data frame that is grouped by that variable. If the data frame was already grouped, the non-numeric variable will be added to the existing grouping variables.
 #'
 #' @examples
+#' library(magrittr)
+#' library(dplyr)
+#'
 #' # Descriptives of a single variable
 #' describe(sleep, variable = extra)
 #' describe(sleep, group)
@@ -16,7 +19,7 @@
 #' # Descriptives of a single variable per group
 #' sleep %>%
 #'   group_by(group) %>%
-#'   describe(sleep, variable = extra)
+#'   describe(variable = extra)
 #'
 #' @import dplyr
 #'

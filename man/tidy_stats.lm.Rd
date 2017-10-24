@@ -12,8 +12,3 @@
 \description{
 \code{tidy_stats.lm} takes an lm object and converts the object to a tidy stats data frame.
 }
-\examples{
-model <- lm(extra ~ group, data = sleep)
-tidy_stats.lm(model)
-
-}

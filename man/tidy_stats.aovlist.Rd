@@ -9,8 +9,3 @@
 \description{
 \code{tidy_stats.aovlist} takes an aovlist object and converts the object to a tidy stats data frame.
 }
-\examples{
-model <- aov(extra ~ group + Error(ID/group), data = sleep)
-tidy_stats.aovlist(model)
-
-}

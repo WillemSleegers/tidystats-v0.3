@@ -19,6 +19,8 @@ add_stats_to_model(output, results, identifier, statistics = NULL)
 \code{add_stats_to_model} adds output to a model in a tidy results list. Sometimes you have to run additional analyses on the output of a statistical test, so you want to add these results to an existing model in a tidy stats list.
 }
 \examples{
+library(magrittr)
+
 # Create an empty list to store the results in
 results <- list()
 
