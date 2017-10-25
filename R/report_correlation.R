@@ -6,9 +6,6 @@
 #' @param identifier A character string identifying the model.
 #' @param statistic A character string of a statistic you want to extract from a model.
 #'
-#' @import dplyr
-#' @importFrom magrittr %>%
-#'
 #' @export
 
 report_correlation <- function(results, identifier, statistic = NULL) {

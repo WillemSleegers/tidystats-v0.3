@@ -11,20 +11,20 @@
 tidy_stats.htest <- function(model) {
 
   # Extract statistics
-  output <- bind_rows(
-    data_frame(statistic = names(model$estimate), value = model$estimate),
-    data_frame(statistic = names(model$statistic), value = model$statistic),
+  output <- dplyr::bind_rows(
+    tibble::data_frame(statistic = names(model$estimate), value = model$estimate),
+    tibble::data_frame(statistic = names(model$statistic), value = model$statistic),
     if (!is.null(model$parameter)) {
-      data_frame(statistic = names(model$parameter), value = model$parameter)
+      tibble::data_frame(statistic = names(model$parameter), value = model$parameter)
     },
-    data_frame(statistic = "p", value = model$p.value),
+    tibble::data_frame(statistic = "p", value = model$p.value),
     if (!is.null(model$conf.int)) {
-      data_frame(
+      tibble::data_frame(
         statistic = c("95% CI lower", "95% CI upper"),
         value = c(model$conf.int[1], model$conf.int[2])
       )
     },
-    data_frame(statistic = "null value", value = model$null.value)
+    tibble::data_frame(statistic = "null value", value = model$null.value)
   )
 
   # Add the method

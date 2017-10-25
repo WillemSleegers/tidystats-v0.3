@@ -5,11 +5,10 @@
 #' @param file Path to the tidy stats data file
 #'
 #' @import readr
-#' @import dplyr
 #'
 #'@export
 read_stats <- function(file) {
-  df <- read_csv(file)
+  df <- readr::read_csv(file)
   results <- split(df, df$identifier)
 
   return(results)

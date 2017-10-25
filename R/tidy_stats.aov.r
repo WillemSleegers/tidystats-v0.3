@@ -12,24 +12,24 @@
 tidy_stats.aov <- function(model) {
 
   # Extract statistics
-  output <- as_data_frame(summary(model)[[1]]) %>%
-    rename(
+  output <- tibble::as_data_frame(summary(model)[[1]]) %>%
+    dplyr::rename(
       SS = `Sum Sq`,
       MS = `Mean Sq`,
       `F` = `F value`,
       df = Df,
       p = `Pr(>F)`
     ) %>%
-    mutate(
+    dplyr::mutate(
       term = c(labels(model$terms), "Residuals"),
       term_nr = 1:n()) %>%
-    gather("statistic", "value", -term, -term_nr) %>%
-    filter(!is.na(value)) %>%
-    arrange(term_nr)
+    tidyr::gather("statistic", "value", -term, -term_nr) %>%
+    dplyr::filter(!is.na(value)) %>%
+    dplyr::arrange(term_nr)
 
   # Determine the type of ANOVA
   classes <- attr(model$terms, "dataClasses")[-1]
-  method <- case_when(
+  method <- dplyr::case_when(
     sum(classes == "numeric") > 0 ~ "ANCOVA",
     sum(classes == "factor") == 1 ~ "One-way ANOVA",
     sum(classes == "factor") == 2 ~ "Factorial ANOVA",
@@ -38,7 +38,7 @@ tidy_stats.aov <- function(model) {
   output$method <- method
 
   # Reorder columns
-  output <- select(output, term_nr, everything())
+  output <- dplyr::select(output, term_nr, everything())
 
   return(output)
 }

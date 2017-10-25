@@ -25,5 +25,5 @@
 write_stats <- function(results, path) {
   df <- stats_list_to_df(results)
 
-  write_csv(df, path = path, na = "")
+  readr::write_csv(df, path = path, na = "")
 }

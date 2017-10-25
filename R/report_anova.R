@@ -8,8 +8,6 @@
 #' @param term_nr A number indicating which term you want to report the the statistics of.
 #' @param statistic A character string of a statistic you want to extract from a model.
 #'
-#' @import dplyr
-#' @importFrom magrittr %>%
 #' @export
 
 report_anova <- function(results, identifier, term = NULL, term_nr = NULL, statistic = NULL) {
@@ -20,7 +18,6 @@ report_anova <- function(results, identifier, term = NULL, term_nr = NULL, stati
   # Check whether a term is provided, extract data if so, otherwise throw an error
   # Also store the residuals degree of freedom
   if (!is.null(term)) {
-
     df_den <- res$value[grepl("Residuals", res$term) & res$statistic == "df" &
                           res$term_nr > res$term_nr[res$term == term][1]]
     res <- res[res$term == term, ]

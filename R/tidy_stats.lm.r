@@ -17,22 +17,22 @@ tidy_stats.lm <- function(model) {
 
   # Extract statistics
   # Not included: Descriptives of residuals, residual standard error, residual degrees of freedom
-  output <- as_data_frame(summary$coefficients) %>%
-    rename(
+  output <- tibble::as_data_frame(summary$coefficients) %>%
+    dplyr::rename(
       b = Estimate,
       SE = `Std. Error`,
       t = `t value`,
       p = `Pr(>|t|)`
     ) %>%
-    mutate(
+    dplyr::mutate(
       df = summary$df[2],
       term = names(model$coefficients),
       term_nr = 1:n()) %>%
-    gather("statistic", "value", -term, -term_nr) %>%
-    arrange(term_nr)
+    tidyr::gather("statistic", "value", -term, -term_nr) %>%
+    dplyr::arrange(term_nr)
 
-  output <- bind_rows(output,
-    data_frame(
+  output <- dplyr::bind_rows(output,
+    tibble::data_frame(
       term = "(Model)",
       term_nr = max(output$term_nr) + 1,
         statistic = c("R squared", "adjusted R squared", "F", "numerator df", "denominator df"),
@@ -45,14 +45,14 @@ tidy_stats.lm <- function(model) {
   # Calculate model fit p value ourselves
   p <- pf(summary$fstatistic[1], summary$fstatistic[2], summary$fstatistic[3], lower.tail = FALSE)
 
-  output <- bind_rows(output, data_frame(term = "(Model)", term_nr = max(output$term_nr),
+  output <- dplyr::bind_rows(output, data_frame(term = "(Model)", term_nr = max(output$term_nr),
                                          statistic = "p", value = p))
 
   # Add method
   output$method <- "Linear regression"
 
   # Reorder columns
-  output <- select(output, term_nr, everything())
+  output <- dplyr::select(output, term_nr, everything())
 
   return(output)
 }

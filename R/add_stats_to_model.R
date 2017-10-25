@@ -42,15 +42,15 @@ add_stats_to_model <- function(output, results, identifier, statistics = NULL) {
 
   # Filter out statistics
   if (!is.null(statistics)) {
-    new_element <- filter(new_element, statistic %in% statistics)
+    new_element <- dplyr::filter(new_element, statistic %in% statistics)
   }
 
   # Merge with the model statistics
-  new_element <- full_join(res, new_element, by = c("term", "statistic", "value")) %>%
-    group_by(term) %>%
-    mutate(term_nr = first(term_nr)) %>%
-    arrange(term_nr) %>%
-    ungroup()
+  new_element <- dplyr::full_join(res, new_element, by = c("term", "statistic", "value")) %>%
+    dplyr::group_by(term) %>%
+    dplyr::mutate(term_nr = first(term_nr)) %>%
+    dplyr::arrange(term_nr) %>%
+    dplyr::ungroup()
 
   # Replace the model statistics
   results[[identifier]] <- new_element

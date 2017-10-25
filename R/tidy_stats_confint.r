@@ -4,6 +4,7 @@
 #'
 #' @param confint_matrix The output of confint().
 #'
+#' @import tibble
 #' @import dplyr
 #' @import tidyr
 #' @importFrom magrittr %>%
@@ -12,13 +13,13 @@
 tidy_stats_confint <- function(confint_matrix) {
 
   # Tidy the matrix
-  output <- as.data.frame(confint_matrix) %>%
-    mutate(
+  output <- tibble::as_data_frame(confint_matrix) %>%
+    dplyr::mutate(
       term = rownames(confint_matrix),
       order = 1:n()) %>%
-    gather("statistic", "value", -term, -order) %>%
-    arrange(order) %>%
-    select(term, statistic, value, -order)
+    tidyr::gather("statistic", "value", -term, -order) %>%
+    dplyr::arrange(order) %>%
+    dplyr::select(term, statistic, value, -order)
 
   # Add method
   method = "confint confidence intervals"

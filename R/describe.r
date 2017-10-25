@@ -29,14 +29,14 @@ describe <- function(data, variable, na.rm = TRUE) {
   var <- enquo(variable)
 
   # Save grouping data
-  groups <- group_vars(data)
+  groups <- dplyr::group_vars(data)
 
   # Check variable type
   if (sapply(data, class)[quo_name(var)] %in% c("numeric", "integer")) {
 
     # Calculate descriptives
     output <- data %>%
-      summarize(
+      dplyr::summarize(
         missing = sum(is.na(!!var)),
         n       = n() - missing,
         M       = mean(!!var, na.rm = na.rm),
@@ -53,30 +53,30 @@ describe <- function(data, variable, na.rm = TRUE) {
 
     # Group the data
     if (length(groups) > 0) {
-      data <- group_by(data, !!var, add = TRUE)
+      data <- dplyr::group_by(data, !!var, add = TRUE)
     } else {
-      data <- group_by(data, !!var)
+      data <- dplyr::group_by(data, !!var)
     }
 
     # Save new grouping data
-    groups <- group_vars(data)
+    groups <- dplyr::group_vars(data)
 
     # Calculate frequencies
     output <- data %>%
-      summarize(
+      dplyr::summarize(
         n   = n()
       )
 
     # Add percentages when grouping variables are provided
     if (length(groups) > 1) {
       output <- output %>%
-        mutate(pct_group = n / sum(n)*100) %>%
-        ungroup() %>%
-        mutate(pct = n / sum(n)*100) %>%
-        select(-pct_group, pct_group) # Move the variable to the last position
+        dplyr::mutate(pct_group = n / sum(n)*100) %>%
+        dplyr::ungroup() %>%
+        dplyr::mutate(pct = n / sum(n)*100) %>%
+        dplyr::select(-pct_group, pct_group) # Move the variable to the last position
     } else {
       output <- output %>%
-        mutate(pct = n / sum(n)*100)
+        dplyr::mutate(pct = n / sum(n)*100)
     }
   } else {
     stop("Non-supported variable type.")
@@ -84,8 +84,8 @@ describe <- function(data, variable, na.rm = TRUE) {
 
   # Add grouping to output
   output <- output %>%
-    ungroup() %>%
-    group_by_at(vars(one_of(groups)))
+    dplyr::ungroup() %>%
+    dplyr::group_by_at(vars(one_of(groups)))
 
   return(output)
 }

@@ -15,7 +15,7 @@ tidy_stats.aovlist <- function(model) {
 
   # Custom function to extract stats with purrr:map2_df()
   extract_stats <- function(x, y) {
-    df <- as_data_frame(summary(x)[[1]])
+    df <- tibble::as_data_frame(summary(x)[[1]])
 
     if (nrow(df) > 0) {
       df$term <- rownames(summary(x)[[1]])
@@ -26,18 +26,18 @@ tidy_stats.aovlist <- function(model) {
 
   # Extract statistics
   output <- model %>%
-    map2_df(names(model), extract_stats) %>%
-    rename(
+    purrr::map2_df(names(model), extract_stats) %>%
+    dplyr::rename(
       df = Df,
       SS = `Sum Sq`,
       MS = `Mean Sq`,
       `F` = `F value`,
       p = `Pr(>F)`
     ) %>%
-    mutate(term_nr = 1:n()) %>%
-    gather("statistic", "value", -term, -term_nr) %>%
-    filter(!is.na(value)) %>%
-    arrange(term_nr)
+    dplyr::mutate(term_nr = 1:n()) %>%
+    tidyr::gather("statistic", "value", -term, -term_nr) %>%
+    dplyr::filter(!is.na(value)) %>%
+    dplyr::arrange(term_nr)
 
   # Remove spaces from the term variable
   output$term <- gsub(" ", "", output$term)
@@ -46,7 +46,7 @@ tidy_stats.aovlist <- function(model) {
   classes <- unlist(lapply(stats::model.frame(model), class))[-1]
 
   # Add kind of ANOVA
-  output <- mutate(output, method = case_when(
+  output <- dplyr::mutate(output, method = dplyr::case_when(
     "numeric" %in% classes ~ "ANCOVA",
     !grepl("Residuals", output$term[1]) ~ "Mixed ANOVA",
     sum(!is.na(classes)) == 2 ~ "One-way repeated measures ANOVA",
@@ -70,7 +70,7 @@ tidy_stats.aovlist <- function(model) {
   }
 
   # Reorder columns
-  output <- select(output, term_nr, everything())
+  output <- dplyr::select(output, term_nr, everything())
 
   return(output)
 }

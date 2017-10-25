@@ -4,6 +4,7 @@
 #'
 #' @param model Output of \code{anova}.
 #'
+#' @import tibble
 #' @import dplyr
 #' @import tidyr
 #' @importFrom magrittr %>%
@@ -13,34 +14,34 @@ tidy_stats.anova <- function(model) {
 
   # Check whether it's a one model ANOVA or multiple
   if (!grepl("Model", attr(model, "heading")[2])) {
-    output <- as_data_frame(model) %>%
-      mutate(
+    output <- tibble::as_data_frame(model) %>%
+      dplyr::mutate(
         term = row.names(model),
         order = 1:n()
       ) %>%
-      rename(
+      dplyr::rename(
         df = Df,
         SS = `Sum Sq`,
         MS = `Mean Sq`,
         `F` = `F value`
       ) %>%
-      rename_if(grepl("Pr\\(", names(.)), funs(sprintf("p", .))) %>%
-      gather("statistic", "value", -term, -order) %>%
-      filter(!is.na(value)) %>%
-      mutate(method = "Single model ANOVA") %>%
-      arrange(order) %>%
-      select(-order)
+      dplyr::rename_if(grepl("Pr\\(", names(.)), funs(sprintf("p", .))) %>%
+      tidyr::gather("statistic", "value", -term, -order) %>%
+      dplyr::filter(!is.na(value)) %>%
+      dplyr::mutate(method = "Single model ANOVA") %>%
+      dplyr::arrange(order) %>%
+      dplyr::select(-order)
   } else {
-    output <- as_data_frame(model) %>%
-      mutate(order = 1:n()) %>%
-      rename(df = Df)
+    output <- tibble::as_data_frame(model) %>%
+      dplyr::mutate(order = 1:n()) %>%
+      dplyr::rename(df = Df)
 
     if ("AIC" %in% names(output)) {
       output <- output %>%
-        mutate(
+        dplyr:: mutate(
           term = row.names(model)
         ) %>%
-        rename(
+        dplyr::rename(
           `log likelihood` = logLik,
           `chi-squared` = Chisq,
           `df chi-squared` = `Chi Df`,
@@ -48,20 +49,20 @@ tidy_stats.anova <- function(model) {
         )
     } else {
       output <- output %>%
-        mutate(term = strsplit(attr(model, "heading")[2], split = "\n")[[1]]) %>%
-        rename(
+        dplyr::mutate(term = strsplit(attr(model, "heading")[2], split = "\n")[[1]]) %>%
+        dplyr::rename(
           `df residual` = `Res.Df`,
           SS = `Sum of Sq`
         ) %>%
-        rename_if(grepl("Pr\\(", names(.)), funs(sprintf("p", .)))
+        dplyr::rename_if(grepl("Pr\\(", names(.)), funs(sprintf("p", .)))
     }
 
     output <- output %>%
-      gather("statistic", "value", -term, -order) %>%
-      filter(!is.na(value)) %>%
-      mutate(method = "Multiple model ANOVA") %>%
-      arrange(order) %>%
-      select(-order)
+      tidyr::gather("statistic", "value", -term, -order) %>%
+      dplyr::filter(!is.na(value)) %>%
+      dplyr::mutate(method = "Multiple model ANOVA") %>%
+      dplyr::arrange(order) %>%
+      dplyr::select(-order)
   }
 
   # If it was a chi-square test on an lm model, indicate this in a notes column

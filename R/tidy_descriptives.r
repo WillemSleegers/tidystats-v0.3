@@ -16,22 +16,23 @@
 #' tidy_descriptives(results)
 #'
 #' @import dplyr
+#' @import tidyr
 #'
 #' @export
 
 tidy_descriptives <- function(descriptives) {
 
   # Retrieve grouping information
-  groups <- group_vars(descriptives)
+  groups <- dplyr::group_vars(descriptives)
 
   # Gather the data
   if (length(groups) > 0) {
     output <- descriptives %>%
-      gather("statistic", "value", -one_of(groups)) %>%
-      arrange(.by_group = TRUE) %>%
-      unite(col = "group", groups, sep = "_")
+      tidyr::gather("statistic", "value", -one_of(groups)) %>%
+      dplyr::arrange(.by_group = TRUE) %>%
+      tidyr::unite(col = "group", groups, sep = "_")
   } else {
-    output <- gather(descriptives, "statistic", "value")
+    output <- tidyr::gather(descriptives, "statistic", "value")
   }
 
   return(output)

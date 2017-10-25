@@ -34,8 +34,8 @@ stats_list_to_df <- function(results) {
 
   # Merge the stats output together and reorder variables
   df <- results %>%
-    map2_df(names(results), add_identifier) %>%
-    select(identifier, contains("term_nr"), contains("term"), everything(),
+    purrr::map2_df(names(results), add_identifier) %>%
+    dplyr::select(identifier, contains("term_nr"), contains("term"), everything(),
            -contains("notes"), contains("notes"))
 
   return(df)

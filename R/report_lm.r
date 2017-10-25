@@ -8,9 +8,6 @@
 #' @param term_nr A number indicating which term you want to report the the statistics of.
 #' @param statistic A character string of a statistic you want to extract from a model.
 #'
-#' @import dplyr
-#' @importFrom magrittr %>%
-#'
 #' @export
 
 report_lm <- function(results, identifier, term = NULL, term_nr = NULL, statistic = NULL) {

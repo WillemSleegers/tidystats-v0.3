@@ -37,7 +37,7 @@ add_stats.data.frame <- function(output, results, identifier = NULL, statistics 
 
   # Filter out statistics
   if (!is.null(statistics)) {
-    new_element <- filter(new_element, statistic %in% statistics)
+    new_element <- dplyr::filter(new_element, statistic %in% statistics)
   }
 
   # Add the type
@@ -45,7 +45,7 @@ add_stats.data.frame <- function(output, results, identifier = NULL, statistics 
     type <- match.arg(type, choices = c("hypothesis", "manipulation check", "contrast",
                                         "descriptives", "other"))
 
-    new_element$type <- case_when(
+    new_element$type <- dplyr::case_when(
       substr(type, 1, 1) == "h" ~ "hypothesis",
       substr(type, 1, 1) == "m" ~ "manipulation check",
       substr(type, 1, 1) == "c" ~ "contrast",
@@ -56,7 +56,7 @@ add_stats.data.frame <- function(output, results, identifier = NULL, statistics 
 
   # Add information whether the analysis was confirmatory or not
   if (!is.null(confirmatory)) {
-    new_element$confirmatory <- case_when(
+    new_element$confirmatory <- dplyr::case_when(
       confirmatory == TRUE ~ TRUE,
       confirmatory == FALSE ~ FALSE,
       TRUE ~ NA
