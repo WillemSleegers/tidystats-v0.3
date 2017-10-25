@@ -6,6 +6,9 @@
 \usage{
 stats_list_to_df(results)
 }
+\arguments{
+\item{results}{A tidy stats list.}
+}
 \description{
 \code{stats_list_to_df} converts a tidy stats list to a data frame.
 }

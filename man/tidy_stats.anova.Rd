@@ -7,7 +7,7 @@
 \method{tidy_stats}{anova}(model)
 }
 \arguments{
-\item{model}{An anova object}
+\item{model}{Output of \code{anova}.}
 }
 \description{
 \code{tidy_stats.anova} takes an anova object and converts the object to a tidy stats data frame.

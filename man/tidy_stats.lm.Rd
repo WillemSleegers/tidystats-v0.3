@@ -7,7 +7,7 @@
 \method{tidy_stats}{lm}(model)
 }
 \arguments{
-\item{model}{An lm object}
+\item{model}{Output of \code{lm()}.}
 }
 \description{
 \code{tidy_stats.lm} takes an lm object and converts the object to a tidy stats data frame.

@@ -2,6 +2,12 @@
 #'
 #' Function to report ANOVA output in APA style.
 #'
+#' @param results A tidy stats list.
+#' @param identifier A character string identifying the model.
+#' @param term A character string indicating which term you want to report the statistics of.
+#' @param term_nr A number indicating which term you want to report the the statistics of.
+#' @param statistic A character string of a statistic you want to extract from a model.
+#'
 #' @import dplyr
 #' @importFrom magrittr %>%
 #' @export

@@ -4,10 +4,10 @@
 \alias{tidy_stats_confint}
 \title{tidy_stats method for confint output.}
 \usage{
-tidy_stats_confint(confint_matrix, method = NULL)
+tidy_stats_confint(confint_matrix)
 }
 \arguments{
-\item{matrix}{confint matrix.}
+\item{confint_matrix}{The output of confint().}
 }
 \description{
 Creates a tidystats data frame from the output of confint.

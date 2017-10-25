@@ -2,6 +2,8 @@
 #'
 #' \code{tidy_stats.aovlist} takes an aovlist object and converts the object to a tidy stats data frame.
 #'
+#' @param model Output of \code{aov()} including within-subject factors.
+#'
 #' @import dplyr
 #' @import tidyr
 #' @importFrom magrittr %>%

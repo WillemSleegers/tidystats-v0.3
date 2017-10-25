@@ -6,6 +6,9 @@
 \usage{
 \method{tidy_stats}{aovlist}(model)
 }
+\arguments{
+\item{model}{Output of \code{aov()} including within-subject factors.}
+}
 \description{
 \code{tidy_stats.aovlist} takes an aovlist object and converts the object to a tidy stats data frame.
 }

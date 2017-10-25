@@ -6,6 +6,17 @@
 \usage{
 report(results, identifier, term = NULL, term_nr = NULL, statistic = NULL)
 }
+\arguments{
+\item{results}{A tidy stats list.}
+
+\item{identifier}{A character string identifying the model.}
+
+\item{term}{A character string indicating which term you want to report the statistics of.}
+
+\item{term_nr}{A number indicating which term you want to report the the statistics of.}
+
+\item{statistic}{A character string of a statistic you want to extract from a model.}
+}
 \description{
 \code{report} is a general function that returns Markdown code of a statistical test in 6th edition APA style.
 }

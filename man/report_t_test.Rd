@@ -6,6 +6,13 @@
 \usage{
 report_t_test(results, identifier, statistic = NULL)
 }
+\arguments{
+\item{results}{A tidy stats list.}
+
+\item{identifier}{A character string identifying the model.}
+
+\item{statistic}{A character string of a statistic you want to extract from a model.}
+}
 \description{
 Function to report a t-test in APA style.
 }

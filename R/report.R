@@ -2,6 +2,12 @@
 #'
 #' \code{report} is a general function that returns Markdown code of a statistical test in 6th edition APA style.
 #'
+#' @param results A tidy stats list.
+#' @param identifier A character string identifying the model.
+#' @param term A character string indicating which term you want to report the statistics of.
+#' @param term_nr A number indicating which term you want to report the the statistics of.
+#' @param statistic A character string of a statistic you want to extract from a model.
+#'
 #' @details \code{report} calls a specific report function dependent on the type of statistical test that is supplied. The 'method' column of the statistical test is used to determine which report function to run.
 #'
 #' @examples

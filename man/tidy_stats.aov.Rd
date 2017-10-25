@@ -7,7 +7,7 @@
 \method{tidy_stats}{aov}(model)
 }
 \arguments{
-\item{model}{An aov object}
+\item{model}{Output of \code{aov} without within-subject factors.}
 }
 \description{
 \code{tidy_stats.aov} takes an aov object and converts the object to a tidy stats data frame.

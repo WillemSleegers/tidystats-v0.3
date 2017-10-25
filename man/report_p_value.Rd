@@ -6,6 +6,9 @@
 \usage{
 report_p_value(p_value)
 }
+\arguments{
+\item{p_value}{A p-value.}
+}
 \description{
 A helper function to report p values in APA style.
 }

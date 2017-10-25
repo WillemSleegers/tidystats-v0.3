@@ -6,6 +6,11 @@
 \usage{
 write_stats(results, path)
 }
+\arguments{
+\item{results}{A tidy stats list.}
+
+\item{path}{Path or connection to write to.}
+}
 \description{
 \code{write_stats} converts a tidy stats results list to a data frame and then saves the data to a .csv file.
 }

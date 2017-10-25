@@ -2,7 +2,7 @@
 #'
 #' \code{tidy_stats.aov} takes an aov object and converts the object to a tidy stats data frame.
 #'
-#' @param model An aov object
+#' @param model Output of \code{aov} without within-subject factors.
 #'
 #' @import dplyr
 #' @import tidyr

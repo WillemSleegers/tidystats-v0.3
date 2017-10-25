@@ -2,6 +2,8 @@
 #'
 #' \code{stats_list_to_df} converts a tidy stats list to a data frame.
 #'
+#' @param results A tidy stats list.
+#'
 #' @examples
 #' # Create an empty list to store the results in
 #' results <- list()

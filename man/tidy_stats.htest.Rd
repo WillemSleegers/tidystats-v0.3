@@ -7,7 +7,7 @@
 \method{tidy_stats}{htest}(model)
 }
 \arguments{
-\item{model}{An htest object}
+\item{model}{Output of \code{t.test()}.}
 }
 \description{
 \code{tidy_stats.htest} takes an htest object and converts the object to a tidy stats data frame.

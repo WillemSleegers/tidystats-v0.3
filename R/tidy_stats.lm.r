@@ -2,7 +2,7 @@
 #'
 #' \code{tidy_stats.lm} takes an lm object and converts the object to a tidy stats data frame.
 #'
-#' @param model An lm object
+#' @param model Output of \code{lm()}.
 #'
 #' @import dplyr
 #' @import tidyr

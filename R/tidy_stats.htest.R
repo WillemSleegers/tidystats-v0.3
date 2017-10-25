@@ -2,7 +2,7 @@
 #'
 #' \code{tidy_stats.htest} takes an htest object and converts the object to a tidy stats data frame.
 #'
-#' @param model An htest object
+#' @param model Output of \code{t.test()}.
 #'
 #' @import tibble
 #' @import dplyr

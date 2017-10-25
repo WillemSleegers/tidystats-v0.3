@@ -2,6 +2,9 @@
 #'
 #' \code{write_stats} converts a tidy stats results list to a data frame and then saves the data to a .csv file.
 #'
+#' @param results A tidy stats list.
+#' @param path Path or connection to write to.
+#'
 #' @examples
 #' # Create an empty list to store the results in
 #' results <- list()

@@ -2,15 +2,14 @@
 #'
 #' Creates a tidystats data frame from the output of confint.
 #'
-#' @param matrix confint matrix.
+#' @param confint_matrix The output of confint().
 #'
-#' @import tibble
 #' @import dplyr
 #' @import tidyr
 #' @importFrom magrittr %>%
 #'
 #' @export
-tidy_stats_confint <- function(confint_matrix, method = NULL) {
+tidy_stats_confint <- function(confint_matrix) {
 
   # Tidy the matrix
   output <- as.data.frame(confint_matrix) %>%
@@ -22,11 +21,7 @@ tidy_stats_confint <- function(confint_matrix, method = NULL) {
     select(term, statistic, value, -order)
 
   # Add method
-  if (!is.null(method)) {
-    output$method = method
-  } else {
-    method = "confint confidence intervals"
-  }
+  method = "confint confidence intervals"
 
   return(output)
 }

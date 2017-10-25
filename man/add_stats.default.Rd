@@ -7,6 +7,21 @@
 \method{add_stats}{default}(output, results, identifier = NULL,
   statistics = NULL, type = NULL, confirmatory = NULL, notes = NULL)
 }
+\arguments{
+\item{output}{output of a statistical test.}
+
+\item{results}{a tidy stats list.}
+
+\item{identifier}{a character string identifying the model. Automatically created if not provided.}
+
+\item{statistics}{a vector of statistics to select from the output and add to the tidy stats list.}
+
+\item{type}{a character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.}
+
+\item{confirmatory}{a boolean to indicate whether the statistical test was confirmatory (TRUE) or exploratory (FALSE). Can be NA.}
+
+\item{notes}{a character string to add additional information. Some statistical tests produce notes information, which will be overwritten if notes are provided.}
+}
 \description{
 \code{add_stats.default} is the default add_stats function, which takes the output of a statistical test, tidies the output, and adds it to a results list.
 }

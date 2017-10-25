@@ -2,6 +2,10 @@
 #'
 #' Function to report a t-test in APA style.
 #'
+#' @param results A tidy stats list.
+#' @param identifier A character string identifying the model.
+#' @param statistic A character string of a statistic you want to extract from a model.
+#'
 #' @import dplyr
 #' @importFrom magrittr %>%
 #'

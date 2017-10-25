@@ -2,7 +2,7 @@
 #'
 #' \code{tidy_stats.anova} takes an anova object and converts the object to a tidy stats data frame.
 #'
-#' @param model An anova object
+#' @param model Output of \code{anova}.
 #'
 #' @import dplyr
 #' @import tidyr

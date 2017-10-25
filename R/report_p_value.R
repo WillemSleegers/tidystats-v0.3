@@ -2,6 +2,8 @@
 #'
 #' A helper function to report p values in APA style.
 #'
+#' @param p_value A p-value.
+#'
 #' @export
 
 report_p_value <- function(p_value) {
