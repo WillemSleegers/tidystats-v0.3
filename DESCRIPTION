@@ -1,9 +1,9 @@
 Package: tidystats
-Title: Produce a Tidy Statistics Output File
+Title: tidystats: Create a Tidy Statistics Output File
 Version: 0.1
 Authors@R: person("Willem", "Sleegers", email = "w.sleegers@me.com", role = c("aut", "cre"))
-Description: Set of functions to produce a data file containing the output of statistical models and to assist with a workflow aimed at writing scientific papers using R Markdown. The package is based on tidy principles (i.e., the tidyverse; Wickham, 2017).
-Depends: R (>= 3.4.1)
+Description: Set of functions to produce a data file containing the output of statistical models and to assist with a workflow aimed at writing scientific papers using 'R Markdown'. Supported statistical functions are: 't.test()', 'cor.test()', 'lm()', 'aov()'. The package is based on tidy principles (i.e., the 'tidyverse'; Wickham, 2017).
+Depends: R (>= 3.4.2)
 Imports: tibble, readr, tidyr, dplyr, magrittr, purrr
 License: MIT + file LICENSE
 Encoding: UTF-8
