@@ -1,0 +1,75 @@
+identifier,term_nr,term,statistic,value,method,notes
+t_test,,,mean in group 1,0.75,Welch Two Sample t-test,two.sided test
+t_test,,,mean in group 2,2.33,Welch Two Sample t-test,two.sided test
+t_test,,,t,-1.860813467486853,Welch Two Sample t-test,two.sided test
+t_test,,,df,17.7764735161785,Welch Two Sample t-test,two.sided test
+t_test,,,p,0.07939414018735817,Welch Two Sample t-test,two.sided test
+t_test,,,95% CI lower,-3.3654832307117104,Welch Two Sample t-test,two.sided test
+t_test,,,95% CI upper,0.20548323071171018,Welch Two Sample t-test,two.sided test
+t_test,,,null value,0,Welch Two Sample t-test,two.sided test
+correlation,,,p,0.10817305434949379,Pearson's product-moment correlation,two.sided test
+regression,1,(Intercept),b,5.032,Linear regression,regression example
+regression,1,(Intercept),SE,0.2202176953229084,Linear regression,regression example
+regression,1,(Intercept),t,22.850116529561827,Linear regression,regression example
+regression,1,(Intercept),p,9.547127635904178e-15,Linear regression,regression example
+regression,1,(Intercept),df,18,Linear regression,regression example
+regression,2,groupTrt,b,-0.3709999999999997,Linear regression,regression example
+regression,2,groupTrt,SE,0.3114348514002032,Linear regression,regression example
+regression,2,groupTrt,t,-1.1912603818487015,Linear regression,regression example
+regression,2,groupTrt,p,0.24902316597300633,Linear regression,regression example
+regression,2,groupTrt,df,18,Linear regression,regression example
+regression,3,(Model),R squared,0.07307759899038556,Linear regression,regression example
+regression,3,(Model),adjusted R squared,0.021581910045406993,Linear regression,regression example
+regression,3,(Model),F,1.4191012973623196,Linear regression,regression example
+regression,3,(Model),numerator df,1,Linear regression,regression example
+regression,3,(Model),denominator df,18,Linear regression,regression example
+regression,3,(Model),p,0.2490231659730055,Linear regression,regression example
+ANOVA,1,block      ,df,5,ANOVA,
+ANOVA,1,block      ,SS,343.29499999999985,ANOVA,
+ANOVA,1,block      ,MS,68.65899999999996,ANOVA,
+ANOVA,1,block      ,F,4.446666426798115,ANOVA,
+ANOVA,1,block      ,p,0.015938790208193922,ANOVA,
+ANOVA,2,N          ,df,1,ANOVA,
+ANOVA,2,N          ,SS,189.28166666666635,ANOVA,
+ANOVA,2,N          ,MS,189.28166666666635,ANOVA,
+ANOVA,2,N          ,F,12.258734213650905,ANOVA,
+ANOVA,2,N          ,p,0.004371811825799377,ANOVA,
+ANOVA,3,P          ,df,1,ANOVA,
+ANOVA,3,P          ,SS,8.401666666666681,ANOVA,
+ANOVA,3,P          ,MS,8.401666666666681,ANOVA,
+ANOVA,3,P          ,F,0.5441298168603618,ANOVA,
+ANOVA,3,P          ,p,0.4749040926744341,ANOVA,
+ANOVA,4,K          ,df,1,ANOVA,
+ANOVA,4,K          ,SS,95.20166666666658,ANOVA,
+ANOVA,4,K          ,MS,95.20166666666658,ANOVA,
+ANOVA,4,K          ,F,6.165689202317128,ANOVA,
+ANOVA,4,K          ,p,0.028795053500232606,ANOVA,
+ANOVA,5,N:P        ,df,1,ANOVA,
+ANOVA,5,N:P        ,SS,21.281666666666634,ANOVA,
+ANOVA,5,N:P        ,MS,21.281666666666634,ANOVA,
+ANOVA,5,N:P        ,F,1.3782966934120089,ANOVA,
+ANOVA,5,N:P        ,p,0.26316528287716817,ANOVA,
+ANOVA,6,N:K        ,df,1,ANOVA,
+ANOVA,6,N:K        ,SS,33.13499999999999,ANOVA,
+ANOVA,6,N:K        ,MS,33.13499999999999,ANOVA,
+ANOVA,6,N:K        ,F,2.145972007339978,ANOVA,
+ANOVA,6,N:K        ,p,0.16864787850049265,ANOVA,
+ANOVA,7,P:K        ,df,1,ANOVA,
+ANOVA,7,P:K        ,SS,0.4816666666666721,ANOVA,
+ANOVA,7,P:K        ,MS,0.4816666666666721,ANOVA,
+ANOVA,7,P:K        ,F,0.031194905191955176,ANOVA,
+ANOVA,7,P:K        ,p,0.8627520856854066,ANOVA,
+ANOVA,8,Residuals  ,df,12,ANOVA,
+ANOVA,8,Residuals  ,SS,185.28666666666658,ANOVA,
+ANOVA,8,Residuals  ,MS,15.440555555555548,ANOVA,
+ANOVA_within,2,group,df,1,One-way repeated measures ANOVA,
+ANOVA_within,2,group,SS,12.481999999999998,One-way repeated measures ANOVA,
+ANOVA_within,2,group,MS,12.481999999999998,One-way repeated measures ANOVA,
+ANOVA_within,2,group,F,16.500881316098713,One-way repeated measures ANOVA,
+ANOVA_within,2,group,p,0.00283289019738427,One-way repeated measures ANOVA,
+ANOVA_within,3,group_Residuals,df,9,One-way repeated measures ANOVA,
+ANOVA_within,3,group_Residuals,SS,6.807999999999996,One-way repeated measures ANOVA,
+ANOVA_within,3,group_Residuals,MS,0.756444444444444,One-way repeated measures ANOVA,
+x_squared,,,X-squared,5.4885,Chi-squared test of independence,
+x_squared,,,df,6,Chi-squared test of independence,
+x_squared,,,p,0.4828,Chi-squared test of independence,
