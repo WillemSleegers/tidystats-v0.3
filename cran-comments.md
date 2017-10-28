@@ -10,27 +10,30 @@ There was 1 NOTE:
 * checking CRAN incoming feasibility ... NOTE
   Maintainer: ‘Willem Sleegers <w.sleegers@me.com>’
   
-  This is my first R package submission.
+  *This is my first R package submission.*
 
 ## CRAN review notes
 
-* Thanks, perhaps only:
-  Tidy Statistics Output File (that this file is produced, should be clear)
+* Thanks, we see:
 
-  	*I changed the title to tidystats: Create a Tidy Statistics Output File. I believe this makes it more clear that the package is about the user producing such a file, rather than it being done automatically.*
+  The Title field starts with the package name.
+  The Title field should be in title case, current version then in title case:
+  'tidystats: Create a Tidy Statistics Output File'
+  'Create a Tidy Statistics Output File'
 
-* Please elaborate which statistics are supported in the actual package version.
+  Please also omit the package name from the title.
 
-  	*This is added to the Description in DESCRIPTION*
+  *The package name has been removed, which also makes it title case.*
 
-* Please write package names and software names in single quotes (e.g. 'tidyverse').
+* Description: Set of functions to produce a data file containing the output
 
-  	*I have changed this in the DESCRIPTION file*
+  "Set of functions" is really redundanr.
 
-* Please add more small executable examples in your Rd-files.
+  *This part has been removed from the Description.*
 
-  	*Many more examples have been added. Each function has an example, with the more important functions (e.g., generic functions) having multiple examples*
 
-* Your function write_stats() is writing in the user's home directory: write_stats(results, "results.csv")
+* Supported statistical functions are: 't.test()', 'cor.test()', 'lm()', 'aov()', 'anova()'. 
 
-  	*My apologies, this has been changed. tempdir() is used now.*
+  Please omit the single quotes for function names when you write parentheses anyway.
+
+  *The single quotes have been removed.*
