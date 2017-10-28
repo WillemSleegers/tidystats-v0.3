@@ -4,6 +4,11 @@
 #'
 #' @param model Output of \code{aov()} including within-subject factors.
 #'
+#' @examples
+#' # Conduct a within-subjects ANOVA
+#' model_aov_within <- aov(extra ~ group + Error(ID/group), data = sleep)
+#' tidy_stats(model_aov_within)
+#'
 #' @import dplyr
 #' @import tidyr
 #' @importFrom magrittr %>%

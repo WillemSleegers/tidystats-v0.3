@@ -5,21 +5,34 @@
 #' @param model Output of a statistical test
 #'
 #' @examples
-#' # Create an empty list to store the results in
-#' results <- list()
 #'
-#' # Conduct statistical tests
-#' x <- rnorm(10, mean = 0)
-#' y <- rnorm(10, mean = 1)
+#' # Example: t-test
+#' model_t_test <- t.test(extra ~ group, data = sleep)
+#' tidy_stats(model_t_test)
 #'
-#' model1 <- t.test(x, y)
-#' model2 <- cor.test(x, y)
-#' model3 <- lm(y ~ x)
+#' # Example: correlation
+#' x <- c(44.4, 45.9, 41.9, 53.3, 44.7, 44.1, 50.7, 45.2, 60.1)
+#' y <- c( 2.6,  3.1,  2.5,  5.0,  3.6,  4.0,  5.2,  2.8,  3.8)
 #'
-#' # Convert the output to tidy stats data frames
-#' tidy_stats(model1)
-#' tidy_stats(model2)
-#' tidy_stats(model3)
+#' model_correlation <- cor.test(x, y)
+#' tidy_stats(model_correlation)
+#'
+#' # Example: Regression
+#' ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
+#' trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
+#' group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
+#' weight <- c(ctl, trt)
+#'
+#' model_lm <- lm(weight ~ group)
+#' tidy_stats(model_lm)
+#'
+#' # Example: ANOVA
+#' model_aov <- aov(yield ~ block + N * P * K, npk)
+#' tidy_stats(model_aov)
+#'
+#' # Example: Within-subjects ANOVA
+#' model_aov_within <- aov(extra ~ group + Error(ID/group), data = sleep)
+#' tidy_stats(model_aov_within)
 #'
 #' @export
 

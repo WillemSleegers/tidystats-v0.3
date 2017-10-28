@@ -4,11 +4,17 @@
 #'
 #' @param model Output of \code{aov} without within-subject factors.
 #'
+#' @examples
+#' # Conduct an ANOVA
+#' model_aov <- aov(yield ~ block + N * P * K, npk)
+#' tidy_stats(model_aov)
+#'
 #' @import dplyr
 #' @import tidyr
 #' @importFrom magrittr %>%
 #'
 #' @export
+
 tidy_stats.aov <- function(model) {
 
   # Extract statistics
@@ -21,7 +27,7 @@ tidy_stats.aov <- function(model) {
       p = `Pr(>F)`
     ) %>%
     dplyr::mutate(
-      term = c(labels(model$terms), "Residuals"),
+      term = row.names(data.frame(summary(model)[[1]])),
       term_nr = 1:n()) %>%
     tidyr::gather("statistic", "value", -term, -term_nr) %>%
     dplyr::filter(!is.na(value)) %>%

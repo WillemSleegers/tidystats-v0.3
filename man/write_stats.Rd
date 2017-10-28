@@ -25,6 +25,7 @@ model <- t.test(extra ~ group, data = sleep, paired = TRUE)
 results <- add_stats(model, results, identifier = "M1")
 
 # Save the results
-write_stats(results, "results.csv")
+dir <- tempdir()
+write_stats(results, file.path(dir, "results.txt"))
 
 }

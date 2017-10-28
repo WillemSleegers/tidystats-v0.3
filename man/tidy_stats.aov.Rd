@@ -12,3 +12,9 @@
 \description{
 \code{tidy_stats.aov} takes an aov object and converts the object to a tidy stats data frame.
 }
+\examples{
+# Conduct an ANOVA
+model_aov <- aov(yield ~ block + N * P * K, npk)
+tidy_stats(model_aov)
+
+}

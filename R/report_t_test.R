@@ -5,6 +5,13 @@
 #' @param results A tidy stats list.
 #' @param identifier A character string identifying the model.
 #' @param statistic A character string of a statistic you want to extract from a model.
+#' @examples
+#' # Read in a list of results
+#' results <- read_stats(system.file("results.csv", package = "tidystats"))
+#'
+#' # Example: t-test
+#' report(results, identifier = "t_test")
+#' report(results, identifier = "t_test", statistic = "p")
 #'
 #' @export
 

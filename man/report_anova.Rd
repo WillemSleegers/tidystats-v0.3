@@ -21,3 +21,13 @@ report_anova(results, identifier, term = NULL, term_nr = NULL,
 \description{
 Function to report ANOVA output in APA style.
 }
+\examples{
+# Read in a list of results
+results <- read_stats(system.file("results.csv", package = "tidystats"))
+
+# Report results
+report(results, identifier = "ANOVA", term = "N")
+report(results, identifier = "ANOVA", term_nr = "2")
+report(results, identifier = "ANOVA", term = "N", statistic = "p")
+
+}

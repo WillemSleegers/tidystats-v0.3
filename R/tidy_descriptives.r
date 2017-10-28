@@ -5,15 +5,20 @@
 #' @param descriptives A descriptives data frame
 #'
 #' @examples
-#'
-#' # Create an empty list to store the results in
-#' results <- list()
+#' library(magrittr)
+#' library(dplyr)
 #'
 #' # Get descriptives
-#' results <- describe(sleep, group)
+#' descriptives <- describe(sleep, group)
 #'
 #' # Create a tidy data frame of the descriptives
-#' tidy_descriptives(results)
+#' tidy_descriptives(descriptives)
+#'
+#' # With a grouping variable:
+#' sleep %>%
+#'   group_by(group) %>%
+#'   describe(extra) %>%
+#'   tidy_descriptives()
 #'
 #' @import dplyr
 #' @import tidyr

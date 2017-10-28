@@ -12,6 +12,21 @@
 #'
 #' @import dplyr
 #'
+#' @examples
+#'
+#' # Create an empty list to store the results in
+#' results <- list()
+#'
+#' # Example: Manual chi-squared test of independence
+#' x_squared_data <- data.frame(
+#'   statistic = c("X-squared", "df", "p"),
+#'   value = c(5.4885, 6, 0.4828),
+#'   method = "Chi-squared test of independence"
+#'   )
+#'
+#' # Add results to results
+#' results <- add_stats(x_squared_data, results, identifier = "M1")
+#'
 #' @export
 add_stats.data.frame <- function(output, results, identifier = NULL, statistics = NULL, type = NULL,
                                  confirmatory = NULL, notes = NULL) {
@@ -28,7 +43,7 @@ add_stats.data.frame <- function(output, results, identifier = NULL, statistics 
   }
 
   # Throw a warning if non-standard columns are found in the data
-  if (sum(!names(output) %in% c("statistic", "value", "group", "term")) > 0) {
+  if (sum(!names(output) %in% c("statistic", "value", "method", "group", "term")) > 0) {
     warning(paste("Non-standard columns found."))
   }
 

@@ -14,7 +14,7 @@
 #'
 #' # Descriptives of a single variable
 #' describe(sleep, variable = extra)
-#' describe(sleep, group)
+#' describe(sleep, variable = group)
 #'
 #' # Descriptives of a single variable per group
 #' sleep %>%

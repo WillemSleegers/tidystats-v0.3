@@ -25,3 +25,19 @@
 \description{
 \code{add_stats.data.frame} is a function to add a tidy data frame of results to a tidy stats list. tidystats does not support all possible statistical tests, so it may not be able to produce tidy output of a statistical model. The best solution for now is to tidy the output of a statistical test yourself, creating a tidy data frame, and then use \code{add_stats}, which will call this function, to add it to the tidy stats list.
 }
+\examples{
+
+# Create an empty list to store the results in
+results <- list()
+
+# Example: Manual chi-squared test of independence
+x_squared_data <- data.frame(
+  statistic = c("X-squared", "df", "p"),
+  value = c(5.4885, 6, 0.4828),
+  method = "Chi-squared test of independence"
+  )
+
+# Add results to results
+results <- add_stats(x_squared_data, results, identifier = "M1")
+
+}

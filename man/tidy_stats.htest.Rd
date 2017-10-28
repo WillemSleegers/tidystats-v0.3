@@ -12,3 +12,9 @@
 \description{
 \code{tidy_stats.htest} takes an htest object and converts the object to a tidy stats data frame.
 }
+\examples{
+# Conduct a t-test
+model_t_test <- t.test(extra ~ group, data = sleep)
+tidy_stats(model_t_test)
+
+}

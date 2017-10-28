@@ -12,3 +12,9 @@ report_p_value(p_value)
 \description{
 A helper function to report p values in APA style.
 }
+\examples{
+report_p_value(0.532)
+report_p_value(0.0432)
+report_p_value(0.0000121)
+
+}

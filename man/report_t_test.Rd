@@ -16,3 +16,12 @@ report_t_test(results, identifier, statistic = NULL)
 \description{
 Function to report a t-test in APA style.
 }
+\examples{
+# Read in a list of results
+results <- read_stats(system.file("results.csv", package = "tidystats"))
+
+# Example: t-test
+report(results, identifier = "t_test")
+report(results, identifier = "t_test", statistic = "p")
+
+}

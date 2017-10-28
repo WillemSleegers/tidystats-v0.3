@@ -8,6 +8,15 @@
 #' @param term_nr A number indicating which term you want to report the the statistics of.
 #' @param statistic A character string of a statistic you want to extract from a model.
 #'
+#' @examples
+#' # Read in a list of results
+#' results <- read_stats(system.file("results.csv", package = "tidystats"))
+#'
+#' # Example: regression term
+#' report(results, identifier = "regression", term = "groupTrt")
+#' report(results, identifier = "regression", term_nr = 2)
+#' report(results, identifier = "regression", term = "groupTrt", statistic = "p")
+#'
 #' @export
 
 report_lm <- function(results, identifier, term = NULL, term_nr = NULL, statistic = NULL) {

@@ -21,3 +21,13 @@ report_lm(results, identifier, term = NULL, term_nr = NULL,
 \description{
 Function to report a regression in APA style.
 }
+\examples{
+# Read in a list of results
+results <- read_stats(system.file("results.csv", package = "tidystats"))
+
+# Example: regression term
+report(results, identifier = "regression", term = "groupTrt")
+report(results, identifier = "regression", term_nr = 2)
+report(results, identifier = "regression", term = "groupTrt", statistic = "p")
+
+}

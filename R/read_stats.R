@@ -4,9 +4,13 @@
 #'
 #' @param file Path to the tidy stats data file
 #'
+#' @examples
+#' results <- read_stats(system.file("results.csv", package = "tidystats"))
+#'
 #' @import readr
 #'
-#'@export
+#' @export
+
 read_stats <- function(file) {
   df <- readr::read_csv(file)
   results <- split(df, df$identifier)

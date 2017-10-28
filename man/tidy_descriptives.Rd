@@ -13,14 +13,19 @@ tidy_descriptives(descriptives)
 \code{tidy_descriptives} returns a tidy data frame of descriptive statistics.
 }
 \examples{
-
-# Create an empty list to store the results in
-results <- list()
+library(magrittr)
+library(dplyr)
 
 # Get descriptives
-results <- describe(sleep, group)
+descriptives <- describe(sleep, group)
 
 # Create a tidy data frame of the descriptives
-tidy_descriptives(results)
+tidy_descriptives(descriptives)
+
+# With a grouping variable:
+sleep \%>\%
+  group_by(group) \%>\%
+  describe(extra) \%>\%
+  tidy_descriptives()
 
 }

@@ -2,7 +2,21 @@
 #'
 #' \code{tidy_stats.anova} takes an anova object and converts the object to a tidy stats data frame.
 #'
-#' @param model Output of \code{anova}.
+#' @param model Output of \code{anova()}.
+#'
+#' @examples
+#' # Regression example
+#' ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
+#' trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
+#' group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
+#' weight <- c(ctl, trt)
+#'
+#' model_0 <- lm(weight ~ 1)
+#' model_1 <- lm(weight ~ group)
+#'
+#' tidy_stats(anova(model_0))
+#' tidy_stats(anova(model_1))
+#' tidy_stats(anova(model_0, model_1))
 #'
 #' @import tibble
 #' @import dplyr
@@ -10,6 +24,7 @@
 #' @importFrom magrittr %>%
 #'
 #' @export
+
 tidy_stats.anova <- function(model) {
 
   # Check whether it's a one model ANOVA or multiple

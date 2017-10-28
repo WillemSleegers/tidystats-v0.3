@@ -6,6 +6,14 @@
 #' @param identifier A character string identifying the model.
 #' @param statistic A character string of a statistic you want to extract from a model.
 #'
+#' @examples
+#' # Read in a list of results
+#' results <- read_stats(system.file("results.csv", package = "tidystats"))
+#'
+#' # Report results
+#' report(results, identifier = "correlation")
+#' report(results, identifier = "correlation", statistic = "r")
+#'
 #' @export
 
 report_correlation <- function(results, identifier, statistic = NULL) {

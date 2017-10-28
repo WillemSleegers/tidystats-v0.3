@@ -16,3 +16,12 @@ report_correlation(results, identifier, statistic = NULL)
 \description{
 Function to report a correlation in APA style.
 }
+\examples{
+# Read in a list of results
+results <- read_stats(system.file("results.csv", package = "tidystats"))
+
+# Report results
+report(results, identifier = "correlation")
+report(results, identifier = "correlation", statistic = "r")
+
+}

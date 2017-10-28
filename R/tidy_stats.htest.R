@@ -4,6 +4,11 @@
 #'
 #' @param model Output of \code{t.test()}.
 #'
+#' @examples
+#' # Conduct a t-test
+#' model_t_test <- t.test(extra ~ group, data = sleep)
+#' tidy_stats(model_t_test)
+#'
 #' @import tibble
 #' @import dplyr
 #'

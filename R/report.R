@@ -11,17 +11,21 @@
 #' @details \code{report} calls a specific report function dependent on the type of statistical test that is supplied. The 'method' column of the statistical test is used to determine which report function to run.
 #'
 #' @examples
-#' # Create an empty list to store the results in
-#' results <- list()
+#' # Read in a list of results
+#' results <- read_stats(system.file("results.csv", package = "tidystats"))
 #'
-#' # Conduct statistical tests
-#' model <- t.test(extra ~ group, data = sleep, paired = TRUE)
+#' # Example: t-test
+#' report(results, identifier = "t_test")
 #'
-#' # Add output to the results list
-#' results <- add_stats(model, results, identifier = "M1")
+#' # Example: correlation, r statistic only
+#' report(results, identifier = "correlation", statistic = "r")
 #'
-#' # Report results
-#' report(results, identifier = "M1")
+#' # Example: regression term
+#' report(results, identifier = "regression", term = "groupTrt")
+#' report(results, identifier = "regression", term_nr = 2)
+#'
+#' # Example: ANOVA
+#' report(results, identifier = "ANOVA", term = "N")
 #'
 #' @export
 
