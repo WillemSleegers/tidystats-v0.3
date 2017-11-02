@@ -6,7 +6,7 @@ tidystats
 **Authors:** [Willem Sleegers](http://willemsleegers.com/), [Arnoud Plantinga](http://www.arnoudplantinga.nl/)<br/>
 **License:** [MIT](https://opensource.org/licenses/MIT)
 
-`tidystats` is a package to easily create a text file containing the output of statistical models. The goal of this package is to have researchers accompany their manuscript with an organized data file of statistical results, based on [tidy data](http://vita.had.co.nz/papers/tidy-data.html) principles, in order to greatly improve the reliability of meta-research and  to reduce the efforts needed to perform this type of research.
+`tidystats` is a package to easily create a text file containing the output of statistical models. The goal of this package is to help researchers accompany their manuscript with an organized data file of statistical results, based on [tidy data](http://vita.had.co.nz/papers/tidy-data.html) principles, in order to greatly improve the reliability of meta-research and  to reduce the efforts needed to perform this type of research.
 
 Besides enabling you to create an organized data file of statistical results, the `tidystats` package also contains functions to help you report statistics in APA style using [R Markdown](http://rmarkdown.rstudio.com).
 
