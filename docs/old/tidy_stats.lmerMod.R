@@ -21,70 +21,67 @@ tidy_stats.lmerMod <- function(model) {
   summary <- summary(model)
 
   # Extract model statistics
-  model <- as_data_frame(summary$AICtab) %>%
-    mutate(
-      statistic = names(summary$AICtab),
-      group = "model",
-    ) %>%
-    bind_rows(data_frame(
+  model_N <- data_frame(
       value = summary$devcomp$dims[1],
       statistic = "N",
-      group = "model"))
+      term = "(Observations)",
+      term_nr = 1,
+      group = "model")
 
-  model_terms <- as_data_frame(summary$ngrps) %>%
+  model_N_groups <- as_data_frame(summary$ngrps) %>%
     mutate(
       statistic = "N",
       term = names(summary$ngrps),
+      term_nr = 1:n() + 1,
       group = "model"
     )
 
-  model <- bind_rows(model, model_terms)
+  model_N <- bind_rows(model_N, model_N_groups)
 
   # Extract random effects statistics
-  as_data_frame(summary$varcor) %>%
+  random <- as_data_frame(summary$varcor) %>%
+    unite(term, grp, starts_with("var"), sep = "-") %>%
     mutate(
-      term = paste(grp, var1, var2, sep = "_"),
-      term = gsub("-NA", "", term),
-      order = 1:n(),
-      group = "random effect"
+      term = gsub("-?NA", "", term),
+      term_nr = 1:n() + max(model_N$term_nr),
+      group = "random"
     ) %>%
     rename(
-      variance = vcov,
+      var = vcov,
       SD = sdcor
     ) %>%
-    gather("statistic", "value", variance, SD) %>%
-    arrange(order) %>%
-    select(-order, -grp, -var1, -var2)
+    gather("statistic", "value", var, SD) %>%
+    arrange(term_nr)
 
   # Extract statistics of fixed effects
   fixed <- as_data_frame(summary$coefficients) %>%
     mutate(
       term = rownames(summary$coefficients),
-      order = 1:n(),
-      group = "fixed effect"
+      term_nr = 1:n() + max(random$term_nr),
+      group = "fixed"
     ) %>%
     rename(
       estimate = `Estimate`,
       SE = `Std. Error`,
       t = `t value`
     ) %>%
-    gather("statistic", "value", -term, -order, -notes) %>%
-    arrange(order) %>%
-    select(-order)
+    gather("statistic", "value", -term, -term_nr, -group) %>%
+    arrange(term_nr)
 
   # Combine both
-  output <- bind_rows(random, fixed)
+  output <- bind_rows(model_N, random)
+  output <- bind_rows(output, fixed)
 
   # Not included:
+  # - REML criterion at convergence
   # - Scaled residuals
-  # - Number of obs
   # - Correlation of Fixed Effects
 
   # Add method
   output$method <- "Linear mixed model"
 
   # Order variables
-  output <- select(output, term, statistic, value, method, notes)
+  output <- select(output, group, term, term_nr, statistic, value, method)
 
   return(output)
 }
