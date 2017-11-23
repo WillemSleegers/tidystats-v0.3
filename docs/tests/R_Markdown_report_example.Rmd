@@ -1,0 +1,30 @@
+---
+title: "Tidystats R Markdown report example"
+output:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load packages
+library(tidyverse)
+library(knitr)
+library(tidystats)
+
+# Options
+options(digits = 2)
+```
+
+### Setup
+
+Start by reading in the data frame containing the output of all the statistical models.
+
+```{r get_results, message = FALSE}
+results <- read_stats("results.csv")
+```
+
+### Sleep data
+
+We conducted a paired *t*-test to test the effect of condition on extra hours of sleep. This revealed a significant effect, `r report(results, "M1_4")`.
+
