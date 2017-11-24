@@ -62,6 +62,9 @@ results <- add_stats(model2_3, results, identifier = "M2_3")
 # Model with 1 predictor
 model3_1 <- lm(call_parent ~ condition, data = cox)
 summary(model3_1)
+
+tidy_stats(model3_1)
+
 results <- add_stats(model3_1, results, identifier = "M3_1")
 
 # Model with 2 predictors
@@ -242,4 +245,13 @@ bfi %>%
   select(A1, A2, A3, A4, A5) %>%
   alpha(check.keys = TRUE) -> model8_1
 
+
+
+# Tidy lm -------------------------------------------------------------------------------------
+
+model <- tidy_lm(extra ~ group, data = sleep)
+summary.tidy_lm(model)
+
+model_glm <- glm(extra ~ group, data = sleep)
+summary(model_glm)
 
