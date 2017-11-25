@@ -24,6 +24,11 @@ report_lm <- function(results, identifier, term = NULL, term_nr = NULL, statisti
   # Extract the results of the specific model through its identifier
   res <- results[[identifier]]
 
+  # Check whether the statistic exists, if provided
+  if (!is.null(statistic) & !statistic %in% res$statistic) {
+    stop("Statistic not found.")
+  }
+
   # Check whether a term is provided, extract data if so, otherwise throw an error
   if (!is.null(term)) {
     res <- res[res$term == term, ]

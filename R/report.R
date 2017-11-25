@@ -27,12 +27,29 @@
 #' # Example: ANOVA
 #' report(results, identifier = "ANOVA", term = "N")
 #'
+#' @import dplyr
+#'
 #' @export
 
 report <- function(results, identifier, term = NULL, term_nr = NULL, statistic = NULL) {
 
+  # Check whether the identifier exists
+  if (!identifier %in% names(results)) {
+    stop("Identifier not found.")
+  }
+
+  res_term <- term
+  res_term_nr <- term_nr
+  res_statistic <- statistic
+
   # Find out which test was used
-  method <- results[[identifier]]$method[1]
+  res <- results[[identifier]]
+  method <- res$method[1]
+
+  # Check whether the statistic exists, if provided
+  if (!is.null(statistic) & !statistic %in% res$statistic) {
+    stop("Statistic not found.")
+  }
 
   # Run the appropriate report function
   if (grepl("t-test", method)) {
@@ -46,9 +63,43 @@ report <- function(results, identifier, term = NULL, term_nr = NULL, statistic =
       } else {
         if (grepl("ANOVA|ANCOVA", method)) {
           output <- report_anova(results, identifier, term, term_nr, statistic)
+        } else {
+          output <- NULL
         }
       }
     }
+  }
+
+  # If output is null, it means we do not yet have a reporting function
+  # However, we can still report one statistic at the time
+  if (is.null(output)) {
+    if (!is.null(statistic)) {
+
+      # Check if term information is required
+      if ("term" %in% names(res)) {
+        if (length(res$term) > 0) {
+          if (is.null(term) & is.null(term_nr)) {
+            stop("No term information found.")
+          } else {
+            if (!is.null(term)) {
+              output <- format(filter(res, term == res_term & statistic == res_statistic)$value,
+                               digits = 2, nsmall = 2)
+            } else {
+              output <- format(
+                filter(res, term_nr == res_term_nr & statistic == res_statistic)$value,
+                digits = 2, nsmall = 2)
+            }
+          }
+        }
+      } else {
+          output <- format(filter(res, statistic == res_statistic)$value, digits = 2, nsmall = 2)
+      }
+    }
+  }
+
+  # If it is still null, no statistic was supplied
+  if (is.null(output)) {
+    stop("Reporting for this method is not supported (but try reporting a single statistic at the time).")
   }
 
   return(output)
