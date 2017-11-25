@@ -45,17 +45,50 @@ add_stats_to_model <- function(output, results, identifier, statistics = NULL) {
   # Create the new element
   new_element <- output
 
-  # Filter out statistics
+  # Check whether the new element contains the necessary columns
+  if (!"statistic" %in% names(new_element)) {
+    stop("No statistic column found.")
+  } else if (!"value" %in% names(new_element)) {
+    stop("No value column found.")
+  } else if ("term" %in% names(res)) {
+    if (length(res$term) > 0) {
+      if (!sum(c("term", "term_nr") %in% names(new_element)) > 0) {
+        stop("No term information found.")
+      }
+    }
+  }
+
+  # Filter out statistics when only a subset of the statistics are added
   if (!is.null(statistics)) {
     new_element <- dplyr::filter(new_element, statistic %in% statistics)
   }
 
   # Merge with the model statistics
-  new_element <- dplyr::full_join(res, new_element, by = c("term", "statistic", "value")) %>%
-    dplyr::group_by(term) %>%
-    dplyr::mutate(term_nr = first(term_nr)) %>%
-    dplyr::arrange(term_nr) %>%
-    dplyr::ungroup()
+  if ("term" %in% names(res)) {
+    if (length(res$term) > 0) {
+      if ("term" %in% names(new_element)) {
+        new_element <- dplyr::full_join(res, new_element, by = c("term", "statistic", "value")) %>%
+          dplyr::group_by(term) %>%
+          dplyr::mutate(
+            term_nr = first(term_nr),
+            method = first(method)
+          )
+      } else {
+        new_element <- dplyr::full_join(res, new_element, by = c("term_nr", "statistic", "value")) %>%
+          dplyr::group_by(term_nr) %>%
+          dplyr::mutate(
+            term = first(term),
+            method = first(method)
+          )
+      }
+      new_element <- new_element %>%
+        dplyr::arrange(term_nr) %>%
+        dplyr::ungroup()
+    }
+  } else {
+    new_element <- dplyr::full_join(res, new_element, by = c("statistic", "value")) %>%
+      dplyr::mutate(method = first(method))
+  }
 
   # Replace the model statistics
   results[[identifier]] <- new_element
