@@ -33,6 +33,9 @@ tidy_stats.aov <- function(model) {
     dplyr::filter(!is.na(value)) %>%
     dplyr::arrange(term_nr)
 
+  # Remove spaces from term
+  output$term <- gsub(" ", "", output$term)
+
   # Determine the type of ANOVA
   classes <- attr(model$terms, "dataClasses")[-1]
   method <- dplyr::case_when(
