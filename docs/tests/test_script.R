@@ -2,7 +2,8 @@
 # Setup ---------------------------------------------------------------------------------------
 
 # Load packages
-# library(devtools)
+library(devtools)
+install()
 
 # install_github("willemsleegers/tidystats")
 library(tidystats)
@@ -243,3 +244,28 @@ bfi %>%
   alpha(check.keys = TRUE) -> model8_1
 
 
+
+# Mark’s issue --------------------------------------------------------------------------------
+
+results <- aov(lm(extra ~ group, data = sleep)) %>%
+  add_stats(results)
+
+results <- t.test(extra ~ group, data = sleep) %>%
+  add_stats(results)
+
+extra <- tibble(
+  term_nr = 1,
+  statistic = "test",
+  value = 1.0
+)
+
+extra2 <- tibble(
+  statistic = "test",
+  value = 1.0
+)
+
+add_stats_to_model(extra, results, identifier = "M1")
+add_stats_to_model(extra2, results, identifier = "M2")
+
+# Requirements should be term or term_nr, statistic, value
+# It should also automatically adopt the method (and the term or term_nr, depending on what was provided)
