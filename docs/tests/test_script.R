@@ -179,6 +179,17 @@ report(results, "M4_7", term = "affect")
 
 # Unfinished statistical models ---------------------------------------------------------------
 
+
+# effsize package -----------------------------------------------------------------------------
+
+library(effsize)
+
+?cohen.d
+
+d <- cohen.d(extra ~ group, data = sleep, paired = T)
+
+class(d)
+
 # Multilevel models ---------------------------------------------------------------------------
 
 # Use the politeness data from http://www.bodowinter.com/tutorial/bw_LME_tutorial2.pdf
@@ -264,8 +275,34 @@ extra2 <- tibble(
   value = 1.0
 )
 
-add_stats_to_model(extra, results, identifier = "M1")
+add_stats_to_model(extra, results, identifier = "M4")
 add_stats_to_model(extra2, results, identifier = "M2")
 
 # Requirements should be term or term_nr, statistic, value
 # It should also automatically adopt the method (and the term or term_nr, depending on what was provided)
+
+
+# Manually adding model output ----------------------------------------------------------------
+
+x_squared_data <- tibble(
+  statistic = c("X-squared", "df", "p"),
+  value = c(5.4885, 6, 0.4828),
+  method = "Chi-squared test of independence"
+)
+
+results <- add_stats(x_squared_data, results, identifier = "x_squared")
+
+some_data <- tibble(
+  term = c("group1", "group1", "group2", "group2"),
+  statistic = c("t", "p", "t", "p"),
+  value = c(5.4885, 0.04, 4.828, 0.06),
+  method = "A test"
+)
+
+results <- add_stats(some_data, results, identifier = "some_data")
+
+# Report functions ----------------------------------------------------------------------------
+
+report(results, "M1_1", s = "t")
+
+report(results, "some_data", term = "group1", s = "t")
