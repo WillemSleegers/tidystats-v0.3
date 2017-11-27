@@ -2,7 +2,8 @@
 # Setup ---------------------------------------------------------------------------------------
 
 # Load packages
-# library(devtools)
+library(devtools)
+install()
 
 # install_github("willemsleegers/tidystats")
 library(tidystats)
@@ -247,11 +248,9 @@ bfi %>%
 
 
 
-# Tidy lm -------------------------------------------------------------------------------------
+# Awesome lm -------------------------------------------------------------------------------------
 
-model <- tidy_lm(extra ~ group, data = sleep)
-summary.tidy_lm(model)
-
-model_glm <- glm(extra ~ group, data = sleep)
-summary(model_glm)
+model <- awesome_lm(extra ~ group, data = sleep)
+model <- awesome_lm(extra ~ group, data = sleep, level = .9)
+summary(model)
 
