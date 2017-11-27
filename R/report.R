@@ -73,11 +73,11 @@ report <- function(results, identifier, term = NULL, term_nr = NULL, statistic =
   # If output is null, it means we do not yet have a reporting function
   # However, we can still report one statistic at the time
   if (is.null(output)) {
-    if (!is.null(statistic)) {
+    if (!is.null(res_statistic)) {
 
       # Check if term information is required
       if ("term" %in% names(res)) {
-        if (length(res$term) > 0) {
+        if (sum(!is.na(res$term)) > 0) {
           if (is.null(term) & is.null(term_nr)) {
             stop("No term information found.")
           } else {
@@ -90,9 +90,9 @@ report <- function(results, identifier, term = NULL, term_nr = NULL, statistic =
                 digits = 2, nsmall = 2)
             }
           }
-        }
-      } else {
+        } else {
           output <- format(filter(res, statistic == res_statistic)$value, digits = 2, nsmall = 2)
+        }
       }
     }
   }
@@ -104,3 +104,4 @@ report <- function(results, identifier, term = NULL, term_nr = NULL, statistic =
 
   return(output)
 }
+
