@@ -1,8 +1,39 @@
-#' Summarizing Tidy Linear Model Fits
+#' Summarizing Awesome Linear Model Fits
+#'
+#' \code{summary} method for class "\code{awesome_lm}"
+#'
+#' @param object an object of class "lm", usually, a result of a call to lm.
+#' @param x an object of class "summary.lm", usually, a result of a call to summary.lm.
+#' @param correlation logical; if TRUE, the correlation matrix of the estimated parameters is returned and printed.
+#' @param digits the number of significant digits to use when printing.
+#' @param symbolic.cor logical. If TRUE, print the correlations in a symbolic form (see symnum) rather than as numbers.
+#' @param signif.stars logical. If TRUE, ‘significance stars’ are printed for each coefficient.
+#' @param ...	 further arguments passed to or from other methods.
+#'
+#' @details code{summary.awesome_lm} is based on \code{summary}.
+#'
+#' @seealso \code{awesome_lm}.
+#'
+#' @examples
+#'
+#' # Annette Dobson (1990) "An Introduction to Generalized Linear Models".
+#' # Page 9: Plant Weight Data.
+#' ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
+#' trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
+#' group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
+#' weight <- c(ctl, trt)
+#'
+#' # Example 1: Standard regresssion
+#' lm1 <- lm(weight ~ group)
+#' summary(lm1)
+#'
+#' # Example 2: 90% confidence intervals
+#' lm2 <- lm(weight ~ group, level = .9)
+#' summary(lm2)
 #'
 #' @export
 
-summary.tidy_lm<- function(object, correlation = FALSE, symbolic.cor = FALSE, ...) {
+summary.awesome_lm<- function(object, correlation = FALSE, symbolic.cor = FALSE, ...) {
 
   z <- object
   p <- z$rank
@@ -98,3 +129,4 @@ summary.tidy_lm<- function(object, correlation = FALSE, symbolic.cor = FALSE, ..
   class(ans) <- "summary.lm"
   ans
 }
+
