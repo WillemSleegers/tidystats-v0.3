@@ -30,7 +30,7 @@ write_stats <- function(results, path, digits = 3) {
   df <- stats_list_to_df(results)
 
   # Round the stats values
-  df$value <- format(df$value, digits = digits, nsmall = 2)
+  df$value <- prettyNum(df$value)
 
   # Write to disk
   readr::write_csv(df, path = path, na = "")
