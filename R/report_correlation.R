@@ -22,8 +22,10 @@ report_correlation <- function(results, identifier, statistic = NULL) {
   res <- results[[identifier]]
 
   # Check whether the statistic exists, if provided
-  if (!is.null(statistic) & !statistic %in% res$statistic) {
-    stop("Statistic not found.")
+  if (!is.null(statistic)) {
+    if (!statistic %in% res$statistic) {
+      stop("Statistic not found.")
+    }
   }
 
   # Check if only a single statistic is asked, otherwise produce a full line of APA results
