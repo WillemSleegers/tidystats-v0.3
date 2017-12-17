@@ -2,6 +2,7 @@
 title: "Tidystats R Markdown report example"
 output:
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -10,11 +11,16 @@ knitr::opts_chunk$set(echo = TRUE)
 # Load packages
 library(tidyverse)
 library(knitr)
+library(kableExtra)
 library(tidystats)
 
 # Options
 options(digits = 2)
 options(knitr.kable.NA = '-')
+```
+
+```{r}
+print(opts_knit$get("rmarkdown.pandoc.to"))
 ```
 
 ### Setup

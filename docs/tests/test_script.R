@@ -3,6 +3,7 @@
 
 # Load packages
 library(devtools)
+document()
 install()
 
 # install_github("willemsleegers/tidystats")
@@ -257,32 +258,6 @@ bfi %>%
 
 
 
-# Mark’s issue --------------------------------------------------------------------------------
-
-results <- aov(lm(extra ~ group, data = sleep)) %>%
-  add_stats(results)
-
-results <- t.test(extra ~ group, data = sleep) %>%
-  add_stats(results)
-
-extra <- tibble(
-  term_nr = 1,
-  statistic = "test",
-  value = 1.0
-)
-
-extra2 <- tibble(
-  statistic = "test",
-  value = 1.0
-)
-
-add_stats_to_model(extra, results, identifier = "M4")
-add_stats_to_model(extra2, results, identifier = "M2")
-
-# Requirements should be term or term_nr, statistic, value
-# It should also automatically adopt the method (and the term or term_nr, depending on what was provided)
-
-
 # Manually adding model output ----------------------------------------------------------------
 
 x_squared_data <- tibble(
@@ -304,16 +279,19 @@ results <- add_stats(some_data, results, identifier = "some_data")
 
 # Report functions ----------------------------------------------------------------------------
 
-report(results, "M1_1", s = "t")
+report(results, "M1_1")
+report(results, "M3_1", term_nr = 2)
 report(results, "x_squared", s = "p")
 report(results, "some_data", term = "group1", s = "p")
 
-
 # Report table functions ----------------------------------------------------------------------
 
-
-
-
+report_table_lm(results, "M3_1")
+report_table_lm(results, "M3_1", term_labels = c("Intercept", "Condition"))
+report_table_lm(results, "M3_1", term_labels = c("Intercept", "Condition"), statistics = c("b", "p"))
+report_table_lm(results, "M3_1", terms = "conditionmortality salience", term_labels = c("Condition"))
+report_table_lm(results, "M3_1", term_nrs = 2, term_labels = c("Condition"))
+report_table_lm(results, "M3_1", term_nrs = 2, term_labels = c("Condition"), include_model = FALSE)
 
 # Glmnet package support ----------------------------------------------------------------------
 
