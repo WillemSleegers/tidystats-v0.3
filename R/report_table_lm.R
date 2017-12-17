@@ -17,7 +17,8 @@
 #' # Example: regression term
 #' report_table(results, identifier = "regression")
 #'
-#' @importFrom knitr kable
+#' @import knitr
+#' @import kableExtra
 #'
 #' @export
 
@@ -26,35 +27,55 @@ report_table_lm <- function(results, identifier, terms = NULL, term_nrs = NULL, 
 
   # Extract the results of the specific model through its identifier
   res <- results[[identifier]]
+
+  # Separate the terms and model statistics
   res_terms <- filter(res, term != "(Model)")
   res_model <- filter(res, term == "(Model)")
 
-  # Restructure data frames and reorder columns
+  # Filter out terms, if provided
+  if (!is.null(terms)) {
+    res_terms <- filter(res_terms, term %in% terms)
+  } else if (!is.null(term_nrs)) {
+    res_terms <- filter(res_terms, term_nr %in% term_nrs)
+  }
+
+  # Prepare term results
   res_terms <- res_terms %>%
     spread(statistic, value) %>%
-    select(term, b, SE, t, df, p)
-
-  res_model <- res_model %>%
-    spread(statistic, value) %>%
-    mutate(df = paste(`numerator df`, `denominator df`, sep = ", ")) %>%  # Concatenate the dfs
-    select(term, `F`, df, p, `R squared`, `adjusted R squared`)
+    select(-term_nr, -method) %>%
+    rename(Term = term) %>%
+    select(Term, b, SE, t, df, p)
 
   # Replace term labels, if provided
   if (!is.null(term_labels)) {
-    res_terms$term <- term_labels
+    res_terms$Term <- term_labels
   }
 
-  # Combine results, if include_model is TRUE
+  # Filter out statistics, if provided
+  if (!is.null(statistics)) {
+    # Check if the statistics argument only contains valid statistics
+    if (sum(!statistics %in% c("b", "SE", "t", "df", "p")) > 0) {
+      stop("The statistics argument contains invalid statistics.")
+    }
+
+    res_terms <- select(res_terms, Term, one_of(statistics))
+  }
+
+  # Format p-values, if requested
+  if ("p" %in% names(res_terms)) {
+    res_terms$p <- report_p_value(res_terms$p)
+  }
+
+  # Create table
+  format <- print(opts_knit$get("rmarkdown.pandoc.to"))
+  output <- kable(res_terms, format = format, escape = FALSE) %>%
+    kable_styling(full_width = FALSE, position = "left")
+
+  # Prepare model results, if not excluded
   if (include_model) {
-
-    res_model <- bind_rows(res_model, data_frame(term = res_terms$term)) %>%
-      select(-term)
-    res_terms <- bind_rows(data_frame(term = "Model"), res_terms)
-
-    output <- cbind(res_terms, res_model)
-  } else {
-    output <- res_terms
+    footnote_model <- paste("Model:", report_lm(results, identifier, term = "(Model)"))
+    output <- kableExtra::add_footnote(output, footnote_model, notation = "number")
   }
 
-  return(knitr::kable(output))
+  return(output)
 }
