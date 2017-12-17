@@ -15,12 +15,8 @@ library(kableExtra)
 library(tidystats)
 
 # Options
-options(digits = 2)
+options(digits = 3)
 options(knitr.kable.NA = '-')
-```
-
-```{r}
-print(opts_knit$get("rmarkdown.pandoc.to"))
 ```
 
 ### Setup
@@ -31,16 +27,8 @@ Start by reading in the data frame containing the output of all the statistical 
 results <- read_stats("results.csv")
 ```
 
-### Regression results
-
-```{r}
-results %>%
-  stats_list_to_df() %>%
-  filter(method == "Linear regression") %>%
-  kable()
-```
-
 ### Regression table examples
 
 `r report_table_lm(results, "M3_1")`
+`r report_table_lm(results, "M3_1", term_labels = c("Intercept", "Condition"))`
 
