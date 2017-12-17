@@ -4,6 +4,7 @@
 #'
 #' @param results A tidy stats list.
 #' @param path Path or connection to write to.
+#' @param digits How many significant digits are to be used for rounding. Default is 3.
 #'
 #' @examples
 #' # Create an empty list to store the results in
@@ -23,8 +24,14 @@
 #'
 #' @export
 
-write_stats <- function(results, path) {
+write_stats <- function(results, path, digits = 3) {
+
+  # Convert list to a data frame
   df <- stats_list_to_df(results)
 
+  # Round the stats values
+  df$value <- format(df$value, digits = digits, nsmall = 2)
+
+  # Write to disk
   readr::write_csv(df, path = path, na = "")
 }
