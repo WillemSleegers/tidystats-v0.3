@@ -7,7 +7,7 @@
 report_p_value(p_value)
 }
 \arguments{
-\item{p_value}{A p-value.}
+\item{p_value}{One or more p-values.}
 }
 \description{
 A helper function to report p values in APA style.
@@ -16,5 +16,6 @@ A helper function to report p values in APA style.
 report_p_value(0.532)
 report_p_value(0.0432)
 report_p_value(0.0000121)
+report_p_value(0.321, 0.0312, 0.00000098)
 
 }
