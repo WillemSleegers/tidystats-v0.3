@@ -64,11 +64,13 @@ report_table_lm <- function(results, identifier, terms = NULL, term_nrs = NULL, 
   # Format p-values, if requested
   if ("p" %in% names(res_terms)) {
     res_terms$p <- report_p_value(res_terms$p)
+    res_terms$p <- gsub("[*p= ]", "", res_terms$p)
+    res_terms$p <- gsub("<", "< ", res_terms$p)
   }
 
   # Create table
   format <- print(opts_knit$get("rmarkdown.pandoc.to"))
-  output <- kable(res_terms, format = format, escape = FALSE) %>%
+  output <- kable(res_terms, format = format, escape = FALSE, digits = 2) %>%
     kable_styling(full_width = FALSE, position = "left")
 
   # Prepare model results, if not excluded
