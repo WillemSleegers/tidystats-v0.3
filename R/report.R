@@ -46,11 +46,6 @@ report <- function(results, identifier, term = NULL, term_nr = NULL, statistic =
   res <- results[[identifier]]
   method <- res$method[1]
 
-  # Check whether the statistic exists, if provided
-  if (!is.null(statistic) & !statistic %in% res$statistic) {
-    stop("Statistic not found.")
-  }
-
   # Run the appropriate report function
   if (grepl("t-test", method)) {
     output <- report_t_test(results, identifier, statistic)
