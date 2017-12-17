@@ -14,6 +14,7 @@ library(tidystats)
 
 # Options
 options(digits = 2)
+options(knitr.kable.NA = '-')
 ```
 
 ### Setup
@@ -24,7 +25,16 @@ Start by reading in the data frame containing the output of all the statistical 
 results <- read_stats("results.csv")
 ```
 
-### Sleep data
+### Regression results
 
-We conducted a paired *t*-test to test the effect of condition on extra hours of sleep. This revealed a significant effect, `r report(results, "M1_4")`.
+```{r}
+results %>%
+  stats_list_to_df() %>%
+  filter(method == "Linear regression") %>%
+  kable()
+```
+
+### Regression table examples
+
+`r report_table_lm(results, "M3_1")`
 

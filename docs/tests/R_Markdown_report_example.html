@@ -34,7 +34,7 @@ if (window.hljs) {
   hljs.configure({languages: []});
   hljs.initHighlightingOnLoad();
   if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlightingOnLoad(); }, 0);
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
   }
 }
 </script>
@@ -127,9 +127,662 @@ $(document).ready(function () {
 <p>Start by reading in the data frame containing the output of all the statistical models.</p>
 <pre class="r"><code>results &lt;- read_stats(&quot;results.csv&quot;)</code></pre>
 </div>
+<div id="regression-results" class="section level3">
+<h3>Regression results</h3>
+<pre class="r"><code>results %&gt;%
+  stats_list_to_df() %&gt;%
+  filter(method == &quot;Linear regression&quot;) %&gt;%
+  kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">identifier</th>
+<th align="left">term</th>
+<th align="left">statistic</th>
+<th align="right">value</th>
+<th align="left">method</th>
+<th align="left">type</th>
+<th align="left">confirmatory</th>
+<th align="left">notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">(Intercept)</td>
+<td align="left">b</td>
+<td align="right">24.39</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">(Intercept)</td>
+<td align="left">SE</td>
+<td align="right">1.50</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">(Intercept)</td>
+<td align="left">t</td>
+<td align="right">16.24</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">(Intercept)</td>
+<td align="left">p</td>
+<td align="right">0.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">(Intercept)</td>
+<td align="left">df</td>
+<td align="right">198.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">conditionmortality salience</td>
+<td align="left">b</td>
+<td align="right">2.77</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">conditionmortality salience</td>
+<td align="left">SE</td>
+<td align="right">2.12</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">conditionmortality salience</td>
+<td align="left">t</td>
+<td align="right">1.30</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">conditionmortality salience</td>
+<td align="left">p</td>
+<td align="right">0.19</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">conditionmortality salience</td>
+<td align="left">df</td>
+<td align="right">198.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">(Model)</td>
+<td align="left">R squared</td>
+<td align="right">0.01</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">(Model)</td>
+<td align="left">adjusted R squared</td>
+<td align="right">0.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">(Model)</td>
+<td align="left">F</td>
+<td align="right">1.70</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">(Model)</td>
+<td align="left">numerator df</td>
+<td align="right">1.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_1</td>
+<td align="left">(Model)</td>
+<td align="left">denominator df</td>
+<td align="right">198.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_1</td>
+<td align="left">(Model)</td>
+<td align="left">p</td>
+<td align="right">0.19</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">(Intercept)</td>
+<td align="left">b</td>
+<td align="right">38.31</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">(Intercept)</td>
+<td align="left">SE</td>
+<td align="right">7.19</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">(Intercept)</td>
+<td align="left">t</td>
+<td align="right">5.33</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">(Intercept)</td>
+<td align="left">p</td>
+<td align="right">0.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">(Intercept)</td>
+<td align="left">df</td>
+<td align="right">197.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">conditionmortality salience</td>
+<td align="left">b</td>
+<td align="right">2.40</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">conditionmortality salience</td>
+<td align="left">SE</td>
+<td align="right">2.12</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">conditionmortality salience</td>
+<td align="left">t</td>
+<td align="right">1.13</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">conditionmortality salience</td>
+<td align="left">p</td>
+<td align="right">0.26</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">conditionmortality salience</td>
+<td align="left">df</td>
+<td align="right">197.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">anxiety</td>
+<td align="left">b</td>
+<td align="right">-4.27</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">anxiety</td>
+<td align="left">SE</td>
+<td align="right">2.16</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">anxiety</td>
+<td align="left">t</td>
+<td align="right">-1.98</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">anxiety</td>
+<td align="left">p</td>
+<td align="right">0.05</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">anxiety</td>
+<td align="left">df</td>
+<td align="right">197.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">(Model)</td>
+<td align="left">R squared</td>
+<td align="right">0.03</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">(Model)</td>
+<td align="left">adjusted R squared</td>
+<td align="right">0.02</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">(Model)</td>
+<td align="left">F</td>
+<td align="right">2.82</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">(Model)</td>
+<td align="left">numerator df</td>
+<td align="right">2.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_2</td>
+<td align="left">(Model)</td>
+<td align="left">denominator df</td>
+<td align="right">197.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_2</td>
+<td align="left">(Model)</td>
+<td align="left">p</td>
+<td align="right">0.06</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">(Intercept)</td>
+<td align="left">b</td>
+<td align="right">29.45</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">(Intercept)</td>
+<td align="left">SE</td>
+<td align="right">9.93</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">(Intercept)</td>
+<td align="left">t</td>
+<td align="right">2.97</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">(Intercept)</td>
+<td align="left">p</td>
+<td align="right">0.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">(Intercept)</td>
+<td align="left">df</td>
+<td align="right">196.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">conditionmortality salience</td>
+<td align="left">b</td>
+<td align="right">20.29</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">conditionmortality salience</td>
+<td align="left">SE</td>
+<td align="right">14.02</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">conditionmortality salience</td>
+<td align="left">t</td>
+<td align="right">1.45</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">conditionmortality salience</td>
+<td align="left">p</td>
+<td align="right">0.15</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">conditionmortality salience</td>
+<td align="left">df</td>
+<td align="right">196.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">anxiety</td>
+<td align="left">b</td>
+<td align="right">-1.55</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">anxiety</td>
+<td align="left">SE</td>
+<td align="right">3.01</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">anxiety</td>
+<td align="left">t</td>
+<td align="right">-0.51</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">anxiety</td>
+<td align="left">p</td>
+<td align="right">0.61</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">anxiety</td>
+<td align="left">df</td>
+<td align="right">196.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">conditionmortality salience:anxiety</td>
+<td align="left">b</td>
+<td align="right">-5.57</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">conditionmortality salience:anxiety</td>
+<td align="left">SE</td>
+<td align="right">4.31</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">conditionmortality salience:anxiety</td>
+<td align="left">t</td>
+<td align="right">-1.29</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">conditionmortality salience:anxiety</td>
+<td align="left">p</td>
+<td align="right">0.20</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">conditionmortality salience:anxiety</td>
+<td align="left">df</td>
+<td align="right">196.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">(Model)</td>
+<td align="left">R squared</td>
+<td align="right">0.04</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">(Model)</td>
+<td align="left">adjusted R squared</td>
+<td align="right">0.02</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">(Model)</td>
+<td align="left">F</td>
+<td align="right">2.44</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">(Model)</td>
+<td align="left">numerator df</td>
+<td align="right">3.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">M3_3</td>
+<td align="left">(Model)</td>
+<td align="left">denominator df</td>
+<td align="right">196.00</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">M3_3</td>
+<td align="left">(Model)</td>
+<td align="left">p</td>
+<td align="right">0.07</td>
+<td align="left">Linear regression</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="sleep-data" class="section level3">
 <h3>Sleep data</h3>
-<p>We conducted a paired <em>t</em>-test to test the effect of condition on extra hours of sleep. This revealed a significant effect, <em>t</em>(199) = 14.18, <em>p</em> &lt; .001.</p>
+<p>We conducted a paired <em>t</em>-test to test the effect of condition on extra hours of sleep. This revealed a significant effect.</p>
 </div>
 
 

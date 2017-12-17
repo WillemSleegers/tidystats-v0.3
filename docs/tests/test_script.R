@@ -68,7 +68,7 @@ results <- add_stats(model3_1, results, identifier = "M3_1")
 # Model with 2 predictors
 model3_2 <- lm(call_parent ~ condition + anxiety, data = cox)
 summary(model3_2)
-results <- add_stats(model3_2, results, identifier = "M3_2")
+results <- add_stats(model3_2, results, identifier = "M3_2", confirmatory = TRUE)
 
 # Model with interaction effect
 model3_3 <- lm(call_parent ~ condition * anxiety, data = cox)
@@ -128,11 +128,12 @@ results <- add_stats(model4_7, results, identifier = "M4_7")
 
 # Calculate confidence intervals
 model3_1_CIs <- confint(model3_1)
+model3_2_CIs <- confint(model3_2)
 
 # Tidy results and add results to existing model
-results <- model3_1_CIs %>%
+model3_1_CIs %>%
   tidy_stats_confint() %>%
-  add_stats_to_model(results, identifier = "M3_1")
+  add_stats_to_model(results, identifier = "M3_2")
 
 # Convert to data frame -----------------------------------------------------------------------
 
@@ -304,5 +305,27 @@ results <- add_stats(some_data, results, identifier = "some_data")
 # Report functions ----------------------------------------------------------------------------
 
 report(results, "M1_1", s = "t")
+report(results, "x_squared", s = "p")
+report(results, "some_data", term = "group1", s = "p")
 
-report(results, "some_data", term = "group1", s = "t")
+
+# Report table functions ----------------------------------------------------------------------
+
+
+
+
+
+# Glmnet package support ----------------------------------------------------------------------
+
+library(glmnet)
+data(QuickStartExample)
+
+fit = glmnet(x, y)
+plot(fit, label = T)
+
+
+
+results$M3_1 %>%
+  spread(statistic, value) %>%
+  #select(term, b, SE, t, df, p, `F`, `numerator df`, `denominator df`) %>%
+  View()
