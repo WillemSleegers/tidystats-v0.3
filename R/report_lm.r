@@ -66,7 +66,7 @@ report_lm <- function(results, identifier, term = NULL, term_nr = NULL, statisti
       df_den <- res$value[res$statistic == "denominator df"]
       p <- report_p_value(res$value[res$statistic == "p"])
 
-      output <- paste0("adjusted *R*<sup>2</sup> = ", adj_r, ", *F*(", df_num, ", ",
+      output <- paste0("adjusted *R*^2^ = ", adj_r, ", *F*(", df_num, ", ",
                             df_den, ") = ", f, ", ", p)
     } else {
       b <- format(res$value[res$statistic == "b"], digits = 2, nsmall = 2)
