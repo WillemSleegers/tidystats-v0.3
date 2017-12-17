@@ -66,7 +66,7 @@ report <- function(results, identifier, term = NULL, term_nr = NULL, statistic =
   }
 
   # If output is null, it means we do not yet have a reporting function
-  # However, we can still report one statistic at the time
+  # However, we can still report one statistic at the time, if one is provided
   if (is.null(output)) {
     if (!is.null(res_statistic)) {
 
@@ -85,9 +85,9 @@ report <- function(results, identifier, term = NULL, term_nr = NULL, statistic =
                 digits = 2, nsmall = 2)
             }
           }
-        } else {
-          output <- format(filter(res, statistic == res_statistic)$value, digits = 2, nsmall = 2)
         }
+      } else {
+        output <- format(filter(res, statistic == res_statistic)$value, digits = 2, nsmall = 2)
       }
     }
   }
