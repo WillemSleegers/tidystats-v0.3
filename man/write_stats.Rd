@@ -4,12 +4,14 @@
 \alias{write_stats}
 \title{Save the results in a tidy stats list to a .csv file}
 \usage{
-write_stats(results, path)
+write_stats(results, path, digits = 3)
 }
 \arguments{
 \item{results}{A tidy stats list.}
 
 \item{path}{Path or connection to write to.}
+
+\item{digits}{How many significant digits are to be used for rounding. Default is 3.}
 }
 \description{
 \code{write_stats} converts a tidy stats results list to a data frame and then saves the data to a .csv file.
