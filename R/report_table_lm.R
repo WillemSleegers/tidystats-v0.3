@@ -18,7 +18,6 @@
 #' report_table(results, identifier = "regression")
 #'
 #' @import knitr
-#' @import kableExtra
 #'
 #' @export
 
@@ -42,13 +41,29 @@ report_table_lm <- function(results, identifier, terms = NULL, term_nrs = NULL, 
   # Prepare term results
   res_terms <- res_terms %>%
     spread(statistic, value) %>%
-    select(-term_nr, -method) %>%
-    rename(Term = term) %>%
-    select(Term, b, SE, t, df, p)
+    select(-term_nr, -method)
+
+  # Format p-values
+  res_terms$p <- report_p_value(res_terms$p)
+  res_terms$p <- str_replace_all(res_terms$p, "[*p= ]", "")
+  res_terms$p <- str_replace(res_terms$p, "<", "< ")
+
+  # Round statistics
+  res_terms <- mutate_if(res_terms, is.numeric, round, 2)
+
+  # Check whether confidence intervals are included
+  # If so, combine them into a single column called 'CI'
+  if (sum(str_detect(names(res_terms), "[0-9]+ %")) > 0) {
+    res_terms <- res_terms %>%
+      unite(col = CI, matches("[0-9]+ %"), sep = "; ")
+  }
+
+  # Reorder columns
+  res_terms <- select(res_terms, term, b, SE, matches("CI"), t, df, p)
 
   # Replace term labels, if provided
   if (!is.null(term_labels)) {
-    res_terms$Term <- term_labels
+    res_terms$term <- term_labels
   }
 
   # Filter out statistics, if provided
@@ -58,25 +73,30 @@ report_table_lm <- function(results, identifier, terms = NULL, term_nrs = NULL, 
       stop("The statistics argument contains invalid statistics.")
     }
 
-    res_terms <- select(res_terms, Term, one_of(statistics))
+    res_terms <- select(res_terms, term, one_of(statistics))
   }
 
-  # Format p-values, if requested
-  if ("p" %in% names(res_terms)) {
-    res_terms$p <- report_p_value(res_terms$p)
-    res_terms$p <- gsub("[*p= ]", "", res_terms$p)
-    res_terms$p <- gsub("<", "< ", res_terms$p)
-  }
+  # Add asterisks to statistic columns to make them cursive
+  names(res_terms) <- paste0("*", names(res_terms), "*")
+
+  # Rename 'term' to 'Term'
+  res_terms <- rename(res_terms, Term = `*term*`)
+
+  # Determine alignment
+  align <- case_when(
+    names(res_terms) == "Term" ~ "l",
+    TRUE ~ "r"
+  )
 
   # Create table
-  format <- print(opts_knit$get("rmarkdown.pandoc.to"))
-  output <- kable(res_terms, format = format, escape = FALSE, digits = 2) %>%
-    kable_styling(full_width = FALSE, position = "left")
+  output <- kable(res_terms, align = align, caption = paste("Regression output of", identifier,
+                                                            digits = NULL))
 
-  # Prepare model results, if not excluded
+  # Add model results, if not excluded
   if (include_model) {
     footnote_model <- paste("Model:", report_lm(results, identifier, term = "(Model)"))
-    output <- kableExtra::add_footnote(output, footnote_model, notation = "number")
+    output[length(output) + 1] <- ""
+    output[length(output) + 1] <- footnote_model
   }
 
   return(output)
