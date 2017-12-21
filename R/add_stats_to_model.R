@@ -91,7 +91,9 @@ add_stats_to_model <- function(output, results, identifier, statistics = NULL) {
   }
 
   # If there is a 'confirmatory' column; add the same information to the new rows
-  new_element <- mutate(new_element, confirmatory = first(confirmatory))
+  if (has_name(new_element, "confirmatory")) {
+    new_element <- mutate(new_element, confirmatory = first(confirmatory))
+  }
 
   # Replace the model statistics
   results[[identifier]] <- new_element
