@@ -11,11 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 # Load packages
 library(tidyverse)
 library(knitr)
-library(kableExtra)
 library(tidystats)
 
 # Options
-options(digits = 3)
 options(knitr.kable.NA = '-')
 ```
 
@@ -29,6 +27,4 @@ results <- read_stats("results.csv")
 
 ### Regression table examples
 
-`r report_table_lm(results, "M3_1")`
-`r report_table_lm(results, "M3_1", term_labels = c("Intercept", "Condition"))`
-
+`r report_table_lm(results, "M3_3", digits = 3)`

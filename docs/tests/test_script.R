@@ -130,11 +130,20 @@ results <- add_stats(model4_7, results, identifier = "M4_7")
 # Calculate confidence intervals
 model3_1_CIs <- confint(model3_1)
 model3_2_CIs <- confint(model3_2)
+model3_3_CIs <- confint(model3_3)
 
 # Tidy results and add results to existing model
-model3_1_CIs %>%
+results <- model3_1_CIs %>%
+  tidy_stats_confint() %>%
+  add_stats_to_model(results, identifier = "M3_1")
+
+results <- model3_2_CIs %>%
   tidy_stats_confint() %>%
   add_stats_to_model(results, identifier = "M3_2")
+
+results <- model3_3_CIs %>%
+  tidy_stats_confint() %>%
+  add_stats_to_model(results, identifier = "M3_3")
 
 # Convert to data frame -----------------------------------------------------------------------
 
@@ -281,6 +290,7 @@ results <- add_stats(some_data, results, identifier = "some_data")
 
 report(results, "M1_1")
 report(results, "M3_1", term_nr = 2)
+report(results, "M3_1", term_nr = 3)
 report(results, "x_squared", s = "p")
 report(results, "some_data", term = "group1", s = "p")
 
@@ -288,6 +298,7 @@ report(results, "some_data", term = "group1", s = "p")
 
 report_table_lm(results, "M3_1")
 report_table_lm(results, "M3_1", term_labels = c("Intercept", "Condition"))
+report_table_lm(results, "M3_1", term_labels = c("Intercept", "Condition"), include_model = FALSE)
 report_table_lm(results, "M3_1", term_labels = c("Intercept", "Condition"), statistics = c("b", "p"))
 report_table_lm(results, "M3_1", terms = "conditionmortality salience", term_labels = c("Condition"))
 report_table_lm(results, "M3_1", term_nrs = 2, term_labels = c("Condition"))
