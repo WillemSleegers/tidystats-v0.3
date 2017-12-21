@@ -14,10 +14,13 @@
 
 report_p_value <- function(p_value) {
 
-  p_value <- if_else(p_value >= .001,
-                     paste("*p* =", gsub(pattern = "0\\.", replacement = ".",
-                                         x = round(p_value, digits = 3))),
-                     paste("*p* < .001"))
+  p_value <- case_when(
+    p_value >= 0.1 ~
+      paste("*p* =", str_replace(format(round(p_value, 2), nsmall = 2), "0\\.", ".")),
+    p_value < 0.1 & p_value >= .001 ~
+      paste("*p* =", str_replace(format(round(p_value, 3), nsmall = 3), "0\\.", ".")),
+    TRUE ~ paste("*p* < .001")
+  )
 
   return(p_value)
 }
