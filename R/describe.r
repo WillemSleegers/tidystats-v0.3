@@ -8,6 +8,8 @@
 #'
 #' @details The data set can be grouped so that descriptives will be calculated for each group level. Unlike dplyr's \code{summarize}, \code{describe} does not automatically peel off a grouping variable. The function keeps the supplied grouping. However, when descriptives are requested of a non-numeric variable, the function will return a data frame that is grouped by that variable. If the data frame was already grouped, the non-numeric variable will be added to the existing grouping variables.
 #'
+#' Skew and kurtosis are based on the skewness() and kurtosis() functions of the moments package.
+#'
 #' @examples
 #' library(magrittr)
 #' library(dplyr)
@@ -37,16 +39,20 @@ describe <- function(data, variable, na.rm = TRUE) {
     # Calculate descriptives
     output <- data %>%
       dplyr::summarize(
-        missing = sum(is.na(!!var)),
-        n       = n() - missing,
-        M       = mean(!!var, na.rm = na.rm),
-        SD      = sd(!!var, na.rm = na.rm),
-        SE      = SD/sqrt(n),
-        min     = min(!!var, na.rm = na.rm),
-        max     = max(!!var, na.rm = na.rm),
-        range   = diff(range(!!var, na.rm = na.rm)),
-        median  = median(!!var, na.rm = na.rm),
-        mode    = unique(!!var)[which.max(tabulate(match(!!var, unique(!!var))))]
+        missing  = sum(is.na(!!var)),
+        n        = n() - missing,
+        M        = mean(!!var, na.rm = na.rm),
+        SD       = sd(!!var, na.rm = na.rm),
+        SE       = SD/sqrt(n),
+        min      = min(!!var, na.rm = na.rm),
+        max      = max(!!var, na.rm = na.rm),
+        range    = diff(range(!!var, na.rm = na.rm)),
+        median   = median(!!var, na.rm = na.rm),
+        mode     = unique(!!var)[which.max(tabulate(match(!!var, unique(!!var))))],
+        skew     = (sum(((!!var)-mean(!!var, na.rm = na.rm))^3, na.rm = na.rm)/n)/
+          (sum(((!!var)-mean(!!var, na.rm = na.rm))^2, na.rm = na.rm)/n)^(3/2),
+        kurtosis = n*sum(((!!var)-mean(!!var, na.rm = na.rm))^4, na.rm = na.rm)/
+          (sum(((!!var)-mean(!!var, na.rm = na.rm))^2, na.rm = na.rm)^2)
       )
 
   } else if (sapply(data, class)[quo_name(var)] %in% c("factor", "character", "logical")) {
