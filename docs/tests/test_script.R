@@ -318,3 +318,9 @@ results$M3_1 %>%
   spread(statistic, value) %>%
   #select(term, b, SE, t, df, p, `F`, `numerator df`, `denominator df`) %>%
   View()
+
+
+
+# Describe functions --------------------------------------------------------------------------
+
+describe(sleep, extra)
