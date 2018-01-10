@@ -4,7 +4,8 @@
 #'
 #' @param results A tidy stats list.
 #' @param path Path or connection to write to.
-#' @param digits How many significant digits are to be used for rounding. Default is 3.
+#'
+#' @details The \code{prettyNum} function is used to format the numbers before saving them to disk. This is to prevent saving numbers with many decimals.
 #'
 #' @examples
 #' # Create an empty list to store the results in
@@ -24,7 +25,7 @@
 #'
 #' @export
 
-write_stats <- function(results, path, digits = 3) {
+write_stats <- function(results, path) {
 
   # Convert list to a data frame
   df <- stats_list_to_df(results)
