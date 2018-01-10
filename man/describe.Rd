@@ -4,32 +4,50 @@
 \alias{describe}
 \title{Calculate common descriptive statistics}
 \usage{
-describe(data, variable, na.rm = TRUE)
+describe(data, ..., na.rm = TRUE)
 }
 \arguments{
-\item{data}{A data frame}
+\item{data}{a data frame.}
 
-\item{variable}{The variable you want to calculate the descriptives of}
+\item{na.rm}{boolean to indicate whether missing data should be removed. The default is TRUE.}
 
-\item{na.rm}{Boolean to indicate whether missing data should be removed. The default is TRUE.}
+\item{variables}{the variables you want to calculate the descriptives of.}
 }
 \description{
-\code{describe} returns a set of common descriptive statistics for a numeric variable (e.g., n, mean, sd) or for a non-numeric variable (e.g., n, pct).
+\code{describe} returns a set of common descriptive statistics  (e.g., n, mean, sd) for numeric variables.
 }
 \details{
-The data set can be grouped so that descriptives will be calculated for each group level. Unlike dplyr's \code{summarize}, \code{describe} does not automatically peel off a grouping variable. The function keeps the supplied grouping. However, when descriptives are requested of a non-numeric variable, the function will return a data frame that is grouped by that variable. If the data frame was already grouped, the non-numeric variable will be added to the existing grouping variables.
+The data set can be grouped using \strong{dplyr}'s \code{group_by} so that descriptives will be calculated for each group level.
+
+Skew and kurtosis are based on the \code{skewness} and \code{kurtosis} functions of the \strong{moments} package.
 }
 \examples{
-library(magrittr)
-library(dplyr)
+library(tidyverse)
 
-# Descriptives of a single variable
-describe(sleep, variable = extra)
-describe(sleep, variable = group)
+# 1 variable
+describe(cox, avoidance)
 
-# Descriptives of a single variable per group
-sleep \%>\%
-  group_by(group) \%>\%
-  describe(variable = extra)
+# 1 variable, 1 group
+cox \%>\%
+  group_by(condition) \%>\%
+  describe(avoidance)
+
+# 2 variables
+describe(cox, avoidance, anxiety)
+
+# 2 variables, 1 group
+cox \%>\%
+  group_by(condition) \%>\%
+  describe(avoidance, anxiety)
+
+# 1 variable, 2 groups
+cox \%>\%
+  group_by(condition, sex) \%>\%
+  describe(avoidance)
+
+# 2 variables, 2 groups
+cox \%>\%
+  group_by(condition, sex) \%>\%
+  describe(avoidance, anxiety)
 
 }

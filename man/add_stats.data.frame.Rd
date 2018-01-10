@@ -4,11 +4,11 @@
 \alias{add_stats.data.frame}
 \title{add_stats data frame function}
 \usage{
-\method{add_stats}{data.frame}(output, results, identifier = NULL,
+\method{add_stats}{data.frame}(data, results, identifier = NULL,
   statistics = NULL, type = NULL, confirmatory = NULL, notes = NULL)
 }
 \arguments{
-\item{output}{A data frame that contains statistical output in a tidy format.}
+\item{data}{A data frame that contains statistical output in a tidy format.}
 
 \item{results}{A tidy stats list.}
 
