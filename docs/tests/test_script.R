@@ -12,9 +12,10 @@ library(tidyverse)
 
 # Create empty tidy stats data frame
 results <- list()
+descriptives <- list()
 
 # Set options
-options(digits = 7, scipen = 99)
+options(digits = 7, scipen = 99, dplyr.print_max = 400)
 
 # Test t-tests --------------------------------------------------------------------------------
 
@@ -304,6 +305,11 @@ report_table_lm(results, "M3_1", terms = "conditionmortality salience", term_lab
 report_table_lm(results, "M3_1", term_nrs = 2, term_labels = c("Condition"))
 report_table_lm(results, "M3_1", term_nrs = 2, term_labels = c("Condition"), include_model = FALSE)
 
+
+# Report single value statistics --------------------------------------------------------------
+
+report_descriptive(results, "D1", var = "", group = "", statistic = "")
+
 # Glmnet package support ----------------------------------------------------------------------
 
 library(glmnet)
@@ -323,4 +329,94 @@ results$M3_1 %>%
 
 # Describe functions --------------------------------------------------------------------------
 
-describe(sleep, extra)
+# Numeric variables can be described using describe()
+
+# 1 var
+results <- cox %>%
+  describe(avoidance) %>%
+  tidy_describe() %>%
+  add_stats(results, identifier = "D1_1", type = "d")
+
+# 1 var, 1 group
+results <- cox %>%
+  group_by(condition) %>%
+  describe(avoidance) %>%
+  tidy_describe() %>%
+  add_stats(results, identifier = "D1_2", type = "d", statistics = c("n", "M", "SD", "min", "max"))
+
+# 2 vars
+results <- cox %>%
+  describe(avoidance, anxiety) %>%
+  tidy_describe() %>%
+  add_stats(results, identifier = "D1_3", type = "d", statistics = c("n", "M", "SD", "min", "max"))
+
+# 2 vars, 1 group
+results <- cox %>%
+  group_by(condition) %>%
+  describe(avoidance, anxiety) %>%
+  tidy_describe() %>%
+  add_stats(results, identifier = "D1_4", type = "d", statistics = c("n", "M", "SD", "min", "max"))
+
+# 1 var, 2 groups
+results <- cox %>%
+  group_by(condition, sex) %>%
+  describe(avoidance) %>%
+  tidy_describe() %>%
+  add_stats(results, identifier = "D1_5", type = "d", statistics = c("n", "M", "SD", "min", "max"))
+
+# 2 vars, 2 groups
+results <- cox %>%
+  group_by(condition, sex) %>%
+  describe(avoidance, anxiety) %>%
+  tidy_describe() %>%
+  add_stats(results, identifier = "D1_6", type = "d", statistics = c("n", "M", "SD", "min", "max"))
+
+# Non-numeric variables can be totaled using total()
+
+# 1 var
+cox %>%
+  total(condition) %>%
+  tidy_total() %>%
+  add_stats(results, identifier = "D2_1", type = "d")
+
+# 2 vars
+cox %>%
+  total(condition, sex) %>%
+  tidy_total() %>%
+  add_stats(results, identifier = "D2_2", type = "d")
+
+# 1 var, 1 group
+cox %>%
+  group_by(sex) %>%
+  total(condition) %>%
+  tidy_total() %>%
+  add_stats(results, identifier = "D2_3", type = "d")
+
+# 2 vars, 1 group
+cox$age_group <- if_else(cox$age > 20, "old", "young")
+
+cox %>%
+  group_by(sex) %>%
+  total(condition, age_group) %>%
+  tidy_total() %>%
+  add_stats(results, identifier = "D2_4", type = "d")
+
+# 2 vars, 2 groups
+cox$anxious <- if_else(cox$anxiety > 3.25, "anxious", "non-anxious")
+
+cox %>%
+  group_by(sex, age_group) %>%
+  total(condition, anxious) %>%
+  tidy_total() %>%
+  add_stats(results, identifier = "D2_5", type = "d")
+
+# Report descriptives -------------------------------------------------------------------------
+
+# Generic function
+D(descriptives, "D1", "avoidance", statistic = "M")
+D(descriptives, "D1", "avoidance", statistic = "SD")
+D(descriptives, "D1", "avoidance", statistic = "n")
+
+# Specific functions
+M(descriptives, "D1", "avoidance")
+SD(descriptives, "D1", "avoidance")
