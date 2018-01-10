@@ -1,97 +1,101 @@
 #' Calculate common descriptive statistics
 #'
-#' \code{describe} returns a set of common descriptive statistics for a numeric variable (e.g., n, mean, sd) or for a non-numeric variable (e.g., n, pct).
+#' \code{describe} returns a set of common descriptive statistics  (e.g., n, mean, sd) for numeric variables.
 #'
-#' @param data A data frame
-#' @param variable The variable you want to calculate the descriptives of
-#' @param na.rm Boolean to indicate whether missing data should be removed. The default is TRUE.
+#' @param data a data frame.
+#' @param variables the variables you want to calculate the descriptives of.
+#' @param na.rm boolean to indicate whether missing data should be removed. The default is TRUE.
 #'
-#' @details The data set can be grouped so that descriptives will be calculated for each group level. Unlike dplyr's \code{summarize}, \code{describe} does not automatically peel off a grouping variable. The function keeps the supplied grouping. However, when descriptives are requested of a non-numeric variable, the function will return a data frame that is grouped by that variable. If the data frame was already grouped, the non-numeric variable will be added to the existing grouping variables.
+#' @details The data set can be grouped using \strong{dplyr}'s \code{group_by} so that descriptives will be calculated for each group level.
 #'
-#' Skew and kurtosis are based on the skewness() and kurtosis() functions of the moments package.
+#' Skew and kurtosis are based on the \code{skewness} and \code{kurtosis} functions of the \strong{moments} package.
 #'
 #' @examples
-#' library(magrittr)
-#' library(dplyr)
+#' library(tidyverse)
 #'
-#' # Descriptives of a single variable
-#' describe(sleep, variable = extra)
-#' describe(sleep, variable = group)
+#' # 1 variable
+#' describe(cox, avoidance)
 #'
-#' # Descriptives of a single variable per group
-#' sleep %>%
-#'   group_by(group) %>%
-#'   describe(variable = extra)
+#' # 1 variable, 1 group
+#' cox %>%
+#'   group_by(condition) %>%
+#'   describe(avoidance)
+#'
+#' # 2 variables
+#' describe(cox, avoidance, anxiety)
+#'
+#' # 2 variables, 1 group
+#' cox %>%
+#'   group_by(condition) %>%
+#'   describe(avoidance, anxiety)
+#'
+#' # 1 variable, 2 groups
+#' cox %>%
+#'   group_by(condition, sex) %>%
+#'   describe(avoidance)
+#'
+#' # 2 variables, 2 groups
+#' cox %>%
+#'   group_by(condition, sex) %>%
+#'   describe(avoidance, anxiety)
 #'
 #' @import dplyr
+#' @import stringr
 #'
 #' @export
-describe <- function(data, variable, na.rm = TRUE) {
+describe <- function(data, ..., na.rm = TRUE) {
 
-  var <- enquo(variable)
+  # Get variables
+  vars <- quos(...)
 
-  # Save grouping data
-  groups <- dplyr::group_vars(data)
-
-  # Check variable type
-  if (sapply(data, class)[quo_name(var)] %in% c("numeric", "integer")) {
-
-    # Calculate descriptives
-    output <- data %>%
-      dplyr::summarize(
-        missing  = sum(is.na(!!var)),
-        n        = n() - missing,
-        M        = mean(!!var, na.rm = na.rm),
-        SD       = sd(!!var, na.rm = na.rm),
-        SE       = SD/sqrt(n),
-        min      = min(!!var, na.rm = na.rm),
-        max      = max(!!var, na.rm = na.rm),
-        range    = diff(range(!!var, na.rm = na.rm)),
-        median   = median(!!var, na.rm = na.rm),
-        mode     = unique(!!var)[which.max(tabulate(match(!!var, unique(!!var))))],
-        skew     = (sum(((!!var)-mean(!!var, na.rm = na.rm))^3, na.rm = na.rm)/n)/
-          (sum(((!!var)-mean(!!var, na.rm = na.rm))^2, na.rm = na.rm)/n)^(3/2),
-        kurtosis = n*sum(((!!var)-mean(!!var, na.rm = na.rm))^4, na.rm = na.rm)/
-          (sum(((!!var)-mean(!!var, na.rm = na.rm))^2, na.rm = na.rm)^2)
-      )
-
-  } else if (sapply(data, class)[quo_name(var)] %in% c("factor", "character", "logical")) {
-
-    # Group the data
-    if (length(groups) > 0) {
-      data <- dplyr::group_by(data, !!var, add = TRUE)
-    } else {
-      data <- dplyr::group_by(data, !!var)
-    }
-
-    # Save new grouping data
-    groups <- dplyr::group_vars(data)
-
-    # Calculate frequencies
-    output <- data %>%
-      dplyr::summarize(
-        n   = n()
-      )
-
-    # Add percentages when grouping variables are provided
-    if (length(groups) > 1) {
-      output <- output %>%
-        dplyr::mutate(pct_group = n / sum(n)*100) %>%
-        dplyr::ungroup() %>%
-        dplyr::mutate(pct = n / sum(n)*100) %>%
-        dplyr::select(-pct_group, pct_group) # Move the variable to the last position
-    } else {
-      output <- output %>%
-        dplyr::mutate(pct = n / sum(n)*100)
-    }
-  } else {
-    stop("Non-supported variable type.")
+  # Check whether all variables are numeric
+  if (sum(!sapply(data[, str_replace(as.character(vars), "~", "")], class) %in%
+          c("numeric", "integer")) > 0) {
+    stop("Variables contain unsupported variable type")
   }
 
-  # Add grouping to output
-  output <- output %>%
-    dplyr::ungroup() %>%
-    dplyr::group_by_at(vars(one_of(groups)))
+  # Get grouping
+  grouping <- group_vars(data)
+
+  # Select all relevant columns from the data frame
+  data <- select(data, group_vars(data), !!! vars)
+
+  # If there are multiple variables, restructure them into 'var' and their values into 'value'
+  # else add a 'var' column and rename the variable to 'value'
+  if (length(vars) > 1) {
+    data <- gather(data, "var", "value", !!! vars)
+  } else {
+    data$var <- as.character(vars[[1]])[2]
+    data <- rename(data, value = !!! vars)
+  }
+
+  # Re-group the data frame
+  data <- data %>%
+    ungroup %>%
+    group_by_at(vars(one_of(grouping), var))
+
+  # Calculate descriptives
+  output <- data %>%
+    summarize(
+      missing  = sum(is.na(value)),
+      n        = n() - missing,
+      M        = mean(value, na.rm = na.rm),
+      SD       = sd(value, na.rm = na.rm),
+      SE       = SD/sqrt(n),
+      min      = min(value, na.rm = na.rm),
+      max      = max(value, na.rm = na.rm),
+      range    = diff(range(value)),
+      median   = median(value, na.rm = na.rm),
+      mode     = unique(value)[which.max(tabulate(match(value, unique(value))))],
+      skew     = (sum((value-mean(value, na.rm = na.rm))^3, na.rm = na.rm)/n)/
+        (sum((value-mean(value, na.rm = na.rm))^2, na.rm = na.rm)/n)^(3/2),
+      kurtosis = n*sum((value-mean(value, na.rm = na.rm))^4, na.rm = na.rm)/
+        (sum((value-mean(value, na.rm = na.rm))^2, na.rm = na.rm)^2)
+    )
+
+  # Re-order output and sort by var
+  output <- select(output, var, everything()) %>%
+    arrange(var)
 
   return(output)
 }
