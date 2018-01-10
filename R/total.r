@@ -60,8 +60,8 @@ total <- function(data, ..., na.rm = TRUE) {
     group_by(var) %>%
     mutate(pct = n / sum(n) * 100)
 
-  # Ungroup output
-  output <- ungroup(output)
+  # Group by original grouping
+  output <- group_by_at(output, vars(grouping))
 
   return(output)
 }
