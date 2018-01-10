@@ -95,6 +95,11 @@ add_stats_to_model <- function(output, results, identifier, statistics = NULL) {
     new_element <- mutate(new_element, confirmatory = first(confirmatory))
   }
 
+  # If there is a 'notes' column; add the same information to the new rows
+  if (has_name(new_element, "notes")) {
+    new_element <- mutate(new_element, notes = first(notes))
+  }
+
   # Replace the model statistics
   results[[identifier]] <- new_element
 
