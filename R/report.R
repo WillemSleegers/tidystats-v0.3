@@ -31,12 +31,16 @@
 #'
 #' @export
 
-report <- function(results, identifier, term = NULL, term_nr = NULL, statistic = NULL) {
+report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = NULL,
+                   statistic = NULL, results = getOption("tidystats_list")) {
 
   # Check whether the identifier exists
   if (!identifier %in% names(results)) {
     stop("Identifier not found.")
   }
+
+  # Determine whether descriptives are requested or model results
+
 
   res_term <- term
   res_term_nr <- term_nr
