@@ -7,26 +7,25 @@
 total(data, ..., na.rm = TRUE)
 }
 \arguments{
-\item{data}{A data frame}
+\item{data}{a data frame.}
 
-\item{variables}{The variables you want to total}
+\item{variables}{the variables you want to total.}
 }
 \description{
 \code{total} returns the number of observations for categorical variables.
 }
 \details{
-The data set can be grouped using \code{group_by} so that total of observations will be calculated for each group level.
+The data set can be grouped using \strong{dplyr}'s \code{group_by} so that the total of observations will be calculated for each group level.
 }
 \examples{
-library(magrittr)
-library(dplyr)
+library(tidyverse)
 
 # 1 variable
-total(cox, condition)
+total(cox, sex)
 
 # 1 variable, 1 group
 cox \%>\%
-  group_by(sex) \%>\%
-  describe(condition)
+  group_by(condition) \%>\%
+  describe(sex)
 
 }
