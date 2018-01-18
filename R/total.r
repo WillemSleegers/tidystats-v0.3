@@ -36,21 +36,24 @@ total <- function(data, ..., na.rm = TRUE) {
   grouping <- group_vars(data)
 
   # Select all relevant columns from the data frame
-  data <- select(data, !!! vars, group_vars(data))
+  output <- select(data, !!! vars, group_vars(data))
+
+  # Convert all factors to characters
+  output <- mutate_if(output, is.factor, as.character)
 
   # Gather the requested variables into a single columns
-  data <- gather(data, "var", "group", !!! vars)
+  output <- gather(output, "var", "group", !!! vars)
 
   # Re-order columns
-  data <- select(data, var, group, everything())
+  output <- select(output, var, group, everything())
 
   # Re-group the data frame
-  data <- data %>%
+  output <- output %>%
     ungroup %>%
     group_by_all()
 
   # Calculate descriptives
-  output <- data %>%
+  output <- output %>%
     dplyr::summarize(
       n       = n()
     )
