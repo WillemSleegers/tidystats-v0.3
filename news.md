@@ -3,7 +3,8 @@
 
 ## New features
 
-* Removed spaces from terms in `aov()` output
+* Added a way to set the tidystats list in `options()` so that you do not need to specify it each time you want to report a statistic.
+* Removed spaces from terms in `aov()` output.
 * Improved `add_stats_to_model()`. The method previously required a term and did not automatically complete information (e.g., method information).
 * Improved `report()` function. The method now supports the option to retrieve a single statistic from any tidy stats data frame. This will allow you to report all statistics, even when reporting functions for a specific method are not yet supported.
 * Added identifier check to `report()`. The function will now throw an error when the identifier does not exist.
