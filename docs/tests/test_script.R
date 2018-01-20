@@ -209,7 +209,7 @@ results <- add_stats(model4_7, results, identifier = "M4_7")
 
 # Calculate confidence intervals
 model3_1_CIs <- confint(model3_1)
-model3_2_CIs <- confint(model3_2)
+model3_2_CIs <- confint(model3_2, level = .90)
 model3_3_CIs <- confint(model3_3)
 
 # Tidy results and add results to existing model
@@ -232,34 +232,56 @@ View(df)
 
 # Save to file --------------------------------------------------------------------------------
 
-write_stats(results, path = "tests/results.csv")
+write_stats(results, path = "docs/tests/results.csv")
 
 # Report functions ----------------------------------------------------------------------------
 
-# Set the tidystats_list option so that you do not to repeat the results argument each time
+# Set the tidystats list in options
+# We cannot do this already in the beginning of the script since it copies the list, meaning it
+# does not contain any results yet
 options(tidystats_list = results)
 
 # Descriptives
+report("D1_1")
+report("D1_1", statistic = "M")
+report("D1_1", statistic = "SD")
+report("D1_2", statistic = "M", group = "dental pain")
+report("D1_2", statistic = "SD", group = "mortality salience")
+report("D1_3", statistic = "M", var = "anxiety")
+report("D1_3", statistic = "n", var = "avoidance")
+report("D1_4", statistic = "M", var = "anxiety", group = "dental pain")
 
+M("D1_1")
+SD("D1_1")
+M("D1_2", group = "dental pain")
+M("D1_3", var = "anxiety")
+M("D1_3", "anxiety")
+M("D1_4", var = "anxiety", group = "dental pain")
+M("D1_4", "anxiety", "dental pain")
 
-
+# t-tests
 report("M1_1")
 report("M1_1", statistic = "p")
-
 report("M1_2")
 report("M1_2", statistic = "p")
 report("M1_3")
 report("M1_4")
-report(results, "M2_1")
-report(results, "M2_1", statistic = "cor")
-report(results, "M2_2")
-report(results, "M2_2", statistic = "tau")
-report(results, "M2_3")
-report(results, "M2_3", statistic = "rho")
-report(results, "M3_1", term = "conditionmortality salience")
-report(results, "M3_1", term_nr = 2)
-report(results, "M3_1", term = "(Model)")
-report(results, "M3_1", term_nr = 3)
+
+# Correlation
+report("M2_1")
+report("M2_1", statistic = "cor")
+report("M2_2")
+report("M2_2", statistic = "tau")
+report("M2_3")
+report("M2_3", statistic = "rho")
+
+# Report regression results
+report("M3_1", term = "conditionmortality salience")
+report("M3_1", term_nr = 2)
+report("M3_1", term = "(Model)")
+report("M3_1", term_nr = 3)
+
+# ANOVA
 report(results, "M4_1", term = "condition")
 report(results, "M4_1", term = "condition", statistic = "F")
 report(results, "M4_1", term = "Residuals", statistic = "df")
