@@ -32,8 +32,8 @@ tidy_stats.htest <- function(model) {
     tibble::data_frame(statistic = "null value", value = model$null.value)
   )
 
-  # Add the method
-  output$method <- model$method
+  # Add the method (use trimws to remove the leading space from a Two Sample t-test)
+  output$method <- trimws(model$method)
 
   # Add additional information
   output$notes <- paste(model$alternative, "test")
