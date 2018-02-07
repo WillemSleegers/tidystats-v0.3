@@ -281,6 +281,9 @@ report("M3_1", term_nr = 2)
 report("M3_1", term = "(Model)")
 report("M3_1", term_nr = 3)
 
+
+report("M3_2", term_nr = 3)
+
 # ANOVA
 report(results, "M4_1", term = "condition")
 report(results, "M4_1", term = "condition", statistic = "F")
