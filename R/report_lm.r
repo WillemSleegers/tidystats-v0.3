@@ -84,10 +84,10 @@ report_lm <- function(results, identifier, term = NULL, term_nr = NULL, statisti
         CI_pct <- as.numeric(str_replace(res_CI$statistic, " %", ""))
         CI_pct <- CI_pct[2] - CI_pct[1]
 
-        CI_value1 <- res_CI$value[1]
-        CI_value2 <- res_CI$value[2]
+        CI_value1 <- format(res_CI$value[1], nsmall = 2, digits = 2)
+        CI_value2 <- format(res_CI$value[2], nsmall = 2, digits = 2)
 
-        CI <- paste0(CI_pct, "% CI ", "[", prettyNum(CI_value1), ", ", prettyNum(CI_value2), "]")
+        CI <- paste0(CI_pct, "% CI ", "[", CI_value1, ", ", CI_value2, "]")
       }
 
       # Return output
