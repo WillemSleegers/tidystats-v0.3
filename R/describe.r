@@ -84,7 +84,7 @@ describe <- function(data, ..., na.rm = TRUE) {
       SE       = SD/sqrt(n),
       min      = min(value, na.rm = na.rm),
       max      = max(value, na.rm = na.rm),
-      range    = diff(range(value), na.rm = na.rm),
+      range    = diff(range(value, na.rm = na.rm)),
       median   = median(value, na.rm = na.rm),
       mode     = unique(value)[which.max(tabulate(match(value, unique(value))))],
       skew     = (sum((value-mean(value, na.rm = na.rm))^3, na.rm = na.rm)/n)/
