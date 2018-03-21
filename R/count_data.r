@@ -1,9 +1,9 @@
-#' Calculate the total of observations
+#' Count the total of observations
 #'
-#' \code{total} returns the number of observations for categorical variables.
+#' \code{count_data} returns the number of observations for categorical variables.
 #'
 #' @param data a data frame.
-#' @param variables the variables you want to total.
+#' @param variables the variables you want to count.
 #'
 #' @details The data set can be grouped using \strong{dplyr}'s \code{group_by} so that the total of observations will be calculated for each group level.
 #'
@@ -11,17 +11,20 @@
 #' library(tidyverse)
 #'
 #' # 1 variable
-#' total(cox, sex)
+#' count_data(cox, sex)
+#'
+#' # 2 variables
+#' count_data(cox, condition, sex)
 #'
 #' # 1 variable, 1 group
 #' cox %>%
 #'   group_by(condition) %>%
-#'   describe(sex)
+#'   count_data(sex)
 #'
 #' @import dplyr
 #'
 #' @export
-total <- function(data, ..., na.rm = TRUE) {
+count_data <- function(data, ..., na.rm = TRUE) {
 
   # Get variables
   vars <- quos(...)

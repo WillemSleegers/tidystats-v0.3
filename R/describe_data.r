@@ -1,6 +1,6 @@
 #' Calculate common descriptive statistics
 #'
-#' \code{describe} returns a set of common descriptive statistics  (e.g., n, mean, sd) for numeric variables.
+#' \code{describe_data} returns a set of common descriptive statistics  (e.g., n, mean, sd) for numeric variables.
 #'
 #' @param data a data frame.
 #' @param variables the variables you want to calculate the descriptives of.
@@ -14,42 +14,42 @@
 #' library(tidyverse)
 #'
 #' # 1 variable
-#' describe(cox, avoidance)
+#' describe_data(cox, avoidance)
 #'
 #' # 1 variable, 1 group
 #' cox %>%
 #'   group_by(condition) %>%
-#'   describe(avoidance)
+#'   describe_data(avoidance)
 #'
 #' # 2 variables
-#' describe(cox, avoidance, anxiety)
+#' describe_data(cox, avoidance, anxiety)
 #'
 #' # 2 variables, 1 group
 #' cox %>%
 #'   group_by(condition) %>%
-#'   describe(avoidance, anxiety)
+#'   describe_data(avoidance, anxiety)
 #'
 #' # 1 variable, 2 groups
 #' cox %>%
 #'   group_by(condition, sex) %>%
-#'   describe(avoidance)
+#'   describe_data(avoidance)
 #'
 #' # 2 variables, 2 groups
 #' cox %>%
 #'   group_by(condition, sex) %>%
-#'   describe(avoidance, anxiety)
+#'   describe_data(avoidance, anxiety)
 #'
 #' @import dplyr
 #' @import stringr
 #'
 #' @export
-describe <- function(data, ..., na.rm = TRUE) {
+describe_data <- function(data, ..., na.rm = TRUE) {
 
   # Get variables
   vars <- quos(...)
 
   # Check whether all variables are numeric
-  if (sum(!sapply(data[, str_replace(as.character(vars), "~", "")], class) %in%
+  if (sum(!sapply(data[, str_sub(as.character(vars), start = 2)], class) %in%
           c("numeric", "integer")) > 0) {
     stop("Variables contain unsupported variable type")
   }
@@ -61,12 +61,14 @@ describe <- function(data, ..., na.rm = TRUE) {
   data <- select(data, group_vars(data), !!! vars)
 
   # If there are multiple variables, restructure them into 'var' and their values into 'value'
-  # else add a 'var' column and rename the variable to 'value'
+  # else add a 'var' column and rename the one variable to 'value'
   if (length(vars) > 1) {
     data <- gather(data, "var", "value", !!! vars)
   } else {
     data$var <- as.character(vars[[1]])[2]
-    data <- rename(data, value = !!! vars)
+    data <- data %>%
+      ungroup() %>% # Temporary fix for a bug
+      rename_at(vars(!!! vars), ~"value")
   }
 
   # Re-group the data frame
@@ -81,15 +83,15 @@ describe <- function(data, ..., na.rm = TRUE) {
       n        = n() - missing,
       M        = mean(value, na.rm = na.rm),
       SD       = sd(value, na.rm = na.rm),
-      SE       = SD/sqrt(n),
+      SE       = SD / sqrt(n),
       min      = min(value, na.rm = na.rm),
       max      = max(value, na.rm = na.rm),
       range    = diff(range(value, na.rm = na.rm)),
       median   = median(value, na.rm = na.rm),
       mode     = unique(value)[which.max(tabulate(match(value, unique(value))))],
-      skew     = (sum((value-mean(value, na.rm = na.rm))^3, na.rm = na.rm)/n)/
-        (sum((value-mean(value, na.rm = na.rm))^2, na.rm = na.rm)/n)^(3/2),
-      kurtosis = n*sum((value-mean(value, na.rm = na.rm))^4, na.rm = na.rm)/
+      skew     = (sum((value-mean(value, na.rm = na.rm))^3, na.rm = na.rm) / n) /
+        (sum((value - mean(value, na.rm = na.rm))^2, na.rm = na.rm) / n)^(3 / 2),
+      kurtosis = n * sum((value-mean(value, na.rm = na.rm))^4, na.rm = na.rm)/
         (sum((value-mean(value, na.rm = na.rm))^2, na.rm = na.rm)^2)
     )
 
