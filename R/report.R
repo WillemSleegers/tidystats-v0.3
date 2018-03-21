@@ -62,64 +62,88 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
         }
       }
     }
+  } else {
+    output <- NULL
   }
 
   # If output is null, it means we either do not have the report function for that method, or the
   # results are descriptives. In this case we can report a single statistic if enough information
   # is provided.
   if (is.null(output)) {
-    res_statistic <- statistic
 
-    if (is.null(res_statistic)) {
-      stop("Cannot report multiple statistics, please provide a single statistic.")
+    # Filter: term
+    if (!is.null(term)) {
+      res_term <- term
+
+      if (!res_term %in% unique(res$term)) {
+        stop("Term not found.")
+      }
+
+      res <- filter(res, term == res_term)
+    }
+    # Filter: term_nr
+    if (!is.null(term_nr)) {
+      res_term_nr <- term_nr
+
+      if (!res_term_nr %in% unique(res$term_nr)) {
+        stop("Term number not found.")
+      }
+
+      res <- filter(res, term_nr == res_term_nr)
+    }
+    # Filter: statistic
+    if (!is.null(statistic)) {
+      res_statistic <- statistic
+
+      if (!res_statistic %in% unique(res$statistic)) {
+        stop("Statistic not found.")
+      }
+
+      res <- filter(res, statistic == res_statistic)
+
+    }
+    # Filter: group
+    if (!is.null(group)) {
+      res_group <- group
+
+      if (!res_group %in% unique(res$group)) {
+        stop("Group not found.")
+      }
+
+      res <- filter(res, group == res_group)
+    }
+    # Filter: var
+    if (!is.null(var)) {
+      res_var <- var
+
+      if (!res_var %in% unique(res$var)) {
+        stop("Variable not found.")
+      }
+
+      res <- filter(res, var == res_var)
+    }
+
+    # Check if enough information is provided
+    info <- select(res, contains("var"), contains("group"), contains("statistic"), contains("term"))
+
+    for (column in names(info)) {
+
+      if (length(unique(pull(info, column))) > 1) {
+
+        stop(paste("Not enough information provided. Please provide", column, "information."))
+      }
+    }
+
+    # Extract statistic
+    if (res$statistic[1] == "p") {
+      output <- report_p_value(res$value[1])
     } else {
-      if ("var" %in% names(res)) {
-        res_var <- var
-        if (length(unique(res$var)) > 1 & is.null(res_var)) {
-          stop("var information required.")
-        } else {
-          if ("group" %in% names(res)) {
-            res_group <- group
-            if (is.null(res_group)) {
-              stop("group information required.")
-            } else {
-              if (length(unique(res$var)) == 1 & "group" %in% names(res)) {
-                output <- format(filter(res, statistic == res_statistic & group == res_group)$value,
-                                 digits = 2, nsmall = 2)
-                } else {
-                  output <- format(filter(res, statistic == res_statistic & var == res_var &
-                                            group == res_group)$value, digits = 2, nsmall = 2)
-                  }
-                }
-          } else {
-            if (length(unique(res$var)) == 1) {
-              output <- format(filter(res, statistic == res_statistic)$value, digits = 2,
-                               nsmall = 2)
-            } else {
-              output <- format(filter(res, statistic == res_statistic & var == res_var)$value,
-                                 digits = 2, nsmall = 2)
-              }
-            }
-          }
-        } else {
-        if (length(unique(res$term)) > 1 & (is.null(term) & is.null(term_nr))) {
-          print("term information required.")
-        } else {
-          if (length(unique(res$term)) == 1) {
-            output <- format(filter(res, statistic == res_statistic)$value, digits = 2, nsmall = 2)
-          } else {
-            if (!is.null(term)) {
-              res_term <- term
-              output <- format(filter(res, term == res_term & statistic == res_statistic)$value,
-                               digits = 2, nsmall = 2)
-            } else {
-              res_term_nr <- term_nr
-              output <- format(
-                filter(res, term_nr == res_term_nr & statistic == res_statistic)$value,
-                digits = 2, nsmall = 2)
-            }
-          }
-        }
+
+      # Check if the value is an integer, else return a string with 2 significant digits
+      if (res$value[1] %% 1 == 0) {
+        output <- prettyNum(res$value[1])
+      } else {
+        output <- format(res$value[1], digits = 2, nsmall = 2)
       }
     }
   }
