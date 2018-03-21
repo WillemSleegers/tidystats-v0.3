@@ -1,13 +1,14 @@
 
-# tidytext 0.1.1
+# tidystats 0.1.1
 
 ## New features
 
 * Improved `report()` function. The method now supports the option to retrieve a single statistic from any tidy stats data frame. This will allow you to report all statistics, even when reporting functions for a specific method are not yet supported.
-* Added a way to set the tidystats list in `options()` so that you do not need to specify it each time you want to report a statistic.
+* Added quick report functions for means and standard deviations. Instead of using `report()` you can use `M()` and `SD()` to quickly report the mean or standard deviation, without having to specify that particular statistic. Less typing!
+* Added an option called 'tidystats_list' in `options()` to set a default list. By setting the tidystats list in `options()`, you do not need to specify the list in the **results** argument of `report()`. Less typing!
 * Reporting regression results will now include a check for whether confidence intervals are included, and report them.
-* Added skewness and kurtosis to `describe()`
-* Added new `total()` function to calculate count descriptives of categorical data. Also added a `tidy_total()` function to tidy the output of this new function.
+* Added skewness and kurtosis to `describe_data()`
+* Added new `count_data()` function to calculate count descriptives of categorical data. Also added a `tidy_count_data()` function to tidy the output of this new function.
 
 ## Improvements
 
@@ -17,8 +18,9 @@
 
 ## Changes
 
-* Changed `describe()` to no longer accept non-numeric variables, but added the feature that descriptives can be calculated for more than 1 variable at a time. It is recommended to use the `total()` function for non-numeric variables.
-* Changed `tidy_descriptives()` to incorporate changes made to `describe()`. A notable change is that var information is now returned to identify which descriptives belong to which variable. Also changed the group delimiter to ' - '.
+* Renamed `describe()` to `describe_data()` so that it no longer conflicts with **psych**'s `describe()`.
+* Changed `describe_data()` to no longer accept non-numeric variables, but added the feature that descriptives can be calculated for more than 1 variable at a time. It is recommended to use the `count_data()` function for non-numeric variables.
+* Renamed `tidy_descriptives()` to `tidy_describe_data()` and improved the function. A notable change is that var information is now returned to identify which descriptives belong to which variable. Also changed the group delimiter to ' - '.
 * `write_stats()` now prettifies the numbers using `prettyNum()` when saving them to disk.
 
 ## Bugfixes
@@ -27,7 +29,6 @@
 * Removed spaces from terms in `aov()` output.
 * Removed a leading space from the method information of a Two Sample t-test.
 * Improved `add_stats_to_model()`. The method previously required a term and did not automatically complete information (e.g., method information).
-
 
 # tidystats 0.1.0
 

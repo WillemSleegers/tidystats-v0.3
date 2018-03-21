@@ -14,10 +14,6 @@ Report descriptives
 # Read in a list of results
 descriptives <- read_stats(system.file("descriptives.csv", package = "tidystats"))
 
-# Generic example:
-D(descriptives, identifier = "D1", var = "avoidance", statistic = "M")
-
-# Shorter examples:
 # Mean
 M(descriptives, "D1", "avoidance")
 
