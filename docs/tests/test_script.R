@@ -13,114 +13,173 @@ library(tidyverse)
 # Create empty tidy stats data frame
 results <- list()
 
-# Set options
-options(digits = 3, dplyr.print_max = 20)
-
 # Descriptives --------------------------------------------------------------------------------
 
-# Numeric variables can be described using describe()
+# count_data() --------------------------------------------------------------------------------
+
+# 1 categorical variable
+count_data(cox, condition)
+
+# 2 categorical variables
+count_data(cox, condition, sex)
+
+# 1 categorical variable, 1 grouping variable
+cox %>%
+  group_by(sex) %>%
+  count_data(condition)
+
+# tidy_count_data() ---------------------------------------------------------------------------
+
+# 1 categorical variable
+count_data(cox, condition) %>%
+  tidy_count_data()
+
+# 2 categorical variables
+count_data(cox, condition, sex) %>%
+  tidy_count_data()
+
+# 1 categorical variable, 1 grouping variable
+cox %>%
+  group_by(sex) %>%
+  count_data(condition) %>%
+  tidy_count_data()
+
+# describe_data() -----------------------------------------------------------------------------
+
+# 1 variable
+describe_data(cox, avoidance)
+
+# 2 variables
+describe_data(cox, avoidance, anxiety)
+
+# 1 variable, 1 group
+cox %>%
+ group_by(condition) %>%
+ describe_data(avoidance)
+
+# 2 variables, 1 group
+cox %>%
+ group_by(condition) %>%
+ describe_data(avoidance, anxiety)
+
+# 1 variable, 2 groups
+cox %>%
+ group_by(condition, sex) %>%
+ describe_data(avoidance)
+
+# 2 variables, 2 groups
+cox %>%
+ group_by(condition, sex) %>%
+ describe_data(avoidance, anxiety)
+
+# tidy_describe_data() ------------------------------------------------------------------------
+
+# 1 variable
+describe_data(cox, avoidance) %>%
+  tidy_describe_data()
+
+# 2 variables
+describe_data(cox, avoidance, anxiety) %>%
+  tidy_describe_data()
+
+# 1 variable, 1 group
+cox %>%
+  group_by(condition) %>%
+  describe_data(avoidance) %>%
+  tidy_describe_data()
+
+# 2 variables, 1 group
+cox %>%
+  group_by(condition) %>%
+  describe_data(avoidance, anxiety) %>%
+  tidy_describe_data()
+
+# 1 variable, 2 groups
+cox %>%
+  group_by(condition, sex) %>%
+  describe_data(avoidance) %>%
+  tidy_describe_data()
+
+# 2 variables, 2 groups
+cox %>%
+  group_by(condition, sex) %>%
+  describe_data(avoidance, anxiety) %>%
+  tidy_describe_data()
+
+# add_stats(): Descriptives -------------------------------------------------------------------
+
+# Count data
 
 # 1 var
 results <- cox %>%
-  describe(avoidance) %>%
-  tidy_describe() %>%
-  add_stats(results, identifier = "D1_1", type = "d")
-
-# 1 var, 1 group
-results <- cox %>%
-  group_by(condition) %>%
-  describe(avoidance) %>%
-  tidy_describe() %>%
-  add_stats(results, identifier = "D1_2", type = "d", statistics = c("n", "M", "SD", "min", "max"))
+  count_data(condition) %>%
+  tidy_count_data() %>%
+  add_stats(results, identifier = "D1_condition", type = "d")
 
 # 2 vars
 results <- cox %>%
-  describe(avoidance, anxiety) %>%
-  tidy_describe() %>%
-  add_stats(results, identifier = "D1_3", type = "d", statistics = c("n", "M", "SD", "min", "max"))
-
-# 2 vars, 1 group
-results <- cox %>%
-  group_by(condition) %>%
-  describe(avoidance, anxiety) %>%
-  tidy_describe() %>%
-  add_stats(results, identifier = "D1_4", type = "d", statistics = c("n", "M", "SD", "min", "max"))
-
-# 1 var, 2 groups
-results <- cox %>%
-  group_by(condition, sex) %>%
-  describe(avoidance) %>%
-  tidy_describe() %>%
-  add_stats(results, identifier = "D1_5", type = "d", statistics = c("n", "M", "SD", "min", "max"))
-
-# 2 vars, 2 groups
-results <- cox %>%
-  group_by(condition, sex) %>%
-  describe(avoidance, anxiety) %>%
-  tidy_describe() %>%
-  add_stats(results, identifier = "D1_6", type = "d", statistics = c("n", "M", "SD", "min", "max"))
-
-# Non-numeric variables can be totaled using total()
-
-# 1 var
-results <- cox %>%
-  total(condition) %>%
-  tidy_total() %>%
-  add_stats(results, identifier = "D2_1", type = "d")
-
-# 2 vars
-results <- cox %>%
-  total(condition, sex) %>%
-  tidy_total() %>%
-  add_stats(results, identifier = "D2_2", type = "d")
+  count_data(condition, sex) %>%
+  tidy_count_data() %>%
+  add_stats(results, identifier = "D2_condition_sex", type = "d")
 
 # 1 var, 1 group
 results <- cox %>%
   group_by(sex) %>%
-  total(condition) %>%
-  tidy_total() %>%
-  add_stats(results, identifier = "D2_3", type = "d")
+  count_data(condition) %>%
+  tidy_count_data() %>%
+  add_stats(results, identifier = "D3_condition_by_sex", type = "d")
 
-# 2 vars, 1 group
-cox$age_group <- if_else(cox$age > 20, "old", "young")
+# Non-count data
 
+# 1 var
 results <- cox %>%
-  group_by(sex) %>%
-  total(condition, age_group) %>%
-  tidy_total() %>%
-  add_stats(results, identifier = "D2_4", type = "d")
+  describe_data(avoidance) %>%
+  tidy_describe_data() %>%
+  add_stats(results, identifier = "D4_avoidance", type = "d")
+
+# 2 vars
+results <- cox %>%
+  describe_data(avoidance, anxiety) %>%
+  tidy_describe_data() %>%
+  add_stats(results, identifier = "D5_avoidance_anxiety", type = "d",
+            statistics = c("n", "M", "SD", "min", "max"))
+
+# 1 var, 1 group
+results <- cox %>%
+  group_by(condition) %>%
+  describe_data(avoidance) %>%
+  tidy_describe_data() %>%
+  add_stats(results, identifier = "D6_avoidance_by_condition", type = "d",
+            statistics = c("n", "M", "SD", "min", "max"))
 
 # 2 vars, 2 groups
-cox$anxious <- if_else(cox$anxiety > 3.25, "anxious", "non-anxious")
-
 results <- cox %>%
-  group_by(sex, age_group) %>%
-  total(condition, anxious) %>%
-  tidy_total() %>%
-  add_stats(results, identifier = "D2_5", type = "d")
+  group_by(condition, sex) %>%
+  describe_data(avoidance, anxiety) %>%
+  tidy_describe_data() %>%
+  add_stats(results, identifier = "D7_avoidance_anxiety_by_condition_sex", type = "d",
+            statistics = c("n", "M", "SD", "min", "max"))
 
-# Test t-tests --------------------------------------------------------------------------------
+# Analysis: t-tests ---------------------------------------------------------------------------
 
-# One sample t-test
-model1_1 <- t.test(cox$call_parent)
-model1_1
-results <- add_stats(model1_1, results, identifier = "M1_1", statistics = c("t", "df", "p"),
-                     type = "h", confirmatory = TRUE)
+# Run t-tests
+t_test_one_sample <- t.test(cox$call_parent)
+t_test_two_sample <- t.test(call_parent ~ condition, data = cox, var.equal = TRUE)
+t_test_welch <- t.test(call_parent ~ condition, data = cox, var.equal = FALSE)
+t_test_paired <- t.test(cox$affect_positive, cox$affect_negative, paired = TRUE)
 
-# Two sample t-test
-model1_2 <- t.test(call_parent ~ condition, data = cox, var.equal = TRUE)
-model1_2
-results <- add_stats(model1_2, results, identifier = "M1_2")
+# Tidy results
+tidy_stats(t_test_one_sample)
+tidy_stats(t_test_two_sample)
+tidy_stats(t_test_welch)
+tidy_stats(t_test_paired)
 
-# Welch's Two sample t-test
-model1_3 <- t.test(call_parent ~ condition, data = cox, var.equal = FALSE)
-model1_3
-results <- add_stats(model1_3, results, identifier = "M1_3")
-
-# Paired t-test
-model1_4 <- t.test(cox$affect_positive, cox$affect_negative, data = cox, paired = TRUE)
-model1_4
-results <- add_stats(model1_4, results, identifier = "M1_4")
+# Add stats
+results <- add_stats(t_test_one_sample, results, identifier = "t_test_one_sample",
+                     statistics = c("t", "df", "p"), type = "h", confirmatory = TRUE)
+results <- add_stats(t_test_one_sample, results, identifier = "t_test_two_sample")
+results <- add_stats(t_test_one_sample, results, identifier = "t_test_welch")
+results <- add_stats(t_test_one_sample, results, identifier = "t_test_paired")
 
 # Test correlation --------------------------------------------------------
 
@@ -241,25 +300,24 @@ write_stats(results, path = "docs/tests/results.csv")
 # does not contain any results yet
 options(tidystats_list = results)
 
-# Descriptives
-report("D1_1")
-report("D1_1", statistic = "M")
-report("D1_1", statistic = "SD")
-report("D1_2", statistic = "M", group = "dental pain")
-report("D1_2", statistic = "SD", group = "mortality salience")
-report("D1_3", statistic = "M", var = "anxiety")
-report("D1_3", statistic = "n", var = "avoidance")
-report("D1_4", statistic = "M", var = "anxiety", group = "dental pain")
+# Report: Descriptives ------------------------------------------------------------------------
 
-M("D1_1")
-SD("D1_1")
-M("D1_2", group = "dental pain")
-M("D1_3", var = "anxiety")
-M("D1_3", "anxiety")
-M("D1_4", var = "anxiety", group = "dental pain")
-M("D1_4", "anxiety", "dental pain")
+report("D1_condition", statistic = "M") # Error
+report("D1_condition", statistic = "n") # Error
+report("D1_condition", statistic = "n", group = "dental pain") # Error
 
-# t-tests
+report("D4_avoidance", statistic = "M")
+M("D4_avoidance")
+SD("D4_avoidance")
+
+report("D5_avoidance_anxiety", var = "avoidance", statistic = "M")
+M("D5_avoidance_anxiety", var = "avoidance")
+
+report("D6_avoidance_by_condition", var = "avoidance", group = "dental pain", statistic = "M")
+M("D6_avoidance_by_condition", var = "avoidance", group = "dental pain")
+
+# Report: t-tests -----------------------------------------------------------------------------
+
 report("M1_1")
 report("M1_1", statistic = "p")
 report("M1_2")
@@ -393,13 +451,6 @@ some_data <- tibble(
 
 results <- add_stats(some_data, results, identifier = "some_data")
 
-# Report functions ----------------------------------------------------------------------------
-
-report(results, "M1_1")
-report(results, "M3_1", term_nr = 2)
-report(results, "M3_1", term_nr = 3)
-report(results, "x_squared", s = "p")
-report(results, "some_data", term = "group1", s = "p")
 
 # Report table functions ----------------------------------------------------------------------
 
@@ -411,36 +462,3 @@ report_table_lm(results, "M3_1", terms = "conditionmortality salience", term_lab
 report_table_lm(results, "M3_1", term_nrs = 2, term_labels = c("Condition"))
 report_table_lm(results, "M3_1", term_nrs = 2, term_labels = c("Condition"), include_model = FALSE)
 
-
-# Report single value statistics --------------------------------------------------------------
-
-report_descriptive(results, "D1", var = "", group = "", statistic = "")
-
-# Glmnet package support ----------------------------------------------------------------------
-
-library(glmnet)
-data(QuickStartExample)
-
-fit = glmnet(x, y)
-plot(fit, label = T)
-
-
-
-results$M3_1 %>%
-  spread(statistic, value) %>%
-  #select(term, b, SE, t, df, p, `F`, `numerator df`, `denominator df`) %>%
-  View()
-
-
-
-
-# Report descriptives -------------------------------------------------------------------------
-
-# Generic function
-D(descriptives, "D1", "avoidance", statistic = "M")
-D(descriptives, "D1", "avoidance", statistic = "SD")
-D(descriptives, "D1", "avoidance", statistic = "n")
-
-# Specific functions
-M(descriptives, "D1", "avoidance")
-SD(descriptives, "D1", "avoidance")
