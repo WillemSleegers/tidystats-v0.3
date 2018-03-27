@@ -9,6 +9,7 @@
 * Reporting regression results will now include a check for whether confidence intervals are included, and report them.
 * Added skewness and kurtosis to `describe_data()`
 * Added new `count_data()` function to calculate count descriptives of categorical data. Also added a `tidy_count_data()` function to tidy the output of this new function.
+* Added support for `chisq.test` and `wilcox.test`.
 
 ## Improvements
 
@@ -25,6 +26,7 @@
 
 ## Bugfixes
 
+* Fixed bug that it was always assumed that confidence intervals in htests were always 95% confidence intervals.
 * Fixed bug in report functions that would occur when no statistic argument was provided.
 * Removed spaces from terms in `aov()` output.
 * Removed a leading space from the method information of a Two Sample t-test.
