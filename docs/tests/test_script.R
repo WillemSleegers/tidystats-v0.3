@@ -160,13 +160,18 @@ results <- cox %>%
   add_stats(results, identifier = "D7_avoidance_anxiety_by_condition_sex", type = "d",
             statistics = c("n", "M", "SD", "min", "max"))
 
-# Analysis: t-tests ---------------------------------------------------------------------------
+# Analysis: t-test ----------------------------------------------------------------------------
 
 # Run t-tests
-t_test_one_sample <- t.test(cox$call_parent)
+t_test_one_sample <- t.test(cox$call_parent, alternative = "greater")
 t_test_two_sample <- t.test(call_parent ~ condition, data = cox, var.equal = TRUE)
 t_test_welch <- t.test(call_parent ~ condition, data = cox, var.equal = FALSE)
 t_test_paired <- t.test(cox$affect_positive, cox$affect_negative, paired = TRUE)
+
+t_test_one_sample
+t_test_two_sample
+t_test_welch
+t_test_paired
 
 # Tidy results
 tidy_stats(t_test_one_sample)
@@ -181,22 +186,62 @@ results <- add_stats(t_test_one_sample, results, identifier = "t_test_two_sample
 results <- add_stats(t_test_one_sample, results, identifier = "t_test_welch")
 results <- add_stats(t_test_one_sample, results, identifier = "t_test_paired")
 
-# Test correlation --------------------------------------------------------
+# Analysis: correlation -----------------------------------------------------------------------
 
-# Pearson's product-moment correlation
-model2_1 <- cor.test(cox$call_parent, cox$anxiety, method = "pearson")
-model2_1
-results <- add_stats(model2_1, results, identifier = "M2_1")
+# Run correlations
+correlation_pearson <- cor.test(cox$call_parent, cox$anxiety, method = "pearson")
+correlation_kendall <- cor.test(cox$call_parent, cox$anxiety, method = "kendall")
+correlation_spearman <- cor.test(cox$call_parent, cox$anxiety, method = "spearman")
+
+# Tidy results
+tidy_stats(correlation_pearson)
+tidy_stats(correlation_kendall)
+tidy_stats(correlation_spearman)
 
 # Kendall's rank correlation tau
-model2_2 <- cor.test(cox$call_parent, cox$anxiety, method = "kendall")
-model2_2
-results <- add_stats(model2_2, results, identifier = "M2_2")
+results <- add_stats(correlation_pearson, results, identifier = "correlation_pearson")
+results <- add_stats(correlation_kendall, results, identifier = "correlation_kendall")
+results <- add_stats(correlation_spearman, results, identifier = "correlation_spearman")
 
-# Spearman's rank correlation rho
-model2_3 <- cor.test(cox$call_parent, cox$anxiety, method = "spearman")
-model2_3
-results <- add_stats(model2_3, results, identifier = "M2_3")
+# Analysis: Chi-square ------------------------------------------------------------------------
+
+# Get data
+M <- as.table(rbind(c(762, 327, 468), c(484, 239, 477)))
+dimnames(M) <- list(gender = c("F", "M"), party = c("Democrat","Independent", "Republican"))
+
+x <- c(A = 20, B = 15, C = 25)
+
+# Run chi-squares
+chi_square <- chisq.test(M)
+chi_square_yates <- chisq.test(cox$condition, cox$sex)
+chi_square_prob <- chisq.test(x)
+
+# Tidy results
+tidy_stats(chi_square)
+tidy_stats(chi_square_yates)
+tidy_stats(chi_square_prob)
+
+# Analysis: Wilcox test -----------------------------------------------------------------------
+
+# Signed rank
+x <- c(1.83,  0.50,  1.62,  2.48, 1.68, 1.88, 1.55, 3.06, 1.30)
+y <- c(0.878, 0.647, 0.598, 2.05, 1.06, 1.29, 1.06, 3.14, 1.29)
+wilcox_signed_rank <- wilcox.test(x, y, paired = TRUE, alternative = "greater")
+
+wilcox_signed_rank_continuity_correction <- wilcox.test(Ozone ~ Month, data = airquality,
+                                             subset = Month %in% c(5, 8))
+# Rank sum
+x <- c(0.80, 0.83, 1.89, 1.04, 1.45, 1.38, 1.91, 1.64, 0.73, 1.46)
+y <- c(1.15, 0.88, 0.90, 0.74, 1.21)
+wilcox_rank_sum <- wilcox.test(x, y, alternative = "greater", exact = FALSE, correct = FALSE)
+
+wilcox_rank_sum_conf <- wilcox.test(rnorm(10), rnorm(10, 2), conf.int = TRUE, conf.level = .9)
+
+# Tidy results
+tidy_stats(wilcox_signed_rank)
+tidy_stats(wilcox_signed_rank_continuity_correction)
+tidy_stats(wilcox_rank_sum)
+tidy_stats(wilcox_rank_sum_conf)
 
 # Test regression ---------------------------------------------------------
 
@@ -264,6 +309,7 @@ model4_7 <- aov(score ~ affect + anxiety + Error(ID/affect) + anxiety, data = co
 summary(model4_7)
 results <- add_stats(model4_7, results, identifier = "M4_7")
 
+
 # Add results to existing model ---------------------------------------------------------------
 
 # Calculate confidence intervals
@@ -283,6 +329,26 @@ results <- model3_2_CIs %>%
 results <- model3_3_CIs %>%
   tidy_stats_confint() %>%
   add_stats_to_model(results, identifier = "M3_3")
+
+# Manually adding model output ----------------------------------------------------------------
+
+x_squared_data <- tibble(
+  statistic = c("X-squared", "df", "p"),
+  value = c(5.4885, 6, 0.4828),
+  method = "Chi-squared test of independence"
+)
+
+results <- add_stats(x_squared_data, results, identifier = "x_squared")
+
+some_data <- tibble(
+  term = c("group1", "group1", "group2", "group2"),
+  statistic = c("t", "p", "t", "p"),
+  value = c(5.4885, 0.04, 4.828, 0.06),
+  method = "A test"
+)
+
+results <- add_stats(some_data, results, identifier = "some_data")
+
 
 # Convert to data frame -----------------------------------------------------------------------
 
@@ -352,6 +418,13 @@ report(results, "M4_6", term = "affect")
 report(results, "M4_6", term = "condition:affect")
 report(results, "M4_7", term = "anxiety")
 report(results, "M4_7", term = "affect")
+
+
+
+
+
+
+
 
 # Unfinished statistical models ---------------------------------------------------------------
 
@@ -432,24 +505,6 @@ bfi %>%
 
 
 
-# Manually adding model output ----------------------------------------------------------------
-
-x_squared_data <- tibble(
-  statistic = c("X-squared", "df", "p"),
-  value = c(5.4885, 6, 0.4828),
-  method = "Chi-squared test of independence"
-)
-
-results <- add_stats(x_squared_data, results, identifier = "x_squared")
-
-some_data <- tibble(
-  term = c("group1", "group1", "group2", "group2"),
-  statistic = c("t", "p", "t", "p"),
-  value = c(5.4885, 0.04, 4.828, 0.06),
-  method = "A test"
-)
-
-results <- add_stats(some_data, results, identifier = "some_data")
 
 
 # Report table functions ----------------------------------------------------------------------
