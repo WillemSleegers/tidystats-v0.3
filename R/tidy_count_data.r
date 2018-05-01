@@ -36,11 +36,13 @@ tidy_count_data <- function(descriptives) {
       arrange(.by_group = TRUE) %>%
       unite(col = "group", group, groups, sep = " - ")
   } else {
-    output <- gather(descriptives, "statistic", "value", -var, -group)
-  }
+    output <- gather(descriptives, "statistic", "value", -contains("var"), -contains("group"))
 
-  # Arrange by var
-  output <- arrange(output, var, group)
+    # Arrange by var, if it exists
+    if ("var" %in% names(output)) {
+      output <- arrange(output, var, group)
+    }
+  }
 
   return(output)
 }

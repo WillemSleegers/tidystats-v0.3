@@ -48,6 +48,11 @@ describe_data <- function(data, ..., na.rm = TRUE) {
   # Get variables
   vars <- quos(...)
 
+  # Throw an error if no vars are supplied
+  if (length(vars) == 0) {
+    stop("No variables supplied")
+  }
+
   # Check whether all variables are numeric
   if (sum(!sapply(data[, str_sub(as.character(vars), start = 2)], class) %in%
           c("numeric", "integer")) > 0) {
