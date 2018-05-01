@@ -10,6 +10,7 @@
 * Added skewness and kurtosis to `describe_data()`
 * Added new `count_data()` function to calculate count descriptives of categorical data. Also added a `tidy_count_data()` function to tidy the output of this new function.
 * Added support for `chisq.test` and `wilcox.test`.
+* Added a better default `identifier` to `add_stats()`. If you supply a variable to be added to the tidystats list, and no identifier is provided, it will take the variable name as the identifier. If you pipe the results into `add_stats()` then the old default identifier will be used (e.g., "M1"). 
 
 ## Improvements
 

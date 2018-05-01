@@ -58,7 +58,13 @@ add_stats.default <- function(output, results, identifier = NULL, statistics = N
 
   # Create an identifier if it is not specified, else check whether it already exists
   if (is.null(identifier)) {
-    identifier <- paste0("M", formatC(length(results)+1, width = "1", format = "d"))
+
+    if (deparse(substitute(output)) == ".") {
+      identifier <- paste0("M", formatC(length(results)+1, width = "1", format = "d"))
+    } else {
+      identifier <- deparse(substitute(output))
+    }
+
   } else {
     if (!is.null(names(results))) {
       if (identifier %in% names(results)) {
