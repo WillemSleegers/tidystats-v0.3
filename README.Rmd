@@ -133,7 +133,7 @@ Below we show a list of common report examples:
 |`report(results, "M1", statistic = "t")`                      | `r report("M1_condition", statistic = "t")`                      |
 |`report(results, "M2")`                                       | `r report("M2_parent_siblings")`                                       |
 |`report(results, "M3", term = "conditionmortality salience")` | `r report("M3_condition_anxiety", term = "conditionmortality salience")` |
-|`report(results, "M3", term_nr = 2`                           | `r report("M3_condition_anxiety", term_nr = 2)`                          |
+|`report(results, "M3", term_nr = 2)`                           | `r report("M3_condition_anxiety", term_nr = 2)`                          |
 |`report(results, "M3", term = "(Model)")`                     | `r report("M3_condition_anxiety", term = "(Model)")`                     |
 |`report(results, "M4", term = "condition:sex")`               | `r report("M4_condition_sex", term = "condition:sex")`               |
 
