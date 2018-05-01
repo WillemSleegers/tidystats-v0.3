@@ -171,7 +171,7 @@ count_data(cox, condition)
 If you use the `describe_data()` and `count_data()` function from the `tidystats` package to get the descriptives, you can use the `tidy_describe_data()` and `tidy_count_data()` function to tidy the output, and consequently add it to a results list. 
 
 ```{r}
-cox %>%
+results <- cox %>%
   describe_data(anxiety) %>%
   tidy_describe_data() %>%
   add_stats(results, identifier = "anxiety", type = "d", notes = "Anxious attachment style")
