@@ -97,6 +97,7 @@ options(knitr.kable.NA = '-')
 
 results %>%
   stats_list_to_df() %>%
+  select(-notes) %>%
   kable()
 ```
 

@@ -100,71 +100,72 @@ options(knitr.kable.NA = '-')
 
 results %>%
   stats_list_to_df() %>%
+  select(-notes) %>%
   kable()
 ```
 
 
 
-|identifier           | term_nr|term                                |statistic               |         value|method                               |notes                             |
-|:--------------------|-------:|:-----------------------------------|:-----------------------|-------------:|:------------------------------------|:---------------------------------|
-|M1_condition         |       -|-                                   |mean of the differences |    -2.7700000|Paired t-test                        |alternative hypothesis: two.sided |
-|M1_condition         |       -|-                                   |t                       |    -1.2614135|Paired t-test                        |alternative hypothesis: two.sided |
-|M1_condition         |       -|-                                   |df                      |    99.0000000|Paired t-test                        |alternative hypothesis: two.sided |
-|M1_condition         |       -|-                                   |p                       |     0.2101241|Paired t-test                        |alternative hypothesis: two.sided |
-|M1_condition         |       -|-                                   |95% CI lower            |    -7.1272396|Paired t-test                        |alternative hypothesis: two.sided |
-|M1_condition         |       -|-                                   |95% CI upper            |     1.5872396|Paired t-test                        |alternative hypothesis: two.sided |
-|M1_condition         |       -|-                                   |null value              |     0.0000000|Paired t-test                        |alternative hypothesis: two.sided |
-|M2_parent_siblings   |       -|-                                   |cor                     |    -0.0268794|Pearson's product-moment correlation |alternative hypothesis: greater   |
-|M2_parent_siblings   |       -|-                                   |t                       |    -0.3783637|Pearson's product-moment correlation |alternative hypothesis: greater   |
-|M2_parent_siblings   |       -|-                                   |df                      |   198.0000000|Pearson's product-moment correlation |alternative hypothesis: greater   |
-|M2_parent_siblings   |       -|-                                   |p                       |     0.6472171|Pearson's product-moment correlation |alternative hypothesis: greater   |
-|M2_parent_siblings   |       -|-                                   |95% CI lower            |    -0.1430882|Pearson's product-moment correlation |alternative hypothesis: greater   |
-|M2_parent_siblings   |       -|-                                   |95% CI upper            |     1.0000000|Pearson's product-moment correlation |alternative hypothesis: greater   |
-|M2_parent_siblings   |       -|-                                   |null value              |     0.0000000|Pearson's product-moment correlation |alternative hypothesis: greater   |
-|M3_condition_anxiety |       1|(Intercept)                         |b                       |    29.4466534|Linear regression                    |-                                 |
-|M3_condition_anxiety |       1|(Intercept)                         |SE                      |     9.9311192|Linear regression                    |-                                 |
-|M3_condition_anxiety |       1|(Intercept)                         |t                       |     2.9650891|Linear regression                    |-                                 |
-|M3_condition_anxiety |       1|(Intercept)                         |p                       |     0.0034017|Linear regression                    |-                                 |
-|M3_condition_anxiety |       1|(Intercept)                         |df                      |   196.0000000|Linear regression                    |-                                 |
-|M3_condition_anxiety |       2|conditionmortality salience         |b                       |    20.2945974|Linear regression                    |-                                 |
-|M3_condition_anxiety |       2|conditionmortality salience         |SE                      |    14.0193962|Linear regression                    |-                                 |
-|M3_condition_anxiety |       2|conditionmortality salience         |t                       |     1.4476085|Linear regression                    |-                                 |
-|M3_condition_anxiety |       2|conditionmortality salience         |p                       |     0.1493242|Linear regression                    |-                                 |
-|M3_condition_anxiety |       2|conditionmortality salience         |df                      |   196.0000000|Linear regression                    |-                                 |
-|M3_condition_anxiety |       3|anxiety                             |b                       |    -1.5511207|Linear regression                    |-                                 |
-|M3_condition_anxiety |       3|anxiety                             |SE                      |     3.0119376|Linear regression                    |-                                 |
-|M3_condition_anxiety |       3|anxiety                             |t                       |    -0.5149910|Linear regression                    |-                                 |
-|M3_condition_anxiety |       3|anxiety                             |p                       |     0.6071396|Linear regression                    |-                                 |
-|M3_condition_anxiety |       3|anxiety                             |df                      |   196.0000000|Linear regression                    |-                                 |
-|M3_condition_anxiety |       4|conditionmortality salience:anxiety |b                       |    -5.5666889|Linear regression                    |-                                 |
-|M3_condition_anxiety |       4|conditionmortality salience:anxiety |SE                      |     4.3104789|Linear regression                    |-                                 |
-|M3_condition_anxiety |       4|conditionmortality salience:anxiety |t                       |    -1.2914316|Linear regression                    |-                                 |
-|M3_condition_anxiety |       4|conditionmortality salience:anxiety |p                       |     0.1980750|Linear regression                    |-                                 |
-|M3_condition_anxiety |       4|conditionmortality salience:anxiety |df                      |   196.0000000|Linear regression                    |-                                 |
-|M3_condition_anxiety |       5|(Model)                             |R squared               |     0.0360246|Linear regression                    |-                                 |
-|M3_condition_anxiety |       5|(Model)                             |adjusted R squared      |     0.0212698|Linear regression                    |-                                 |
-|M3_condition_anxiety |       5|(Model)                             |F                       |     2.4415618|Linear regression                    |-                                 |
-|M3_condition_anxiety |       5|(Model)                             |numerator df            |     3.0000000|Linear regression                    |-                                 |
-|M3_condition_anxiety |       5|(Model)                             |denominator df          |   196.0000000|Linear regression                    |-                                 |
-|M3_condition_anxiety |       5|(Model)                             |p                       |     0.0655150|Linear regression                    |-                                 |
-|M4_condition_sex     |       1|condition                           |df                      |     1.0000000|ANOVA                                |-                                 |
-|M4_condition_sex     |       1|condition                           |SS                      |   383.6450000|ANOVA                                |-                                 |
-|M4_condition_sex     |       1|condition                           |MS                      |   383.6450000|ANOVA                                |-                                 |
-|M4_condition_sex     |       1|condition                           |F                       |     1.7299360|ANOVA                                |-                                 |
-|M4_condition_sex     |       1|condition                           |p                       |     0.1899557|ANOVA                                |-                                 |
-|M4_condition_sex     |       2|sex                                 |df                      |     1.0000000|ANOVA                                |-                                 |
-|M4_condition_sex     |       2|sex                                 |SS                      |  1140.4861329|ANOVA                                |-                                 |
-|M4_condition_sex     |       2|sex                                 |MS                      |  1140.4861329|ANOVA                                |-                                 |
-|M4_condition_sex     |       2|sex                                 |F                       |     5.1426918|ANOVA                                |-                                 |
-|M4_condition_sex     |       2|sex                                 |p                       |     0.0244352|ANOVA                                |-                                 |
-|M4_condition_sex     |       3|condition:sex                       |df                      |     1.0000000|ANOVA                                |-                                 |
-|M4_condition_sex     |       3|condition:sex                       |SS                      |    66.1529617|ANOVA                                |-                                 |
-|M4_condition_sex     |       3|condition:sex                       |MS                      |    66.1529617|ANOVA                                |-                                 |
-|M4_condition_sex     |       3|condition:sex                       |F                       |     0.2982976|ANOVA                                |-                                 |
-|M4_condition_sex     |       3|condition:sex                       |p                       |     0.5855728|ANOVA                                |-                                 |
-|M4_condition_sex     |       4|Residuals                           |df                      |   196.0000000|ANOVA                                |-                                 |
-|M4_condition_sex     |       4|Residuals                           |SS                      | 43466.5909054|ANOVA                                |-                                 |
-|M4_condition_sex     |       4|Residuals                           |MS                      |   221.7683209|ANOVA                                |-                                 |
+|identifier           | term_nr|term                                |statistic               |         value|method                               |
+|:--------------------|-------:|:-----------------------------------|:-----------------------|-------------:|:------------------------------------|
+|M1_condition         |       -|-                                   |mean of the differences |    -2.7700000|Paired t-test                        |
+|M1_condition         |       -|-                                   |t                       |    -1.2614135|Paired t-test                        |
+|M1_condition         |       -|-                                   |df                      |    99.0000000|Paired t-test                        |
+|M1_condition         |       -|-                                   |p                       |     0.2101241|Paired t-test                        |
+|M1_condition         |       -|-                                   |95% CI lower            |    -7.1272396|Paired t-test                        |
+|M1_condition         |       -|-                                   |95% CI upper            |     1.5872396|Paired t-test                        |
+|M1_condition         |       -|-                                   |null value              |     0.0000000|Paired t-test                        |
+|M2_parent_siblings   |       -|-                                   |cor                     |    -0.0268794|Pearson's product-moment correlation |
+|M2_parent_siblings   |       -|-                                   |t                       |    -0.3783637|Pearson's product-moment correlation |
+|M2_parent_siblings   |       -|-                                   |df                      |   198.0000000|Pearson's product-moment correlation |
+|M2_parent_siblings   |       -|-                                   |p                       |     0.6472171|Pearson's product-moment correlation |
+|M2_parent_siblings   |       -|-                                   |95% CI lower            |    -0.1430882|Pearson's product-moment correlation |
+|M2_parent_siblings   |       -|-                                   |95% CI upper            |     1.0000000|Pearson's product-moment correlation |
+|M2_parent_siblings   |       -|-                                   |null value              |     0.0000000|Pearson's product-moment correlation |
+|M3_condition_anxiety |       1|(Intercept)                         |b                       |    29.4466534|Linear regression                    |
+|M3_condition_anxiety |       1|(Intercept)                         |SE                      |     9.9311192|Linear regression                    |
+|M3_condition_anxiety |       1|(Intercept)                         |t                       |     2.9650891|Linear regression                    |
+|M3_condition_anxiety |       1|(Intercept)                         |p                       |     0.0034017|Linear regression                    |
+|M3_condition_anxiety |       1|(Intercept)                         |df                      |   196.0000000|Linear regression                    |
+|M3_condition_anxiety |       2|conditionmortality salience         |b                       |    20.2945974|Linear regression                    |
+|M3_condition_anxiety |       2|conditionmortality salience         |SE                      |    14.0193962|Linear regression                    |
+|M3_condition_anxiety |       2|conditionmortality salience         |t                       |     1.4476085|Linear regression                    |
+|M3_condition_anxiety |       2|conditionmortality salience         |p                       |     0.1493242|Linear regression                    |
+|M3_condition_anxiety |       2|conditionmortality salience         |df                      |   196.0000000|Linear regression                    |
+|M3_condition_anxiety |       3|anxiety                             |b                       |    -1.5511207|Linear regression                    |
+|M3_condition_anxiety |       3|anxiety                             |SE                      |     3.0119376|Linear regression                    |
+|M3_condition_anxiety |       3|anxiety                             |t                       |    -0.5149910|Linear regression                    |
+|M3_condition_anxiety |       3|anxiety                             |p                       |     0.6071396|Linear regression                    |
+|M3_condition_anxiety |       3|anxiety                             |df                      |   196.0000000|Linear regression                    |
+|M3_condition_anxiety |       4|conditionmortality salience:anxiety |b                       |    -5.5666889|Linear regression                    |
+|M3_condition_anxiety |       4|conditionmortality salience:anxiety |SE                      |     4.3104789|Linear regression                    |
+|M3_condition_anxiety |       4|conditionmortality salience:anxiety |t                       |    -1.2914316|Linear regression                    |
+|M3_condition_anxiety |       4|conditionmortality salience:anxiety |p                       |     0.1980750|Linear regression                    |
+|M3_condition_anxiety |       4|conditionmortality salience:anxiety |df                      |   196.0000000|Linear regression                    |
+|M3_condition_anxiety |       5|(Model)                             |R squared               |     0.0360246|Linear regression                    |
+|M3_condition_anxiety |       5|(Model)                             |adjusted R squared      |     0.0212698|Linear regression                    |
+|M3_condition_anxiety |       5|(Model)                             |F                       |     2.4415618|Linear regression                    |
+|M3_condition_anxiety |       5|(Model)                             |numerator df            |     3.0000000|Linear regression                    |
+|M3_condition_anxiety |       5|(Model)                             |denominator df          |   196.0000000|Linear regression                    |
+|M3_condition_anxiety |       5|(Model)                             |p                       |     0.0655150|Linear regression                    |
+|M4_condition_sex     |       1|condition                           |df                      |     1.0000000|ANOVA                                |
+|M4_condition_sex     |       1|condition                           |SS                      |   383.6450000|ANOVA                                |
+|M4_condition_sex     |       1|condition                           |MS                      |   383.6450000|ANOVA                                |
+|M4_condition_sex     |       1|condition                           |F                       |     1.7299360|ANOVA                                |
+|M4_condition_sex     |       1|condition                           |p                       |     0.1899557|ANOVA                                |
+|M4_condition_sex     |       2|sex                                 |df                      |     1.0000000|ANOVA                                |
+|M4_condition_sex     |       2|sex                                 |SS                      |  1140.4861329|ANOVA                                |
+|M4_condition_sex     |       2|sex                                 |MS                      |  1140.4861329|ANOVA                                |
+|M4_condition_sex     |       2|sex                                 |F                       |     5.1426918|ANOVA                                |
+|M4_condition_sex     |       2|sex                                 |p                       |     0.0244352|ANOVA                                |
+|M4_condition_sex     |       3|condition:sex                       |df                      |     1.0000000|ANOVA                                |
+|M4_condition_sex     |       3|condition:sex                       |SS                      |    66.1529617|ANOVA                                |
+|M4_condition_sex     |       3|condition:sex                       |MS                      |    66.1529617|ANOVA                                |
+|M4_condition_sex     |       3|condition:sex                       |F                       |     0.2982976|ANOVA                                |
+|M4_condition_sex     |       3|condition:sex                       |p                       |     0.5855728|ANOVA                                |
+|M4_condition_sex     |       4|Residuals                           |df                      |   196.0000000|ANOVA                                |
+|M4_condition_sex     |       4|Residuals                           |SS                      | 43466.5909054|ANOVA                                |
+|M4_condition_sex     |       4|Residuals                           |MS                      |   221.7683209|ANOVA                                |
 
 To write the results to a file, use `write_stats()` with the results list as the first argument.
 
