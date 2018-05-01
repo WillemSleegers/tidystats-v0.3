@@ -134,7 +134,7 @@ Below we show a list of common report examples:
 |`report(results, "M2")`                                       | `r report("M2_parent_siblings")`                                       |
 |`report(results, "M3", term = "conditionmortality salience")` | `r report("M3_condition_anxiety", term = "conditionmortality salience")` |
 |`report(results, "M3", term_nr = 2)`                           | `r report("M3_condition_anxiety", term_nr = 2)`                          |
-|`report(results, "M3", term = "(Model)")`                     | "adjusted *R*^2 = .0035, *F*(1, 198) = 1.70, *p* = .19"                     |
+|`report(results, "M3", term = "(Model)")`                     | adjusted *R*<sup>2</sup> = .0035, *F*(1, 198) = 1.70, *p* = .19                     |
 |`report(results, "M4", term = "condition:sex")`               | `r report("M4_condition_sex", term = "condition:sex")`               |
 
 As you can see in the examples above, you can use `report()` to produce a full line of output when a model identifier is provided (and a term when the model consists of multiple terms). You can also only retrieve a single statistic by using the `statistic` argument. Additionally, you can refer to terms using either the term label or the term number. Although this latter method might be less descriptive, it reduces the amount of code clutter in your Markdown document. Our philosophy is, in line with Markdown's general writing philosophy, that the code should not distract from writing. To illustrate, writing part of a results section will now, using `tidystats` look like this:
