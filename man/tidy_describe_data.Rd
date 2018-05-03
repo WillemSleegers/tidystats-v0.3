@@ -7,7 +7,7 @@
 tidy_describe_data(descriptives)
 }
 \arguments{
-\item{descriptives}{A descriptives data frame created with tidystats' \code{describe_data}.}
+\item{descriptives}{A data frame created with tidystats' \code{describe_data}.}
 }
 \description{
 \code{tidy_describe_data} returns a tidy data frame of descriptive statistics created with \strong{tidystats}' \code{describe_data}.
@@ -15,7 +15,7 @@ tidy_describe_data(descriptives)
 \examples{
 library(dplyr)
 
-# Get descriptives
+# Calculate descriptives
 descriptives <- describe_data(sleep, extra)
 
 # Create a tidy data frame of the descriptives

@@ -8,10 +8,10 @@
 #'
 #' @details The data set can be grouped using \strong{dplyr}'s \code{group_by} so that descriptives will be calculated for each group level.
 #'
-#' Skew and kurtosis are based on the \code{skewness} and \code{kurtosis} functions of the \strong{moments} package.
+#' Skew and kurtosis are based on the \code{skewness} and \code{kurtosis} functions of the \strong{moments} package (Komsta & Novomestky, 2015).
 #'
 #' @examples
-#' library(tidyverse)
+#' library(dplyr)
 #'
 #' # 1 variable
 #' describe_data(cox, avoidance)

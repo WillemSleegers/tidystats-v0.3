@@ -3,12 +3,12 @@
 #' \code{count_data} returns the number of observations for categorical variables.
 #'
 #' @param data a data frame.
-#' @param variables the variables you want to count.
+#' @param variables the categorical variables you want to count.
 #'
 #' @details The data set can be grouped using \strong{dplyr}'s \code{group_by} so that the total of observations will be calculated for each group level.
 #'
 #' @examples
-#' library(tidyverse)
+#' library(dplyr)
 #'
 #' # 1 variable
 #' count_data(cox, sex)

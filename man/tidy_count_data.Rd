@@ -2,12 +2,12 @@
 % Please edit documentation in R/tidy_count_data.r
 \name{tidy_count_data}
 \alias{tidy_count_data}
-\title{Convert count descriptives to a tidy data frame}
+\title{Convert count data to a tidy data frame}
 \usage{
-tidy_count_data(descriptives)
+tidy_count_data(count_data)
 }
 \arguments{
-\item{descriptives}{a descriptives data frame created with tidystats' \code{count_data}.}
+\item{count_data}{a data frame created with tidystats' \code{count_data}.}
 }
 \description{
 \code{tidy_count_data} returns a tidy data frame of count statistics created with \strong{tidystats}' \code{count_data}.
@@ -15,10 +15,10 @@ tidy_count_data(descriptives)
 \examples{
 library(dplyr)
 
-# Get descriptives
+# Calculate counts
 condition_n <- count_data(cox, condition)
 
-# Create a tidy data frame of the descriptives
+# Create a tidy data frame of the count data
 tidy_count_data(condition_n)
 
 # With a grouping variable:

@@ -25,7 +25,7 @@
 #'   )
 #'
 #' # Add results to results
-#' results <- add_stats(x_squared_data, results, identifier = "M1")
+#' results <- add_stats(x_squared_data, results)
 #'
 #' @export
 add_stats.data.frame <- function(data, results, identifier = NULL, statistics = NULL, type = NULL,

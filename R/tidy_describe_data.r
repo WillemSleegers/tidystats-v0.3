@@ -2,12 +2,12 @@
 #'
 #' \code{tidy_describe_data} returns a tidy data frame of descriptive statistics created with \strong{tidystats}' \code{describe_data}.
 #'
-#' @param descriptives A descriptives data frame created with tidystats' \code{describe_data}.
+#' @param descriptives A data frame created with tidystats' \code{describe_data}.
 #'
 #' @examples
 #' library(dplyr)
 #'
-#' # Get descriptives
+#' # Calculate descriptives
 #' descriptives <- describe_data(sleep, extra)
 #'
 #' # Create a tidy data frame of the descriptives

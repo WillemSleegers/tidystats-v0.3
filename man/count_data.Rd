@@ -9,7 +9,7 @@ count_data(data, ..., na.rm = TRUE)
 \arguments{
 \item{data}{a data frame.}
 
-\item{variables}{the variables you want to count.}
+\item{variables}{the categorical variables you want to count.}
 }
 \description{
 \code{count_data} returns the number of observations for categorical variables.
@@ -18,7 +18,7 @@ count_data(data, ..., na.rm = TRUE)
 The data set can be grouped using \strong{dplyr}'s \code{group_by} so that the total of observations will be calculated for each group level.
 }
 \examples{
-library(tidyverse)
+library(dplyr)
 
 # 1 variable
 count_data(cox, sex)
