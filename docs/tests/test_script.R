@@ -13,160 +13,13 @@ library(tidyverse)
 # Create empty tidy stats data frame
 results <- list()
 
-# Descriptives --------------------------------------------------------------------------------
-
-# count_data() --------------------------------------------------------------------------------
-
-# 1 categorical variable
-count_data(cox, condition)
-
-# 2 categorical variables
-count_data(cox, condition, sex)
-
-# 1 categorical variable, 1 grouping variable
-cox %>%
-  group_by(sex) %>%
-  count_data(condition)
-
-# tidy_count_data() ---------------------------------------------------------------------------
-
-# 1 categorical variable
-count_data(cox, condition) %>%
-  tidy_count_data()
-
-# 2 categorical variables
-count_data(cox, condition, sex) %>%
-  tidy_count_data()
-
-# 1 categorical variable, 1 grouping variable
-cox %>%
-  group_by(sex) %>%
-  count_data(condition) %>%
-  tidy_count_data()
-
-# describe_data() -----------------------------------------------------------------------------
-
-# 1 variable
-describe_data(cox, avoidance)
-
-# 2 variables
-describe_data(cox, avoidance, anxiety)
-
-# 1 variable, 1 group
-cox %>%
- group_by(condition) %>%
- describe_data(avoidance)
-
-# 2 variables, 1 group
-cox %>%
- group_by(condition) %>%
- describe_data(avoidance, anxiety)
-
-# 1 variable, 2 groups
-cox %>%
- group_by(condition, sex) %>%
- describe_data(avoidance)
-
-# 2 variables, 2 groups
-cox %>%
- group_by(condition, sex) %>%
- describe_data(avoidance, anxiety)
-
-# tidy_describe_data() ------------------------------------------------------------------------
-
-# 1 variable
-describe_data(cox, avoidance) %>%
-  tidy_describe_data()
-
-# 2 variables
-describe_data(cox, avoidance, anxiety) %>%
-  tidy_describe_data()
-
-# 1 variable, 1 group
-cox %>%
-  group_by(condition) %>%
-  describe_data(avoidance) %>%
-  tidy_describe_data()
-
-# 2 variables, 1 group
-cox %>%
-  group_by(condition) %>%
-  describe_data(avoidance, anxiety) %>%
-  tidy_describe_data()
-
-# 1 variable, 2 groups
-cox %>%
-  group_by(condition, sex) %>%
-  describe_data(avoidance) %>%
-  tidy_describe_data()
-
-# 2 variables, 2 groups
-cox %>%
-  group_by(condition, sex) %>%
-  describe_data(avoidance, anxiety) %>%
-  tidy_describe_data()
-
-# add_stats(): Descriptives -------------------------------------------------------------------
-
-# Count data
-
-# 1 var
-results <- cox %>%
-  count_data(condition) %>%
-  tidy_count_data() %>%
-  add_stats(results, identifier = "D1_condition", type = "d")
-
-# 2 vars
-results <- cox %>%
-  count_data(condition, sex) %>%
-  tidy_count_data() %>%
-  add_stats(results, identifier = "D2_condition_sex", type = "d")
-
-# 1 var, 1 group
-results <- cox %>%
-  group_by(sex) %>%
-  count_data(condition) %>%
-  tidy_count_data() %>%
-  add_stats(results, identifier = "D3_condition_by_sex", type = "d")
-
-# Non-count data
-
-# 1 var
-results <- cox %>%
-  describe_data(avoidance) %>%
-  tidy_describe_data() %>%
-  add_stats(results, identifier = "D4_avoidance", type = "d")
-
-# 2 vars
-results <- cox %>%
-  describe_data(avoidance, anxiety) %>%
-  tidy_describe_data() %>%
-  add_stats(results, identifier = "D5_avoidance_anxiety", type = "d",
-            statistics = c("n", "M", "SD", "min", "max"))
-
-# 1 var, 1 group
-results <- cox %>%
-  group_by(condition) %>%
-  describe_data(avoidance) %>%
-  tidy_describe_data() %>%
-  add_stats(results, identifier = "D6_avoidance_by_condition", type = "d",
-            statistics = c("n", "M", "SD", "min", "max"))
-
-# 2 vars, 2 groups
-results <- cox %>%
-  group_by(condition, sex) %>%
-  describe_data(avoidance, anxiety) %>%
-  tidy_describe_data() %>%
-  add_stats(results, identifier = "D7_avoidance_anxiety_by_condition_sex", type = "d",
-            statistics = c("n", "M", "SD", "min", "max"))
-
 # Analysis: t-test ----------------------------------------------------------------------------
 
 # Run t-tests
 t_test_one_sample <- t.test(cox$call_parent, alternative = "greater")
 t_test_two_sample <- t.test(call_parent ~ condition, data = cox, var.equal = TRUE)
-t_test_welch <- t.test(call_parent ~ condition, data = cox, var.equal = FALSE)
-t_test_paired <- t.test(cox$affect_positive, cox$affect_negative, paired = TRUE)
+t_test_welch      <- t.test(call_parent ~ condition, data = cox, var.equal = FALSE)
+t_test_paired     <- t.test(cox$affect_positive, cox$affect_negative, paired = TRUE)
 
 t_test_one_sample
 t_test_two_sample
@@ -182,9 +35,9 @@ tidy_stats(t_test_paired)
 # Add stats
 results <- add_stats(t_test_one_sample, results, identifier = "t_test_one_sample",
                      statistics = c("t", "df", "p"), type = "h", confirmatory = TRUE)
-results <- add_stats(t_test_one_sample, results, identifier = "t_test_two_sample")
-results <- add_stats(t_test_one_sample, results, identifier = "t_test_welch")
-results <- add_stats(t_test_one_sample, results, identifier = "t_test_paired")
+results <- add_stats(t_test_two_sample, results)
+results <- add_stats(t_test_welch, results)
+results <- add_stats(t_test_paired, results)
 
 # Analysis: correlation -----------------------------------------------------------------------
 
@@ -198,10 +51,10 @@ tidy_stats(correlation_pearson)
 tidy_stats(correlation_kendall)
 tidy_stats(correlation_spearman)
 
-# Kendall's rank correlation tau
-results <- add_stats(correlation_pearson, results, identifier = "correlation_pearson")
-results <- add_stats(correlation_kendall, results, identifier = "correlation_kendall")
-results <- add_stats(correlation_spearman, results, identifier = "correlation_spearman")
+# Add stats
+results <- add_stats(correlation_pearson, results)
+results <- add_stats(correlation_kendall, results)
+results <- add_stats(correlation_spearman, results)
 
 # Analysis: Chi-square ------------------------------------------------------------------------
 
@@ -220,6 +73,11 @@ chi_square_prob <- chisq.test(x)
 tidy_stats(chi_square)
 tidy_stats(chi_square_yates)
 tidy_stats(chi_square_prob)
+
+# Add stats
+results <- add_stats(chi_square, results)
+results <- add_stats(chi_square_yates, results)
+results <- add_stats(chi_square_prob, results)
 
 # Analysis: Wilcox test -----------------------------------------------------------------------
 
@@ -243,6 +101,28 @@ tidy_stats(wilcox_signed_rank_continuity_correction)
 tidy_stats(wilcox_rank_sum)
 tidy_stats(wilcox_rank_sum_conf)
 
+# add_stats(): default identifier -------------------------------------------------------------
+
+# Statistical test
+add_stats(t_test_one_sample, results)
+
+# Statistical test with piping
+t.test(cox$call_parent, alternative = "greater") %>%
+  add_stats(results)
+
+# Data frame
+cox_avoidance <- cox %>%
+  describe_data(avoidance) %>%
+  tidy_describe_data()
+
+add_stats(cox_avoidance, results)
+
+# Data frame with piping
+cox %>%
+  describe_data(avoidance) %>%
+  tidy_describe_data() %>%
+  add_stats(results, type = "d")
+
 # Test regression ---------------------------------------------------------
 
 # Model with 1 predictor
@@ -259,6 +139,27 @@ results <- add_stats(model3_2, results, identifier = "M3_2", confirmatory = TRUE
 model3_3 <- lm(call_parent ~ condition * anxiety, data = cox)
 summary(model3_3)
 results <- add_stats(model3_3, results, identifier = "M3_3")
+
+# Add results to existing model ---------------------------------------------------------------
+
+# Calculate confidence intervals
+model3_1_CIs <- confint(model3_1)
+model3_2_CIs <- confint(model3_2, level = .90)
+model3_3_CIs <- confint(model3_3)
+
+# Tidy results and add results to existing model
+results <- model3_1_CIs %>%
+  tidy_stats_confint() %>%
+  add_stats_to_model(results, identifier = "M3_1")
+
+results <- model3_2_CIs %>%
+  tidy_stats_confint() %>%
+  add_stats_to_model(results, identifier = "M3_2")
+
+results <- model3_3_CIs %>%
+  tidy_stats_confint() %>%
+  add_stats_to_model(results, identifier = "M3_3")
+
 
 # Test ANOVA --------------------------------------------------------------
 
@@ -310,25 +211,6 @@ summary(model4_7)
 results <- add_stats(model4_7, results, identifier = "M4_7")
 
 
-# Add results to existing model ---------------------------------------------------------------
-
-# Calculate confidence intervals
-model3_1_CIs <- confint(model3_1)
-model3_2_CIs <- confint(model3_2, level = .90)
-model3_3_CIs <- confint(model3_3)
-
-# Tidy results and add results to existing model
-results <- model3_1_CIs %>%
-  tidy_stats_confint() %>%
-  add_stats_to_model(results, identifier = "M3_1")
-
-results <- model3_2_CIs %>%
-  tidy_stats_confint() %>%
-  add_stats_to_model(results, identifier = "M3_2")
-
-results <- model3_3_CIs %>%
-  tidy_stats_confint() %>%
-  add_stats_to_model(results, identifier = "M3_3")
 
 # Manually adding model output ----------------------------------------------------------------
 
@@ -517,3 +399,170 @@ report_table_lm(results, "M3_1", terms = "conditionmortality salience", term_lab
 report_table_lm(results, "M3_1", term_nrs = 2, term_labels = c("Condition"))
 report_table_lm(results, "M3_1", term_nrs = 2, term_labels = c("Condition"), include_model = FALSE)
 
+# README --------------------------------------------------------------------------------------
+
+library(knitr)
+knit("README.Rmd")
+
+# Descriptives --------------------------------------------------------------------------------
+
+# count_data() --------------------------------------------------------------------------------
+
+# Total N
+count_data(cox)
+
+# 1 categorical variable
+count_data(cox, condition)
+
+# 2 categorical variables
+count_data(cox, condition, sex)
+
+# 1 categorical variable, 1 grouping variable
+cox %>%
+  group_by(sex) %>%
+  count_data(condition)
+
+# tidy_count_data() ---------------------------------------------------------------------------
+
+# Total N
+count_data(cox) %>%
+  tidy_count_data()
+
+# 1 categorical variable
+count_data(cox, condition) %>%
+  tidy_count_data()
+
+# 2 categorical variables
+count_data(cox, condition, sex) %>%
+  tidy_count_data()
+
+# 1 categorical variable, 1 grouping variable
+cox %>%
+  group_by(sex) %>%
+  count_data(condition) %>%
+  tidy_count_data()
+
+# describe_data() -----------------------------------------------------------------------------
+
+# 0 variables
+describe_data(cox)
+
+# 1 variable
+describe_data(cox, avoidance)
+
+# 2 variables
+describe_data(cox, avoidance, anxiety)
+
+# 1 variable, 1 group
+cox %>%
+  group_by(condition) %>%
+  describe_data(avoidance)
+
+# 2 variables, 1 group
+cox %>%
+  group_by(condition) %>%
+  describe_data(avoidance, anxiety)
+
+# 1 variable, 2 groups
+cox %>%
+  group_by(condition, sex) %>%
+  describe_data(avoidance)
+
+# 2 variables, 2 groups
+cox %>%
+  group_by(condition, sex) %>%
+  describe_data(avoidance, anxiety)
+
+# tidy_describe_data() ------------------------------------------------------------------------
+
+# 1 variable
+describe_data(cox, avoidance) %>%
+  tidy_describe_data()
+
+# 2 variables
+describe_data(cox, avoidance, anxiety) %>%
+  tidy_describe_data()
+
+# 1 variable, 1 group
+cox %>%
+  group_by(condition) %>%
+  describe_data(avoidance) %>%
+  tidy_describe_data()
+
+# 2 variables, 1 group
+cox %>%
+  group_by(condition) %>%
+  describe_data(avoidance, anxiety) %>%
+  tidy_describe_data()
+
+# 1 variable, 2 groups
+cox %>%
+  group_by(condition, sex) %>%
+  describe_data(avoidance) %>%
+  tidy_describe_data()
+
+# 2 variables, 2 groups
+cox %>%
+  group_by(condition, sex) %>%
+  describe_data(avoidance, anxiety) %>%
+  tidy_describe_data()
+
+# add_stats(): Descriptives -------------------------------------------------------------------
+
+# Count data
+
+# 1 var
+results <- cox %>%
+  count_data(condition) %>%
+  tidy_count_data() %>%
+  add_stats(results, identifier = "D1_cox_condition", type = "d")
+
+# 2 vars
+results <- cox %>%
+  count_data(condition, sex) %>%
+  tidy_count_data() %>%
+  add_stats(results, identifier = "D2_condition_sex", type = "d")
+
+# 1 var, 1 group
+results <- cox %>%
+  group_by(sex) %>%
+  count_data(condition) %>%
+  tidy_count_data() %>%
+  add_stats(results, identifier = "D3_condition_by_sex", type = "d")
+
+# Non-count data
+
+# 1 var
+results <- cox %>%
+  describe_data(avoidance) %>%
+  tidy_describe_data() %>%
+  add_stats(results, identifier = "D4_avoidance", type = "d")
+
+# 2 vars
+results <- cox %>%
+  describe_data(avoidance, anxiety) %>%
+  tidy_describe_data() %>%
+  add_stats(results, identifier = "D5_avoidance_anxiety", type = "d",
+            statistics = c("n", "M", "SD", "min", "max"))
+
+# 1 var, 1 group
+results <- cox %>%
+  group_by(condition) %>%
+  describe_data(avoidance) %>%
+  tidy_describe_data() %>%
+  add_stats(results, identifier = "D6_avoidance_by_condition", type = "d",
+            statistics = c("n", "M", "SD", "min", "max"))
+
+# 2 vars, 2 groups
+results <- cox %>%
+  group_by(condition, sex) %>%
+  describe_data(avoidance, anxiety) %>%
+  tidy_describe_data() %>%
+  add_stats(results, identifier = "D7_avoidance_anxiety_by_condition_sex", type = "d",
+            statistics = c("n", "M", "SD", "min", "max"))
+
+
+# CRAN submission -----------------------------------------------------------------------------
+
+# run R CMD check on CRAN’s servers
+build_win()
