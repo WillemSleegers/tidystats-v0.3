@@ -117,7 +117,7 @@ To start reporting your results, first load in the previously saved data file co
 results <- read_stats("data/results.csv")
 ```
 
-Additionally, you can use `options()` to set the default tidystats list to use. This way the `report()` functions below require one fewer argument. You set the default tidystats list by running the following code.
+Additionally, you can use `options()` to set the default tidystats list to use. This way the `report()` functions below require one fewer argument. You set the default tidystats list by running the following code:
 
 ```{r}
 options(tidystats_list = results)
