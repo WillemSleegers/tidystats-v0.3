@@ -38,6 +38,6 @@ x_squared_data <- data.frame(
   )
 
 # Add results to results
-results <- add_stats(x_squared_data, results, identifier = "M1")
+results <- add_stats(x_squared_data, results)
 
 }
