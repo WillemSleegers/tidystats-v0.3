@@ -8,7 +8,7 @@
 #' report_p_value(0.532)
 #' report_p_value(0.0432)
 #' report_p_value(0.0000121)
-#' report_p_value(0.321, 0.0312, 0.00000098)
+#' report_p_value(c(0.321, 0.0312, 0.00000098))
 #'
 #' @export
 

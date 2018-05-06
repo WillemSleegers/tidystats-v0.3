@@ -2,13 +2,13 @@
 #'
 #' \code{add_stats} adds output to a results list. It can take either the output of a statistical test as input or a data frame. See Details for more information on adding data frames.
 #'
-#' @param output output of a statistical test or a data frame. If a data frame is provided, it must already be in a tidy format.
-#' @param results a tidy stats list.
-#' @param identifier a character string identifying the model. Automatically created if not provided.
-#' @param statistics a vector of statistics to select from the output and add to the tidy stats list.
-#' @param type a character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.
-#' @param confirmatory a boolean to indicate whether the statistical test was confirmatory (TRUE) or exploratory (FALSE). Can be NA.
-#' @param notes a character string to add additional information. Some statistical tests produce notes information, which will be overwritten if notes are provided.
+#' @param output Output of a statistical test or a data frame. If a data frame is provided, it must already be in a tidy format.
+#' @param results A tidy stats list.
+#' @param identifier A character string identifying the model. Automatically created if not provided.
+#' @param statistics A vector of statistics to select from the output and add to the tidy stats list.
+#' @param type A character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.
+#' @param confirmatory A boolean to indicate whether the statistical test was confirmatory (TRUE) or exploratory (FALSE). Can be NA.
+#' @param notes A character string to add additional information. Some statistical tests produce notes information, which will be overwritten if notes are provided.
 #'
 #' @details Some statistical functions produce unidentifiable output, which means \code{tidystats} cannot figure out how to tidy the data. To add these results, the output should be manually tidied or tidied using one of \code{tidystats}'s tidy functions. See \code{?tidy_stats} for an overview of available functions.
 #'

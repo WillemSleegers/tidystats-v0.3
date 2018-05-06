@@ -21,7 +21,7 @@ Function to report a correlation in APA style.
 results <- read_stats(system.file("results.csv", package = "tidystats"))
 
 # Report results
-report(results, identifier = "correlation")
-report(results, identifier = "correlation", statistic = "r")
+report(identifier = "correlation", results = results)
+report(identifier = "correlation", statistic = "p", results = results)
 
 }

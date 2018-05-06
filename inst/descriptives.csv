@@ -1,0 +1,93 @@
+identifier,var,group,statistic,value,type
+D1_cox_condition,condition,dental pain,n,100,descriptives
+D1_cox_condition,condition,dental pain,pct,50,descriptives
+D1_cox_condition,condition,mortality salience,n,100,descriptives
+D1_cox_condition,condition,mortality salience,pct,50,descriptives
+D2_condition_sex,condition,dental pain,n,100,descriptives
+D2_condition_sex,condition,dental pain,pct,50,descriptives
+D2_condition_sex,condition,mortality salience,n,100,descriptives
+D2_condition_sex,condition,mortality salience,pct,50,descriptives
+D2_condition_sex,sex,female,n,159,descriptives
+D2_condition_sex,sex,female,pct,79.5,descriptives
+D2_condition_sex,sex,male,n,41,descriptives
+D2_condition_sex,sex,male,pct,20.5,descriptives
+D3_condition_by_sex,condition,dental pain - female,n,76,descriptives
+D3_condition_by_sex,condition,mortality salience - female,n,83,descriptives
+D3_condition_by_sex,condition,dental pain - female,pct,38,descriptives
+D3_condition_by_sex,condition,mortality salience - female,pct,41.5,descriptives
+D3_condition_by_sex,condition,dental pain - male,n,24,descriptives
+D3_condition_by_sex,condition,mortality salience - male,n,17,descriptives
+D3_condition_by_sex,condition,dental pain - male,pct,12,descriptives
+D3_condition_by_sex,condition,mortality salience - male,pct,8.5,descriptives
+D4_avoidance,avoidance,,missing,0,descriptives
+D4_avoidance,avoidance,,n,200,descriptives
+D4_avoidance,avoidance,,M,2.375,descriptives
+D4_avoidance,avoidance,,SD,0.7023113,descriptives
+D4_avoidance,avoidance,,SE,0.04966091,descriptives
+D4_avoidance,avoidance,,min,1,descriptives
+D4_avoidance,avoidance,,max,4.4,descriptives
+D4_avoidance,avoidance,,range,3.4,descriptives
+D4_avoidance,avoidance,,median,2.3,descriptives
+D4_avoidance,avoidance,,mode,2,descriptives
+D4_avoidance,avoidance,,skew,0.3554937,descriptives
+D4_avoidance,avoidance,,kurtosis,3.154651,descriptives
+D5_avoidance_anxiety,anxiety,,n,200,descriptives
+D5_avoidance_anxiety,anxiety,,M,3.21625,descriptives
+D5_avoidance_anxiety,anxiety,,SD,0.4917201,descriptives
+D5_avoidance_anxiety,anxiety,,min,1.375,descriptives
+D5_avoidance_anxiety,anxiety,,max,4.375,descriptives
+D5_avoidance_anxiety,avoidance,,n,200,descriptives
+D5_avoidance_anxiety,avoidance,,M,2.375,descriptives
+D5_avoidance_anxiety,avoidance,,SD,0.7023113,descriptives
+D5_avoidance_anxiety,avoidance,,min,1,descriptives
+D5_avoidance_anxiety,avoidance,,max,4.4,descriptives
+D6_avoidance_by_condition,avoidance,dental pain,n,100,descriptives
+D6_avoidance_by_condition,avoidance,dental pain,M,2.322,descriptives
+D6_avoidance_by_condition,avoidance,dental pain,SD,0.6556021,descriptives
+D6_avoidance_by_condition,avoidance,dental pain,min,1,descriptives
+D6_avoidance_by_condition,avoidance,dental pain,max,4,descriptives
+D6_avoidance_by_condition,avoidance,mortality salience,n,100,descriptives
+D6_avoidance_by_condition,avoidance,mortality salience,M,2.428,descriptives
+D6_avoidance_by_condition,avoidance,mortality salience,SD,0.7456378,descriptives
+D6_avoidance_by_condition,avoidance,mortality salience,min,1,descriptives
+D6_avoidance_by_condition,avoidance,mortality salience,max,4.4,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,dental pain - female,n,76,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,dental pain - female,M,3.254934,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,dental pain - female,SD,0.4806423,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,dental pain - female,min,1.625,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,dental pain - female,max,4.375,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,dental pain - male,n,24,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,dental pain - male,M,3.276042,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,dental pain - male,SD,0.5553338,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,dental pain - male,min,2,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,dental pain - male,max,4.375,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,mortality salience - female,n,83,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,mortality salience - female,M,3.173193,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,mortality salience - female,SD,0.4934137,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,mortality salience - female,min,1.375,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,mortality salience - female,max,4.375,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,mortality salience - male,n,17,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,mortality salience - male,M,3.169118,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,mortality salience - male,SD,0.4570224,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,mortality salience - male,min,2.375,descriptives
+D7_avoidance_anxiety_by_condition_sex,anxiety,mortality salience - male,max,4,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,dental pain - female,n,76,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,dental pain - female,M,2.294737,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,dental pain - female,SD,0.6560274,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,dental pain - female,min,1,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,dental pain - female,max,4,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,dental pain - male,n,24,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,dental pain - male,M,2.408333,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,dental pain - male,SD,0.6606431,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,dental pain - male,min,1,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,dental pain - male,max,3.6,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,mortality salience - female,n,83,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,mortality salience - female,M,2.421687,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,mortality salience - female,SD,0.6956394,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,mortality salience - female,min,1,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,mortality salience - female,max,4.4,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,mortality salience - male,n,17,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,mortality salience - male,M,2.458824,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,mortality salience - male,SD,0.9791953,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,mortality salience - male,min,1,descriptives
+D7_avoidance_anxiety_by_condition_sex,avoidance,mortality salience - male,max,4.4,descriptives

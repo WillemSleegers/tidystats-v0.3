@@ -8,14 +8,14 @@
 #' @param term_nrs A numeric vector indicating which terms you want to report in the table.
 #' @param statistics A character vector of statistics you want to display in the table.
 #' @param include_model Include or exclude model statistics (e.g., R squared).
-#' @param term_labels Character vector to change the labels for the terms.
+#' @param term_labels A character vector to change the labels for the terms.
 #'
 #' @examples
 #' # Read in a list of results
 #' results <- read_stats(system.file("results.csv", package = "tidystats"))
 #'
 #' # Example: regression term
-#' report_table(results, identifier = "regression")
+#' report_table_lm("regression", results = results)
 #'
 #' @import knitr
 #'

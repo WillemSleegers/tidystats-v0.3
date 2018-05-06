@@ -7,9 +7,11 @@
 count_data(data, ..., na.rm = TRUE)
 }
 \arguments{
-\item{data}{a data frame.}
+\item{data}{A data frame.}
 
-\item{variables}{the categorical variables you want to count.}
+\item{...}{One or more unquoted (categorical) variable names separated by commas.}
+
+\item{na.rm}{Logical. Should missing values (including NaN) be removed?}
 }
 \description{
 \code{count_data} returns the number of observations for categorical variables.

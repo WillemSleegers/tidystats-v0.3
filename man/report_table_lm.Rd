@@ -20,7 +20,7 @@ report_table_lm(results, identifier, terms = NULL, term_nrs = NULL,
 
 \item{include_model}{Include or exclude model statistics (e.g., R squared).}
 
-\item{term_labels}{Character vector to change the labels for the terms.}
+\item{term_labels}{A character vector to change the labels for the terms.}
 }
 \description{
 Function create a table in order to display results of a regression.
@@ -30,6 +30,6 @@ Function create a table in order to display results of a regression.
 results <- read_stats(system.file("results.csv", package = "tidystats"))
 
 # Example: regression term
-report_table(results, identifier = "regression")
+report_table_lm("regression", results = results)
 
 }

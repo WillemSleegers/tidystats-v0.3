@@ -2,9 +2,9 @@
 #'
 #' \code{describe_data} returns a set of common descriptive statistics  (e.g., n, mean, sd) for numeric variables.
 #'
-#' @param data a data frame.
-#' @param variables the variables you want to calculate the descriptives of.
-#' @param na.rm boolean to indicate whether missing data should be removed. The default is TRUE.
+#' @param data A data frame.
+#' @param ... One or more unquoted (numerical) variable names separated by commas.
+#' @param na.rm Logical. Should missing values (including NaN) be removed?
 #'
 #' @details The data set can be grouped using \strong{dplyr}'s \code{group_by} so that descriptives will be calculated for each group level.
 #'

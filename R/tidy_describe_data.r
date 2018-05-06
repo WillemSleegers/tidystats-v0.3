@@ -11,7 +11,7 @@
 #' descriptives <- describe_data(sleep, extra)
 #'
 #' # Create a tidy data frame of the descriptives
-#' tidy_describe(descriptives)
+#' tidy_describe_data(descriptives)
 #'
 #' # With a grouping variable:
 #' sleep %>%

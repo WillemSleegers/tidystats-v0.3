@@ -14,6 +14,10 @@ report(identifier, term = NULL, term_nr = NULL, var = NULL,
 
 \item{term_nr}{A number indicating which term you want to report the the statistics of.}
 
+\item{var}{A character string identifying the variable.}
+
+\item{group}{A character string identifying the group/}
+
 \item{statistic}{A character string of a statistic you want to extract from a model.}
 
 \item{results}{A tidy stats list.}
@@ -28,17 +32,20 @@ report(identifier, term = NULL, term_nr = NULL, var = NULL,
 # Read in a list of results
 results <- read_stats(system.file("results.csv", package = "tidystats"))
 
+# Set the list as the default list
+options(tidystats_list = results)
+
 # Example: t-test
-report(results, identifier = "t_test")
+report("t_test")
 
 # Example: correlation, r statistic only
-report(results, identifier = "correlation", statistic = "r")
+report("correlation", statistic = "p")
 
 # Example: regression term
-report(results, identifier = "regression", term = "groupTrt")
-report(results, identifier = "regression", term_nr = 2)
+report("regression", term = "groupTrt")
+report("regression", term_nr = 2)
 
 # Example: ANOVA
-report(results, identifier = "ANOVA", term = "N")
+report("ANOVA", term = "N")
 
 }

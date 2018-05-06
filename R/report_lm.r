@@ -12,10 +12,13 @@
 #' # Read in a list of results
 #' results <- read_stats(system.file("results.csv", package = "tidystats"))
 #'
+#' # Set the default results list
+#' options(tidystats_list = results)
+#'
 #' # Example: regression term
-#' report(results, identifier = "regression", term = "groupTrt")
-#' report(results, identifier = "regression", term_nr = 2)
-#' report(results, identifier = "regression", term = "groupTrt", statistic = "p")
+#' report("regression", term = "groupTrt")
+#' report("regression", term_nr = 2)
+#' report("regression", term = "groupTrt", statistic = "p")
 #'
 #' @import dplyr
 #' @import stringr

@@ -8,19 +8,19 @@ add_stats(output, results, identifier = NULL, statistics = NULL,
   type = NULL, confirmatory = NULL, notes = NULL)
 }
 \arguments{
-\item{output}{output of a statistical test or a data frame. If a data frame is provided, it must already be in a tidy format.}
+\item{output}{Output of a statistical test or a data frame. If a data frame is provided, it must already be in a tidy format.}
 
-\item{results}{a tidy stats list.}
+\item{results}{A tidy stats list.}
 
-\item{identifier}{a character string identifying the model. Automatically created if not provided.}
+\item{identifier}{A character string identifying the model. Automatically created if not provided.}
 
-\item{statistics}{a vector of statistics to select from the output and add to the tidy stats list.}
+\item{statistics}{A vector of statistics to select from the output and add to the tidy stats list.}
 
-\item{type}{a character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.}
+\item{type}{A character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.}
 
-\item{confirmatory}{a boolean to indicate whether the statistical test was confirmatory (TRUE) or exploratory (FALSE). Can be NA.}
+\item{confirmatory}{A boolean to indicate whether the statistical test was confirmatory (TRUE) or exploratory (FALSE). Can be NA.}
 
-\item{notes}{a character string to add additional information. Some statistical tests produce notes information, which will be overwritten if notes are provided.}
+\item{notes}{A character string to add additional information. Some statistical tests produce notes information, which will be overwritten if notes are provided.}
 }
 \description{
 \code{add_stats} adds output to a results list. It can take either the output of a statistical test as input or a data frame. See Details for more information on adding data frames.

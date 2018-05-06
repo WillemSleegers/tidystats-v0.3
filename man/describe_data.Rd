@@ -7,11 +7,11 @@
 describe_data(data, ..., na.rm = TRUE)
 }
 \arguments{
-\item{data}{a data frame.}
+\item{data}{A data frame.}
 
-\item{na.rm}{boolean to indicate whether missing data should be removed. The default is TRUE.}
+\item{...}{One or more unquoted (numerical) variable names separated by commas.}
 
-\item{variables}{the variables you want to calculate the descriptives of.}
+\item{na.rm}{Logical. Should missing values (including NaN) be removed?}
 }
 \description{
 \code{describe_data} returns a set of common descriptive statistics  (e.g., n, mean, sd) for numeric variables.

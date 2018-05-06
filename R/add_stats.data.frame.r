@@ -2,7 +2,7 @@
 #'
 #' \code{add_stats.data.frame} is a function to add a tidy data frame of results to a tidy stats list. tidystats does not support all possible statistical tests, so it may not be able to produce tidy output of a statistical model. The best solution for now is to tidy the output of a statistical test yourself, creating a tidy data frame, and then use \code{add_stats}, which will call this function, to add it to the tidy stats list.
 #'
-#' @param data A data frame that contains statistical output in a tidy format.
+#' @param output A data frame that contains statistical output in a tidy format.
 #' @param results A tidy stats list.
 #' @param identifier A character string identifying the model. Automatically created if not provided.
 #' @param statistics A vector of statistics to select from the output and add to the tidy stats list.
@@ -28,16 +28,16 @@
 #' results <- add_stats(x_squared_data, results)
 #'
 #' @export
-add_stats.data.frame <- function(data, results, identifier = NULL, statistics = NULL, type = NULL,
+add_stats.data.frame <- function(output, results, identifier = NULL, statistics = NULL, type = NULL,
                                  confirmatory = NULL, notes = NULL) {
 
   # Create an identifier if it is not specified, else check whether it already exists
   if (is.null(identifier)) {
 
-    if (deparse(substitute(data)) == ".") {
+    if (deparse(substitute(output)) == ".") {
       identifier <- paste0("M", formatC(length(results)+1, width = "1", format = "d"))
     } else {
-      identifier <- deparse(substitute(data))
+      identifier <- deparse(substitute(output))
     }
 
   } else {
@@ -49,12 +49,12 @@ add_stats.data.frame <- function(data, results, identifier = NULL, statistics = 
   }
 
   # Throw a warning if non-standard columns are found in the data
-  if (sum(!names(data) %in% c("var", "statistic", "value", "method", "group", "term", "term_nr")) > 0) {
+  if (sum(!names(output) %in% c("var", "statistic", "value", "method", "group", "term", "term_nr")) > 0) {
     warning(paste("Non-standard columns found."))
   }
 
   # Create the new element
-  new_element <- data
+  new_element <- output
 
   # Filter out statistics
   if (!is.null(statistics)) {
