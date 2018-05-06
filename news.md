@@ -1,5 +1,5 @@
 
-# tidystats 0.1.1
+# tidystats 0.2
 
 ## New features
 
@@ -17,6 +17,7 @@
 * Added identifier check to `report()`. The function will now throw an error when the identifier does not exist.
 * Added statistic check to all report functions. The function will now throw an error when the statistic does not exist.
 * Improved `report_p_value()` to support multiple p-values.
+* Updated documentation to be more consistent and to take into account the changes made in the current update.
 
 ## Changes
 
@@ -27,12 +28,12 @@
 
 ## Bugfixes
 
-* Fixed bug that it was always assumed that confidence intervals in htests were always 95% confidence intervals.
+* Fixed bug that it was always assumed that confidence intervals in `htests` were always 95% confidence intervals.
 * Fixed bug in report functions that would occur when no statistic argument was provided.
 * Removed spaces from terms in `aov()` output.
 * Removed a leading space from the method information of a Two Sample t-test.
 * Improved `add_stats_to_model()`. The method previously required a term and did not automatically complete information (e.g., method information).
 
-# tidystats 0.1.0
+# tidystats 0.1
 
 * Initial release
