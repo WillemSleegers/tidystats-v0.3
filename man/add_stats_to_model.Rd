@@ -4,12 +4,12 @@
 \alias{add_stats_to_model}
 \title{Add statistical output to a model in a tidy stats list}
 \usage{
-add_stats_to_model(output, results, identifier, statistics = NULL)
+add_stats_to_model(results, output, identifier, statistics = NULL)
 }
 \arguments{
-\item{output}{output of a statistical test.}
-
 \item{results}{a tidy stats list.}
+
+\item{output}{output of a statistical test.}
 
 \item{identifier}{a character string identifying the model.}
 
@@ -33,14 +33,15 @@ weight <- c(ctl, trt)
 model <- lm(weight ~ group)
 
 # Add output to the results list
-results <- add_stats(model, results, identifier = "M1")
+results <- add_stats(results, model, identifier = "M1")
 
 # Get confidence intervals of the model
 model_CIs <- confint(model)
 
 # Produce a tidy data frame of the CIs and add it to the results list
-results <- model_CIs \%>\%
-  tidy_stats_confint() \%>\%
-  add_stats_to_model(results, identifier = "M1")
+model_CIs_tidy <- tidy_stats_confint(model_CIs)
+
+# Add it to the results list
+results <- add_stats_to_model(results, model_CIs_tidy, identifier = "M1")
 
 }

@@ -4,13 +4,13 @@
 \alias{add_stats.data.frame}
 \title{add_stats data frame function}
 \usage{
-\method{add_stats}{data.frame}(output, results, identifier = NULL,
+\method{add_stats}{data.frame}(results, output, identifier = NULL,
   statistics = NULL, type = NULL, confirmatory = NULL, notes = NULL)
 }
 \arguments{
-\item{output}{A data frame that contains statistical output in a tidy format.}
-
 \item{results}{A tidy stats list.}
+
+\item{output}{A data frame that contains statistical output in a tidy format.}
 
 \item{identifier}{A character string identifying the model. Automatically created if not provided.}
 
@@ -38,6 +38,6 @@ x_squared_data <- data.frame(
   )
 
 # Add results to results
-results <- add_stats(x_squared_data, results)
+results <- add_stats(results, x_squared_data)
 
 }

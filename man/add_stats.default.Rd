@@ -4,13 +4,13 @@
 \alias{add_stats.default}
 \title{add_stats default function}
 \usage{
-\method{add_stats}{default}(output, results, identifier = NULL,
+\method{add_stats}{default}(results, output, identifier = NULL,
   statistics = NULL, type = NULL, confirmatory = NULL, notes = NULL)
 }
 \arguments{
-\item{output}{output of a statistical test.}
-
 \item{results}{a tidy stats list.}
+
+\item{output}{output of a statistical test.}
 
 \item{identifier}{a character string identifying the model. Automatically created if not provided.}
 
@@ -31,7 +31,7 @@ results <- list()
 
 # Example: t-test
 model_t_test <- t.test(extra ~ group, data = sleep)
-results <- add_stats(model_t_test, results, identifier = "t_test")
+results <- add_stats(results, model_t_test, identifier = "t_test")
 
 # Example: correlation
 x <- c(44.4, 45.9, 41.9, 53.3, 44.7, 44.1, 50.7, 45.2, 60.1)
@@ -40,7 +40,7 @@ y <- c( 2.6,  3.1,  2.5,  5.0,  3.6,  4.0,  5.2,  2.8,  3.8)
 model_correlation <- cor.test(x, y)
 
 # Add output to the results list, only storing the correlation and p-value
-results <- add_stats(model_correlation, results, identifier = "correlation",
+results <- add_stats(results, model_correlation, identifier = "correlation",
                      statistics = c("r", "p"))
 
 # Example: Regression
@@ -52,16 +52,16 @@ weight <- c(ctl, trt)
 model_lm <- lm(weight ~ group)
 
 # Add output to the results list, with notes
-results <- add_stats(model_lm, results, identifier = "regression", notes = "regression example")
+results <- add_stats(results, model_lm, identifier = "regression", notes = "regression example")
 
 # Example: ANOVA
 model_aov <- aov(yield ~ block + N * P * K, npk)
 
-results <- add_stats(model_aov, results, identifier = "ANOVA")
+results <- add_stats(results, model_aov, identifier = "ANOVA")
 
 # Example: Within-subjects ANOVA
 model_aov_within <- aov(extra ~ group + Error(ID/group), data = sleep)
 
-results <- add_stats(model_aov_within, results, identifier = "ANOVA_within")
+results <- add_stats(results, model_aov_within, identifier = "ANOVA_within")
 
 }

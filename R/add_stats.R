@@ -2,8 +2,9 @@
 #'
 #' \code{add_stats} adds output to a results list. It can take either the output of a statistical test as input or a data frame. See Details for more information on adding data frames.
 #'
-#' @param output Output of a statistical test or a data frame. If a data frame is provided, it must already be in a tidy format.
+
 #' @param results A tidy stats list.
+#' @param output Output of a statistical test or a data frame. If a data frame is provided, it must already be in a tidy format.
 #' @param identifier A character string identifying the model. Automatically created if not provided.
 #' @param statistics A vector of statistics to select from the output and add to the tidy stats list.
 #' @param type A character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.
@@ -18,7 +19,7 @@
 #'
 #' # Example: t-test
 #' model_t_test <- t.test(extra ~ group, data = sleep)
-#' results <- add_stats(model_t_test, results, identifier = "t_test")
+#' results <- add_stats(results, model_t_test, identifier = "t_test")
 #'
 #' # Example: correlation
 #' x <- c(44.4, 45.9, 41.9, 53.3, 44.7, 44.1, 50.7, 45.2, 60.1)
@@ -27,7 +28,7 @@
 #' model_correlation <- cor.test(x, y)
 #'
 #' # Add output to the results list, only storing the correlation and p-value
-#' results <- add_stats(model_correlation, results, identifier = "correlation",
+#' results <- add_stats(results, model_correlation, identifier = "correlation",
 #'                      statistics = c("r", "p"))
 #'
 #' # Example: Regression
@@ -39,17 +40,17 @@
 #' model_lm <- lm(weight ~ group)
 #'
 #' # Add output to the results list, with notes
-#' results <- add_stats(model_lm, results, identifier = "regression", notes = "regression example")
+#' results <- add_stats(results, model_lm, identifier = "regression", notes = "regression example")
 #'
 #' # Example: ANOVA
 #' model_aov <- aov(yield ~ block + N * P * K, npk)
 #'
-#' results <- add_stats(model_aov, results, identifier = "ANOVA")
+#' results <- add_stats(results, model_aov, identifier = "ANOVA")
 #'
 #' # Example: Within-subjects ANOVA
 #' model_aov_within <- aov(extra ~ group + Error(ID/group), data = sleep)
 #'
-#' results <- add_stats(model_aov_within, results, identifier = "ANOVA_within")
+#' results <- add_stats(results, model_aov_within, identifier = "ANOVA_within")
 #'
 #' # Example: Manual chi-squared test of independence
 #' library(tibble)
@@ -60,9 +61,9 @@
 #'   method = "Chi-squared test of independence"
 #' )
 #'
-#' results <- add_stats(x_squared_data, results, identifier = "x_squared")
+#' results <- add_stats(results, x_squared_data, identifier = "x_squared")
 #'
 #' @export
 
-add_stats <- function(output, results, identifier = NULL, statistics = NULL, type = NULL,
-                      confirmatory = NULL, notes = NULL) UseMethod("add_stats")
+add_stats <- function(results, output, identifier = NULL, statistics = NULL, type = NULL,
+                      confirmatory = NULL, notes = NULL) UseMethod("add_stats", output)

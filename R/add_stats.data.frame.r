@@ -2,8 +2,8 @@
 #'
 #' \code{add_stats.data.frame} is a function to add a tidy data frame of results to a tidy stats list. tidystats does not support all possible statistical tests, so it may not be able to produce tidy output of a statistical model. The best solution for now is to tidy the output of a statistical test yourself, creating a tidy data frame, and then use \code{add_stats}, which will call this function, to add it to the tidy stats list.
 #'
-#' @param output A data frame that contains statistical output in a tidy format.
 #' @param results A tidy stats list.
+#' @param output A data frame that contains statistical output in a tidy format.
 #' @param identifier A character string identifying the model. Automatically created if not provided.
 #' @param statistics A vector of statistics to select from the output and add to the tidy stats list.
 #' @param type A character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.
@@ -25,10 +25,10 @@
 #'   )
 #'
 #' # Add results to results
-#' results <- add_stats(x_squared_data, results)
+#' results <- add_stats(results, x_squared_data)
 #'
 #' @export
-add_stats.data.frame <- function(output, results, identifier = NULL, statistics = NULL, type = NULL,
+add_stats.data.frame <- function(results, output, identifier = NULL, statistics = NULL, type = NULL,
                                  confirmatory = NULL, notes = NULL) {
 
   # Create an identifier if it is not specified, else check whether it already exists

@@ -2,8 +2,8 @@
 #'
 #' \code{add_stats.default} is the default add_stats function, which takes the output of a statistical test, tidies the output, and adds it to a results list.
 #'
-#' @param output output of a statistical test.
 #' @param results a tidy stats list.
+#' @param output output of a statistical test.
 #' @param identifier a character string identifying the model. Automatically created if not provided.
 #' @param statistics a vector of statistics to select from the output and add to the tidy stats list.
 #' @param type a character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.
@@ -16,7 +16,7 @@
 #'
 #' # Example: t-test
 #' model_t_test <- t.test(extra ~ group, data = sleep)
-#' results <- add_stats(model_t_test, results, identifier = "t_test")
+#' results <- add_stats(results, model_t_test, identifier = "t_test")
 #'
 #' # Example: correlation
 #' x <- c(44.4, 45.9, 41.9, 53.3, 44.7, 44.1, 50.7, 45.2, 60.1)
@@ -25,7 +25,7 @@
 #' model_correlation <- cor.test(x, y)
 #'
 #' # Add output to the results list, only storing the correlation and p-value
-#' results <- add_stats(model_correlation, results, identifier = "correlation",
+#' results <- add_stats(results, model_correlation, identifier = "correlation",
 #'                      statistics = c("r", "p"))
 #'
 #' # Example: Regression
@@ -37,23 +37,23 @@
 #' model_lm <- lm(weight ~ group)
 #'
 #' # Add output to the results list, with notes
-#' results <- add_stats(model_lm, results, identifier = "regression", notes = "regression example")
+#' results <- add_stats(results, model_lm, identifier = "regression", notes = "regression example")
 #'
 #' # Example: ANOVA
 #' model_aov <- aov(yield ~ block + N * P * K, npk)
 #'
-#' results <- add_stats(model_aov, results, identifier = "ANOVA")
+#' results <- add_stats(results, model_aov, identifier = "ANOVA")
 #'
 #' # Example: Within-subjects ANOVA
 #' model_aov_within <- aov(extra ~ group + Error(ID/group), data = sleep)
 #'
-#' results <- add_stats(model_aov_within, results, identifier = "ANOVA_within")
+#' results <- add_stats(results, model_aov_within, identifier = "ANOVA_within")
 #'
 #' @import dplyr
 #'
 #' @export
 
-add_stats.default <- function(output, results, identifier = NULL, statistics = NULL, type = NULL,
+add_stats.default <- function(results, output, identifier = NULL, statistics = NULL, type = NULL,
                               confirmatory = NULL, notes = NULL) {
 
   # Create an identifier if it is not specified, else check whether it already exists

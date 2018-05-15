@@ -2,8 +2,8 @@
 #'
 #' \code{add_stats_to_model} adds output to a model in a tidy results list. Sometimes you have to run additional analyses on the output of a statistical test, so you want to add these results to an existing model in a tidy stats list.
 #'
-#' @param output output of a statistical test.
 #' @param results a tidy stats list.
+#' @param output output of a statistical test.
 #' @param identifier a character string identifying the model.
 #' @param statistics a vector of statistics to select from the output and add to the model in the tidy stats list.
 #'
@@ -22,25 +22,30 @@
 #' model <- lm(weight ~ group)
 #'
 #' # Add output to the results list
-#' results <- add_stats(model, results, identifier = "M1")
+#' results <- add_stats(results, model, identifier = "M1")
 #'
 #' # Get confidence intervals of the model
 #' model_CIs <- confint(model)
 #'
 #' # Produce a tidy data frame of the CIs and add it to the results list
-#' results <- model_CIs %>%
-#'   tidy_stats_confint() %>%
-#'   add_stats_to_model(results, identifier = "M1")
+#' model_CIs_tidy <- tidy_stats_confint(model_CIs)
+#'
+#' # Add it to the results list
+#' results <- add_stats_to_model(results, model_CIs_tidy, identifier = "M1")
 #'
 #' @import dplyr
 #' @importFrom magrittr %>%
 #'
 #' @export
 
-add_stats_to_model <- function(output, results, identifier, statistics = NULL) {
+add_stats_to_model <- function(results, output, identifier, statistics = NULL) {
 
-  # Extract the results of the specific model through its identifier
-  res <- results[[identifier]]
+  # Check whether the identifier exists, otherwise extract it
+  if (!identifier %in% names(results)) {
+    stop("Identifier not found.")
+  } else {
+    res <- results[[identifier]]
+  }
 
   # Create the new element
   new_element <- output
