@@ -1,20 +1,21 @@
-#' tidy_stats method for lmerMod objects
+#' Create a tidy stats data frame from an lmerMod object
 #'
-#' Creates a tidystats data frame for an lmerMod object.
+#' \code{tidy_stats.lmerMod} takes an lmerMod object and converts the object to a tidy stats data frame.
 #'
-#' @param model An lmerMod object
+#' @param model Output of lme4's \code{lmer()}.
 #'
 #' @examples
-#' library(lme4)
+#' # Conduct a linear mixed model
+#' model_lmer <- lmer(extra ~ group + (1|ID), data = sleep)
 #'
-#' lme4_model <- lmer(extra ~ group + (1|ID), data = sleep)
-#' tidy_stats.lmerMod(lme4_model)
+#' tidy_stats(model_lmer)
 #'
 #' @import dplyr
 #' @import tidyr
 #' @importFrom magrittr %>%
 #'
 #' @export
+
 tidy_stats.lmerMod <- function(model) {
 
   # Get summary statistics
@@ -22,11 +23,11 @@ tidy_stats.lmerMod <- function(model) {
 
   # Extract model statistics
   model_N <- data_frame(
-      value = summary$devcomp$dims[1],
-      statistic = "N",
-      term = "(Observations)",
-      term_nr = 1,
-      group = "model")
+    value = summary$devcomp$dims[1],
+    statistic = "N",
+    term = "(Observations)",
+    term_nr = 1,
+    group = "model")
 
   model_N_groups <- as_data_frame(summary$ngrps) %>%
     mutate(
@@ -78,7 +79,7 @@ tidy_stats.lmerMod <- function(model) {
   # - Correlation of Fixed Effects
 
   # Add method
-  output$method <- "Linear mixed model"
+  output$method <- "Linear mixed model {lme4}"
 
   # Order variables
   output <- select(output, group, term, term_nr, statistic, value, method)
