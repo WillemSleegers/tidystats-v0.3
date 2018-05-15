@@ -1,5 +1,26 @@
+# tidystats 0.3
+
+## Changes
+
+* Changed the argument order in the family of `add_stats()` functions. Previously, the model output or tidy data frame was the first argument. This allowed you to directly pipe the model output into `add_stats()` (using **magrittr**'s %>%). However, an alternative approach is to have the tidystats list to be the first argument. This allows you create a long sequence of pipes. You start with the results list, add a model via `add_stats()`, pipe the result into the next `add_stats()`, and so on. Since you often store your model output in variable names anyway, this is probably more convenient. Additionally, this probably also keeps your script more tidy (you can do this at the end of your data analysis script).
+
+## Features
+
+* Added support for lme4's `lmer()` and lmerTest's `lmer()`.
+* Added support for psych's `alpha()`.
+
+## Improvements
+
+* Added check for an existing identifier in `add_stats_to_model()`.
 
 # tidystats 0.2
+
+## Changes
+
+* Renamed `describe()` to `describe_data()` so that it no longer conflicts with **psych**'s `describe()`.
+* Changed `describe_data()` to no longer accept non-numeric variables, but added the feature that descriptives can be calculated for more than 1 variable at a time. It is recommended to use the `count_data()` function for non-numeric variables.
+* Renamed `tidy_descriptives()` to `tidy_describe_data()` and improved the function. A notable change is that var information is now returned to identify which descriptives belong to which variable. Also changed the group delimiter to ' - '.
+* `write_stats()` now prettifies the numbers using `prettyNum()` when saving them to disk.
 
 ## New features
 
@@ -19,16 +40,9 @@
 * Improved `report_p_value()` to support multiple p-values.
 * Updated documentation to be more consistent and to take into account the changes made in the current update.
 
-## Changes
-
-* Renamed `describe()` to `describe_data()` so that it no longer conflicts with **psych**'s `describe()`.
-* Changed `describe_data()` to no longer accept non-numeric variables, but added the feature that descriptives can be calculated for more than 1 variable at a time. It is recommended to use the `count_data()` function for non-numeric variables.
-* Renamed `tidy_descriptives()` to `tidy_describe_data()` and improved the function. A notable change is that var information is now returned to identify which descriptives belong to which variable. Also changed the group delimiter to ' - '.
-* `write_stats()` now prettifies the numbers using `prettyNum()` when saving them to disk.
-
 ## Bugfixes
 
-* Fixed bug that it was always assumed that confidence intervals in `htests` were always 95% confidence intervals.
+* Fixed bug that it was assumed that confidence intervals in `htests` were always 95% confidence intervals.
 * Fixed bug in report functions that would occur when no statistic argument was provided.
 * Removed spaces from terms in `aov()` output.
 * Removed a leading space from the method information of a Two Sample t-test.
