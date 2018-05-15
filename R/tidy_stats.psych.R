@@ -26,23 +26,31 @@ tidy_stats.psych <- function(model) {
   }
 
   # Extract statistics
-  # Not included: Reliability if an item is dropped and item statistics
-  output <- as_data_frame(model[[1]]) %>%
+  output <- as_data_frame(model$total) %>%
     rename(
-      cronbachs_alpha = raw_alpha,
+      raw_alpha = raw_alpha,
       std_alpha = std.alpha,
-      guttmans_lambda6 = `G6(smc)`,
-      signal_noise = `S/N`
+      G6 = `G6(smc)`,
+      signal_noise_ratio = `S/N`,
+      alpha_standard_error = ase,
+      M = mean,
+      SD = sd
     ) %>%
     mutate(
-      order = 1:n()
+      order = 1:n(),
+      raw_alpha_lower = raw_alpha - 1.96 * alpha_standard_error,
+      raw_alpha_upper = raw_alpha + 1.96 * alpha_standard_error
       ) %>%
     gather("statistic", "value", -order) %>%
     arrange(order) %>%
     select(-order)
+  # Not included:
+  # - reliability if an item is dropped
+  # - item statistics
+  # - Non missing response frequency for each item
 
   # Add method
-  output$method <- "alpha"
+  output$method <- "alpha {psych}"
 
   return(output)
 }
