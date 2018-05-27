@@ -289,25 +289,40 @@ results <- add_stats(results, epi_extraversion_alpha)
 library(metafor)
 
 # Get data
-dat.bcg
+dat <- escalc(measure = "RR", ai = tpos, bi = tneg, ci = cpos, di = cneg, data = dat.bcg)
 
 # Run meta-analysis
-res <- rma(ai = tpos, bi = tneg, ci = cpos, di = cneg, data = dat.bcg, measure = "RR",
-           slab = paste(author, year, sep = ", "), method = "REML")
-res
+meta_analysis <- rma(yi, vi, data = dat, method = "REML")
+meta_analysis_mods <- rma(yi, vi, mods = cbind(ablat, year), data = dat, method = "REML")
 
-tidy_stats.rma(res)
-
-# Run meta-analysis with moderators
-res <- rma(yi, vi, mods=cbind(ablat, year), data=dat, method="REML", test = "t")
-res
-
-tidy_stats.rma(res)
+# Tidy results
+tidy_stats(meta_analysis)
+tidy_stats(meta_analysis_mods)
 
 # Add stats
-results <- add_stats(results, res)
+results <- results %>%
+  add_stats(meta_analysis) %>%
+  add_stats(meta_analysis_mods)
 
-report(identifier = "res", term = "ablat", results = results)
+# Report results
+report("meta_analysis", term = "intrcpt", results = results)
+report("meta_analysis", term_nr = 2, statistic = "tau^2", results = results)
+report("meta_analysis_mods", term = "ablat", results = results)
+
+
+# Marino github issue example
+library(metafor)
+dat.bcg
+
+res <- rma(ai=tpos, bi=tneg, ci=cpos, di=cneg, data=dat.bcg, measure="RR",
+           slab=paste(author, year, sep=", "), method="REML")
+tidy_stats(res)
+results <- list()
+results <- add_stats(results, res, identifier = "marino_meta_analysis")
+options(tidystats_list = results)
+report("marino_meta_analysis", term = "intrcpt")
+report("marino_meta_analysis", term = "(Heterogeneity)", s = "tau^2")
+report("marino_meta_analysis", term_nr = 2, s = "tau^2")
 
 # Analysis: ppcor’s pcor.test() ---------------------------------------------------------------
 

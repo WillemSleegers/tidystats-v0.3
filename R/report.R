@@ -50,13 +50,19 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
     method <- res$method[1]
 
     # Run the appropriate report function
-    output <- case_when(
-      grepl("t-test", method) ~ report_t_test(results, identifier, statistic),
-      grepl("correlation", method) ~ report_correlation(results, identifier, statistic),
-      grepl("regression", method) ~ report_lm(results, identifier, term, term_nr, statistic),
-      grepl("ANOVA|ANCOVA", method) ~ report_anova(results, identifier, term, term_nr, statistic),
-      grepl("metafor", method) ~ report_rma(results, identifier, term, term_nr, statistic)
-      )
+    if (str_detect(method, "t-test")) {
+      output <- report_t_test(results, identifier, statistic)
+    } else if (str_detect(method, "correlation")) {
+      output <- report_correlation(results, identifier, statistic)
+    } else if (str_detect(method, "regression")) {
+      output <- report_lm(results, identifier, term, term_nr, statistic)
+    } else if (str_detect(method, "ANOVA|ANCOVA")) {
+      output <- report_anova(results, identifier, term, term_nr, statistic)
+    } else if (str_detect(method, "metafor")) {
+      output <- report_rma(results, identifier, term, term_nr, statistic)
+    } else {
+      output <- NULL
+    }
   }
 
   # If output is null, it means we either do not have the report function for that method, or the
