@@ -283,6 +283,32 @@ tidy_stats(epi_extraversion_alpha)
 results <- add_stats(results, epi_extraversion_alpha)
 
 
+# Analysis: metafor ---------------------------------------------------------------------------
+
+# Load package
+library(metafor)
+
+# Get data
+dat.bcg
+
+# Run meta-analysis
+res <- rma(ai = tpos, bi = tneg, ci = cpos, di = cneg, data = dat.bcg, measure = "RR",
+           slab = paste(author, year, sep = ", "), method = "REML")
+res
+
+tidy_stats.rma(res)
+
+# Run meta-analysis with moderators
+res <- rma(yi, vi, mods=cbind(ablat, year), data=dat, method="REML", test = "t")
+res
+
+tidy_stats.rma(res)
+
+# Add stats
+results <- add_stats(results, res)
+
+report(identifier = "res", term = "ablat", results = results)
+
 # Analysis: ppcor’s pcor.test() ---------------------------------------------------------------
 
 # Load package

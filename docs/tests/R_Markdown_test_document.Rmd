@@ -23,6 +23,8 @@ Start by reading in the data frame containing the output of all the statistical 
 
 ```{r get_results, message = FALSE}
 results <- read_stats("results.csv")
+
+options(tidystats_list = results)
 ```
 
 ### Reporting results
@@ -60,19 +62,19 @@ Examples of APA output of the four different t-tests are listed below.
 
 **One Sample *t*-test**
 
-- `report(results, "M1_1")`: `r report(results, "M1_1")`
+- `report("M1_1")`: `r report("M1_1")`
 
 **Two Sample *t*-test:** 
 
-- `report(results, "M1_2")`: `r report(results, "M1_2")`
+- `report("M1_2")`: `r report("M1_2")`
 
 **Welch's Two Sample *t*-test** 
 
-- `report(results, "M1_3")`: `r report(results, "M1_3")`
+- `report("M1_3")`: `r report("M1_3")`
 
 **Paired *t*-test** 
 
-- `report(results, "M1_4")`: `r report(results, "M1_4")`
+- `report("M1_4")`: `r report("M1_4")`
 
 #### Correlations
 
@@ -89,15 +91,15 @@ Examples of APA output of the three correlation methods are listed below.
 
 **Pearson’s product-moment correlation**
 
-- `report(results, "M2_1")`: `r report(results, "M2_1")`
+- `report("M2_1")`: `r report("M2_1")`
 
 **Kendall’s rank correlation tau**
 
-- `report(results, "M2_2")`: `r report(results, "M2_2")`
+- `report("M2_2")`: `r report("M2_2")`
 
 **Spearman’s rank correlation rho**
 
-- `report(results, "M2_3")`: `r report(results, "M2_3")`
+- `report("M2_3")`: `r report("M2_3")`
 
 #### Regression
 
@@ -114,8 +116,8 @@ This table contains more missing data than the previous tables. This is because 
 
 **Single term**
 
-- `report(results, "M3_1", "complaints")`: `r report_lm(results, "M3_1", "complaints")`
+- `report("M3_1", term = "conditionmortality salience")`: `r report("M3_1", term = "conditionmortality salience")`
 
 **Model fit**
 
-- `report(results, "M3_1", "(Model)")`: `r report_lm(results, "M3_1", "(Model)")`
+- `report("M3_1", term = "(Model)")`: `r report("M3_1", "(Model)")`

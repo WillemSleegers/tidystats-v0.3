@@ -50,25 +50,13 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
     method <- res$method[1]
 
     # Run the appropriate report function
-    if (grepl("t-test", method)) {
-      output <- report_t_test(results, identifier, statistic)
-    } else {
-      if (grepl("correlation", method)) {
-        output <- report_correlation(results, identifier, statistic)
-      } else {
-        if (grepl("regression", method)) {
-          output <- report_lm(results, identifier, term, term_nr, statistic)
-        } else {
-          if (grepl("ANOVA|ANCOVA", method)) {
-            output <- report_anova(results, identifier, term, term_nr, statistic)
-          } else {
-            output <- NULL
-          }
-        }
-      }
-    }
-  } else {
-    output <- NULL
+    output <- case_when(
+      grepl("t-test", method) ~ report_t_test(results, identifier, statistic),
+      grepl("correlation", method) ~ report_correlation(results, identifier, statistic),
+      grepl("regression", method) ~ report_lm(results, identifier, term, term_nr, statistic),
+      grepl("ANOVA|ANCOVA", method) ~ report_anova(results, identifier, term, term_nr, statistic),
+      grepl("metafor", method) ~ report_rma(results, identifier, term, term_nr, statistic)
+      )
   }
 
   # If output is null, it means we either do not have the report function for that method, or the
@@ -86,6 +74,7 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
 
       res <- filter(res, term == res_term)
     }
+
     # Filter: term_nr
     if (!is.null(term_nr)) {
       res_term_nr <- term_nr
@@ -96,6 +85,7 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
 
       res <- filter(res, term_nr == res_term_nr)
     }
+
     # Filter: statistic
     if (!is.null(statistic)) {
       res_statistic <- statistic
@@ -105,8 +95,8 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
       }
 
       res <- filter(res, statistic == res_statistic)
-
     }
+
     # Filter: group
     if (!is.null(group)) {
       res_group <- group
@@ -117,6 +107,7 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
 
       res <- filter(res, group == res_group)
     }
+
     # Filter: var
     if (!is.null(var)) {
       res_var <- var
