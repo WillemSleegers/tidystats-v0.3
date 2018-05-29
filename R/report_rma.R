@@ -82,6 +82,17 @@ report_rma <- function(results, identifier, term = NULL, term_nr = NULL, statist
 
       p = report_p_value(res$value[res$statistic == "p"])
       output <- paste0(output, ", ", p)
+
+      res_CI <- filter(res, str_detect(statistic, "[0-9]+% CI"))
+
+      CI_pct <- as.numeric(str_extract(res_CI$statistic, "[0-9]+"))
+      CI_pct <- CI_pct[2] - CI_pct[1]
+
+      CI_value1 <- format(res_CI$value[1], nsmall = 2, digits = 2)
+      CI_value2 <- format(res_CI$value[2], nsmall = 2, digits = 2)
+
+      CI <- paste0(CI_pct, "% CI ", "[", CI_value1, ", ", CI_value2, "]")
+      output <- paste0(output, ", ", CI)
     }
   }
 

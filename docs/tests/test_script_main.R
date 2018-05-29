@@ -193,10 +193,11 @@ results <- results %>%
 
 # Run analysis
 fit <- lm(100/mpg ~ disp + hp + wt + am, data = mtcars)
-confint <- confint(fit)
+confint <- confint(fit, level = .9)
 
 class(confint)
 
+tidy_stats_confint(confint)
 
 # Add stats to model
 results <- results %>%
@@ -292,7 +293,7 @@ library(metafor)
 dat <- escalc(measure = "RR", ai = tpos, bi = tneg, ci = cpos, di = cneg, data = dat.bcg)
 
 # Run meta-analysis
-meta_analysis <- rma(yi, vi, data = dat, method = "REML")
+meta_analysis <- rma(yi, vi, data = dat, method = "REML", level = 90)
 meta_analysis_mods <- rma(yi, vi, mods = cbind(ablat, year), data = dat, method = "REML")
 
 # Tidy results
@@ -306,9 +307,8 @@ results <- results %>%
 
 # Report results
 report("meta_analysis", term = "intrcpt", results = results)
-report("meta_analysis", term_nr = 2, statistic = "tau^2", results = results)
+report("meta_analysis", term_nr = 1, statistic = "tau^2", results = results)
 report("meta_analysis_mods", term = "ablat", results = results)
-
 
 # Marino github issue example
 library(metafor)
@@ -322,7 +322,7 @@ results <- add_stats(results, res, identifier = "marino_meta_analysis")
 options(tidystats_list = results)
 report("marino_meta_analysis", term = "intrcpt")
 report("marino_meta_analysis", term = "(Heterogeneity)", s = "tau^2")
-report("marino_meta_analysis", term_nr = 2, s = "tau^2")
+report("marino_meta_analysis", term_nr = 1, s = "tau^2")
 
 # Analysis: ppcor’s pcor.test() ---------------------------------------------------------------
 
