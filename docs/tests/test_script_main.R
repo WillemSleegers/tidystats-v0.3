@@ -149,6 +149,7 @@ summary(aov_parent_condition_affect)
 summary(aov_parent_affect_anxiety)
 
 # Tidy results
+# TODO: Fix method
 tidy_stats(aov_parent_condition)
 tidy_stats(aov_parent_condition_sex)
 tidy_stats(aov_parent_condition_x_sex)
@@ -196,7 +197,7 @@ confint_lm <- lm(100/mpg ~ disp + hp + wt + am, data = mtcars)
 confint <- confint(confint_lm, level = .95)
 
 # Add stats
-add_stats(results, confint, class = "confint")
+results <- add_stats(results, confint, class = "confint")
 
 # Add stats to model
 results <- results %>%
@@ -278,7 +279,6 @@ tidy_stats(epi_extraversion_alpha)
 
 # Add stats
 results <- add_stats(results, epi_extraversion_alpha)
-
 
 # Analysis: metafor ---------------------------------------------------------------------------
 

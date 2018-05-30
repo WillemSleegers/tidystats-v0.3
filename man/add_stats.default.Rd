@@ -12,20 +12,27 @@
 
 \item{output}{output of a statistical test.}
 
-\item{identifier}{a character string identifying the model. Automatically created if not provided.}
+\item{identifier}{a character string identifying the model. Automatically created if not
+provided.}
 
-\item{statistics}{a vector of statistics to select from the output and add to the tidy stats list.}
+\item{statistics}{a vector of statistics to select from the output and add to the tidy stats
+list.}
 
-\item{type}{a character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.}
+\item{type}{a character string indicating the type of test. One of "hypothesis",
+"manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.}
 
-\item{confirmatory}{a boolean to indicate whether the statistical test was confirmatory (TRUE) or exploratory (FALSE). Can be NA.}
+\item{confirmatory}{a boolean to indicate whether the statistical test was confirmatory (TRUE)
+or exploratory (FALSE). Can be NA.}
 
-\item{notes}{a character string to add additional information. Some statistical tests produce notes information, which will be overwritten if notes are provided.}
+\item{notes}{a character string to add additional information. Some statistical tests produce
+notes information, which will be overwritten if notes are provided.}
 
-\item{summary_args}{A list of arguments that will be provided to the summary function that will be applied to the output of some functions, like lm().}
+\item{summary_args}{A list of arguments that will be provided to the summary function that will
+be applied to the output of some functions, like lm().}
 }
 \description{
-\code{add_stats.default} is the default add_stats function, which takes the output of a statistical test, tidies the output, and adds it to a results list.
+\code{add_stats.default} is the default add_stats function, which takes the output of a
+statistical test, tidies the output, and adds it to a results list.
 }
 \examples{
 # Create an empty list to store the results in
