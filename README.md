@@ -1,5 +1,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+![tidystats hex sticker](docs/logo/hex.png)
+
 tidystats
 ---------------
 
@@ -12,7 +14,7 @@ To make this possible, `tidystats` relies on [tidy data](http://vita.had.co.nz/p
 
 Besides enabling you to create an organized data file of statistical results, the `tidystats` package also contains functions to help you report statistics in APA style using [R Markdown](http://rmarkdown.rstudio.com). Additionally, development has started on a Shiny app and a Google Docs plugin that uses a tidystats data file to report statistics.
 
-Please see below for instructions on how to install and use this package. **Do note that the package is currently in development and may contain bugs.** If you find any, please let me know by creating an issue here on Github.
+Please see below for instructions on how to install and use this package. **Do note that the package is currently in development and may contain bugs.** If you find any, please let me know by creating an issue here on Github (it's really easy to do!).
 
 ### Installation
 
@@ -73,21 +75,18 @@ The data set is called `cox` and contains the data of a replication attempt of C
 
 
 ```r
-# Paired t-test
+# Perform analyses
 M1_condition <- t.test(call_parent ~ condition, data = cox, paired = TRUE)
-results <- add_stats(M1_condition, results)
-
-# Correlation
 M2_parent_siblings <- cor.test(cox$call_parent, cox$call_siblings, alternative = "greater")
-results <- add_stats(M2_parent_siblings, results)
-
-# Regression
 M3_condition_anxiety <- lm(call_parent ~ condition * anxiety , data = cox)
-results <- add_stats(M3_condition_anxiety, results)
-
-# ANOVA
 M4_condition_sex <- aov(call_parent ~ condition * sex, data = cox)
-results <- add_stats(M4_condition_sex, results)
+
+# Add results
+results <- results %>%
+  add_stats(M1_condition) %>%
+  add_stats(M2_parent_siblings) %>%
+  add_stats(M3_condition_anxiety) %>%
+  add_stats(M4_condition_sex)
 ```
 
 Having added the statistical results to the list, you can convert the list to a table or to a data file, ready for sharing. The example below shows how to produce a table containing all of the statistical results.
@@ -185,7 +184,7 @@ To start reporting your results, first load in the previously saved data file co
 results <- read_stats("data/results.csv")
 ```
 
-Additionally, you can use `options()` to set the default tidystats list to use. This way the `report()` functions below require one fewer argument. You set the default tidystats list by running the following code.
+Additionally, you can use `options()` to set the default tidystats list to use. This way the `report()` functions below require one fewer argument. You set the default tidystats list by running the following code:
 
 
 ```r
@@ -275,5 +274,9 @@ results <- cox %>%
   describe_data(anxiety) %>%
   tidy_describe_data() %>%
   add_stats(results, identifier = "anxiety", type = "d", notes = "Anxious attachment style")
+```
+
+```
+## Error in UseMethod("tidy_stats"): no applicable method for 'tidy_stats' applied to an object of class "list"
 ```
 In the `add_stats()` function you can also specify which of the statistics you would like to store in the results list, using the `statistics` argument. Of course, the results can also be tidied when the data is grouped.

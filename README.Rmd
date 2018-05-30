@@ -1,5 +1,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+![tidystats hex sticker](docs/logo/hex.png)
+
 tidystats
 ---------------
 
@@ -71,21 +73,18 @@ The data set is called `cox` and contains the data of a replication attempt of C
 
 ```{r}
 
-# Paired t-test
+# Perform analyses
 M1_condition <- t.test(call_parent ~ condition, data = cox, paired = TRUE)
-results <- add_stats(M1_condition, results)
-
-# Correlation
 M2_parent_siblings <- cor.test(cox$call_parent, cox$call_siblings, alternative = "greater")
-results <- add_stats(M2_parent_siblings, results)
-
-# Regression
 M3_condition_anxiety <- lm(call_parent ~ condition * anxiety , data = cox)
-results <- add_stats(M3_condition_anxiety, results)
-
-# ANOVA
 M4_condition_sex <- aov(call_parent ~ condition * sex, data = cox)
-results <- add_stats(M4_condition_sex, results)
+
+# Add results
+results <- results %>%
+  add_stats(M1_condition) %>%
+  add_stats(M2_parent_siblings) %>%
+  add_stats(M3_condition_anxiety) %>%
+  add_stats(M4_condition_sex)
 ```
 
 Having added the statistical results to the list, you can convert the list to a table or to a data file, ready for sharing. The example below shows how to produce a table containing all of the statistical results.
