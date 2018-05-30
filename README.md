@@ -268,17 +268,98 @@ count_data(cox, condition)
 ## 2 condition mortality salience   100    50
 ```
 
-If you use the `describe_data()` and `count_data()` function from the `tidystats` package to get the descriptives, you can use the `tidy_describe_data()` and `tidy_count_data()` function to tidy the output, and consequently add it to a results list. 
+If you use the `describe_data()` and `count_data()` function from the `tidystats` package to get the descriptives, you can use the `tidy_describe_data()` and `tidy_count_data()` function to tidy the output, and consequently add it to a results list.
+
+(Note: This will soon be improved)
 
 
 ```r
-results <- cox %>%
+anxiety_tidy <- cox %>%
   describe_data(anxiety) %>%
-  tidy_describe_data() %>%
-  add_stats(results, identifier = "anxiety", type = "d", notes = "Anxious attachment style")
+  tidy_describe_data()
+
+add_stats(results, anxiety_tidy, type = "d", notes = "Anxious attachment style")
 ```
 
 ```
-## Error in UseMethod("tidy_stats"): no applicable method for 'tidy_stats' applied to an object of class "list"
+## $M1_condition
+## # A tibble: 7 x 4
+##   statistic                 value method        notes                     
+##   <chr>                     <dbl> <chr>         <chr>                     
+## 1 mean of the differences  -2.77  Paired t-test alternative hypothesis: t…
+## 2 t                        -1.26  Paired t-test alternative hypothesis: t…
+## 3 df                       99     Paired t-test alternative hypothesis: t…
+## 4 p                         0.210 Paired t-test alternative hypothesis: t…
+## 5 95% CI lower             -7.13  Paired t-test alternative hypothesis: t…
+## 6 95% CI upper              1.59  Paired t-test alternative hypothesis: t…
+## 7 null value                0     Paired t-test alternative hypothesis: t…
+## 
+## $M2_parent_siblings
+## # A tibble: 7 x 4
+##   statistic        value method                               notes       
+##   <chr>            <dbl> <chr>                                <chr>       
+## 1 cor            -0.0269 Pearson's product-moment correlation alternative…
+## 2 t              -0.378  Pearson's product-moment correlation alternative…
+## 3 df            198      Pearson's product-moment correlation alternative…
+## 4 p               0.647  Pearson's product-moment correlation alternative…
+## 5 95% CI lower   -0.143  Pearson's product-moment correlation alternative…
+## 6 95% CI upper    1      Pearson's product-moment correlation alternative…
+## 7 null value      0      Pearson's product-moment correlation alternative…
+## 
+## $M3_condition_anxiety
+## # A tibble: 26 x 5
+##    term_nr term                        statistic     value method         
+##      <dbl> <chr>                       <chr>         <dbl> <chr>          
+##  1       1 (Intercept)                 b          29.4     Linear regress…
+##  2       1 (Intercept)                 SE          9.93    Linear regress…
+##  3       1 (Intercept)                 t           2.97    Linear regress…
+##  4       1 (Intercept)                 p           0.00340 Linear regress…
+##  5       1 (Intercept)                 df        196       Linear regress…
+##  6       2 conditionmortality salience b          20.3     Linear regress…
+##  7       2 conditionmortality salience SE         14.0     Linear regress…
+##  8       2 conditionmortality salience t           1.45    Linear regress…
+##  9       2 conditionmortality salience p           0.149   Linear regress…
+## 10       2 conditionmortality salience df        196       Linear regress…
+## # ... with 16 more rows
+## 
+## $M4_condition_sex
+## # A tibble: 18 x 5
+##    term_nr term          statistic      value method
+##      <int> <chr>         <chr>          <dbl> <chr> 
+##  1       1 condition     df            1      ANOVA 
+##  2       1 condition     SS          384.     ANOVA 
+##  3       1 condition     MS          384.     ANOVA 
+##  4       1 condition     F             1.73   ANOVA 
+##  5       1 condition     p             0.190  ANOVA 
+##  6       2 sex           df            1      ANOVA 
+##  7       2 sex           SS         1140.     ANOVA 
+##  8       2 sex           MS         1140.     ANOVA 
+##  9       2 sex           F             5.14   ANOVA 
+## 10       2 sex           p             0.0244 ANOVA 
+## 11       3 condition:sex df            1      ANOVA 
+## 12       3 condition:sex SS           66.2    ANOVA 
+## 13       3 condition:sex MS           66.2    ANOVA 
+## 14       3 condition:sex F             0.298  ANOVA 
+## 15       3 condition:sex p             0.586  ANOVA 
+## 16       4 Residuals     df          196      ANOVA 
+## 17       4 Residuals     SS        43467.     ANOVA 
+## 18       4 Residuals     MS          222.     ANOVA 
+## 
+## $anxiety_tidy
+## # A tibble: 12 x 5
+##    var     statistic     value type         notes                   
+##    <chr>   <chr>         <dbl> <chr>        <chr>                   
+##  1 anxiety missing      0      descriptives Anxious attachment style
+##  2 anxiety n          200      descriptives Anxious attachment style
+##  3 anxiety M            3.22   descriptives Anxious attachment style
+##  4 anxiety SD           0.492  descriptives Anxious attachment style
+##  5 anxiety SE           0.0348 descriptives Anxious attachment style
+##  6 anxiety min          1.38   descriptives Anxious attachment style
+##  7 anxiety max          4.38   descriptives Anxious attachment style
+##  8 anxiety range        3      descriptives Anxious attachment style
+##  9 anxiety median       3.25   descriptives Anxious attachment style
+## 10 anxiety mode         3.5    descriptives Anxious attachment style
+## 11 anxiety skew        -0.510  descriptives Anxious attachment style
+## 12 anxiety kurtosis     3.73   descriptives Anxious attachment style
 ```
 In the `add_stats()` function you can also specify which of the statistics you would like to store in the results list, using the `statistics` argument. Of course, the results can also be tidied when the data is grouped.
