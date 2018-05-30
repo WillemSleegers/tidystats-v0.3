@@ -4,7 +4,6 @@
   <img src="docs/logo/hex.png" width = 150 align = center alt="tidystats logo"/>
 </p>
 
-
 tidystats
 ---------------
 
