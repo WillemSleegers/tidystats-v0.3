@@ -10,8 +10,15 @@
 #' @param type A character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.
 #' @param confirmatory A boolean to indicate whether the statistical test was confirmatory (TRUE) or exploratory (FALSE). Can be NA.
 #' @param notes A character string to add additional information. Some statistical tests produce notes information, which will be overwritten if notes are provided.
+#' @param class A character string to indicate which function was used to produce the output. See 'Details' for a list of supported functions.
+#' @param summary_args A list of arguments that will be provided to the summary function that will be applied to the output of some functions, like lm().
 #'
-#' @details Some statistical functions produce unidentifiable output, which means \code{tidystats} cannot figure out how to tidy the data. To add these results, the output should be manually tidied or tidied using one of \code{tidystats}'s tidy functions. See \code{?tidy_stats} for an overview of available functions.
+#' @details Some statistical functions produce unidentifiable output, which means \code{tidystats}
+#' cannot figure out how to tidy the data. To add these results, you can provide a class via the
+#' class argument or you can manually tidy the results yourself and add the resulting data frame via
+#' add_stats().
+#'
+#' A list of supported classes are: confint
 #'
 #' @examples
 #' # Create an empty list to store the results in
@@ -66,4 +73,5 @@
 #' @export
 
 add_stats <- function(results, output, identifier = NULL, statistics = NULL, type = NULL,
-                      confirmatory = NULL, notes = NULL) UseMethod("add_stats", output)
+                      confirmatory = NULL, notes = NULL, class = NULL, summary_args = NULL)
+  UseMethod("add_stats", output)

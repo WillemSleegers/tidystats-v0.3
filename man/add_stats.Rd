@@ -5,7 +5,8 @@
 \title{Add statistical output to a tidy stats list}
 \usage{
 add_stats(results, output, identifier = NULL, statistics = NULL,
-  type = NULL, confirmatory = NULL, notes = NULL)
+  type = NULL, confirmatory = NULL, notes = NULL, class = NULL,
+  summary_args = NULL)
 }
 \arguments{
 \item{results}{A tidy stats list.}
@@ -21,12 +22,21 @@ add_stats(results, output, identifier = NULL, statistics = NULL,
 \item{confirmatory}{A boolean to indicate whether the statistical test was confirmatory (TRUE) or exploratory (FALSE). Can be NA.}
 
 \item{notes}{A character string to add additional information. Some statistical tests produce notes information, which will be overwritten if notes are provided.}
+
+\item{class}{A character string to indicate which function was used to produce the output. See 'Details' for a list of supported functions.}
+
+\item{summary_args}{A list of arguments that will be provided to the summary function that will be applied to the output of some functions, like lm().}
 }
 \description{
 \code{add_stats} adds output to a results list. It can take either the output of a statistical test as input or a data frame. See Details for more information on adding data frames.
 }
 \details{
-Some statistical functions produce unidentifiable output, which means \code{tidystats} cannot figure out how to tidy the data. To add these results, the output should be manually tidied or tidied using one of \code{tidystats}'s tidy functions. See \code{?tidy_stats} for an overview of available functions.
+Some statistical functions produce unidentifiable output, which means \code{tidystats}
+cannot figure out how to tidy the data. To add these results, you can provide a class via the
+class argument or you can manually tidy the results yourself and add the resulting data frame via
+add_stats().
+
+A list of supported classes are: confint
 }
 \examples{
 # Create an empty list to store the results in

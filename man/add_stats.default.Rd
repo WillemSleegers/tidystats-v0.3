@@ -21,6 +21,8 @@
 \item{confirmatory}{a boolean to indicate whether the statistical test was confirmatory (TRUE) or exploratory (FALSE). Can be NA.}
 
 \item{notes}{a character string to add additional information. Some statistical tests produce notes information, which will be overwritten if notes are provided.}
+
+\item{summary_args}{A list of arguments that will be provided to the summary function that will be applied to the output of some functions, like lm().}
 }
 \description{
 \code{add_stats.default} is the default add_stats function, which takes the output of a statistical test, tidies the output, and adds it to a results list.

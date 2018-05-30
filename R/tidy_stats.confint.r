@@ -2,7 +2,7 @@
 #'
 #' Creates a tidystats data frame from the output of confint.
 #'
-#' @param confint_matrix The output of confint().
+#' @param matrix The output of confint().
 #'
 #' @examples
 #' # Conduct a regression analysis
@@ -26,19 +26,22 @@
 #'
 #' @export
 
-tidy_stats_confint <- function(confint_matrix) {
+tidy_stats.confint <- function(matrix) {
 
   # Tidy the matrix
-  output <- tibble::as_data_frame(confint_matrix) %>%
+  output <- as.data.frame(matrix) %>% # as_data_frame() throws an error
     dplyr::mutate(
-      term = rownames(confint_matrix),
-      order = 1:n()) %>%
+      term = rownames(matrix),
+      order = 1:n()
+      ) %>%
     tidyr::gather("statistic", "value", -term, -order) %>%
     dplyr::arrange(order) %>%
-    dplyr::select(term, statistic, value, -order)
-
-  # Add method
-  method = "confint confidence intervals"
+    dplyr::select(term, statistic, value, -order) %>%
+    dplyr::mutate(
+      statistic = str_replace(statistic, " ", ""),
+      statistic = paste(statistic, "CI")
+      ) %>%
+    tibble::as_data_frame()
 
   return(output)
 }

@@ -192,20 +192,16 @@ results <- results %>%
 # Analysis: confint() -------------------------------------------------------------------------
 
 # Run analysis
-fit <- lm(100/mpg ~ disp + hp + wt + am, data = mtcars)
-confint <- confint(fit, level = .9)
+confint_lm <- lm(100/mpg ~ disp + hp + wt + am, data = mtcars)
+confint <- confint(confint_lm, level = .95)
 
-class(confint)
-
-tidy_stats_confint(confint)
+# Add stats
+add_stats(results, confint, class = "confint")
 
 # Add stats to model
 results <- results %>%
-  add_stats_to_model(lm_parent_condition_CIs_tidy, identifier = "lm_parent_condition") %>%
-  add_stats_to_model(lm_parent_condition_anxiety_CIs_tidy,
-                     identifier = "lm_parent_condition_anxiety") %>%
-  add_stats_to_model(lm_parent_condition_x_anxiety_CIs_tidy,
-                     identifier = "lm_parent_condition_x_anxiety")
+  add_stats(confint_lm) %>%
+  add_stats_to_model(confint, identifier = "confint_lm", class = "confint")
 
 # Analysis: lme4’s lmer() ---------------------------------------------------------------------
 

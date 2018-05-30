@@ -1,14 +1,22 @@
 #' add_stats default function
 #'
-#' \code{add_stats.default} is the default add_stats function, which takes the output of a statistical test, tidies the output, and adds it to a results list.
+#' \code{add_stats.default} is the default add_stats function, which takes the output of a
+#' statistical test, tidies the output, and adds it to a results list.
 #'
 #' @param results a tidy stats list.
 #' @param output output of a statistical test.
-#' @param identifier a character string identifying the model. Automatically created if not provided.
-#' @param statistics a vector of statistics to select from the output and add to the tidy stats list.
-#' @param type a character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.
-#' @param confirmatory a boolean to indicate whether the statistical test was confirmatory (TRUE) or exploratory (FALSE). Can be NA.
-#' @param notes a character string to add additional information. Some statistical tests produce notes information, which will be overwritten if notes are provided.
+#' @param identifier a character string identifying the model. Automatically created if not
+#' provided.
+#' @param statistics a vector of statistics to select from the output and add to the tidy stats
+#' list.
+#' @param type a character string indicating the type of test. One of "hypothesis",
+#' "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.
+#' @param confirmatory a boolean to indicate whether the statistical test was confirmatory (TRUE)
+#' or exploratory (FALSE). Can be NA.
+#' @param notes a character string to add additional information. Some statistical tests produce
+#' notes information, which will be overwritten if notes are provided.
+#' @param summary_args A list of arguments that will be provided to the summary function that will
+#' be applied to the output of some functions, like lm().
 #'
 #' @examples
 #' # Create an empty list to store the results in

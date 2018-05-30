@@ -6,6 +6,7 @@
 #' @param output output of a statistical test.
 #' @param identifier a character string identifying the model.
 #' @param statistics a vector of statistics to select from the output and add to the model in the tidy stats list.
+#' @param class A character string to indicate which function was used to produce the output. See 'Details' for a list of supported functions.
 #'
 #' @examples
 #' library(magrittr)
@@ -38,7 +39,7 @@
 #'
 #' @export
 
-add_stats_to_model <- function(results, output, identifier, statistics = NULL) {
+add_stats_to_model <- function(results, output, identifier, statistics = NULL, class = NULL) {
 
   # Check whether the identifier exists, otherwise extract it
   if (!identifier %in% names(results)) {
@@ -47,21 +48,29 @@ add_stats_to_model <- function(results, output, identifier, statistics = NULL) {
     res <- results[[identifier]]
   }
 
-  # Create the new element
-  new_element <- output
+  # Check if a class was provided
+  if (!is.null(class)) {
+    class(output) <- append(class(output), class)
+    new_element <- tidy_stats(output)
+  } else {
 
-  # Check whether the new element contains the necessary columns
-  if (!"statistic" %in% names(new_element)) {
-    stop("No statistic column found.")
-  } else if (!"value" %in% names(new_element)) {
-    stop("No value column found.")
-  } else if ("term" %in% names(res)) {
-    if (length(res$term) > 0) {
-      if (!sum(c("term", "term_nr") %in% names(new_element)) > 0) {
-        stop("No term information found.")
+    # Check whether the new element contains the necessary columns
+    if (!"statistic" %in% names(output)) {
+      stop("No statistic column found.")
+    } else if (!"value" %in% names((output))) {
+      stop("No value column found.")
+    } else if ("term" %in% names(res)) {
+      if (length(res$term) > 0) {
+        if (!sum(c("term", "term_nr") %in% names((output))) > 0) {
+          stop("No term information found.")
+        }
       }
     }
+
+    # Create the new element
+    new_element <- output
   }
+
 
   # Filter out statistics when only a subset of the statistics are added
   if (!is.null(statistics)) {
