@@ -62,15 +62,7 @@ add_stats.matrix <- function(results, output, identifier = NULL, statistics = NU
     class(output) <- append(class(output), class)
     new_element <- tidy_stats(output)
   } else {
-
-    # Throw a warning if non-standard columns are found in the data
-    if (sum(!names(output) %in% c("var", "statistic", "value", "method", "group", "term",
-                                  "term_nr")) > 0) {
-      warning(paste("Non-standard columns found."))
-    }
-
-    # Create the new element
-    new_element <- output
+    stop("No class provided. Cannot tidy the matrix.")
   }
 
   # Filter out statistics

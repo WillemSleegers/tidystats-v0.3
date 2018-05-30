@@ -51,15 +51,20 @@ add_stats.data.frame <- function(results, output, identifier = NULL, statistics 
   # can tidy the data frame.
   if (!is.null(class)) {
     class(output) <- append(class(output), class)
-  }
+    new_element <- tidy_stats(output)
+  } else {
+    # Throw a warning to make sure the user knows he or she is added an unsupported data frame.
+    warning("You added a data.frame to your results list. Please make sure it is properly tidied.")
 
-  # Throw a warning if non-standard columns are found in the data
-  if (sum(!names(output) %in% c("var", "statistic", "value", "method", "group", "term", "term_nr")) > 0) {
-    warning(paste("Non-standard columns found."))
-  }
+    # Throw a warning if non-standard columns are found in the data
+    if (sum(!names(output) %in% c("var", "statistic", "value", "method", "group", "term",
+                                  "term_nr")) > 0) {
+      warning("Non-standard columns found.")
+    }
 
-  # Create the new element
-  new_element <- output
+    # Create the new element
+    new_element <- output
+  }
 
   # Filter out statistics
   if (!is.null(statistics)) {
