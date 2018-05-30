@@ -8,10 +8,13 @@
 
 * Added support for lme4's `lmer()` and lmerTest's `lmer()`.
 * Added support for psych's `alpha()`.
+* Added support for metafor's `rma()`.
+* Added support for stats' `confint()` via the new `class` argument in `add_stats()` and `add_stats_to_model()`.
 
 ## Improvements
 
 * Added check for an existing identifier in `add_stats_to_model()`.
+* Added a `class` argument to `add_stats()` and `add_stats_to_model()`. Some statistical tests return a normal data.frame or matrix, which does not specify which test produced the results. This makes it difficult for tidystats to figure out how to tidy the result. Previously, we solved this by `add_stats()` accepting pre-tidied data frames. Now we added a the `class` argument to specify the name of the function that produced the results, so that we can then tidy it for you.
 
 # tidystats 0.2
 
