@@ -6,7 +6,6 @@
 #' @param results A tidy stats list.
 #' @param output Output of a statistical test or a data frame. If a data frame is provided, it must already be in a tidy format.
 #' @param identifier A character string identifying the model. Automatically created if not provided.
-#' @param statistics A vector of statistics to select from the output and add to the tidy stats list.
 #' @param type A character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.
 #' @param confirmatory A boolean to indicate whether the statistical test was confirmatory (TRUE) or exploratory (FALSE). Can be NA.
 #' @param notes A character string to add additional information. Some statistical tests produce notes information, which will be overwritten if notes are provided.
@@ -35,8 +34,7 @@
 #' model_correlation <- cor.test(x, y)
 #'
 #' # Add output to the results list, only storing the correlation and p-value
-#' results <- add_stats(results, model_correlation, identifier = "correlation",
-#'                      statistics = c("r", "p"))
+#' results <- add_stats(results, model_correlation, identifier = "correlation")
 #'
 #' # Example: Regression
 #' ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
@@ -72,6 +70,6 @@
 #'
 #' @export
 
-add_stats <- function(results, output, identifier = NULL, statistics = NULL, type = NULL,
-                      confirmatory = NULL, notes = NULL, class = NULL, summary_args = NULL)
+add_stats <- function(results, output, identifier = NULL, type = NULL, confirmatory = NULL,
+                      notes = NULL, class = NULL, summary_args = NULL)
   UseMethod("add_stats", output)

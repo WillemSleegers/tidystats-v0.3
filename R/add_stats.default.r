@@ -7,8 +7,6 @@
 #' @param output output of a statistical test.
 #' @param identifier a character string identifying the model. Automatically created if not
 #' provided.
-#' @param statistics a vector of statistics to select from the output and add to the tidy stats
-#' list.
 #' @param type a character string indicating the type of test. One of "hypothesis",
 #' "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.
 #' @param confirmatory a boolean to indicate whether the statistical test was confirmatory (TRUE)
@@ -33,8 +31,7 @@
 #' model_correlation <- cor.test(x, y)
 #'
 #' # Add output to the results list, only storing the correlation and p-value
-#' results <- add_stats(results, model_correlation, identifier = "correlation",
-#'                      statistics = c("r", "p"))
+#' results <- add_stats(results, model_correlation, identifier = "correlation")
 #'
 #' # Example: Regression
 #' ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
@@ -61,8 +58,8 @@
 #'
 #' @export
 
-add_stats.default <- function(results, output, identifier = NULL, statistics = NULL, type = NULL,
-                              confirmatory = NULL, notes = NULL) {
+add_stats.default <- function(results, output, identifier = NULL, type = NULL, confirmatory = NULL,
+                              notes = NULL) {
 
   # Create an identifier if it is not specified, else check whether it already exists
   if (is.null(identifier)) {
@@ -83,11 +80,6 @@ add_stats.default <- function(results, output, identifier = NULL, statistics = N
 
   # Create the new element
   new_element <- tidy_stats(output)
-
-  # Filter out statistics
-  if (!is.null(statistics)) {
-    new_element <- dplyr::filter(new_element, statistic %in% statistics)
-  }
 
   # Add the type
   if (!is.null(type)) {

@@ -5,7 +5,6 @@
 #' @param results a tidy stats list.
 #' @param output output of a statistical test.
 #' @param identifier a character string identifying the model.
-#' @param statistics a vector of statistics to select from the output and add to the model in the tidy stats list.
 #' @param class A character string to indicate which function was used to produce the output. See 'Details' for a list of supported functions.
 #'
 #' @examples
@@ -39,7 +38,7 @@
 #'
 #' @export
 
-add_stats_to_model <- function(results, output, identifier, statistics = NULL, class = NULL) {
+add_stats_to_model <- function(results, output, identifier, class = NULL) {
 
   # Check whether the identifier exists, otherwise extract it
   if (!identifier %in% names(results)) {
@@ -69,12 +68,6 @@ add_stats_to_model <- function(results, output, identifier, statistics = NULL, c
 
     # Create the new element
     new_element <- output
-  }
-
-
-  # Filter out statistics when only a subset of the statistics are added
-  if (!is.null(statistics)) {
-    new_element <- dplyr::filter(new_element, statistic %in% statistics)
   }
 
   # Merge with the model statistics

@@ -10,8 +10,6 @@
 #' @param output A data frame that contains statistical output in a tidy format.
 #' @param identifier A character string identifying the model. Automatically created if not
 #' provided.
-#' @param statistics A vector of statistics to select from the output and add to the tidy stats
-#' list.
 #' @param type A character string indicating the type of test. One of "hypothesis", "manipulation
 #' check", "contrast", "descriptives", or "other". Can be abbreviated.
 #' @param confirmatory A boolean to indicate whether the statistical test was confirmatory (TRUE) or
@@ -39,8 +37,8 @@
 #' results <- add_stats(results, x_squared_data)
 #'
 #' @export
-add_stats.matrix <- function(results, output, identifier = NULL, statistics = NULL, type = NULL,
-                             confirmatory = NULL, notes = NULL, class = NULL) {
+add_stats.matrix <- function(results, output, identifier = NULL, type = NULL, confirmatory = NULL,
+                             notes = NULL, class = NULL) {
 
   # Create an identifier if it is not specified, else check whether it already exists
   if (is.null(identifier)) {
@@ -63,11 +61,6 @@ add_stats.matrix <- function(results, output, identifier = NULL, statistics = NU
     new_element <- tidy_stats(output)
   } else {
     stop("No class provided. Cannot tidy the matrix.")
-  }
-
-  # Filter out statistics
-  if (!is.null(statistics)) {
-    new_element <- dplyr::filter(new_element, statistic %in% statistics)
   }
 
   # Add the type
