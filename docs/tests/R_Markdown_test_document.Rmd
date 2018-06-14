@@ -11,7 +11,6 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(knitr)
 library(tidystats)
-library(stringr)
 
 # Options
 options(digits = 2)
@@ -25,99 +24,8 @@ Start by reading in the data frame containing the output of all the statistical 
 results <- read_stats("results.csv")
 
 options(tidystats_list = results)
+
+results$M1_1
 ```
 
 ### Reporting results
-
-The `tidystats` function to report statistics is `report()`. This function consists of two necessary arguments:
-
-- `results`: The list containing the output of the statistical models
-- `identifier`: The identifier of the model you want to report
-
-In some cases you also need to supply a term. Some (if not most) statistical models consist of multiple terms, so you need to provide the specific term you want to report, using the `term` argument.
-
-By default the function will return all of the required statistics to report in APA style. Optionally, you can also ask for just one specific statistic by using the `statistic` argument.
-
-### Supported statistical tests
-
-The following statistical tests can be used to produce APA output:
-
-- t-tests
-- correlations
-
-### Examples
-
-#### t-tests
-
-We currently support 4 different t-tests, tested on Student's *sleep* data. The output is shown in the following table.
-
-```{r}
-stats_list_to_df(results) %>%
-  filter(str_detect(method, "t-test")) %>%
-  select(identifier, method, statistic, value) %>%
-  kable()
-```
-
-Examples of APA output of the four different t-tests are listed below.
-
-**One Sample *t*-test**
-
-- `report("M1_1")`: `r report("M1_1")`
-
-**Two Sample *t*-test:** 
-
-- `report("M1_2")`: `r report("M1_2")`
-
-**Welch's Two Sample *t*-test** 
-
-- `report("M1_3")`: `r report("M1_3")`
-
-**Paired *t*-test** 
-
-- `report("M1_4")`: `r report("M1_4")`
-
-#### Correlations
-
-We currently support 3 different correlations, tested on some random data. The output is shown in the following table.
-
-```{r}
-stats_list_to_df(results) %>%
-  filter(str_detect(method, "correlation")) %>%
-  select(identifier, method, statistic, value) %>%
-  kable()
-```
-
-Examples of APA output of the three correlation methods are listed below.
-
-**Pearson’s product-moment correlation**
-
-- `report("M2_1")`: `r report("M2_1")`
-
-**Kendall’s rank correlation tau**
-
-- `report("M2_2")`: `r report("M2_2")`
-
-**Spearman’s rank correlation rho**
-
-- `report("M2_3")`: `r report("M2_3")`
-
-#### Regression
-
-We also support regression (of course), tested on the *affect* data frame from the `psych` package. The output of three regression models is shown in the following table.
-
-```{r regression}
-stats_list_to_df(results) %>%
-  filter(str_detect(method, "regression")) %>%
-  select(identifier, term, method, statistic, value) %>%
-  kable()
-```
-
-This table contains more missing data than the previous tables. This is because a regression models returns a row for each term in the model, as well as a row for the model itself. The terms have their estimate, *t*-statistic, and the like, while the model has adjusted *R*<sup>2</sup> squared, the *F*-statistic, and the model and error df. The model term is always called '(Model)', so if you want to produce APA output of the model, use this as the term in the `report()` function. Examples:
-
-**Single term**
-
-- `report("M3_1", term = "conditionmortality salience")`: `r report("M3_1", term = "conditionmortality salience")`
-
-**Model fit**
-
-- `report("M3_1", term = "(Model)")`: `r report("M3_1", "(Model)")`

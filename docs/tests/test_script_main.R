@@ -34,8 +34,8 @@ tidy_stats(t_test_paired)
 
 # Add stats
 results <- results %>%
-  add_stats(t_test_one_sample, identifier = "t_test_one_sample", statistics = c("t", "df", "p"),
-            type = "h", confirmatory = TRUE) %>%
+  add_stats(t_test_one_sample, identifier = "t_test_one_sample", type = "h",
+            confirmatory = TRUE) %>%
   add_stats(t_test_two_sample) %>%
   add_stats(t_test_welch) %>%
   add_stats(t_test_paired)
@@ -292,6 +292,9 @@ dat <- escalc(measure = "RR", ai = tpos, bi = tneg, ci = cpos, di = cneg, data =
 meta_analysis <- rma(yi, vi, data = dat, method = "REML", level = 90)
 meta_analysis_mods <- rma(yi, vi, mods = cbind(ablat, year), data = dat, method = "REML")
 
+meta_analysis
+meta_analysis_mods
+
 # Tidy results
 tidy_stats(meta_analysis)
 tidy_stats(meta_analysis_mods)
@@ -536,3 +539,7 @@ polcom %>%
 # Cronbach's alpha
 cronbachs_alpha(polcom, ambiv_sexism_1:ambiv_sexism_6)
 
+
+# Inspect model -------------------------------------------------------------------------------
+
+inspect_model(results, t_test_two_sample)
