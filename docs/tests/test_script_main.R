@@ -542,4 +542,4 @@ cronbachs_alpha(polcom, ambiv_sexism_1:ambiv_sexism_6)
 
 # Inspect model -------------------------------------------------------------------------------
 
-inspect_model(results, t_test_two_sample)
+inspect_model(results)

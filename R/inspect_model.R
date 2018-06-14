@@ -206,7 +206,8 @@ inspect_model <- function(results, ...) {
       table <- stringr::str_replace_all(table, "<tr", "<tr onclick=myAlert(event)")
 
       # Add classes
-      table <- stringr::str_replace_all(table, 'hack: identifier;\"', '" class=identifier')
+      table <- stringr::str_replace_all(
+        table, 'hack: identifier;\"', '" class=identifier')
       table <- stringr::str_replace_all(table, 'hack: term;\"', '" class=term')
 
       # Remove strong HTML tags
@@ -231,14 +232,16 @@ inspect_model <- function(results, ...) {
 
         if (what == "statistic") {
           if (term != "") {
-            output <- report(identifier = identifier, term = term, statistic = statistic,
-                             results = results)
+            output <- report(identifier = identifier, term = term,
+                             statistic = statistic, results = results)
           } else {
-            output <- report(identifier = identifier, statistic = statistic, results = results)
+            output <- report(identifier = identifier, statistic = statistic,
+                             results = results)
           }
         } else {
           if (term != "") {
-            output <- report(identifier = identifier, term = term, results = results)
+            output <- report(identifier = identifier, term = term,
+                             results = results)
           } else {
             output <- report(identifier = identifier, results = results)
           }
@@ -246,10 +249,12 @@ inspect_model <- function(results, ...) {
 
         # TODO: change the hover icon to a hand
         # TODO: automatically copy results to clipboard
+        # shinyjs::runjs("copy_to_clipboard('apa');")
         output <- knitr::knit2html(text = output, fragment.only = TRUE)
 
       } else {
-        output <- knitr::knit2html(text = "Click on a row for magic", fragment.only = TRUE)
+        output <- knitr::knit2html(text = "Click on a row for magic",
+                                   fragment.only = TRUE)
       }
       return(output)
     })
