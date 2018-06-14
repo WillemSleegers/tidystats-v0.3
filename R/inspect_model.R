@@ -22,7 +22,10 @@
 inspect_model <- function(results, ...) {
 
   # Get identifiers and convert them to a vector of strings
-  identifiers <- dplyr::quos(...) %>% purrr::map(quo_name) %>% unlist()
+  identifiers <- dplyr::quos(...) %>%
+    purrr::map(quo_name) %>%
+    unlist() %>%
+    as.vector()
 
   # If identifiers are provided, select them from the results list
   if (length(identifiers) != 0) {
@@ -38,28 +41,47 @@ inspect_model <- function(results, ...) {
     miniUI::miniContentPanel(
       shiny::tableOutput('table'),
       shiny::tags$style(type='text/css',
-        ".gadget-block-button {
+        "#apa_output {
           position: fixed;
           bottom: 0;
           width: 100%;
           margin-left: -14px;
+          background-color: rgb(239, 239, 239);
+          border-top: 1px solid rgb(213, 213, 213);
+          padding: 5px;
+          vertical-align: center;
+        }
 
+        #apa_output p {
+          display: inline-block;
         }
 
         #apa {
-          text-align: center;
-          height: 50px;
-          width: 100%;
+          display: inline-block;
+          background-color: white;
+          border-radius: 5px;
+          border: 1px solid rgb(213, 213, 213);
+          padding: 0;
+
+          width: calc(100vw - 155px);
         }
 
-        #action {
-          width: 98%;
-          height: 40px;
+        #apa p {
+          margin: 0;
+          padding: 6px;
+          padding-left: 8px;
         }
+
+        #copy_button {
+          float: right;
+        }
+
         "),
       # htmlOutput('apa'),
-      miniUI::miniButtonBlock(
-        shiny::uiOutput("apa")
+      div(id = "apa_output",
+        p("APA output:"),
+        shiny::htmlOutput("apa"),
+        actionButton('copy_button', 'Copy', onclick = "copy_to_clipboard('apa')")
       )
     ),
 
@@ -118,9 +140,24 @@ inspect_model <- function(results, ...) {
       console.log(info);
 
       Shiny.onInputChange("jsValue", info);
-    }'))
+    }')),
 
-  )
+    shiny::tags$script(htmlwidgets::JS("function copy_to_clipboard(element) {
+
+      var doc = document, text = doc.getElementById(element), range, selection;
+
+      selection = window.getSelection();
+      range = doc.createRange();
+      range.selectNodeContents(text);
+      selection.removeAllRanges();
+      selection.addRange(range);
+
+      console.log(this);
+
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+    }"
+  )))
 
   # Server logic
   server <- function(input, output, session) {
@@ -129,7 +166,7 @@ inspect_model <- function(results, ...) {
 
       # Combine all the statistics into one table
       df <- results %>%
-        purrr::map_df(select, statistic, value) %>%
+        purrr::map_df(dplyr::select, statistic, value) %>%
         dplyr::mutate(value = prettyNum(value))
 
       # Create the base table
@@ -184,35 +221,38 @@ inspect_model <- function(results, ...) {
       #print(input$jsValue)
     })
 
-    output$apa <- renderUI({
+    output$apa <- renderText({
 
-      req(input$jsValue)
+      if (!is.null(input$jsValue)) {
+        what = input$jsValue[1]
+        identifier = input$jsValue[2]
+        term = input$jsValue[3]
+        statistic = input$jsValue[4]
 
-      what = input$jsValue[1]
-      identifier = input$jsValue[2]
-      term = input$jsValue[3]
-      statistic = input$jsValue[4]
-
-      if (what == "statistic") {
-        if (term != "") {
-          output <- report(identifier = identifier, term = term, statistic = statistic,
-                           results = results)
+        if (what == "statistic") {
+          if (term != "") {
+            output <- report(identifier = identifier, term = term, statistic = statistic,
+                             results = results)
+          } else {
+            output <- report(identifier = identifier, statistic = statistic, results = results)
+          }
         } else {
-          output <- report(identifier = identifier, statistic = statistic, results = results)
+          if (term != "") {
+            output <- report(identifier = identifier, term = term, results = results)
+          } else {
+            output <- report(identifier = identifier, results = results)
+          }
         }
+
+        # TODO: change the hover icon to a hand
+        # TODO: automatically copy results to clipboard
+        output <- knitr::knit2html(text = output, fragment.only = TRUE)
+
       } else {
-        if (term != "") {
-          output <- report(identifier = identifier, term = term, results = results)
-        } else {
-          output <- report(identifier = identifier, results = results)
-        }
+        output <- knitr::knit2html(text = "Click on a row for magic", fragment.only = TRUE)
       }
-
-      output <- stringr::str_replace_all(output, "\\*(.*?)\\*", "<i>\\1</i>")
-
-      shiny::actionButton("action", label = shiny::HTML(output))
+      return(output)
     })
-
 
     # When the Done button is clicked, return a value
     observeEvent(input$done, {
