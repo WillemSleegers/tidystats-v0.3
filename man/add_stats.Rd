@@ -4,9 +4,8 @@
 \alias{add_stats}
 \title{Add statistical output to a tidy stats list}
 \usage{
-add_stats(results, output, identifier = NULL, statistics = NULL,
-  type = NULL, confirmatory = NULL, notes = NULL, class = NULL,
-  summary_args = NULL)
+add_stats(results, output, identifier = NULL, type = NULL,
+  confirmatory = NULL, notes = NULL, class = NULL, summary_args = NULL)
 }
 \arguments{
 \item{results}{A tidy stats list.}
@@ -14,8 +13,6 @@ add_stats(results, output, identifier = NULL, statistics = NULL,
 \item{output}{Output of a statistical test or a data frame. If a data frame is provided, it must already be in a tidy format.}
 
 \item{identifier}{A character string identifying the model. Automatically created if not provided.}
-
-\item{statistics}{A vector of statistics to select from the output and add to the tidy stats list.}
 
 \item{type}{A character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.}
 
@@ -53,8 +50,7 @@ y <- c( 2.6,  3.1,  2.5,  5.0,  3.6,  4.0,  5.2,  2.8,  3.8)
 model_correlation <- cor.test(x, y)
 
 # Add output to the results list, only storing the correlation and p-value
-results <- add_stats(results, model_correlation, identifier = "correlation",
-                     statistics = c("r", "p"))
+results <- add_stats(results, model_correlation, identifier = "correlation")
 
 # Example: Regression
 ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)

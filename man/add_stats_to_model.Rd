@@ -4,8 +4,7 @@
 \alias{add_stats_to_model}
 \title{Add statistical output to a model in a tidy stats list}
 \usage{
-add_stats_to_model(results, output, identifier, statistics = NULL,
-  class = NULL)
+add_stats_to_model(results, output, identifier, class = NULL)
 }
 \arguments{
 \item{results}{a tidy stats list.}
@@ -13,8 +12,6 @@ add_stats_to_model(results, output, identifier, statistics = NULL,
 \item{output}{output of a statistical test.}
 
 \item{identifier}{a character string identifying the model.}
-
-\item{statistics}{a vector of statistics to select from the output and add to the model in the tidy stats list.}
 
 \item{class}{A character string to indicate which function was used to produce the output. See 'Details' for a list of supported functions.}
 }

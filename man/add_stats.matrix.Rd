@@ -4,9 +4,8 @@
 \alias{add_stats.matrix}
 \title{add_stats matrix function}
 \usage{
-\method{add_stats}{matrix}(results, output, identifier = NULL,
-  statistics = NULL, type = NULL, confirmatory = NULL, notes = NULL,
-  class = NULL)
+\method{add_stats}{matrix}(results, output, identifier = NULL, type = NULL,
+  confirmatory = NULL, notes = NULL, class = NULL)
 }
 \arguments{
 \item{results}{A tidy stats list.}
@@ -15,9 +14,6 @@
 
 \item{identifier}{A character string identifying the model. Automatically created if not
 provided.}
-
-\item{statistics}{A vector of statistics to select from the output and add to the tidy stats
-list.}
 
 \item{type}{A character string indicating the type of test. One of "hypothesis", "manipulation
 check", "contrast", "descriptives", or "other". Can be abbreviated.}
