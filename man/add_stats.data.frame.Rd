@@ -5,7 +5,7 @@
 \title{add_stats data frame function}
 \usage{
 \method{add_stats}{data.frame}(results, output, identifier = NULL,
-  type = NULL, confirmatory = NULL, notes = NULL)
+  type = NULL, confirmatory = NULL, notes = NULL, class = NULL)
 }
 \arguments{
 \item{results}{A tidy stats list.}
