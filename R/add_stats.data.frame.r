@@ -37,8 +37,9 @@
 #' results <- add_stats(results, x_squared_data)
 #'
 #' @export
-add_stats.data.frame <- function(results, output, identifier = NULL, type = NULL,
-                                 confirmatory = NULL, notes = NULL) {
+add_stats.data.frame <- function(results, output, identifier = NULL,
+                                 type = NULL, confirmatory = NULL,
+                                 notes = NULL, class = NULL) {
 
   # Create an identifier if it is not specified, else check whether it already exists
   if (is.null(identifier)) {
