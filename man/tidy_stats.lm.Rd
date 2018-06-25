@@ -10,7 +10,8 @@
 \item{model}{Output of \code{lm()}.}
 }
 \description{
-\code{tidy_stats.lm} takes an lm object and converts the object to a tidy stats data frame.
+\code{tidy_stats.lm} takes an lm object and converts the object to a tidy
+stats data frame.
 }
 \examples{
 # Conduct a regression

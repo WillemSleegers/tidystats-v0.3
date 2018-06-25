@@ -4,9 +4,14 @@
 #'
 #' @param results A tidy stats list.
 #' @param identifier A character string identifying the model.
-#' @param term A character string indicating which term you want to report the statistics of.
-#' @param term_nr A number indicating which term you want to report the the statistics of.
-#' @param statistic A character string of a statistic you want to extract from a model.
+#' @param group A character string identifying the group you want to report the
+#' statistics of.
+#' @param term A character string indicating which term you want to report the
+#' statistics of.
+#' @param term_nr A number indicating which term you want to report the the
+#' statistics of.
+#' @param statistic A character string of a statistic you want to extract from a
+#' model.
 #'
 #' @examples
 #' # Read in a list of results
@@ -22,28 +27,43 @@
 #' @import stringr
 #'
 #' @export
-report_rma <- function(results, identifier, term = NULL, term_nr = NULL, statistic = NULL) {
+report_rma <- function(results, identifier, group = NULL, term = NULL,
+                       term_nr = NULL, statistic = NULL) {
+
+  # Store the arguments in variables that do not share column names with the
+  # model data frame
+  res_group <- group
+  res_term <- term
+  res_term_nr <- term_nr
+  res_statistic <- statistic
+
+  print("Arguments:")
+  print(res_group)
+  print(res_term)
+  print(res_term_nr)
+  print(res_statistic)
 
   # Extract the results of the specific model through its identifier
   res <- results[[identifier]]
 
-  # Check whether the statistic exists, if provided
-  if (!is.null(statistic)) {
-    if (!statistic %in% res$statistic) {
-      stop("Statistic not found.")
-    }
+  # Filter the results based on the supplied information
+  if (!is.null(group)) {
+    res <- dplyr::filter(res, group == res_group)
   }
-
-  # Check whether a term is provided, extract data if so, otherwise throw an error
   if (!is.null(term)) {
-    res <- res[res$term == term, ]
-  } else if (!is.null(term_nr)) {
-    res <- res[res$term_nr == term_nr, ]
-  } else {
-    stop("No term provided")
+    res <- dplyr::filter(res, term == res_term)
+  }
+  if (!is.null(term_nr)) {
+    res <- dplyr::filter(res, term_nr == res_term_nr)
+  }
+  if (!is.null(statistic)) {
+    res <- dplyr::filter(res, statistic == res_statistic)
   }
 
-  # Check if only a single statistic is asked, otherwise produce a full line of APA results
+  print(res)
+
+  # Check if only a single statistic is asked, otherwise produce a full line of
+  # APA results
   if (!is.null(statistic)) {
     output <- res$value[res$statistic == statistic]
 
@@ -55,15 +75,15 @@ report_rma <- function(results, identifier, term = NULL, term_nr = NULL, statist
                        x = format(output, digits = 2, nsmall = 2))
       }
     } else {
-      if (statistic != "df") {
+      if (statistic != "df" & statistic != "k") {
         output <- format(output, digits = 2, nsmall = 2)
       }
     }
   } else {
-    if (res$term[1] == "(Heterogeneity)") {
+    if (res$group[1] == "heterogeneity") {
       # TODO
       output <- "TODO"
-    } else if (res$term[1] == "(Moderators)") {
+    } else if (res$group[1] == "moderators") {
       # TODO
       output <- "TODO"
     } else {

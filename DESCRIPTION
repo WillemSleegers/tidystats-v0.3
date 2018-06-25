@@ -4,8 +4,8 @@ Version: 0.2
 Authors@R: person("Willem", "Sleegers", email = "w.sleegers@me.com", role = c("aut", "cre"))
 Description: Produce a data file containing the output of statistical models and assist with a workflow aimed at writing scientific papers using 'R Markdown'. Supported statistical functions include: t.test(), cor.test(), lm(), aov(), anova(). The package is based on tidy data principles and the 'tidyverse' (Wickham, 2017).
 Depends: R (>= 3.5.0)
-Imports: tibble, readr, tidyr, dplyr, magrittr, purrr, stringr, knitr
+Imports: tibble, readr, tidyr, dplyr, magrittr, purrr, stringr, knitr, kableExtra
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
 RoxygenNote: 6.0.1
+LazyData: true

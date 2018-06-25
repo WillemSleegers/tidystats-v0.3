@@ -40,8 +40,8 @@ tidy_stats.aov <- function(model) {
   classes <- attr(model$terms, "dataClasses")[-1]
   method <- dplyr::case_when(
     sum(classes == "numeric") > 0 ~ "ANCOVA",
-    sum(classes == "factor") == 1 ~ "One-way ANOVA",
-    sum(classes == "factor") == 2 ~ "Factorial ANOVA",
+    sum(classes == "factor" | classes == "character") == 1 ~ "One-way ANOVA",
+    sum(classes == "factor" | classes == "character") == 2 ~ "Factorial ANOVA",
     TRUE ~ "ANOVA"
   )
   output$method <- method

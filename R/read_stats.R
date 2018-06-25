@@ -12,8 +12,19 @@
 #' @export
 
 read_stats <- function(file) {
+
+  # Read a tidystats csv file
   df <- readr::read_csv(file)
+
+  # Split the data frame by the identifier to create a list
   results <- split(df, df$identifier)
+
+  # Loop over each element and remove columns that are empty
+  empty_column <- function(x) {
+    sum(!is.na(x)) > 0
+  }
+
+  results <- map(results, select_if, empty_column)
 
   return(results)
 }

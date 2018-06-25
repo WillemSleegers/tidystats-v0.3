@@ -55,11 +55,11 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
     } else if (str_detect(method, "correlation")) {
       output <- report_correlation(results, identifier, statistic)
     } else if (str_detect(method, "regression")) {
-      output <- report_lm(results, identifier, term, term_nr, statistic)
+      output <- report_lm(results, identifier, group, term, term_nr, statistic)
     } else if (str_detect(method, "ANOVA|ANCOVA")) {
       output <- report_anova(results, identifier, term, term_nr, statistic)
     } else if (str_detect(method, "metafor")) {
-      output <- report_rma(results, identifier, term, term_nr, statistic)
+      output <- report_rma(results, identifier, group, term, term_nr, statistic)
     } else {
       output <- NULL
     }

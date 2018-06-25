@@ -1,6 +1,7 @@
 #' Create a tidy stats data frame from an lm object
 #'
-#' \code{tidy_stats.lm} takes an lm object and converts the object to a tidy stats data frame.
+#' \code{tidy_stats.lm} takes an lm object and converts the object to a tidy
+#' stats data frame.
 #'
 #' @param model Output of \code{lm()}.
 #'
@@ -26,8 +27,11 @@ tidy_stats.lm <- function(model) {
   summary <- summary(model)
 
   # Extract statistics
-  # Not included: Descriptives of residuals, residual standard error, residual degrees of freedom
-  output <- tibble::as_data_frame(summary$coefficients) %>%
+  # Not included: Descriptives of residuals, residual standard error, residual
+  # degrees of freedom
+
+  # Extract coefficients
+  output_coefficients <- tibble::as_data_frame(summary$coefficients) %>%
     dplyr::rename(
       b = Estimate,
       SE = `Std. Error`,
@@ -37,32 +41,35 @@ tidy_stats.lm <- function(model) {
     dplyr::mutate(
       df = summary$df[2],
       term = names(model$coefficients),
-      term_nr = 1:n()) %>%
-    tidyr::gather("statistic", "value", -term, -term_nr) %>%
+      term_nr = 1:n(),
+      group = "coefficients") %>%
+    tidyr::gather("statistic", "value", -term, -term_nr, -group) %>%
     dplyr::arrange(term_nr)
 
-  output <- dplyr::bind_rows(output,
-    tibble::data_frame(
-      term = "(Model)",
-      term_nr = max(output$term_nr) + 1,
-        statistic = c("R squared", "adjusted R squared", "F", "numerator df", "denominator df"),
-      value = c(summary$r.squared, summary$adj.r.squared, summary$fstatistic[1],
-                summary$fstatistic[2], summary$fstatistic[3])
-    )
-  )
-
+  # Extract model fit
+  output_model <- tibble::data_frame(
+    group = "model",
+    statistic = c("R squared", "adjusted R squared", "F", "numerator df",
+                  "denominator df"),
+    value = c(summary$r.squared, summary$adj.r.squared, summary$fstatistic[1],
+              summary$fstatistic[2], summary$fstatistic[3]))
 
   # Calculate model fit p value ourselves
-  p <- pf(summary$fstatistic[1], summary$fstatistic[2], summary$fstatistic[3], lower.tail = FALSE)
+  p <- pf(summary$fstatistic[1], summary$fstatistic[2], summary$fstatistic[3],
+          lower.tail = FALSE)
 
-  output <- dplyr::bind_rows(output, data_frame(term = "(Model)", term_nr = max(output$term_nr),
-                                         statistic = "p", value = p))
+  output_model <- dplyr::bind_rows(output_model, data_frame(group = "model",
+                                                            statistic = "p",
+                                                            value = p))
+
+  # Combine coefficients and model output
+  output <- bind_rows(output_coefficients, output_model)
 
   # Add method
   output$method <- "Linear regression"
 
   # Reorder columns
-  output <- dplyr::select(output, term_nr, everything())
+  output <- dplyr::select(output, group, term, term_nr, everything())
 
   return(output)
 }

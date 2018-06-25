@@ -1,64 +1,75 @@
 
-# Report functions ----------------------------------------------------------------------------
+# Setup -------------------------------------------------------------------
+
+# Load packages
+library(tidystats)
+
+# Load tidystats results
+results <- read_stats("docs/tests/results.csv")
+
+# Report functions --------------------------------------------------------
 
 # Set the tidystats list in options
-# We cannot do this already in the beginning of the script since it copies the list, meaning it
-# does not contain any results yet
+# We cannot do this already in the beginning of the script since it copies the
+# list, meaning it does not contain any results yet
 options(tidystats_list = results)
 
-# Report: Descriptives ------------------------------------------------------------------------
+# Report: t-tests ---------------------------------------------------------
 
-report("D1_condition", statistic = "M") # Error
-report("D1_condition", statistic = "n") # Error
-report("D1_condition", statistic = "n", group = "dental pain") # Error
+# Complete output
+report("t_test_one_sample")
+report("t_test_two_sample")
+report("t_test_welch")
+report("t_test_paired")
 
-report("D4_avoidance", statistic = "M")
-M("D4_avoidance")
-SD("D4_avoidance")
+# Single statistic output
+report("t_test_one_sample", statistic = "t")
+report("t_test_one_sample", statistic = "df")
+report("t_test_one_sample", statistic = "p")
 
-report("D5_avoidance_anxiety", var = "avoidance", statistic = "M")
-M("D5_avoidance_anxiety", var = "avoidance")
+# Report: correlations ----------------------------------------------------
 
-report("D6_avoidance_by_condition", var = "avoidance", group = "dental pain", statistic = "M")
-M("D6_avoidance_by_condition", var = "avoidance", group = "dental pain")
+# Complete output
+report("correlation_pearson")
+report("correlation_spearman")
+report("correlation_kendall")
 
-# Report: t-tests -----------------------------------------------------------------------------
+# Single statistic output
+report("correlation_pearson", statistic = "cor")
+report("correlation_spearman", statistic = "rho")
+report("correlation_pearson", statistic = "95% CI lower")
 
-report("M1_1")
-report("M1_1", statistic = "p")
-report("M1_2")
-report("M1_2", statistic = "p")
-report("M1_3")
-report("M1_4")
+# Report: regression ------------------------------------------------------
 
-# Correlation
-report("M2_1")
-report("M2_1", statistic = "cor")
-report("M2_2")
-report("M2_2", statistic = "tau")
-report("M2_3")
-report("M2_3", statistic = "rho")
+# Complete output
+report("lm_parent_condition", group = "model")
+report("lm_parent_condition", term = "conditionmortality salience")
+report("lm_parent_condition", term_nr = 2)
 
-# Report regression results
-report("M3_1", term = "conditionmortality salience")
-report("M3_1", term_nr = 2)
-report("M3_1", term = "(Model)")
-report("M3_1", term_nr = 3)
+# Single statistic output
+report("lm_parent_condition", term_nr = 2, statistic = "b")
+report("lm_parent_condition", term_nr = 2, statistic = "df")
+report("lm_parent_condition", term_nr = 2, statistic = "p")
+
+# ANOVA -------------------------------------------------------------------
+
+# Complete output
+report("aov_parent_condition", term = "condition")
+report("aov_parent_condition", term_nr = 1)
+report("aov_parent_condition", statistic = "F")
+report("aov_parent_condition", statistic = "SS")
+report("aov_parent_condition", term = "condition", statistic = "SS")
 
 
-report("M3_2", term_nr = 3)
+report("aov_parent_condition", term = "Residuals")
+report("aov_parent_condition", term_nr = 2)
 
-# ANOVA
-report(results, "M4_1", term = "condition")
-report(results, "M4_1", term = "condition", statistic = "F")
-report(results, "M4_1", term = "Residuals", statistic = "df")
-report(results, "M4_3", term = "condition:sex")
-report(results, "M4_6", term = "condition")
-report(results, "M4_6", term = "affect")
-report(results, "M4_6", term = "condition:affect")
-report(results, "M4_7", term = "anxiety")
-report(results, "M4_7", term = "affect")
+report("aov_parent_affect", term = "affect")
 
+
+# Inspect model -----------------------------------------------------------
+
+inspect_model(results)
 
 # Report table functions ----------------------------------------------------------------------
 
@@ -80,3 +91,19 @@ library(Hmisc)
 correlation_results <- rcorr(as.matrix(select(affect, ext, neur, imp, soc, lie)))
 correlations <- correlation_results$r
 p_values <- correlation_results$P
+
+# Report: Descriptives ----------------------------------------------------
+
+report("D1_condition", statistic = "M") # Error
+report("D1_condition", statistic = "n") # Error
+report("D1_condition", statistic = "n", group = "dental pain") # Error
+
+report("D4_avoidance", statistic = "M")
+M("D4_avoidance")
+SD("D4_avoidance")
+
+report("D5_avoidance_anxiety", var = "avoidance", statistic = "M")
+M("D5_avoidance_anxiety", var = "avoidance")
+
+report("D6_avoidance_by_condition", var = "avoidance", group = "dental pain", statistic = "M")
+M("D6_avoidance_by_condition", var = "avoidance", group = "dental pain")

@@ -1,11 +1,15 @@
 #' Add statistical output to a model in a tidy stats list
 #'
-#' \code{add_stats_to_model} adds output to a model in a tidy results list. Sometimes you have to run additional analyses on the output of a statistical test, so you want to add these results to an existing model in a tidy stats list.
+#' \code{add_stats_to_model} adds output to a model in a tidy results list.
+#' Sometimes you have to run additional analyses on the output of a statistical
+#' test, so you want to add these results to an existing model in a tidy stats
+#' list.
 #'
 #' @param results a tidy stats list.
 #' @param output output of a statistical test.
 #' @param identifier a character string identifying the model.
-#' @param class A character string to indicate which function was used to produce the output. See 'Details' for a list of supported functions.
+#' @param class A character string to indicate which function was used to
+#' produce the output. See 'Details' for a list of supported functions.
 #'
 #' @examples
 #' library(magrittr)
@@ -74,14 +78,19 @@ add_stats_to_model <- function(results, output, identifier, class = NULL) {
   if ("term" %in% names(res)) {
     if (length(res$term) > 0) {
       if ("term" %in% names(new_element)) {
-        new_element <- dplyr::full_join(res, new_element, by = c("term", "statistic", "value")) %>%
+        new_element <- dplyr::full_join(res, new_element, by = c("term",
+                                                                 "statistic",
+                                                                 "value")) %>%
           dplyr::group_by(term) %>%
           dplyr::mutate(
+            group = first(group),
             term_nr = first(term_nr),
             method = first(method)
           )
       } else {
-        new_element <- dplyr::full_join(res, new_element, by = c("term_nr", "statistic", "value")) %>%
+        new_element <- dplyr::full_join(res, new_element, by = c("term_nr",
+                                                                 "statistic",
+                                                                 "value")) %>%
           dplyr::group_by(term_nr) %>%
           dplyr::mutate(
             term = first(term),
@@ -93,11 +102,13 @@ add_stats_to_model <- function(results, output, identifier, class = NULL) {
         dplyr::ungroup()
     }
   } else {
-    new_element <- dplyr::full_join(res, new_element, by = c("statistic", "value")) %>%
+    new_element <- dplyr::full_join(res, new_element, by = c("statistic",
+                                                             "value")) %>%
       dplyr::mutate(method = first(method))
   }
 
-  # If there is a 'confirmatory' column; add the same information to the new rows
+  # If there is a 'confirmatory' column; add the same information to the new
+  # rows
   if (has_name(new_element, "confirmatory")) {
     new_element <- mutate(new_element, confirmatory = first(confirmatory))
   }

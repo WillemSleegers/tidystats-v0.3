@@ -33,7 +33,8 @@ cannot figure out how to tidy the data. To add these results, you can provide a 
 class argument or you can manually tidy the results yourself and add the resulting data frame via
 add_stats().
 
-A list of supported classes are: confint
+A list of supported classes are:
+- confint
 }
 \examples{
 # Create an empty list to store the results in

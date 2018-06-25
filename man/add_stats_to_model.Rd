@@ -13,10 +13,14 @@ add_stats_to_model(results, output, identifier, class = NULL)
 
 \item{identifier}{a character string identifying the model.}
 
-\item{class}{A character string to indicate which function was used to produce the output. See 'Details' for a list of supported functions.}
+\item{class}{A character string to indicate which function was used to
+produce the output. See 'Details' for a list of supported functions.}
 }
 \description{
-\code{add_stats_to_model} adds output to a model in a tidy results list. Sometimes you have to run additional analyses on the output of a statistical test, so you want to add these results to an existing model in a tidy stats list.
+\code{add_stats_to_model} adds output to a model in a tidy results list.
+Sometimes you have to run additional analyses on the output of a statistical
+test, so you want to add these results to an existing model in a tidy stats
+list.
 }
 \examples{
 library(magrittr)

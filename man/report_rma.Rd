@@ -4,7 +4,7 @@
 \alias{report_rma}
 \title{Report method for metafor's rma models}
 \usage{
-report_rma(results, identifier, term = NULL, term_nr = NULL,
+report_rma(results, identifier, group = NULL, term = NULL, term_nr = NULL,
   statistic = NULL)
 }
 \arguments{
@@ -12,11 +12,17 @@ report_rma(results, identifier, term = NULL, term_nr = NULL,
 
 \item{identifier}{A character string identifying the model.}
 
-\item{term}{A character string indicating which term you want to report the statistics of.}
+\item{group}{A character string identifying the group you want to report the
+statistics of.}
 
-\item{term_nr}{A number indicating which term you want to report the the statistics of.}
+\item{term}{A character string indicating which term you want to report the
+statistics of.}
 
-\item{statistic}{A character string of a statistic you want to extract from a model.}
+\item{term_nr}{A number indicating which term you want to report the the
+statistics of.}
+
+\item{statistic}{A character string of a statistic you want to extract from a
+model.}
 }
 \description{
 Function to report a meta-analysis in APA style.

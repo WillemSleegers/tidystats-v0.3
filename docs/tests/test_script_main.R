@@ -1,5 +1,5 @@
 
-# Setup ---------------------------------------------------------------------------------------
+# Setup -------------------------------------------------------------------
 
 # Load packages
 library(devtools)
@@ -13,13 +13,16 @@ library(tidyverse)
 # Create empty tidy stats data frame
 results <- list()
 
-# Analysis: t.test() --------------------------------------------------------------------------
+# Analysis: t.test() ------------------------------------------------------
 
 # Run t-tests
 t_test_one_sample <- t.test(cox$call_parent, alternative = "greater")
-t_test_two_sample <- t.test(call_parent ~ condition, data = cox, var.equal = TRUE)
-t_test_welch      <- t.test(call_parent ~ condition, data = cox, var.equal = FALSE)
-t_test_paired     <- t.test(cox$affect_positive, cox$affect_negative, paired = TRUE)
+t_test_two_sample <- t.test(call_parent ~ condition, data = cox,
+                            var.equal = TRUE)
+t_test_welch      <- t.test(call_parent ~ condition, data = cox,
+                            var.equal = FALSE)
+t_test_paired     <- t.test(cox$affect_positive, cox$affect_negative,
+                            paired = TRUE)
 
 t_test_one_sample
 t_test_two_sample
@@ -40,12 +43,15 @@ results <- results %>%
   add_stats(t_test_welch) %>%
   add_stats(t_test_paired)
 
-# Analysis: cor.test() ------------------------------------------------------------------------
+# Analysis: cor.test() ----------------------------------------------------
 
 # Run correlations
-correlation_pearson  <- cor.test(cox$call_parent, cox$anxiety, method = "pearson")
-correlation_kendall  <- cor.test(cox$call_parent, cox$anxiety, method = "kendall")
-correlation_spearman <- cor.test(cox$call_parent, cox$anxiety, method = "spearman")
+correlation_pearson  <- cor.test(cox$call_parent, cox$anxiety,
+                                 method = "pearson")
+correlation_kendall  <- cor.test(cox$call_parent, cox$anxiety,
+                                 method = "kendall")
+correlation_spearman <- cor.test(cox$call_parent, cox$anxiety,
+                                 method = "spearman")
 
 # Tidy results
 tidy_stats(correlation_pearson)
@@ -58,11 +64,12 @@ results <- results %>%
   add_stats(correlation_kendall) %>%
   add_stats(correlation_spearman)
 
-# Analysis: chisq.test() ----------------------------------------------------------------------
+# Analysis: chisq.test() --------------------------------------------------
 
 # Get data
 M <- as.table(rbind(c(762, 327, 468), c(484, 239, 477)))
-dimnames(M) <- list(gender = c("F", "M"), party = c("Democrat","Independent", "Republican"))
+dimnames(M) <- list(gender = c("F", "M"), party = c("Democrat","Independent",
+                                                    "Republican"))
 
 x <- c(A = 20, B = 15, C = 25)
 
@@ -82,39 +89,44 @@ results <- results %>%
   add_stats(chi_square_yates) %>%
   add_stats(chi_square_prob)
 
-# Analysis: wilcox.test() ---------------------------------------------------------------------
+# Analysis: wilcox.test() -------------------------------------------------
 
 # Signed rank
 x <- c(1.83,  0.50,  1.62,  2.48, 1.68, 1.88, 1.55, 3.06, 1.30)
 y <- c(0.878, 0.647, 0.598, 2.05, 1.06, 1.29, 1.06, 3.14, 1.29)
 wilcox_signed_rank <- wilcox.test(x, y, paired = TRUE, alternative = "greater")
 
-wilcox_signed_rank_continuity_correction <- wilcox.test(Ozone ~ Month, data = airquality,
+wilcox_signed_rank_continuity <- wilcox.test(Ozone ~ Month, data = airquality,
                                              subset = Month %in% c(5, 8))
+
 # Rank sum
 x <- c(0.80, 0.83, 1.89, 1.04, 1.45, 1.38, 1.91, 1.64, 0.73, 1.46)
 y <- c(1.15, 0.88, 0.90, 0.74, 1.21)
-wilcox_rank_sum <- wilcox.test(x, y, alternative = "greater", exact = FALSE, correct = FALSE)
+wilcox_rank_sum <- wilcox.test(x, y, alternative = "greater", exact = FALSE,
+                               correct = FALSE)
 
-wilcox_rank_sum_conf <- wilcox.test(rnorm(10), rnorm(10, 2), conf.int = TRUE, conf.level = .9)
+wilcox_rank_sum_conf <- wilcox.test(rnorm(10), rnorm(10, 2), conf.int = TRUE,
+                                    conf.level = .9)
 
 # Tidy results
 tidy_stats(wilcox_signed_rank)
-tidy_stats(wilcox_signed_rank_continuity_correction)
+tidy_stats(wilcox_signed_rank_continuity)
 tidy_stats(wilcox_rank_sum)
 tidy_stats(wilcox_rank_sum_conf)
 
 # Add stats
 results <- results %>%
   add_stats(wilcox_signed_rank) %>%
-  add_stats(wilcox_signed_rank_continuity_correction) %>%
+  add_stats(wilcox_signed_rank_continuity) %>%
   add_stats(wilcox_rank_sum) %>%
   add_stats(wilcox_rank_sum_conf)
 
-# Analysis: aov() -----------------------------------------------------------------------------
+# Analysis: aov() ---------------------------------------------------------
 
-# Convert condition in the cox data frame to a factor
-cox <- mutate(cox, condition = factor(condition))
+# Convert condition and sex in the cox data frame to a factor
+cox <- mutate(cox,
+              condition = factor(condition),
+              sex = factor(sex))
 
 # Prepare data for repeated measures ANOVAs
 cox_long <- cox %>%
@@ -127,18 +139,24 @@ cox_long <- cox %>%
   )
 
 # Run ANOVAs
-aov_parent_condition <- aov(call_parent ~ condition, data = cox) # One-way ANOVA
-aov_parent_condition_sex <- aov(call_parent ~ condition + sex, data = cox) # Two-way ANOVA
-aov_parent_condition_x_sex <- aov(call_parent ~ condition * sex,
-                                  data = cox) # Two-way ANOVA with interaction
-aov_parent_condition_affect_negative <- aov(call_parent ~ condition + affect_negative,
-                                            data = cox) # ANCOVA
-aov_parent_affect <- aov(score ~ affect + Error(ID/affect),
-                         data = cox_long) # One-within subject factor
-aov_parent_condition_affect <- aov(score ~ condition * affect + Error(ID/affect) + condition,
-                                   data = cox_long) # Mixed ANOVA
-aov_parent_affect_anxiety <- aov(score ~ affect + anxiety + Error(ID/affect) + anxiety,
-                                 data = cox_long) # ANCOVA with within subject factor
+# One-way ANOVA
+aov_parent_condition <- aov(call_parent ~ condition, data = cox)
+# Two-way ANOVA
+aov_parent_condition_sex <- aov(call_parent ~ condition + sex, data = cox)
+# Two-way ANOVA with interaction
+aov_parent_condition_x_sex <- aov(call_parent ~ condition * sex, data = cox)
+# ANCOVA
+aov_parent_condition_affect_negative <- aov(call_parent ~ condition +
+                                              affect_negative, data = cox)
+# One-within subject factor
+aov_parent_affect <- aov(score ~ affect + Error(ID/affect), data = cox_long)
+# Mixed ANOVA
+aov_parent_condition_affect <- aov(score ~ condition * affect +
+                                     Error(ID/affect) + condition,
+                                   data = cox_long)
+# ANCOVA with within subject factor
+aov_parent_affect_anxiety <- aov(score ~ affect + anxiety + Error(ID/affect) +
+                                   anxiety, data = cox_long)
 
 summary(aov_parent_condition)
 summary(aov_parent_condition_sex)
@@ -149,7 +167,6 @@ summary(aov_parent_condition_affect)
 summary(aov_parent_affect_anxiety)
 
 # Tidy results
-# TODO: Fix method
 tidy_stats(aov_parent_condition)
 tidy_stats(aov_parent_condition_sex)
 tidy_stats(aov_parent_condition_x_sex)
@@ -168,12 +185,13 @@ results <- results %>%
   add_stats(aov_parent_condition_affect) %>%
   add_stats(aov_parent_affect_anxiety)
 
-# Analysis: lm() ------------------------------------------------------------------------------
+# Analysis: lm() ----------------------------------------------------------
 
 # Run regressions
 lm_parent_condition <- lm(call_parent ~ condition, data = cox)
 lm_parent_condition_anxiety <- lm(call_parent ~ condition + anxiety, data = cox)
-lm_parent_condition_x_anxiety <- lm(call_parent ~ condition * anxiety, data = cox)
+lm_parent_condition_x_anxiety <- lm(call_parent ~ condition * anxiety,
+                                    data = cox)
 
 summary(lm_parent_condition)
 summary(lm_parent_condition_anxiety)
@@ -190,7 +208,7 @@ results <- results %>%
   add_stats(lm_parent_condition_anxiety) %>%
   add_stats(lm_parent_condition_x_anxiety)
 
-# Analysis: confint() -------------------------------------------------------------------------
+# Analysis: confint() -----------------------------------------------------
 
 # Run analysis
 confint_lm <- lm(100/mpg ~ disp + hp + wt + am, data = mtcars)
@@ -204,7 +222,7 @@ results <- results %>%
   add_stats(confint_lm) %>%
   add_stats_to_model(confint, identifier = "confint_lm", class = "confint")
 
-# Analysis: lme4’s lmer() ---------------------------------------------------------------------
+# Analysis: lme4’s lmer() -------------------------------------------------
 
 # Load the package
 library(lme4)
@@ -213,17 +231,18 @@ library(lme4)
 lme4_1 <- lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
 lme4_2 <- lmer(Reaction ~ Days + (Days || Subject), sleepstudy)
 
-data(Orthodont,package="nlme")
-Orthodont$nsex <- as.numeric(Orthodont$Sex=="Male")
-Orthodont$nsexage <- with(Orthodont, nsex*age)
-lme4_3 <- lmer(distance ~ age + (age|Subject) + (0+nsex|Subject) + (0 + nsexage|Subject),
-               data = Orthodont)
+data(Orthodont, package = "nlme")
+Orthodont$nsex <- as.numeric(Orthodont$Sex == "Male")
+Orthodont$nsexage <- with(Orthodont, nsex * age)
+lme4_3 <- lmer(distance ~ age + (age|Subject) + (0 + nsex|Subject) +
+                 (0 + nsexage|Subject), data = Orthodont)
 
 summary(lme4_1)
 summary(lme4_2)
 summary(lme4_3)
 
 # Tidy results
+# TODO: Rename (Observations) to N?
 tidy_stats(lme4_1)
 tidy_stats(lme4_2)
 tidy_stats(lme4_3)
@@ -234,7 +253,7 @@ results <- results %>%
   add_stats(lme4_2) %>%
   add_stats(lme4_3)
 
-# Analysis: lmerTest’s lmer() -----------------------------------------------------------------
+# Analysis: lmerTest’s lmer() ---------------------------------------------
 
 # Load packages
 library(lme4)
@@ -247,8 +266,8 @@ lmerTest4_2 <- lmer(Reaction ~ Days + (Days || Subject), sleepstudy)
 data(Orthodont,package="nlme")
 Orthodont$nsex <- as.numeric(Orthodont$Sex=="Male")
 Orthodont$nsexage <- with(Orthodont, nsex*age)
-lmerTest4_3 <- lmer(distance ~ age + (age|Subject) + (0+nsex|Subject) + (0 + nsexage|Subject),
-                    data = Orthodont)
+lmerTest4_3 <- lmer(distance ~ age + (age|Subject) + (0+nsex|Subject) +
+                      (0 + nsexage|Subject), data = Orthodont)
 
 summary(lmerTest4_1)
 summary(lmerTest4_2)
@@ -265,14 +284,18 @@ results <- results %>%
   add_stats(lmerTest4_2) %>%
   add_stats(lmerTest4_3)
 
-# Analysis: psych’s alpha() -------------------------------------------------------------------
+
+# Analysis: psych ---------------------------------------------------------
 
 # Load package
 library(psych)
 
+# Analysis: psych’s alpha() -----------------------------------------------
+
 # Run alpha
-epi_extraversion_alpha <- alpha(select(epi, c("V1", "V3", "V8", "V10", "V13", "V17", "V22", "V25",
-                                              "V27", "V39", "V44", "V46", "V49", "V53", "V56")))
+epi_extraversion_alpha <- alpha(
+  select(epi, c("V1", "V3", "V8", "V10", "V13", "V17", "V22", "V25", "V27",
+                "V39", "V44", "V46", "V49", "V53", "V56")))
 
 # Tidy stats
 tidy_stats(epi_extraversion_alpha)
@@ -280,37 +303,98 @@ tidy_stats(epi_extraversion_alpha)
 # Add stats
 results <- add_stats(results, epi_extraversion_alpha)
 
-# Analysis: metafor ---------------------------------------------------------------------------
+# Analysis: psych’s corr.test() -------------------------------------------
+
+# Get some data
+attitude <- datasets::attitude
+
+# Run analysis
+ct <- corr.test(attitude, adjust = "none")
+print(ct, short = FALSE)
+
+# Tidy results
+tidy_stats(ct)
+
+# Analysis: metafor -------------------------------------------------------
 
 # Load package
 library(metafor)
 
 # Get data
-dat <- escalc(measure = "RR", ai = tpos, bi = tneg, ci = cpos, di = cneg, data = dat.bcg)
+dat <- escalc(measure = "RR", ai = tpos, bi = tneg, ci = cpos, di = cneg,
+              data = dat.bcg)
 
-# Run meta-analysis
-meta_analysis <- rma(yi, vi, data = dat, method = "REML", level = 90)
-meta_analysis_mods <- rma(yi, vi, mods = cbind(ablat, year), data = dat, method = "REML")
+# Run univariate meta-analyses
+rma_uni <- rma(yi, vi, data = dat, method = "REML", level = 90)
+rma_uni_mods <- rma(yi, vi, mods = cbind(ablat, year), data = dat,
+                          method = "REML")
 
-meta_analysis
-meta_analysis_mods
+rma_uni
+rma_uni_mods
 
 # Tidy results
-tidy_stats(meta_analysis)
-tidy_stats(meta_analysis_mods)
+tidy_stats(rma_uni)
+tidy_stats(rma_uni_mods)
 
 # Add stats
 results <- results %>%
-  add_stats(meta_analysis) %>%
-  add_stats(meta_analysis_mods)
+  add_stats(rma_uni) %>%
+  add_stats(rma_uni_mods)
+
+# Run multivariate meta-analyses
+
+# Prepare data
+# Change data into long format
+dat.long <- to.long(measure = "OR", ai = tpos, bi = tneg, ci = cpos, di = cneg,
+                    data = dat.bcg)
+
+# Set levels of group variable
+levels(dat.long$group) <- c("exp", "con")
+
+# Set "con" to reference level
+dat.long$group <- relevel(dat.long$group, ref = "con")
+
+# Calculate log odds and corresponding sampling variances
+dat.long <- escalc(measure = "PLO", xi = out1, mi = out2, data = dat.long)
+dat.long$effect <- 1:nrow(dat.long)
+
+# Bivariate random-effects model using rma.mv()
+rma_mv <- rma.mv(yi, vi, random = ~ group | study/effect, struct="UN",
+                 data = dat.long)
+rma_mv_mods <- rma.mv(yi, vi, mods = ~ group, random = ~ group | study,
+                      struct="UN", data=dat.long)
+
+rma_mv
+rma_mv_mods
+
+# Tidy stats
+tidy_stats(rma_mv)
+tidy_stats(rma_mv_mods)
+
+# Add stats
+results <- results %>%
+  add_stats(rma_mv) %>%
+  add_stats(rma_mv_mods)
+
+# Inspect resulst
+inspect_model(results)
 
 # Report results
-report("meta_analysis", term = "intrcpt", results = results)
+
+report_rma(results, "rma_uni", statistic = NULL)
+report_rma(results, "rma_uni", term = "intrcpt")
+
+report(results = results, identifier = "rma_uni", term = "intrcpt")
+
+report_rma(results, "rma_mv", group = "heterogeneity")
+report_rma(results, "rma_mv", term = "intrcpt")
+
+report("rma_uni", term = "intrcpt", results = results)
 report("meta_analysis", term_nr = 1, statistic = "tau^2", results = results)
 report("meta_analysis_mods", term = "ablat", results = results)
 
 # Marino github issue example
-library(metafor)
+
 dat.bcg
 
 res <- rma(ai=tpos, bi=tneg, ci=cpos, di=cneg, data=dat.bcg, measure="RR",
@@ -323,7 +407,7 @@ report("marino_meta_analysis", term = "intrcpt")
 report("marino_meta_analysis", term = "(Heterogeneity)", s = "tau^2")
 report("marino_meta_analysis", term_nr = 1, s = "tau^2")
 
-# Analysis: ppcor’s pcor.test() ---------------------------------------------------------------
+# Analysis: ppcor’s pcor.test() -------------------------------------------
 
 # Load package
 library(ppcor)
@@ -333,7 +417,8 @@ y.data <- data.frame(
   hl = c(7,15,19,15,21,22,57,15,20,18),
   disp = c(0.000,0.964,0.000,0.000,0.921,0.000,0.000,1.006,0.000,1.011),
   deg = c(9,2,3,4,1,3,1,3,6,1),
-  BC = c(1.78e-02,1.05e-06,1.37e-05,7.18e-03,0.00e+00,0.00e+00,0.00e+00,4.48e-03,2.10e-06,0.00e+00)
+  BC = c(1.78e-02,1.05e-06,1.37e-05,7.18e-03,0.00e+00,0.00e+00,0.00e+00,
+         4.48e-03,2.10e-06,0.00e+00)
 )
 
 # Run analysis
@@ -342,7 +427,7 @@ pcor_correlation
 
 class(pcor_correlation)
 
-# add_stats.data.frame() ----------------------------------------------------------------------
+# add_stats.data.frame() --------------------------------------------------
 
 # Create a tidy data frame
 x_squared_data <- data_frame(
@@ -364,7 +449,7 @@ some_data <- tibble(
 
 results <- add_stats(results, some_data, identifier = "some_data")
 
-# add_stats(): default identifier -------------------------------------------------------------
+# add_stats(): default identifier -----------------------------------------
 
 # Statistical test
 add_stats(list(), t_test_one_sample)
@@ -386,16 +471,16 @@ cox %>%
   tidy_describe_data() %>%
   add_stats(list(), ., type = "d")
 
-# stats_list_to_df() --------------------------------------------------------------------------
+# stats_list_to_df() ------------------------------------------------------
 
 results_data <- stats_list_to_df(results)
 View(results_data)
 
-# write_stats() -------------------------------------------------------------------------------
+# write_stats() -----------------------------------------------------------
 
 write_stats(results, path = "docs/tests/results.csv")
 
-# In progress ---------------------------------------------------------------------------------
+# In progress -------------------------------------------------------------
 
 # rcorr()
 library(Hmisc)
@@ -448,7 +533,9 @@ if (TRUE) {
 }
 
 output <- select(output, -term_nr, -statistic, -method)
-output <- select(output, c("var", names(sort(colSums(is.na(select(output, -var))), decreasing = T))))
+output <- select(output, c("var",
+                           names(sort(colSums(is.na(select(output, -var))),
+                                      decreasing = T))))
 
 # Analysis: anova()
 anova(model3_1)
@@ -472,11 +559,15 @@ model6_1 <- glm(DV ~ IV1, data = data, family = binomial)
 
 data <- iris
 
-model7_1 <- summary(manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris), test = "Roy")
-model7_2 <- summary(manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris), test = "")
-model7_3 <- summary(manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris), test = "Roy")
+model7_1 <- summary(manova(cbind(Sepal.Length, Petal.Length) ~ Species,
+                           data = iris), test = "Roy")
+model7_2 <- summary(manova(cbind(Sepal.Length, Petal.Length) ~ Species,
+                           data = iris), test = "")
+model7_3 <- summary(manova(cbind(Sepal.Length, Petal.Length) ~ Species,
+                           data = iris), test = "Roy")
 
-model7_4 <- summary(manova(cbind(Sepal.Length, Petal.Length) ~ Species*Petal.Width , data = iris), test = "Roy")
+model7_4 <- summary(manova(cbind(Sepal.Length, Petal.Length) ~ Species *
+                             Petal.Width , data = iris), test = "Roy")
 
 # tidyversity
 # Install and load tidyversity
@@ -507,7 +598,8 @@ polcom %>%
 # Robust and quasi- models
 polcom %>%
   dplyr::mutate(polarize = abs(therm_1 - therm_2)) %>%
-  tidy_regression(polarize ~ news_1 + ambiv_sexism_1, type = "quasipoisson", robust = TRUE) %>%
+  tidy_regression(polarize ~ news_1 + ambiv_sexism_1, type = "quasipoisson",
+                  robust = TRUE) %>%
   tidy_summary()
 
 # ANOVA
@@ -540,6 +632,6 @@ polcom %>%
 cronbachs_alpha(polcom, ambiv_sexism_1:ambiv_sexism_6)
 
 
-# Inspect model -------------------------------------------------------------------------------
+# Inspect model -----------------------------------------------------------
 
-inspect_model(results)
+inspect(results)

@@ -25,4 +25,5 @@
 #'
 #' @source
 #' \url{https://osf.io/5tbxf/}
+#'
 "cox"
