@@ -52,6 +52,8 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
     # Run the appropriate report function
     if (str_detect(method, "t-test")) {
       output <- report_t_test(results, identifier, statistic)
+    } else if (str_detect(method, "Chi-squared")) {
+      output <- report_chi_squared(results, identifier, statistic)
     } else if (str_detect(method, "correlation")) {
       output <- report_correlation(results, identifier, statistic)
     } else if (str_detect(method, "regression")) {

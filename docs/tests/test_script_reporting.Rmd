@@ -1,0 +1,37 @@
+---
+title: "tidystats report tests"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load packages
+library(tidystats)
+
+# Load tidystats results
+results <- read_stats("results.csv")
+
+# Set the tidystats list in options
+options(tidystats_list = results)
+```
+
+### *t*-tests
+
+#### One sample *t*-test
+`r report("t_test_one_sample")`
+
+#### Two sample *t*-test
+`r report("t_test_two_sample")`
+
+#### Welch's two sample *t*-test
+`r report("t_test_welch")`
+
+#### Paired *t*-test
+`r report("t_test_paired")`
+
+#### Single statistic output
+
+- t: `r report("t_test_one_sample", statistic = "t")`
+- df: `r report("t_test_one_sample", statistic = "df")`
+- p: `r report("t_test_one_sample", statistic = "p")`

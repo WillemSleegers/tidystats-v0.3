@@ -185,6 +185,25 @@ results <- results %>%
   add_stats(aov_parent_condition_affect) %>%
   add_stats(aov_parent_affect_anxiety)
 
+
+# Two-within subject factor
+
+data <- crossing(
+  ID = factor(1:10),
+  WSF1 = factor(c("pre", "post")),
+  WSF2 = factor(c("measure1", "measure2"))
+)
+
+data$response = rnorm(nrow(data))
+data <- data %>%
+  group_by(ID) %>%
+  mutate(
+    condition = rep(sample(c("control", "experimental"), 1), each = 4),
+    condition = factor(condition))
+
+temp <- aov(response ~ WSF1 * WSF2 * condition + Error(ID / (WSF1 * WSF2)), data = data)
+summary(temp)
+View(tidy_stats(temp))
 # Analysis: lm() ----------------------------------------------------------
 
 # Run regressions
@@ -635,3 +654,18 @@ cronbachs_alpha(polcom, ambiv_sexism_1:ambiv_sexism_6)
 # Inspect model -----------------------------------------------------------
 
 inspect(results)
+
+identifier <- "aov_parent_affect"
+group <- NULL
+term <- "affect"
+statistic <- NULL
+
+report(results = results, identifier = identifier,
+       group = group, term = term, statistic = statistic)
+
+if (2 > 1) {
+  print("2")
+} else if (2 > 1) {
+    print("this")
+  }
+

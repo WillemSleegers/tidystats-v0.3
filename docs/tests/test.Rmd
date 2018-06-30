@@ -1,0 +1,115 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load packages
+library(tidystats)
+
+# Load tidystats results
+results <- read_stats("results.csv")
+
+# Set the tidystats list in options
+options(tidystats_list = results)
+```
+
+## {.tabset}
+
+### chi-squared
+
+**Pearson's chi-squared test**
+```{r}
+report("chi_square")
+```
+`r report("chi_square")`
+
+**Chi-squared test for given probabilities**
+```{r}
+report("chi_square_prob")
+```
+`r report("chi_square_prob")`
+
+**Pearson's Chi-squared test with Yates' continuity correction
+**
+```{r}
+report("chi_square_yates")
+```
+`r report("chi_square_yates")`
+
+**Single statistic output**
+```{r}
+report("chi_square", statistic = "X-squared")
+```
+
+- Chi-squared: `r report("chi_square", statistic = "X-squared")`
+
+### *t*-tests
+
+**One sample *t*-test**
+```{r}
+report("t_test_one_sample")
+```
+`r report("t_test_one_sample")`
+
+
+**Two sample *t*-test**
+```{r}
+report("t_test_two_sample")
+```
+
+`r report("t_test_two_sample")`
+
+**Welch's two sample *t*-test**
+```{r}
+report("t_test_welch")
+```
+
+`r report("t_test_welch")`
+
+**Paired *t*-test**
+```{r}
+report("t_test_paired")
+```
+
+`r report("t_test_paired")`
+
+**Single statistic output**
+
+- t: `r report("t_test_one_sample", statistic = "t")`
+- df: `r report("t_test_one_sample", statistic = "df")`
+- p: `r report("t_test_one_sample", statistic = "p")`
+
+### correlations
+
+**Pearson correlation**
+```{r}
+report("correlation_pearson")
+```
+`r report("correlation_pearson")`
+
+**Spearman correlation**
+```{r}
+report("correlation_spearman")
+```
+`r report("correlation_spearman")`
+
+**Kendall correlation**
+```{r}
+report("correlation_kendall")
+```
+`r report("correlation_kendall")`
+
+
+**Single statistic output**
+```{r}
+report("correlation_pearson", statistic = "cor")
+report("correlation_spearman", statistic = "rho")
+report("correlation_pearson", statistic = "95% CI lower")
+```
+
+- Pearson correlation: `r report("correlation_pearson", statistic = "cor")`
+- Spearman correlation: `r report("correlation_spearman", statistic = "rho")`
+- 95% CI: `r report("correlation_pearson", statistic = "95% CI lower")`

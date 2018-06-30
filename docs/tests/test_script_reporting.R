@@ -10,8 +10,6 @@ results <- read_stats("docs/tests/results.csv")
 # Report functions --------------------------------------------------------
 
 # Set the tidystats list in options
-# We cannot do this already in the beginning of the script since it copies the
-# list, meaning it does not contain any results yet
 options(tidystats_list = results)
 
 # Report: t-tests ---------------------------------------------------------
@@ -38,6 +36,11 @@ report("correlation_kendall")
 report("correlation_pearson", statistic = "cor")
 report("correlation_spearman", statistic = "rho")
 report("correlation_pearson", statistic = "95% CI lower")
+
+# Report: chi-square ------------------------------------------------------
+
+report("chi_square")
+report("chi_square", statistic = "X-squared")
 
 # Report: regression ------------------------------------------------------
 
