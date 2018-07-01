@@ -4,12 +4,10 @@
 #'
 #' @param results A tidy stats list.
 #' @param identifier A character string identifying the model.
-#' @param term A character string indicating which term you want to report the
-#' statistics of.
-#' @param term_nr A number indicating which term you want to report the the
-#' statistics of.
-#' @param statistic A character string of a statistic you want to extract from a
-#' model.
+#' @param term A character string indicating the term you want to report.
+#' @param term_nr A number indicating the term you want to report.
+#' @param statistic A character string identifying the exact statistic you want
+#' to report.
 #'
 #' @examples
 #' # Read in a list of results
@@ -27,21 +25,17 @@
 report_anova <- function(results, identifier, term = NULL, term_nr = NULL,
                          statistic = NULL) {
 
-  # Check whether a term, term_nr, or statistic has been provided
-  if (is.null(term) & is.null(term_nr) & is.null(statistic)) {
-    stop("Please provide a term, term number, or statistic.")
-  }
-
-  # Extract the results of the specific model through its identifier
+  # Extract model results
   res <- results[[identifier]]
 
-  # Check if only a single statistic is asked, otherwise produce a full line of
-  # APA results
+  # Check whether a single statistic is requested, or a full line of APA output
   if (!is.null(statistic)) {
 
     # Check whether the statistic exists
     if (!statistic %in% res$statistic) {
       stop("Statistic not found.")
+    } else {
+      res_statistic <- statistic
     }
 
     # Select statistics of the term, if provided
@@ -52,7 +46,7 @@ report_anova <- function(results, identifier, term = NULL, term_nr = NULL,
     }
 
     # Get the value of the statistic
-    value <- res$value[res$statistic == statistic]
+    value  <- dplyr::pull(dplyr::filter(res, statistic == res_statistic), value)
 
     # Check whether enough information was supplied by checking whether the
     # value vector contains more than 1 element
@@ -61,28 +55,40 @@ report_anova <- function(results, identifier, term = NULL, term_nr = NULL,
                  "information."))
     }
 
-    output <- report_statistic(statistic, value)
+    output <- report_statistic(res_statistic, value)
   } else {
 
+    # Check whether a term or term_nr has been provided
+    if (is.null(term) & is.null(term_nr)) {
+      stop("Please provide a term or term number.")
+    }
+
     # Get the provided information
-    res_term <- ifelse(!is.null(term), term, unique(res$term)[term_nr])
+    res_term <- ifelse(!is.null(term), term, unique(pull(res, term))[term_nr])
     res_term_nr <- ifelse(!is.null(term_nr), term_nr,
-                          res$term_nr[res$term == res_term][1])
+                          first(pull(filter(res, term == res_term), term_nr)))
+
 
     # If the statistics of the residuals are requested, throw an error
-    if (res_term == "Residuals" | str_detect(res_term, "_Residuals")) {
+    if (res_term == "Residuals") {
       stop(paste("APA output for residuals is not supported. Try reporting a",
                  "single residual statistic instead."))
     }
 
-    # Extract the denominator df and then filter out irrelevant statistics
-    df_den <- res$value[res$term_nr == res_term_nr + 1 & res$statistic == "df"]
-    res <- res[res$term == res_term, ]
+    # Extract the dfs and then filter out irrelevant statistics
+    dfs <- dplyr::pull(dplyr::filter(
+      res, statistic == "df" & term_nr >= res_term_nr &
+        (term == res_term | term == "Residuals")), value)
 
-    f      <- report_statistic("F", res$value[res$statistic == "F"])
-    df_num <- report_statistic("df", res$value[res$statistic == "df"])
-    df_den <- report_statistic("df", df_den)
-    p      <- report_statistic("p", res$value[res$statistic == "p"])
+    res <- filter(res, term == res_term)
+
+    f      <- dplyr::pull(dplyr::filter(res, statistic == "F"), value)
+    p      <- dplyr::pull(dplyr::filter(res, statistic == "p"), value)
+    df_num <- dfs[1]
+    df_den <- dfs[2]
+
+    f      <- report_statistic("F", f)
+    p      <- report_p_value(p)
 
     output <- paste0("*F*(", df_num, ", ", df_den, ") = ", f, ", ", p)
     }

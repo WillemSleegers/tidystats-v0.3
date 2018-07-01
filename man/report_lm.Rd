@@ -15,14 +15,12 @@ report_lm(results, identifier, group = NULL, term = NULL, term_nr = NULL,
 \item{group}{A character string indicating the group containing the statistic
 or statistics you want to report.}
 
-\item{term}{A character string indicating which term you want to report the
-statistics of.}
+\item{term}{A character string indicating the term you want to report.}
 
-\item{term_nr}{A number indicating which term you want to report the the
-statistics of.}
+\item{term_nr}{A number indicating the term you want to report.}
 
-\item{statistic}{A character string of a statistic you want to extract from a
-model.}
+\item{statistic}{A character string identifying the exact statistic you want
+to report.}
 }
 \description{
 Function to report a regression in APA style.

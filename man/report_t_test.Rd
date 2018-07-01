@@ -2,7 +2,7 @@
 % Please edit documentation in R/report_t_test.R
 \name{report_t_test}
 \alias{report_t_test}
-\title{Report method for a t-test}
+\title{Report function for t-tests}
 \usage{
 report_t_test(results, identifier, statistic = NULL)
 }
@@ -11,7 +11,8 @@ report_t_test(results, identifier, statistic = NULL)
 
 \item{identifier}{A character string identifying the model.}
 
-\item{statistic}{A character string of a statistic you want to extract from a model.}
+\item{statistic}{A character string identifying the exact statistic you want
+to report.}
 }
 \description{
 Function to report a t-test in APA style.
@@ -20,7 +21,7 @@ Function to report a t-test in APA style.
 # Read in a list of results
 results <- read_stats(system.file("results.csv", package = "tidystats"))
 
-# Example: t-test
+# Report results
 report(results, identifier = "t_test")
 report(results, identifier = "t_test", statistic = "p")
 

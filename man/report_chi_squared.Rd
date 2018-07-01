@@ -2,7 +2,7 @@
 % Please edit documentation in R/report_chi_squared.R
 \name{report_chi_squared}
 \alias{report_chi_squared}
-\title{Report method for a chi-square test}
+\title{Report function for a chi-squared test}
 \usage{
 report_chi_squared(results, identifier, statistic = NULL)
 }
@@ -11,16 +11,17 @@ report_chi_squared(results, identifier, statistic = NULL)
 
 \item{identifier}{A character string identifying the model.}
 
-\item{statistic}{A character string of a statistic you want to extract from a model.}
+\item{statistic}{A character string identifying the exact statistic you want
+to report.}
 }
 \description{
-Function to report a chi-square test in APA style.
+Function to report a chi-squared test in APA style.
 }
 \examples{
 # Read in a list of results
 results <- read_stats(system.file("results.csv", package = "tidystats"))
 
-# Example: chi-square
+# Report results
 report(results, identifier = "chi_square")
 report(results, identifier = "chi_square", statistic = "p")
 

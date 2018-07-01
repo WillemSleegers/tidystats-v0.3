@@ -1,18 +1,19 @@
-#' Report method for correlations
+#' Report function for correlations
 #'
 #' Function to report a correlation in APA style.
 #'
 #' @param results A tidy stats list.
 #' @param identifier A character string identifying the model.
-#' @param statistic A character string of a statistic you want to extract from a model.
+#' @param statistic A character string identifying the exact statistic you want
+#' to report.
 #'
 #' @examples
 #' # Read in a list of results
 #' results <- read_stats(system.file("results.csv", package = "tidystats"))
 #'
 #' # Report results
-#' report(identifier = "correlation", results = results)
-#' report(identifier = "correlation", statistic = "p", results = results)
+#' report(results, identifier = "correlation")
+#' report(results, identifier = "correlation", statistic = "p")
 #'
 #' @export
 
@@ -21,48 +22,47 @@ report_correlation <- function(results, identifier, statistic = NULL) {
   # Extract the results of the specific model through its identifier
   res <- results[[identifier]]
 
-  # Check whether the statistic exists, if provided
+  # Check whether a single statistic is requested, or a full line of APA output
   if (!is.null(statistic)) {
+
     if (!statistic %in% res$statistic) {
       stop("Statistic not found.")
-    }
-  }
-
-  # Check if only a single statistic is asked, otherwise produce a full line of APA results
-  if (!is.null(statistic)) {
-    output <- res$value[res$statistic == statistic]
-
-    if (statistic != "df") {
-      output <- format(output, digits = 2, nsmall = 2)
+    } else {
+      res_statistic <- statistic
     }
 
-    if (statistic %in% c("cor", "tau", "rho")) {
-      output <- gsub(pattern = "0\\.", replacement = ".",
-                     x = format(output, digits = 2, nsmall = 2))
-    }
-
+    value  <- pull(filter(res, statistic == res_statistic), value)
+    output <- report_statistic(res_statistic, value)
   } else {
-    if (grepl("Pearson", res$method[1])) {
-      cor <- gsub(pattern = "0\\.", replacement = ".",
-                  x = format(res$value[res$statistic == "cor"], digits = 2, nsmall = 2))
-      df <- res$value[res$statistic == "df"]
-      p <- report_p_value(res$value[res$statistic == "p"])
+    method <- first(pull(res, method))
+
+    if (str_detect(method, "Pearson")) {
+      cor <- pull(filter(res, statistic == "cor"), value)
+      df  <- pull(filter(res, statistic == "df"), value)
+      p   <- pull(filter(res, statistic == "p"), value)
+
+      cor <- report_statistic("cor", cor)
+      p   <- report_p_value(p)
 
       output <- paste0("*r*(", df, ") = ", cor, ", ", p)
+    } else if (str_detect(method, "Kendall")) {
+      tau <- pull(filter(res, statistic == "tau"), value)
+      p   <- pull(filter(res, statistic == "p"), value)
+
+      tau <- report_statistic("tau", tau)
+      p   <- report_p_value(p)
+
+      output <- paste0("*r*~$\\tau$~ = ", tau, ", ", p)
+    } else if (str_detect(method, "Spearman")) {
+      rho <- pull(filter(res, statistic == "rho"), value)
+      p   <- pull(filter(res, statistic == "p"), value)
+
+      rho <- report_statistic("rho", rho)
+      p   <- report_p_value(p)
+
+      output <- paste0("*r*~*s*~ = ", rho, ", ", p)
     } else {
-      if (grepl("Kendall", res$method[1])) {
-        tau <- gsub(pattern = "0\\.", replacement = ".",
-                    x = format(res$value[res$statistic == "tau"], digits = 2, nsmall = 2))
-        p <- report_p_value(res$value[res$statistic == "p"])
-
-        output <- paste0("*r*<sub>$\\tau$</sub> = ", tau, ", ", p)
-      } else {
-        rho <- gsub(pattern = "0\\.", replacement = ".",
-                    x = format(res$value[res$statistic == "rho"], digits = 2, nsmall = 2))
-        p <- report_p_value(res$value[res$statistic == "p"])
-
-        output <- paste0("*r*<sub>*s*</sub> = ", rho, ", ", p)
-      }
+      stop("Not supported.")
     }
   }
 

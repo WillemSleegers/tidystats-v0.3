@@ -2,7 +2,7 @@
 % Please edit documentation in R/report_correlation.R
 \name{report_correlation}
 \alias{report_correlation}
-\title{Report method for correlations}
+\title{Report function for correlations}
 \usage{
 report_correlation(results, identifier, statistic = NULL)
 }
@@ -11,7 +11,8 @@ report_correlation(results, identifier, statistic = NULL)
 
 \item{identifier}{A character string identifying the model.}
 
-\item{statistic}{A character string of a statistic you want to extract from a model.}
+\item{statistic}{A character string identifying the exact statistic you want
+to report.}
 }
 \description{
 Function to report a correlation in APA style.
@@ -21,7 +22,7 @@ Function to report a correlation in APA style.
 results <- read_stats(system.file("results.csv", package = "tidystats"))
 
 # Report results
-report(identifier = "correlation", results = results)
-report(identifier = "correlation", statistic = "p", results = results)
+report(results, identifier = "correlation")
+report(results, identifier = "correlation", statistic = "p")
 
 }

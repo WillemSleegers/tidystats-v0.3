@@ -203,6 +203,7 @@ data <- data %>%
 
 temp <- aov(response ~ WSF1 * WSF2 * condition + Error(ID / (WSF1 * WSF2)), data = data)
 summary(temp)
+
 View(tidy_stats(temp))
 # Analysis: lm() ----------------------------------------------------------
 

@@ -56,18 +56,7 @@ report("lm_parent_condition", term_nr = 2, statistic = "p")
 
 # ANOVA -------------------------------------------------------------------
 
-# Complete output
-report("aov_parent_condition", term = "condition")
-report("aov_parent_condition", term_nr = 1)
-report("aov_parent_condition", statistic = "F")
-report("aov_parent_condition", statistic = "SS")
-report("aov_parent_condition", term = "condition", statistic = "SS")
 
-
-report("aov_parent_condition", term = "Residuals")
-report("aov_parent_condition", term_nr = 2)
-
-report("aov_parent_affect", term = "affect")
 
 
 # Inspect model -----------------------------------------------------------
@@ -76,7 +65,7 @@ inspect_model(results)
 
 # Report table functions ----------------------------------------------------------------------
 
-report_table_lm(results, "M3_1")
+report_table_lm(results, "lm_parent_condition")
 report_table_lm(results, "M3_1", term_labels = c("Intercept", "Condition"))
 report_table_lm(results, "M3_1", term_labels = c("Intercept", "Condition"), include_model = FALSE)
 report_table_lm(results, "M3_1", term_labels = c("Intercept", "Condition"), statistics = c("b", "p"))

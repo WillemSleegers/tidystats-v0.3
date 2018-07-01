@@ -27,8 +27,8 @@ report_statistic <- function(statistic, value) {
 
   # Check what kind of statistic is requested and convert the value accordingly
   if (statistic == "p" & value < 0.001) {
-    output <- "*p* < .001"
-  } else if (statistic %in% c("p", "r", "cor")) {
+    output <- "< .001"
+  } else if (statistic %in% c("p", "r", "cor", "rho", "tau")) {
     output <- format(value, digits = 2, nsmall = 2)
     output <- stringr::str_replace(output, "0\\.", ".")
   } else if ((statistic == "df" & value %% 1 == 0) |

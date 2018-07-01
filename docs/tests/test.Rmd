@@ -1,9 +1,16 @@
 ---
-title: "R Notebook"
-output: html_notebook
+title: "tidystats report functions"
+output:
+  html_notebook: 
+    code_folding: hide
+  html_document:
+    df_print: paged
+  pdf_document: default
+editor_options: 
+  chunk_output_type: inline
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 # Load packages
@@ -18,98 +25,232 @@ options(tidystats_list = results)
 
 ## {.tabset}
 
-### chi-squared
-
-**Pearson's chi-squared test**
-```{r}
-report("chi_square")
-```
-`r report("chi_square")`
-
-**Chi-squared test for given probabilities**
-```{r}
-report("chi_square_prob")
-```
-`r report("chi_square_prob")`
-
-**Pearson's Chi-squared test with Yates' continuity correction
-**
-```{r}
-report("chi_square_yates")
-```
-`r report("chi_square_yates")`
-
-**Single statistic output**
-```{r}
-report("chi_square", statistic = "X-squared")
-```
-
-- Chi-squared: `r report("chi_square", statistic = "X-squared")`
-
 ### *t*-tests
 
 **One sample *t*-test**
+
+`r report("t_test_one_sample")`
+
 ```{r}
 report("t_test_one_sample")
 ```
-`r report("t_test_one_sample")`
-
 
 **Two sample *t*-test**
+
+`r report("t_test_two_sample")`
+
 ```{r}
 report("t_test_two_sample")
 ```
 
-`r report("t_test_two_sample")`
-
 **Welch's two sample *t*-test**
+
+`r report("t_test_welch")`
+
 ```{r}
 report("t_test_welch")
 ```
 
-`r report("t_test_welch")`
-
 **Paired *t*-test**
+
+`r report("t_test_paired")`
+
 ```{r}
 report("t_test_paired")
 ```
 
-`r report("t_test_paired")`
-
 **Single statistic output**
 
-- t: `r report("t_test_one_sample", statistic = "t")`
-- df: `r report("t_test_one_sample", statistic = "df")`
-- p: `r report("t_test_one_sample", statistic = "p")`
+- *t*: `r report("t_test_one_sample", statistic = "t")`
+- *df*: `r report("t_test_one_sample", statistic = "df")`
+- *p*: `r report("t_test_one_sample", statistic = "p")`
+
+```{r}
+report("t_test_one_sample", statistic = "t")
+report("t_test_one_sample", statistic = "df")
+report("t_test_one_sample", statistic = "p")
+```
 
 ### correlations
 
 **Pearson correlation**
+
+`r report("correlation_pearson")`
+
 ```{r}
 report("correlation_pearson")
 ```
-`r report("correlation_pearson")`
 
 **Spearman correlation**
+
+`r report("correlation_spearman")`
+
 ```{r}
 report("correlation_spearman")
 ```
-`r report("correlation_spearman")`
 
 **Kendall correlation**
+
+`r report("correlation_kendall")`
+
 ```{r}
 report("correlation_kendall")
 ```
-`r report("correlation_kendall")`
-
 
 **Single statistic output**
+
+- *r*: `r report("correlation_pearson", statistic = "cor")`
+- *r*~*s*~: `r report("correlation_spearman", statistic = "rho")`
+- *r*~$\tau$~: `r report("correlation_kendall", statistic = "tau")`
+- 95% CI: `r report("correlation_pearson", statistic = "95% CI lower")`
+
+
 ```{r}
 report("correlation_pearson", statistic = "cor")
 report("correlation_spearman", statistic = "rho")
+report("correlation_kendall", statistic = "tau")
 report("correlation_pearson", statistic = "95% CI lower")
 ```
 
-- Pearson correlation: `r report("correlation_pearson", statistic = "cor")`
-- Spearman correlation: `r report("correlation_spearman", statistic = "rho")`
-- 95% CI: `r report("correlation_pearson", statistic = "95% CI lower")`
+### chi-squared
+
+**Pearson's chi-squared test**
+
+`r report("chi_square")`
+
+```{r}
+report("chi_square")
+```
+
+**Chi-squared test for given probabilities**
+
+`r report("chi_square_prob")`
+
+```{r}
+report("chi_square_prob")
+```
+
+**Pearson's Chi-squared test with Yates' continuity correction**
+
+`r report("chi_square_yates")`
+
+```{r}
+report("chi_square_yates")
+```
+
+**Single statistic output**
+
+- $\chi^2$: `r report("chi_square", statistic = "X-squared")`
+
+
+```{r}
+report("chi_square", statistic = "X-squared")
+```
+
+### ANOVA
+
+**One-way ANOVA**
+
+`r report("aov_parent_condition", term = "condition")`
+
+<!-- `r report("aov_parent_condition", term_nr = 1)` -->
+
+```{r}
+report("aov_parent_condition", term = "condition")
+report("aov_parent_condition", term_nr = 1)
+```
+
+**Factorial ANOVA**
+
+`r report("aov_parent_condition_sex", term = "condition")`
+
+`r report("aov_parent_condition_sex", term = "sex")`
+
+`r report("aov_parent_condition_x_sex", term_nr = 3)`
+
+```{r}
+report("aov_parent_condition_sex", term = "condition")
+report("aov_parent_condition_sex", term = "sex")
+report("aov_parent_condition_x_sex", term_nr = 3)
+```
+
+**ANCOVA**
+
+`r report("aov_parent_condition_affect_negative", term_nr = 2)`
+
+```{r}
+report("aov_parent_condition_affect_negative", term_nr = 2)
+```
+
+**One-way repeated measures ANOVA**
+
+`r report("aov_parent_affect", term = "affect")`
+
+```{r}
+report("aov_parent_affect", term = "affect")
+```
+
+**Mixed ANOVA**
+
+`r report("aov_parent_condition_affect", term = "condition:affect")`
+
+```{r}
+report("aov_parent_condition_affect", term = "condition:affect")
+```
+
+**Single statistic output**
+
+- SS: `r report("aov_parent_condition", term = "condition", statistic = "SS")`
+- MS: `r report("aov_parent_condition", term = "condition", statistic = "MS")`
+- *F*: `r report("aov_parent_condition", term = "condition", statistic = "F")`
+- *p*: `r report("aov_parent_condition", term = "condition", statistic = "p")`
+
+```{r}
+report("aov_parent_condition", term = "condition", statistic = "SS")
+report("aov_parent_condition", term = "condition", statistic = "MS")
+report("aov_parent_condition", term = "condition", statistic = "F")
+report("aov_parent_condition", term = "condition", statistic = "p")
+```
+
+### Regression
+
+**Model output**
+
+`r report("lm_parent_condition", group = "model")`
+
+```{r}
+report("lm_parent_condition", group = "model")
+```
+
+**Coefficient output**
+
+`r report("lm_parent_condition", term = "conditionmortality salience")`
+
+<!-- `r report("lm_parent_condition", term_nr = 2)` -->
+
+```{r}
+report("lm_parent_condition", term = "conditionmortality salience")
+report("lm_parent_condition", term_nr = 2)
+```
+
+**Coefficient output with confidence intervals**
+
+`r report("confint_lm", term = "disp")`
+
+```{r}
+report("confint_lm", term = "disp")
+```
+
+**Single statistic output**
+
+- adj. *R*^2^: `r report("lm_parent_condition", stat = "adjusted R squared")`
+- b: `r report("lm_parent_condition", term_nr = 2, stat = "b")`
+- 2.5% CI: `r report("confint_lm", term = "disp", stat = "2.5% CI")`
+- 97.5% CI: `r report("confint_lm", term = "disp", stat = "97.5% CI")`
+
+```{r}
+report("lm_parent_condition", stat = "adjusted R squared")
+report("lm_parent_condition", term_nr = 2, stat = "b")
+report("confint_lm", term = "disp", stat = "2.5% CI")
+report("confint_lm", term = "disp", stat = "97.5% CI")
+```
