@@ -3,9 +3,9 @@
 ## Changes
 
 * Changed the argument order in the family of `add_stats()` functions. Previously, the model output or tidy data frame was the first argument. This allowed you to directly pipe the model output into `add_stats()` (using **magrittr**'s %>%). However, an alternative approach is to have the tidystats list to be the first argument. This allows you create a long sequence of pipes. You start with the results list, add a model via `add_stats()`, pipe the result into the next `add_stats()`, and so on. Since you often store your model output in variable names anyway, this is probably more convenient. Additionally, this probably also keeps your script more tidy (you can do this at the end of your data analysis script).
-* Certain statistical models are now tidied differently due to the addition of a 'group' column. Several models like multilevel models, meta-analytic models, and arguably also regression models have more than just terms (e.g., model fit), so to distinguish between coefficients and other parts of the output, a 'group' column has been added. This also means usage of the `report()` is affected, as now the group should be specified when necessary.
+* Certain statistical models are now tidied differently due to the addition of a 'group' column. Several models like multilevel models, meta-analytic models, and arguably also regression models have more than just terms (e.g., model fit), so to distinguish between coefficients and other parts of the output, a 'group' column has been added. This also means usage of the `report()` is affected, as now the group should be specified when necessary. Affected models are regression, within-subjects ANOVA, multilevel models, and meta-analysis models.
 * Added the *class* argument to `add_stats()`. Rather than having to manually tidy the data first, you can make use of some custom `tidy_stats()` functions by specifying the class argument. Run `?add_stats` to see a list of supported classes.
-* Under the hood: Removed `report_p_value()` and replaced it with a more generic report function for single values called `report_statistic()`. Consequently, all report functions have been updated to use this new generic function.
+* Under the hood: Added a generic report function for single values called `report_statistic()`. Consequently, all report functions have been updated to use this new generic function.
 
 ## Features
 
@@ -21,6 +21,7 @@
 * Added a `class` argument to `add_stats()` and `add_stats_to_model()`. Some statistical tests return a normal data.frame or matrix, which does not specify which test produced the results. This makes it difficult for tidystats to figure out how to tidy the result. Previously, we solved this by `add_stats()` accepting pre-tidied data frames. Now we added a the `class` argument to specify the name of the function that produced the results, so that we can then tidy it for you.
 * Added warnings in case unsupported output is added (e.g., a pre-tided data frame).
 * `read_stats()` now removes empty columns from each list element.
+* Improved documentation.
 
 ## Bugfixes
 
