@@ -41,7 +41,7 @@ report_chi_squared <- function(results, identifier, statistic = NULL) {
     df        <- report_statistic("df", df)
     p         <- report_p_value(p)
 
-    output <- paste0("$\\chi^2$(", df, ") = ", x_squared, ", ", p)
+    output <- paste0("*χ²* (", df, ") = ", x_squared, ", ", p)
   }
 
   return(output)

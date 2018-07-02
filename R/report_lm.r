@@ -82,7 +82,7 @@ report_lm <- function(results, identifier, group = NULL, term = NULL,
       f      <- report_statistic("F", f)
       p      <- report_p_value(p)
 
-      output <- paste0("adjusted *R*^2^ = ", adj_r, ", *F*(", df_num, ", ",
+      output <- paste0("adjusted *R²* = ", adj_r, ", *F*(", df_num, ", ",
                        df_den, ") = ", f, ", ", p)
     } else {
       b  <- dplyr::pull(dplyr::filter(res, statistic == "b"), value)
