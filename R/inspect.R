@@ -19,8 +19,8 @@
 #' @export
 
 # TODO: Make identifiers with terms non-clickable.
-# TODO: Put JS and CSS in separate files
-# TODO: Fix copying of superscripts
+# TODO: Catch some more errors (e.g., clicking on the coefficient group)
+# TODO: Add select helper function support
 
 inspect <- function(results, ...) {
 
@@ -42,175 +42,32 @@ inspect <- function(results, ...) {
 
   # Define the UI
   ui <- miniUI::miniPage(
-    miniUI::gadgetTitleBar("Results overview",
-                           right = miniTitleBarButton("done", "Done",
-                                                      primary = TRUE),
-                           left = NULL),
+    miniUI::gadgetTitleBar(
+      "Results overview",
+      right = miniTitleBarButton("done", "Done", primary = TRUE),
+      left = NULL
+    ),
 
     miniUI::miniContentPanel(
-      shiny::tags$style(type = 'text/css',
-      " #table {
-          margin-top: -10px;
-          padding-bottom: 28px;
-      }
-
-      #table tr {
-        cursor: pointer;
-      }
-
-
-        "),
       shiny::tableOutput('table'),
-      shiny::tags$style(type='text/css',
-        "#apa_output {
-          position: fixed;
-          bottom: 0;
-          width: 100%;
-          margin-left: -14px;
-          background-color: rgb(239, 239, 239);
-          border-top: 1px solid rgb(213, 213, 213);
-          padding: 5px;
-        }
 
-        #apa_output p {
-          display: inline-block;
-          padding-left: 6px;
-          padding-right: 6px;
-        }
-
-        #apa {
-          display: inline-block;
-          background-color: white;
-          border-radius: 5px;
-          border: 1px solid rgb(213, 213, 213);
-          padding: 0;
-
-          width: calc(100vw - 128px);
-        }
-
-        #apa p {
-          margin: 0;
-          padding: 6px;
-          padding-left: 8px;
-        }
-
-        #copy_button {
-          float: right;
-          margin-right: 6px;
-        }
-
-        "),
-      # htmlOutput('apa'),
-      div(id = "apa_output",
-        p("APA:"),
-        shiny::htmlOutput("apa"),
-        actionButton('copy_button', 'Copy',
-                     onclick = "copy_to_clipboard('apa')")
+      # Hide the APA textbox until the results have loaded
+      conditionalPanel(
+        condition = "output.table",
+        div(
+          id = "apa_output",
+          p("APA:"),
+          shiny::htmlOutput("apa"),
+          actionButton('copy_button', 'Copy',
+                       onclick = "copy_to_clipboard('apa')")
+        )
       )
     ),
 
-    shiny::tags$script(HTML('function myAlert(e) {
-      // Figure out what was clicked
-      var what = e.target.className;
-      var identifier = "";
-      var group = "";
-      var term = "";
-      var statistic = "";
-
-      if (what == "") {
-        what = "statistic";
-      }
-
-      // Figure out the identifier
-      if (what == "identifier") {
-        identifier = e.target.innerText;
-      } else {
-
-        // Get the previous row
-        previous_row = e.target.parentNode.previousSibling.previousSibling;
-
-        // Loop through all the rows until the row has a cell with the
-        // identifier class
-        while (previous_row.firstChild.className != "identifier") {
-          previous_row = previous_row.previousSibling.previousSibling;
-        }
-
-        identifier = previous_row.firstChild.innerText;
-
-        // Figure out the group
-        if (what == "group") {
-          group = e.target.innerText;
-        } else {
-          // Get the previous row
-          previous_row = e.target.parentNode.previousSibling.previousSibling;
-
-          // Loop through all the rows until the row has a child with the
-          // group or identifier class
-          while (previous_row.firstChild.className != "group" &&
-            previous_row.firstChild.className != "identifier") {
-            previous_row = previous_row.previousSibling.previousSibling;
-          }
-
-          if (previous_row.firstChild.className == "group") {
-            group = previous_row.firstChild.innerText;
-          }
-
-          // Figure out the term
-          if (what == "term") {
-            term = e.target.innerText;
-          } else {
-          // Get the previous row
-          previous_row = e.target.parentNode.previousSibling.previousSibling;
-          // Loop through all the rows until the row has a child with the
-          // term, group, or identifier class
-          while (previous_row.firstChild.className != "group" &&
-            previous_row.firstChild.className != "identifier" &&
-            previous_row.firstChild.className != "term") {
-            previous_row = previous_row.previousSibling.previousSibling;
-          }
-
-          // Check whether it is an identifier or group
-          if (previous_row.firstChild.className == "term") {
-            term = previous_row.firstChild.innerText;
-          }
-
-          // If a statistic was clicked, return the statistic
-          if (what == "statistic") {
-            statistic = e.target.parentNode.childNodes[1].innerText;
-          }
-          }
-        }
-      }
-
-      //console.log("what: " + what);
-      //console.log("identifier: " + identifier);
-      //console.log("group: " + group);
-      //console.log("term: " + term);
-      //console.log("statistic: " + statistic);
-
-      info = [what, identifier, group, term, statistic];
-      console.log(info);
-
-      Shiny.onInputChange("jsValue", info);
-
-  }')),
-
-    shiny::tags$script(htmlwidgets::JS("function copy_to_clipboard(element) {
-
-      var doc = document, text = doc.getElementById(element), range, selection;
-
-      selection = window.getSelection();
-      range = doc.createRange();
-      range.selectNodeContents(text);
-      selection.removeAllRanges();
-      selection.addRange(range);
-
-      console.log(this);
-
-      document.execCommand('copy');
-      window.getSelection().removeAllRanges();
-    }"
-  )))
+    tidystats::css_style(),
+    tidystats::inspect_click_script(),
+    tidystats::copy_to_clipboard_script()
+    )
 
   # Server logic
   server <- function(input, output, session) {
@@ -301,7 +158,7 @@ inspect <- function(results, ...) {
 
       # Make the rows clickable
       table <- stringr::str_replace_all(table, "<tr",
-                                        "<tr onclick=myAlert(event)")
+                                        "<tr onclick=inspect_click(event)")
 
       # Add classes
       table <- stringr::str_replace_all(
@@ -331,11 +188,11 @@ inspect <- function(results, ...) {
         term = input$jsValue[4]
         statistic = input$jsValue[5]
 
-        print(paste("what:", what))
-        print(paste("identifier:", identifier))
-        print(paste("group:", group))
-        print(paste("term:", term))
-        print(paste("statistic:", statistic))
+        # print(paste("what:", what))
+        # print(paste("identifier:", identifier))
+        # print(paste("group:", group))
+        # print(paste("term:", term))
+        # print(paste("statistic:", statistic))
 
         # Check if the user clicked on an identifier with terms or on Residuals
         res <- results[[identifier]]
@@ -350,21 +207,19 @@ inspect <- function(results, ...) {
                                        fragment.only = TRUE)
         } else {
           # Set variables to NULL if they are empty strings
-          if (group == "") {
-            group <- NULL
-          }
-          if (term == "") {
-            term <- NULL
-          }
-          if (statistic == "") {
-            statistic <- NULL
-          }
+          if (group == "") { group <- NULL }
+          if (term == "") { term <- NULL }
+          if (statistic == "") { statistic <- NULL }
 
           # Get output
           output <- report(results = results, identifier = identifier,
                            group = group, term = term, statistic = statistic)
 
           # shinyjs::runjs("copy_to_clipboard('apa');")
+          # Replace ~ with <sub> to create subscript
+          output <- str_replace(output, "~", "<sub>")
+          output <- str_replace(output, "~", "</sub>")
+
           output <- knitr::knit2html(text = output, fragment.only = TRUE)
         }
       } else {
