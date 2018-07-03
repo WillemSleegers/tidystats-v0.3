@@ -20,7 +20,6 @@
 
 # TODO: Make identifiers with terms non-clickable.
 # TODO: Catch some more errors (e.g., clicking on the coefficient group)
-# TODO: Add select helper function support
 
 inspect <- function(results, ...) {
 
