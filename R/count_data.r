@@ -1,12 +1,15 @@
 #' Count the total of observations
 #'
-#' \code{count_data} returns the number of observations for categorical variables.
+#' \code{count_data} returns the number of observations for categorical
+#' variables.
 #'
 #' @param data A data frame.
-#' @param ... One or more unquoted (categorical) variable names separated by commas.
+#' @param ... One or more unquoted (categorical) variable names separated by
+#' commas.
 #' @param na.rm Logical. Should missing values (including NaN) be removed?
 #'
-#' @details The data set can be grouped using \strong{dplyr}'s \code{group_by} so that the total of observations will be calculated for each group level.
+#' @details The data set can be grouped using \strong{dplyr}'s \code{group_by}
+#' so that the total of observations will be calculated for each group level.
 #'
 #' @examples
 #' library(dplyr)
@@ -71,6 +74,7 @@ count_data <- function(data, ..., na.rm = TRUE) {
     # Group by original grouping
     output <- group_by_at(output, vars(grouping))
   } else {
+    # TODO: When the data is grouped, return N for each group
     output <- data_frame(
       N = nrow(data)
     )

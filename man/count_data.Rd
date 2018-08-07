@@ -9,15 +9,18 @@ count_data(data, ..., na.rm = TRUE)
 \arguments{
 \item{data}{A data frame.}
 
-\item{...}{One or more unquoted (categorical) variable names separated by commas.}
+\item{...}{One or more unquoted (categorical) variable names separated by
+commas.}
 
 \item{na.rm}{Logical. Should missing values (including NaN) be removed?}
 }
 \description{
-\code{count_data} returns the number of observations for categorical variables.
+\code{count_data} returns the number of observations for categorical
+variables.
 }
 \details{
-The data set can be grouped using \strong{dplyr}'s \code{group_by} so that the total of observations will be calculated for each group level.
+The data set can be grouped using \strong{dplyr}'s \code{group_by}
+so that the total of observations will be calculated for each group level.
 }
 \examples{
 library(dplyr)
