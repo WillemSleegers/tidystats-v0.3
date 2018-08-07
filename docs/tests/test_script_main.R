@@ -185,7 +185,6 @@ results <- results %>%
   add_stats(aov_parent_condition_affect) %>%
   add_stats(aov_parent_affect_anxiety)
 
-
 # Two-within subject factor
 
 data <- crossing(
@@ -262,7 +261,6 @@ summary(lme4_2)
 summary(lme4_3)
 
 # Tidy results
-# TODO: Rename (Observations) to N?
 tidy_stats(lme4_1)
 tidy_stats(lme4_2)
 tidy_stats(lme4_3)
@@ -303,7 +301,6 @@ results <- results %>%
   add_stats(lmerTest4_1) %>%
   add_stats(lmerTest4_2) %>%
   add_stats(lmerTest4_3)
-
 
 # Analysis: psych ---------------------------------------------------------
 
@@ -397,7 +394,7 @@ results <- results %>%
   add_stats(rma_mv_mods)
 
 # Inspect resulst
-inspect_model(results)
+inspect(results)
 
 # Report results
 
@@ -446,6 +443,32 @@ pcor_correlation <- pcor.test(y.data$hl, y.data$disp, y.data[,c("deg","BC")])
 pcor_correlation
 
 class(pcor_correlation)
+
+
+# Analysis: psych's ICC ---------------------------------------------------
+
+library(psych)
+
+# Load data
+sf <- matrix(ncol = 4, byrow = TRUE, c(9,  2, 5, 8,
+                                       6,  1, 3, 2,
+                                       8,  4, 6, 8,
+                                       7,  1, 2, 6,
+                                       10, 5, 6, 9,
+                                       6,  2, 4,7))
+
+colnames(sf) <- paste("J", 1:4, sep = "")
+rownames(sf) <- paste("S", 1:6, sep = "")
+sf
+
+# Perform analysis
+sf_ICC <- ICC(sf, lmer = FALSE)
+
+# Tidy stats
+tidy_stats(sf_ICC)
+
+# Add stats
+results <- add_stats(results, sf_ICC)
 
 # add_stats.data.frame() --------------------------------------------------
 
@@ -655,18 +678,4 @@ cronbachs_alpha(polcom, ambiv_sexism_1:ambiv_sexism_6)
 # Inspect model -----------------------------------------------------------
 
 inspect(results)
-
-identifier <- "aov_parent_affect"
-group <- NULL
-term <- "affect"
-statistic <- NULL
-
-report(results = results, identifier = identifier,
-       group = group, term = term, statistic = statistic)
-
-if (2 > 1) {
-  print("2")
-} else if (2 > 1) {
-    print("this")
-  }
 

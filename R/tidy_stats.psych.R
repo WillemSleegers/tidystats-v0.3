@@ -154,6 +154,11 @@ tidy_stats.psych <- function(model) {
     if (model$adjust != "none") {
       output$notes <- paste(model$adjust, "multiple test adjustment")
     }
+  } else if (class(model)[2] == 'ICC') {
+    output <- model$results %>%
+      gather("statistic", "value", -type) %>%
+      arrange(type) %>%
+      rename(group = type)
   } else {
     stop("Models other than psych's alpha are not yet supported.")
   }

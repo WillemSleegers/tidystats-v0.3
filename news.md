@@ -12,6 +12,7 @@
 * Added a new function called `inspect()`. This function accepts a tidystats results list and will display all results in RStudio's Viewer pane. This allows the user to visually inspect the results and, importantly, copy results in APA style to their clipboard. This function is aimed at users who prefer not to use R Markdown or when you want to quickly run a model and get the results in APA-style.
 * Added support for lme4's `lmer()` and lmerTest's `lmer()`.
 * Added support for psych's `alpha()`.
+* Added support for psych's `ICC()`.
 * Added support for metafor's `rma()`.
 * Added support for stats' `confint()` via the new `class` argument in `add_stats()` and `add_stats_to_model()`.
 
