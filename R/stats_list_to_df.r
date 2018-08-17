@@ -19,6 +19,11 @@
 
 stats_list_to_df <- function(results) {
 
+  # Throw an error if the list is empty
+  if (length(results) == 0) {
+    stop("The list is empty.")
+  }
+
   # Create function to add the identifier to the stats data frame
   add_identifier <- function(x, y) {
     x$identifier <- y
