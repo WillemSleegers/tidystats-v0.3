@@ -35,6 +35,8 @@ tidy_stats(t_test_two_sample)
 tidy_stats(t_test_welch)
 tidy_stats(t_test_paired)
 
+use_test("tidy_t_tests")
+
 # Add stats
 results <- results %>%
   add_stats(t_test_one_sample, identifier = "t_test_one_sample", type = "h",
