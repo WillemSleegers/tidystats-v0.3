@@ -123,6 +123,66 @@ results <- results %>%
   add_stats(wilcox_rank_sum) %>%
   add_stats(wilcox_rank_sum_conf)
 
+# Analysis: fisher’s test -------------------------------------------------
+
+# Get data
+TeaTasting <- matrix(c(3, 1, 1, 3), nrow = 2,
+  dimnames = list(Guess = c("Milk", "Tea"), Truth = c("Milk", "Tea")))
+
+fisher_test <- fisher.test(TeaTasting)
+fisher_test_alternative_greater <- fisher.test(TeaTasting,
+  alternative = "greater")
+
+Convictions <- matrix(c(2, 10, 15, 3), nrow = 2, dimnames =
+    list(c("Dizygotic", "Monozygotic"), c("Convicted", "Not convicted")))
+
+fisher_test_alternative_less <- fisher.test(Convictions, alternative = "less")
+fisher_test_no_CI <- fisher.test(Convictions, conf.int = FALSE)
+
+Job <- matrix(c(1,2,1,0, 3,3,6,1, 10,10,14,9, 6,7,12,11), 4, 4,
+  dimnames = list(income = c("< 15k", "15-25k", "25-40k", "> 40k"),
+    satisfaction = c("VeryD", "LittleD", "ModerateS", "VeryS")))
+
+fisher_test_not_2_by_2 <- fisher.test(Job)
+fisher_test_simulate_p <- fisher.test(Job, simulate.p.value = TRUE, B = 1e5)
+
+MP6 <- rbind(
+  c(1,2,2,1,1,0,1),
+  c(2,0,0,2,3,0,0),
+  c(0,1,1,1,2,7,3),
+  c(1,1,2,0,0,0,1),
+  c(0,1,1,1,1,0,0))
+
+fisher_test_hybrid <- fisher.test(MP6, hybrid = TRUE)
+
+
+fisher_test
+fisher_test_alternative_greater
+fisher_test_alternative_less
+fisher_test_no_CI
+fisher_test_not_2_by_2
+fisher_test_simulate_p
+fisher_test_hybrid
+
+# Tidy stats
+tidy_stats(fisher_test)
+tidy_stats(fisher_test_alternative_greater)
+tidy_stats(fisher_test_alternative_less)
+tidy_stats(fisher_test_no_CI)
+tidy_stats(fisher_test_not_2_by_2)
+tidy_stats(fisher_test_simulate_p)
+tidy_stats(fisher_test_hybrid)
+
+# Add stats
+results <- results %>%
+  add_stats(fisher_test) %>%
+  add_stats(fisher_test_alternative_greater) %>%
+  add_stats(fisher_test_alternative_less) %>%
+  add_stats(fisher_test_no_CI) %>%
+  add_stats(fisher_test_not_2_by_2) %>%
+  add_stats(fisher_test_simulate_p) %>%
+  add_stats(fisher_test_hybrid)
+
 # Analysis: aov() ---------------------------------------------------------
 
 # Convert condition and sex in the cox data frame to a factor

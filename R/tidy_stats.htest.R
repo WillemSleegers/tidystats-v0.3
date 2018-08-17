@@ -31,11 +31,16 @@ tidy_stats.htest <- function(model) {
   # Extract statistics
   output <- dplyr::bind_rows(
     if (!is.null(model$estimate)) {
-      tibble::data_frame(statistic = names(model$estimate), value = model$estimate)
+      tibble::data_frame(statistic = names(model$estimate),
+        value = model$estimate)
     },
-    tibble::data_frame(statistic = names(model$statistic), value = model$statistic),
+    if (!is.null(model$statistic)) {
+      tibble::data_frame(statistic = names(model$statistic),
+        value = model$statistic)
+    },
     if (!is.null(model$parameter)) {
-      tibble::data_frame(statistic = names(model$parameter), value = model$parameter)
+      tibble::data_frame(statistic = names(model$parameter),
+        value = model$parameter)
     },
     tibble::data_frame(statistic = "p", value = model$p.value),
     if (!is.null(model$conf.int)) {
@@ -50,12 +55,24 @@ tidy_stats.htest <- function(model) {
     }
   )
 
-  # Add the method (use trimws to remove the leading space from a Two Sample t-test)
+  # Add the method
+  # (use trimws to remove the leading space from a Two Sample t-test)
   output$method <- trimws(model$method)
 
   # Add additional information
   if (!is.null(model$alternative)) {
     output$notes <- paste("alternative hypothesis:", model$alternative)
+  }
+
+  if (stringr::str_detect(model$method, "simulated p-value")) {
+    output$notes <- paste0(output$notes, "; ", "simulated p-value based on ",
+      stringr::str_extract(model$method, "[0-9](e\\+)?([0-9].)?"),
+      " replicates")
+    output$method <- "Fisher's Exact Test for Count Data"
+  } else if (stringr::str_detect(model$method, "hybrid")) {
+    output$notes <- paste0(output$notes, "; ", "hybrid using asym.chisq. iff ",
+      stringr::str_extract(model$method, "(?<=\\()(.*)(?=\\))"))
+    output$method <- "Fisher's Exact Test for Count Data"
   }
 
   return(output)
