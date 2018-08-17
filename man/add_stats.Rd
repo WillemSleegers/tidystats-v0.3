@@ -5,7 +5,8 @@
 \title{Add statistical output to a tidy stats list}
 \usage{
 add_stats(results, output, identifier = NULL, type = NULL,
-  confirmatory = NULL, notes = NULL, class = NULL, summary_args = NULL)
+  confirmatory = NULL, notes = NULL, class = NULL,
+  summary_args = NULL)
 }
 \arguments{
 \item{results}{A tidy stats list.}

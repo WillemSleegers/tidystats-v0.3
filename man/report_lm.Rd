@@ -4,8 +4,8 @@
 \alias{report_lm}
 \title{Report method for linear regression models}
 \usage{
-report_lm(results, identifier, group = NULL, term = NULL, term_nr = NULL,
-  statistic = NULL)
+report_lm(results, identifier, group = NULL, term = NULL,
+  term_nr = NULL, statistic = NULL)
 }
 \arguments{
 \item{results}{A tidy stats list.}

@@ -3,7 +3,6 @@
 \name{report_descriptives}
 \alias{report_descriptives}
 \alias{M}
-\alias{report_descriptives}
 \alias{SD}
 \title{Report descriptives helper functions}
 \usage{

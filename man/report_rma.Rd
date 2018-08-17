@@ -4,8 +4,8 @@
 \alias{report_rma}
 \title{Report method for metafor's rma models}
 \usage{
-report_rma(results, identifier, group = NULL, term = NULL, term_nr = NULL,
-  statistic = NULL)
+report_rma(results, identifier, group = NULL, term = NULL,
+  term_nr = NULL, statistic = NULL)
 }
 \arguments{
 \item{results}{A tidy stats list.}

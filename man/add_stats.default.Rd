@@ -4,8 +4,8 @@
 \alias{add_stats.default}
 \title{add_stats default function}
 \usage{
-\method{add_stats}{default}(results, output, identifier = NULL, type = NULL,
-  confirmatory = NULL, notes = NULL)
+\method{add_stats}{default}(results, output, identifier = NULL,
+  type = NULL, confirmatory = NULL, notes = NULL)
 }
 \arguments{
 \item{results}{a tidy stats list.}

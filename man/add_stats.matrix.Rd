@@ -4,8 +4,8 @@
 \alias{add_stats.matrix}
 \title{add_stats matrix function}
 \usage{
-\method{add_stats}{matrix}(results, output, identifier = NULL, type = NULL,
-  confirmatory = NULL, notes = NULL, class = NULL)
+\method{add_stats}{matrix}(results, output, identifier = NULL,
+  type = NULL, confirmatory = NULL, notes = NULL, class = NULL)
 }
 \arguments{
 \item{results}{A tidy stats list.}

@@ -5,7 +5,8 @@
 \title{Report function}
 \usage{
 report(identifier, term = NULL, term_nr = NULL, var = NULL,
-  group = NULL, statistic = NULL, results = getOption("tidystats_list"))
+  group = NULL, statistic = NULL,
+  results = getOption("tidystats_list"))
 }
 \arguments{
 \item{identifier}{A character string identifying the model.}
