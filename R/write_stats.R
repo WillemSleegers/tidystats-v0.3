@@ -21,17 +21,24 @@
 #' dir <- tempdir()
 #' write_stats(results, file.path(dir, "results.txt"))
 #'
-#' @import readr
-#'
 #' @export
 
 write_stats <- function(results, path) {
+
+  # Check whether the arguments are supplied
+  if (!is.list(results)) {
+    stop("argument 'results' is not a list")
+  }
+
+  if (is.null(path)) {
+    stop()
+  }
 
   # Convert list to a data frame
   df <- stats_list_to_df(results)
 
   # Round the stats values
-  df$value <- prettyNum(df$value)
+  df <- mutate(df, value = prettyNum(value))
 
   # Write to disk
   readr::write_csv(df, path = path, na = "")

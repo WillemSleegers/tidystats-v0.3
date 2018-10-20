@@ -17,18 +17,11 @@
 #' model_CIs <- confint(model)
 #'
 #' # Produce a tidy data frame of the CIs
-#' tidy_model_CIs <- tidy_stats_confint(model_CIs)
-#'
-#' @import tibble
-#' @import dplyr
-#' @import tidyr
-#' @importFrom magrittr %>%
+#' tidy_model_CIs <- tidy_stats(model_CIs, class = "confint")
 #'
 #' @export
 
 tidy_stats.confint <- function(matrix) {
-
-  # Tidy the matrix
   output <- as.data.frame(matrix) %>% # as_data_frame() throws an error
     dplyr::mutate(
       term = rownames(matrix),
@@ -38,7 +31,7 @@ tidy_stats.confint <- function(matrix) {
     dplyr::arrange(order) %>%
     dplyr::select(term, statistic, value, -order) %>%
     dplyr::mutate(
-      statistic = str_replace(statistic, " ", ""),
+      statistic = stringr::str_replace(statistic, " ", ""),
       statistic = paste(statistic, "CI")
       ) %>%
     tibble::as_data_frame()

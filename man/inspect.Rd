@@ -2,18 +2,19 @@
 % Please edit documentation in R/inspect.R
 \name{inspect}
 \alias{inspect}
-\title{Inspect (a) statistical model(s) added to your tidystats list}
+\title{Inspect the output of (a) statistical model(s) via an interactive Shiny app.}
 \usage{
 inspect(results, ...)
 }
 \arguments{
-\item{results}{A tidystats list.}
+\item{results}{A tidystats list or the output of a statistical test.}
 
-\item{...}{Models to show in the viewer.}
+\item{...}{A variable number of identifiers in order to limit the number of
+models shown when a tidystats list is provided.}
 }
 \description{
-\code{inspect} is a function to inspect one or more models that are part of a
-tidystats list. The function will open a Shiny widget in the Viewer pane,
-which will show the results of one or more models. This allows the user to
-visually inspect the model output, as well as copy the results in APA format.
+\code{inspect} is a function to inspect the output of one or more statistical
+models. The function will open a Shiny widget in the Viewer pane. This allows
+the user to visually inspect the model output, as well as copy the results in
+APA format.
 }

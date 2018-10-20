@@ -25,6 +25,6 @@ model <- lm(weight ~ group)
 model_CIs <- confint(model)
 
 # Produce a tidy data frame of the CIs
-tidy_model_CIs <- tidy_stats_confint(model_CIs)
+tidy_model_CIs <- tidy_stats(model_CIs, class = "confint")
 
 }

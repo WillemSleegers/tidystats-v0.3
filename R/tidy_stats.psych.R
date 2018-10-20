@@ -113,21 +113,21 @@ tidy_stats.psych <- function(model) {
       CI_level = as.numeric(call["alpha"])
     }
 
-    names(output) <- str_replace(names(output), "lower",
-                                 paste0(CI_level*100/2, "% CI"))
-    names(output) <- str_replace(names(output), "upper",
-                                 paste0(100-(CI_level*100/2), "% CI"))
+    names(output) <- stringr::str_replace(names(output), "lower",
+      paste0(CI_level * 100 / 2, "% CI"))
+    names(output) <- stringr::str_replace(names(output), "upper",
+      paste0(100 - (CI_level * 100 / 2), "% CI"))
 
     # Add term number
-    output <- mutate(output, term_nr = 1:nrow(output))
+    output <- dplyr::mutate(output, term_nr = 1:nrow(output))
 
     # Make the data long
     output <- output %>%
-      gather("statistic", "value", -term, -term_nr)
+      tidyr::gather("statistic", "value", -term, -term_nr)
 
     # Sort the statistics
     output <- output %>%
-      mutate(order = case_when(
+      dplyr::mutate(order = case_when(
         statistic == "r" ~ 1,
         statistic == "N" ~ 2,
         statistic == "SE" ~ 3,
@@ -154,13 +154,17 @@ tidy_stats.psych <- function(model) {
     if (model$adjust != "none") {
       output$notes <- paste(model$adjust, "multiple test adjustment")
     }
+
+    output <- as_data_frame(output) %>%
+      select(term_nr, everything())
   } else if (class(model)[2] == 'ICC') {
     output <- model$results %>%
       gather("statistic", "value", -type) %>%
       arrange(type) %>%
       rename(group = type)
   } else {
-    stop("Models other than psych's alpha are not yet supported.")
+    stop("Models other than psych's alpha, ICC, and correlations are not yet
+      supported.")
   }
 
   return(output)

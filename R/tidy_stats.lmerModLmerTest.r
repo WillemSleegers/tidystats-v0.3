@@ -86,7 +86,7 @@ tidy_stats.lmerModLmerTest <- function(model) {
   output$method <- "Linear mixed model {lmerTest}"
 
   # Order variables
-  output <- select(output, group, term, term_nr, statistic, value, method)
+  output <- select(output, group, term_nr, term, statistic, value, method)
 
   return(output)
 }

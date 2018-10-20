@@ -1,0 +1,723 @@
+identifier,group,term_nr,term,statistic,value,method,notes
+t_test_one_sample,,,,mean of x,25.775,One Sample t-test,alternative hypothesis: greater
+t_test_one_sample,,,,t,24.22477,One Sample t-test,alternative hypothesis: greater
+t_test_one_sample,,,,df,199,One Sample t-test,alternative hypothesis: greater
+t_test_one_sample,,,,p,1.458065e-61,One Sample t-test,alternative hypothesis: greater
+t_test_one_sample,,,,95% CI lower,24.0167,One Sample t-test,alternative hypothesis: greater
+t_test_one_sample,,,,95% CI upper,Inf,One Sample t-test,alternative hypothesis: greater
+t_test_one_sample,,,,null value,0,One Sample t-test,alternative hypothesis: greater
+t_test_two_sample,,,,mean in group dental pain,24.39,Two Sample t-test,alternative hypothesis: two.sided
+t_test_two_sample,,,,mean in group mortality salience,27.16,Two Sample t-test,alternative hypothesis: two.sided
+t_test_two_sample,,,,t,-1.303988,Two Sample t-test,alternative hypothesis: two.sided
+t_test_two_sample,,,,df,198,Two Sample t-test,alternative hypothesis: two.sided
+t_test_two_sample,,,,p,0.1937515,Two Sample t-test,alternative hypothesis: two.sided
+t_test_two_sample,,,,95% CI lower,-6.959062,Two Sample t-test,alternative hypothesis: two.sided
+t_test_two_sample,,,,95% CI upper,1.419062,Two Sample t-test,alternative hypothesis: two.sided
+t_test_two_sample,,,,null value,0,Two Sample t-test,alternative hypothesis: two.sided
+t_test_welch,,,,mean in group dental pain,24.39,Welch Two Sample t-test,alternative hypothesis: two.sided
+t_test_welch,,,,mean in group mortality salience,27.16,Welch Two Sample t-test,alternative hypothesis: two.sided
+t_test_welch,,,,t,-1.303988,Welch Two Sample t-test,alternative hypothesis: two.sided
+t_test_welch,,,,df,183.4832,Welch Two Sample t-test,alternative hypothesis: two.sided
+t_test_welch,,,,p,0.1938711,Welch Two Sample t-test,alternative hypothesis: two.sided
+t_test_welch,,,,95% CI lower,-6.961101,Welch Two Sample t-test,alternative hypothesis: two.sided
+t_test_welch,,,,95% CI upper,1.421101,Welch Two Sample t-test,alternative hypothesis: two.sided
+t_test_welch,,,,null value,0,Welch Two Sample t-test,alternative hypothesis: two.sided
+t_test_paired,,,,mean of the differences,8.27,Paired t-test,alternative hypothesis: two.sided
+t_test_paired,,,,t,14.17591,Paired t-test,alternative hypothesis: two.sided
+t_test_paired,,,,df,199,Paired t-test,alternative hypothesis: two.sided
+t_test_paired,,,,p,5.431789e-32,Paired t-test,alternative hypothesis: two.sided
+t_test_paired,,,,95% CI lower,7.119592,Paired t-test,alternative hypothesis: two.sided
+t_test_paired,,,,95% CI upper,9.420408,Paired t-test,alternative hypothesis: two.sided
+t_test_paired,,,,null value,0,Paired t-test,alternative hypothesis: two.sided
+correlation_pearson,,,,cor,-0.1466274,Pearson's product-moment correlation,alternative hypothesis: two.sided
+correlation_pearson,,,,t,-2.085774,Pearson's product-moment correlation,alternative hypothesis: two.sided
+correlation_pearson,,,,df,198,Pearson's product-moment correlation,alternative hypothesis: two.sided
+correlation_pearson,,,,p,0.03828056,Pearson's product-moment correlation,alternative hypothesis: two.sided
+correlation_pearson,,,,95% CI lower,-0.2796788,Pearson's product-moment correlation,alternative hypothesis: two.sided
+correlation_pearson,,,,95% CI upper,-0.008050126,Pearson's product-moment correlation,alternative hypothesis: two.sided
+correlation_pearson,,,,null value,0,Pearson's product-moment correlation,alternative hypothesis: two.sided
+correlation_kendall,,,,tau,-0.08808242,Kendall's rank correlation tau,alternative hypothesis: two.sided
+correlation_kendall,,,,z,-1.683931,Kendall's rank correlation tau,alternative hypothesis: two.sided
+correlation_kendall,,,,p,0.09219493,Kendall's rank correlation tau,alternative hypothesis: two.sided
+correlation_kendall,,,,null value,0,Kendall's rank correlation tau,alternative hypothesis: two.sided
+correlation_spearman,,,,rho,-0.1199066,Spearman's rank correlation rho,alternative hypothesis: two.sided
+correlation_spearman,,,,S,1493171,Spearman's rank correlation rho,alternative hypothesis: two.sided
+correlation_spearman,,,,p,0.090796,Spearman's rank correlation rho,alternative hypothesis: two.sided
+correlation_spearman,,,,null value,0,Spearman's rank correlation rho,alternative hypothesis: two.sided
+chi_squared,,,,X-squared,30.07015,Pearson's Chi-squared test,
+chi_squared,,,,df,2,Pearson's Chi-squared test,
+chi_squared,,,,p,2.953589e-07,Pearson's Chi-squared test,
+chi_squared_yates,,,,X-squared,1.104464,Pearson's Chi-squared test with Yates' continuity correction,
+chi_squared_yates,,,,df,1,Pearson's Chi-squared test with Yates' continuity correction,
+chi_squared_yates,,,,p,0.2932886,Pearson's Chi-squared test with Yates' continuity correction,
+chi_squared_prob,,,,X-squared,2.5,Chi-squared test for given probabilities,
+chi_squared_prob,,,,df,2,Chi-squared test for given probabilities,
+chi_squared_prob,,,,p,0.2865048,Chi-squared test for given probabilities,
+wilcoxon_signed_rank,,,,V,40,Wilcoxon signed rank test,alternative hypothesis: greater
+wilcoxon_signed_rank,,,,p,0.01953125,Wilcoxon signed rank test,alternative hypothesis: greater
+wilcoxon_signed_rank,,,,null value,0,Wilcoxon signed rank test,alternative hypothesis: greater
+wilcoxon_rank_sum_continuity,,,,W,127.5,Wilcoxon rank sum test with continuity correction,alternative hypothesis: two.sided
+wilcoxon_rank_sum_continuity,,,,p,0.0001208078,Wilcoxon rank sum test with continuity correction,alternative hypothesis: two.sided
+wilcoxon_rank_sum_continuity,,,,null value,0,Wilcoxon rank sum test with continuity correction,alternative hypothesis: two.sided
+wilcoxon_rank_sum,,,,W,35,Wilcoxon rank sum test,alternative hypothesis: greater
+wilcoxon_rank_sum,,,,p,0.1103357,Wilcoxon rank sum test,alternative hypothesis: greater
+wilcoxon_rank_sum,,,,null value,0,Wilcoxon rank sum test,alternative hypothesis: greater
+wilcoxon_rank_sum_conf,,,,difference in location,0.305,Wilcoxon rank sum test,alternative hypothesis: two.sided
+wilcoxon_rank_sum_conf,,,,W,35,Wilcoxon rank sum test,alternative hypothesis: two.sided
+wilcoxon_rank_sum_conf,,,,p,0.2544123,Wilcoxon rank sum test,alternative hypothesis: two.sided
+wilcoxon_rank_sum_conf,,,,90% CI lower,-0.08,Wilcoxon rank sum test,alternative hypothesis: two.sided
+wilcoxon_rank_sum_conf,,,,90% CI upper,0.72,Wilcoxon rank sum test,alternative hypothesis: two.sided
+wilcoxon_rank_sum_conf,,,,null value,0,Wilcoxon rank sum test,alternative hypothesis: two.sided
+fisher_test,,,,odds ratio,6.408309,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
+fisher_test,,,,p,0.4857143,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
+fisher_test,,,,95% CI lower,0.2117329,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
+fisher_test,,,,95% CI upper,621.9338,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
+fisher_test,,,,null value,1,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
+fisher_test_alternative_greater,,,,odds ratio,6.408309,Fisher's Exact Test for Count Data,alternative hypothesis: greater
+fisher_test_alternative_greater,,,,p,0.2428571,Fisher's Exact Test for Count Data,alternative hypothesis: greater
+fisher_test_alternative_greater,,,,95% CI lower,0.3135693,Fisher's Exact Test for Count Data,alternative hypothesis: greater
+fisher_test_alternative_greater,,,,95% CI upper,Inf,Fisher's Exact Test for Count Data,alternative hypothesis: greater
+fisher_test_alternative_greater,,,,null value,1,Fisher's Exact Test for Count Data,alternative hypothesis: greater
+fisher_test_alternative_less,,,,odds ratio,0.04693661,Fisher's Exact Test for Count Data,alternative hypothesis: less
+fisher_test_alternative_less,,,,p,0.0004651809,Fisher's Exact Test for Count Data,alternative hypothesis: less
+fisher_test_alternative_less,,,,95% CI lower,0,Fisher's Exact Test for Count Data,alternative hypothesis: less
+fisher_test_alternative_less,,,,95% CI upper,0.2849601,Fisher's Exact Test for Count Data,alternative hypothesis: less
+fisher_test_alternative_less,,,,null value,1,Fisher's Exact Test for Count Data,alternative hypothesis: less
+fisher_test_no_CI,,,,odds ratio,0.04693661,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
+fisher_test_no_CI,,,,p,0.0005367241,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
+fisher_test_no_CI,,,,null value,1,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
+fisher_test_r_by_c,,,,p,0.7826849,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
+fisher_test_simulated_p,,,,p,0.7821022,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided; simulated p-value based on 1e+05 replicates
+fisher_test_hybrid,,,,p,0.03928964,Fisher's Exact Test for Count Data,"alternative hypothesis: two.sided; hybrid using asym.chisq. iff exp=5, perc=80, Emin=1"
+aov_one_way,,1,condition,df,1,One-way ANOVA,
+aov_one_way,,1,condition,SS,383.645,One-way ANOVA,
+aov_one_way,,1,condition,MS,383.645,One-way ANOVA,
+aov_one_way,,1,condition,F,1.700385,One-way ANOVA,
+aov_one_way,,1,condition,p,0.1937515,One-way ANOVA,
+aov_one_way,,2,Residuals,df,198,One-way ANOVA,
+aov_one_way,,2,Residuals,SS,44673.23,One-way ANOVA,
+aov_one_way,,2,Residuals,MS,225.6224,One-way ANOVA,
+aov_two_way,,1,condition,df,1,Factorial ANOVA,
+aov_two_way,,1,condition,SS,383.645,Factorial ANOVA,
+aov_two_way,,1,condition,MS,383.645,Factorial ANOVA,
+aov_two_way,,1,condition,F,1.73612,Factorial ANOVA,
+aov_two_way,,1,condition,p,0.1891615,Factorial ANOVA,
+aov_two_way,,2,sex,df,1,Factorial ANOVA,
+aov_two_way,,2,sex,SS,1140.486,Factorial ANOVA,
+aov_two_way,,2,sex,MS,1140.486,Factorial ANOVA,
+aov_two_way,,2,sex,F,5.161075,Factorial ANOVA,
+aov_two_way,,2,sex,p,0.02417908,Factorial ANOVA,
+aov_two_way,,3,Residuals,df,197,Factorial ANOVA,
+aov_two_way,,3,Residuals,SS,43532.74,Factorial ANOVA,
+aov_two_way,,3,Residuals,MS,220.9784,Factorial ANOVA,
+aov_two_way_interaction,,1,condition,df,1,Factorial ANOVA,
+aov_two_way_interaction,,1,condition,SS,383.645,Factorial ANOVA,
+aov_two_way_interaction,,1,condition,MS,383.645,Factorial ANOVA,
+aov_two_way_interaction,,1,condition,F,1.729936,Factorial ANOVA,
+aov_two_way_interaction,,1,condition,p,0.1899557,Factorial ANOVA,
+aov_two_way_interaction,,2,sex,df,1,Factorial ANOVA,
+aov_two_way_interaction,,2,sex,SS,1140.486,Factorial ANOVA,
+aov_two_way_interaction,,2,sex,MS,1140.486,Factorial ANOVA,
+aov_two_way_interaction,,2,sex,F,5.142692,Factorial ANOVA,
+aov_two_way_interaction,,2,sex,p,0.02443518,Factorial ANOVA,
+aov_two_way_interaction,,3,condition:sex,df,1,Factorial ANOVA,
+aov_two_way_interaction,,3,condition:sex,SS,66.15296,Factorial ANOVA,
+aov_two_way_interaction,,3,condition:sex,MS,66.15296,Factorial ANOVA,
+aov_two_way_interaction,,3,condition:sex,F,0.2982976,Factorial ANOVA,
+aov_two_way_interaction,,3,condition:sex,p,0.5855728,Factorial ANOVA,
+aov_two_way_interaction,,4,Residuals,df,196,Factorial ANOVA,
+aov_two_way_interaction,,4,Residuals,SS,43466.59,Factorial ANOVA,
+aov_two_way_interaction,,4,Residuals,MS,221.7683,Factorial ANOVA,
+aov_ancova,,1,condition,df,1,ANCOVA,
+aov_ancova,,1,condition,SS,383.645,ANCOVA,
+aov_ancova,,1,condition,MS,383.645,ANCOVA,
+aov_ancova,,1,condition,F,1.693076,ANCOVA,
+aov_ancova,,1,condition,p,0.1947158,ANCOVA,
+aov_ancova,,2,affect_negative,df,1,ANCOVA,
+aov_ancova,,2,affect_negative,SS,33.72804,ANCOVA,
+aov_ancova,,2,affect_negative,MS,33.72804,ANCOVA,
+aov_ancova,,2,affect_negative,F,0.1488463,ANCOVA,
+aov_ancova,,2,affect_negative,p,0.7000567,ANCOVA,
+aov_ancova,,3,Residuals,df,197,ANCOVA,
+aov_ancova,,3,Residuals,SS,44639.5,ANCOVA,
+aov_ancova,,3,Residuals,MS,226.5965,ANCOVA,
+aov_one_within,ID,1,Residuals,df,199,One-way repeated measures ANOVA,
+aov_one_within,ID,1,Residuals,SS,6685.76,One-way repeated measures ANOVA,
+aov_one_within,ID,1,Residuals,MS,33.59678,One-way repeated measures ANOVA,
+aov_one_within,ID:affect,2,affect,df,1,One-way repeated measures ANOVA,
+aov_one_within,ID:affect,2,affect,SS,6839.29,One-way repeated measures ANOVA,
+aov_one_within,ID:affect,2,affect,MS,6839.29,One-way repeated measures ANOVA,
+aov_one_within,ID:affect,2,affect,F,200.9563,One-way repeated measures ANOVA,
+aov_one_within,ID:affect,2,affect,p,5.431789e-32,One-way repeated measures ANOVA,
+aov_one_within,ID:affect,3,Residuals,df,199,One-way repeated measures ANOVA,
+aov_one_within,ID:affect,3,Residuals,SS,6772.71,One-way repeated measures ANOVA,
+aov_one_within,ID:affect,3,Residuals,MS,34.03372,One-way repeated measures ANOVA,
+aov_mixed,ID,1,condition,df,1,Mixed ANOVA,
+aov_mixed,ID,1,condition,SS,64,Mixed ANOVA,
+aov_mixed,ID,1,condition,MS,64,Mixed ANOVA,
+aov_mixed,ID,1,condition,F,1.913691,Mixed ANOVA,
+aov_mixed,ID,1,condition,p,0.1681116,Mixed ANOVA,
+aov_mixed,ID,2,Residuals,df,198,Mixed ANOVA,
+aov_mixed,ID,2,Residuals,SS,6621.76,Mixed ANOVA,
+aov_mixed,ID,2,Residuals,MS,33.44323,Mixed ANOVA,
+aov_mixed,ID:affect,3,affect,df,1,Mixed ANOVA,
+aov_mixed,ID:affect,3,affect,SS,6839.29,Mixed ANOVA,
+aov_mixed,ID:affect,3,affect,MS,6839.29,Mixed ANOVA,
+aov_mixed,ID:affect,3,affect,F,205.1445,Mixed ANOVA,
+aov_mixed,ID:affect,3,affect,p,2.122891e-32,Mixed ANOVA,
+aov_mixed,ID:affect,4,condition:affect,df,1,Mixed ANOVA,
+aov_mixed,ID:affect,4,condition:affect,SS,171.61,Mixed ANOVA,
+aov_mixed,ID:affect,4,condition:affect,MS,171.61,Mixed ANOVA,
+aov_mixed,ID:affect,4,condition:affect,F,5.147442,Mixed ANOVA,
+aov_mixed,ID:affect,4,condition:affect,p,0.0243591,Mixed ANOVA,
+aov_mixed,ID:affect,5,Residuals,df,198,Mixed ANOVA,
+aov_mixed,ID:affect,5,Residuals,SS,6601.1,Mixed ANOVA,
+aov_mixed,ID:affect,5,Residuals,MS,33.33889,Mixed ANOVA,
+aov_ancova_with_within,ID,1,anxiety,df,1,ANCOVA,
+aov_ancova_with_within,ID,1,anxiety,SS,0.1392013,ANCOVA,
+aov_ancova_with_within,ID,1,anxiety,MS,0.1392013,ANCOVA,
+aov_ancova_with_within,ID,1,anxiety,F,0.004122557,ANCOVA,
+aov_ancova_with_within,ID,1,anxiety,p,0.9488701,ANCOVA,
+aov_ancova_with_within,ID,2,Residuals,df,198,ANCOVA,
+aov_ancova_with_within,ID,2,Residuals,SS,6685.621,ANCOVA,
+aov_ancova_with_within,ID,2,Residuals,MS,33.76576,ANCOVA,
+aov_ancova_with_within,ID:affect,3,affect,df,1,ANCOVA,
+aov_ancova_with_within,ID:affect,3,affect,SS,6839.29,ANCOVA,
+aov_ancova_with_within,ID:affect,3,affect,MS,6839.29,ANCOVA,
+aov_ancova_with_within,ID:affect,3,affect,F,200.9563,ANCOVA,
+aov_ancova_with_within,ID:affect,3,affect,p,5.431789e-32,ANCOVA,
+aov_ancova_with_within,ID:affect,4,Residuals,df,199,ANCOVA,
+aov_ancova_with_within,ID:affect,4,Residuals,SS,6772.71,ANCOVA,
+aov_ancova_with_within,ID:affect,4,Residuals,MS,34.03372,ANCOVA,
+lm_simple,coefficients,1,(Intercept),b,24.39,Linear regression,
+lm_simple,coefficients,1,(Intercept),SE,1.502073,Linear regression,
+lm_simple,coefficients,1,(Intercept),t,16.23756,Linear regression,
+lm_simple,coefficients,1,(Intercept),p,2.986711e-38,Linear regression,
+lm_simple,coefficients,1,(Intercept),df,198,Linear regression,
+lm_simple,coefficients,2,conditionmortality salience,b,2.77,Linear regression,
+lm_simple,coefficients,2,conditionmortality salience,SE,2.124252,Linear regression,
+lm_simple,coefficients,2,conditionmortality salience,t,1.303988,Linear regression,
+lm_simple,coefficients,2,conditionmortality salience,p,0.1937515,Linear regression,
+lm_simple,coefficients,2,conditionmortality salience,df,198,Linear regression,
+lm_simple,model,,,R squared,0.008514683,Linear regression,
+lm_simple,model,,,adjusted R squared,0.003507181,Linear regression,
+lm_simple,model,,,F,1.700385,Linear regression,
+lm_simple,model,,,numerator df,1,Linear regression,
+lm_simple,model,,,denominator df,198,Linear regression,
+lm_simple,model,,,p,0.1937515,Linear regression,
+lm_multiple,coefficients,1,(Intercept),b,38.3071,Linear regression,
+lm_multiple,coefficients,1,(Intercept),SE,7.192309,Linear regression,
+lm_multiple,coefficients,1,(Intercept),t,5.326119,Linear regression,
+lm_multiple,coefficients,1,(Intercept),p,2.724486e-07,Linear regression,
+lm_multiple,coefficients,1,(Intercept),df,197,Linear regression,
+lm_multiple,coefficients,2,conditionmortality salience,b,2.396458,Linear regression,
+lm_multiple,coefficients,2,conditionmortality salience,SE,2.117239,Linear regression,
+lm_multiple,coefficients,2,conditionmortality salience,t,1.131879,Linear regression,
+lm_multiple,coefficients,2,conditionmortality salience,p,0.2590612,Linear regression,
+lm_multiple,coefficients,2,conditionmortality salience,df,197,Linear regression,
+lm_multiple,coefficients,3,anxiety,b,-4.269048,Linear regression,
+lm_multiple,coefficients,3,anxiety,SE,2.158293,Linear regression,
+lm_multiple,coefficients,3,anxiety,t,-1.977974,Linear regression,
+lm_multiple,coefficients,3,anxiety,p,0.04932566,Linear regression,
+lm_multiple,coefficients,3,anxiety,df,197,Linear regression,
+lm_multiple,model,,,R squared,0.02782195,Linear regression,
+lm_multiple,model,,,adjusted R squared,0.01795212,Linear regression,
+lm_multiple,model,,,F,2.818889,Linear regression,
+lm_multiple,model,,,numerator df,2,Linear regression,
+lm_multiple,model,,,denominator df,197,Linear regression,
+lm_multiple,model,,,p,0.06208151,Linear regression,
+lm_interaction,coefficients,1,(Intercept),b,29.44665,Linear regression,
+lm_interaction,coefficients,1,(Intercept),SE,9.931119,Linear regression,
+lm_interaction,coefficients,1,(Intercept),t,2.965089,Linear regression,
+lm_interaction,coefficients,1,(Intercept),p,0.003401655,Linear regression,
+lm_interaction,coefficients,1,(Intercept),df,196,Linear regression,
+lm_interaction,coefficients,2,conditionmortality salience,b,20.2946,Linear regression,
+lm_interaction,coefficients,2,conditionmortality salience,SE,14.0194,Linear regression,
+lm_interaction,coefficients,2,conditionmortality salience,t,1.447609,Linear regression,
+lm_interaction,coefficients,2,conditionmortality salience,p,0.1493242,Linear regression,
+lm_interaction,coefficients,2,conditionmortality salience,df,196,Linear regression,
+lm_interaction,coefficients,3,anxiety,b,-1.551121,Linear regression,
+lm_interaction,coefficients,3,anxiety,SE,3.011938,Linear regression,
+lm_interaction,coefficients,3,anxiety,t,-0.514991,Linear regression,
+lm_interaction,coefficients,3,anxiety,p,0.6071396,Linear regression,
+lm_interaction,coefficients,3,anxiety,df,196,Linear regression,
+lm_interaction,coefficients,4,conditionmortality salience:anxiety,b,-5.566689,Linear regression,
+lm_interaction,coefficients,4,conditionmortality salience:anxiety,SE,4.310479,Linear regression,
+lm_interaction,coefficients,4,conditionmortality salience:anxiety,t,-1.291432,Linear regression,
+lm_interaction,coefficients,4,conditionmortality salience:anxiety,p,0.198075,Linear regression,
+lm_interaction,coefficients,4,conditionmortality salience:anxiety,df,196,Linear regression,
+lm_interaction,model,,,R squared,0.03602458,Linear regression,
+lm_interaction,model,,,adjusted R squared,0.02126985,Linear regression,
+lm_interaction,model,,,F,2.441562,Linear regression,
+lm_interaction,model,,,numerator df,3,Linear regression,
+lm_interaction,model,,,denominator df,196,Linear regression,
+lm_interaction,model,,,p,0.06551503,Linear regression,
+glm_poisson,coefficients,1,(Intercept),b,3.044522,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,1,(Intercept),SE,0.1708987,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,1,(Intercept),t,17.81478,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,1,(Intercept),p,5.426767e-71,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,1,(Intercept),df,4,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,2,outcome2,b,-0.4542553,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,2,outcome2,SE,0.2021708,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,2,outcome2,t,-2.246889,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,2,outcome2,p,0.02464711,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,2,outcome2,df,4,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,3,outcome3,b,-0.2929871,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,3,outcome3,SE,0.1927423,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,3,outcome3,t,-1.520097,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,3,outcome3,p,0.1284865,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,3,outcome3,df,4,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,4,treatment2,b,1.337909e-15,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,4,treatment2,SE,0.2,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,4,treatment2,t,6.689547e-15,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,4,treatment2,p,1,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,4,treatment2,df,4,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,5,treatment3,b,1.421085e-15,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,5,treatment3,SE,0.2,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,5,treatment3,t,7.105427e-15,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,5,treatment3,p,1,Generalized linear model,family: poisson; link function: log
+glm_poisson,coefficients,5,treatment3,df,4,Generalized linear model,family: poisson; link function: log
+glm_poisson,model,,,dispersion,1,Generalized linear model,family: poisson; link function: log
+glm_poisson,model,,,null deviance,10.58145,Generalized linear model,family: poisson; link function: log
+glm_poisson,model,,,null deviance df,8,Generalized linear model,family: poisson; link function: log
+glm_poisson,model,,,residual deviance,5.129141,Generalized linear model,family: poisson; link function: log
+glm_poisson,model,,,residual deviance df,4,Generalized linear model,family: poisson; link function: log
+glm_poisson,model,,,AIC,56.76132,Generalized linear model,family: poisson; link function: log
+glm_poisson,model,,,Fisher Scoring iterations,4,Generalized linear model,family: poisson; link function: log
+glm_gaussian,coefficients,1,(Intercept),b,49.77111,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,1,(Intercept),SE,13.39096,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,1,(Intercept),t,3.71677,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,1,(Intercept),p,0.0004101067,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,1,(Intercept),df,68,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,2,Prewt,b,-0.5655388,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,2,Prewt,SE,0.1611824,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,2,Prewt,t,-3.508689,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,2,Prewt,p,0.000803425,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,2,Prewt,df,68,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,3,TreatCont,b,-4.097066,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,3,TreatCont,SE,1.893493,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,3,TreatCont,t,-2.163761,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,3,TreatCont,p,0.03399931,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,3,TreatCont,df,68,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,4,TreatFT,b,4.563063,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,4,TreatFT,SE,2.133336,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,4,TreatFT,t,2.138933,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,4,TreatFT,p,0.03603508,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,coefficients,4,TreatFT,df,68,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,model,,,dispersion,48.69504,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,model,,,null deviance,4525.386,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,model,,,null deviance df,71,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,model,,,residual deviance,3311.263,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,model,,,residual deviance df,68,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,model,,,AIC,489.9733,Generalized linear model,family: gaussian; link function: identity
+glm_gaussian,model,,,Fisher Scoring iterations,2,Generalized linear model,family: gaussian; link function: identity
+glm_gamma,coefficients,1,(Intercept),b,-0.01655438,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,coefficients,1,(Intercept),SE,0.0009275466,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,coefficients,1,(Intercept),t,-17.84749,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,coefficients,1,(Intercept),p,4.279149e-07,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,coefficients,1,(Intercept),df,7,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,coefficients,2,log(u),b,0.01534311,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,coefficients,2,log(u),SE,0.0004149596,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,coefficients,2,log(u),t,36.97496,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,coefficients,2,log(u),p,2.751191e-09,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,coefficients,2,log(u),df,7,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,model,,,dispersion,0.002446059,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,model,,,null deviance,3.512826,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,model,,,null deviance df,8,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,model,,,residual deviance,0.01672972,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,model,,,residual deviance df,7,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,model,,,AIC,37.98992,Generalized linear model,family: Gamma; link function: inverse
+glm_gamma,model,,,Fisher Scoring iterations,3,Generalized linear model,family: Gamma; link function: inverse
+lm_confint,coefficients,1,(Intercept),b,0.7406477,Linear regression,
+lm_confint,coefficients,1,(Intercept),SE,0.7385944,Linear regression,
+lm_confint,coefficients,1,(Intercept),t,1.00278,Linear regression,
+lm_confint,coefficients,1,(Intercept),p,0.3248699,Linear regression,
+lm_confint,coefficients,1,(Intercept),df,27,Linear regression,
+lm_confint,coefficients,1,(Intercept),2.5% CI,-0.7748229,Linear regression,
+lm_confint,coefficients,1,(Intercept),97.5% CI,2.256118,Linear regression,
+lm_confint,coefficients,2,disp,b,0.002702925,Linear regression,
+lm_confint,coefficients,2,disp,SE,0.0027151,Linear regression,
+lm_confint,coefficients,2,disp,t,0.995516,Linear regression,
+lm_confint,coefficients,2,disp,p,0.3283241,Linear regression,
+lm_confint,coefficients,2,disp,df,27,Linear regression,
+lm_confint,coefficients,2,disp,2.5% CI,-0.002867999,Linear regression,
+lm_confint,coefficients,2,disp,97.5% CI,0.008273849,Linear regression,
+lm_confint,coefficients,3,hp,b,0.005274547,Linear regression,
+lm_confint,coefficients,3,hp,SE,0.003253255,Linear regression,
+lm_confint,coefficients,3,hp,t,1.621314,Linear regression,
+lm_confint,coefficients,3,hp,p,0.1165719,Linear regression,
+lm_confint,coefficients,3,hp,df,27,Linear regression,
+lm_confint,coefficients,3,hp,2.5% CI,-0.00140058,Linear regression,
+lm_confint,coefficients,3,hp,97.5% CI,0.01194967,Linear regression,
+lm_confint,coefficients,4,wt,b,1.001303,Linear regression,
+lm_confint,coefficients,4,wt,SE,0.3027611,Linear regression,
+lm_confint,coefficients,4,wt,t,3.307239,Linear regression,
+lm_confint,coefficients,4,wt,p,0.002671326,Linear regression,
+lm_confint,coefficients,4,wt,df,27,Linear regression,
+lm_confint,coefficients,4,wt,2.5% CI,0.3800887,Linear regression,
+lm_confint,coefficients,4,wt,97.5% CI,1.622518,Linear regression,
+lm_confint,coefficients,5,am,b,0.1558148,Linear regression,
+lm_confint,coefficients,5,am,SE,0.3755147,Linear regression,
+lm_confint,coefficients,5,am,t,0.4149366,Linear regression,
+lm_confint,coefficients,5,am,p,0.681467,Linear regression,
+lm_confint,coefficients,5,am,df,27,Linear regression,
+lm_confint,coefficients,5,am,2.5% CI,-0.6146777,Linear regression,
+lm_confint,coefficients,5,am,97.5% CI,0.9263073,Linear regression,
+lm_confint,model,,,R squared,0.8527159,Linear regression,
+lm_confint,model,,,adjusted R squared,0.830896,Linear regression,
+lm_confint,model,,,F,39.07979,Linear regression,
+lm_confint,model,,,numerator df,4,Linear regression,
+lm_confint,model,,,denominator df,27,Linear regression,
+lm_confint,model,,,p,7.36918e-11,Linear regression,
+confint_lm_95,,,(Intercept),2.5% CI,-0.7748229,,
+confint_lm_95,,,(Intercept),97.5% CI,2.256118,,
+confint_lm_95,,,disp,2.5% CI,-0.002867999,,
+confint_lm_95,,,disp,97.5% CI,0.008273849,,
+confint_lm_95,,,hp,2.5% CI,-0.00140058,,
+confint_lm_95,,,hp,97.5% CI,0.01194967,,
+confint_lm_95,,,wt,2.5% CI,0.3800887,,
+confint_lm_95,,,wt,97.5% CI,1.622518,,
+confint_lm_95,,,am,2.5% CI,-0.6146777,,
+confint_lm_95,,,am,97.5% CI,0.9263073,,
+confint_lm_90,,,(Intercept),5% CI,-0.5173917,,
+confint_lm_90,,,(Intercept),95% CI,1.998687,,
+confint_lm_90,,,disp,5% CI,-0.001921673,,
+confint_lm_90,,,disp,95% CI,0.007327523,,
+confint_lm_90,,,hp,5% CI,-0.0002666842,,
+confint_lm_90,,,hp,95% CI,0.01081578,,
+confint_lm_90,,,wt,5% CI,0.4856137,,
+confint_lm_90,,,wt,95% CI,1.516993,,
+confint_lm_90,,,am,5% CI,-0.4837951,,
+confint_lm_90,,,am,95% CI,0.7954246,,
+confint_glm_profile_likelihood,,,(Intercept),2.5% CI,2.695822,,
+confint_glm_profile_likelihood,,,(Intercept),97.5% CI,3.366556,,
+confint_glm_profile_likelihood,,,outcome2,2.5% CI,-0.8577018,,
+confint_glm_profile_likelihood,,,outcome2,97.5% CI,-0.0625584,,
+confint_glm_profile_likelihood,,,outcome3,2.5% CI,-0.6753696,,
+confint_glm_profile_likelihood,,,outcome3,97.5% CI,0.08244089,,
+confint_glm_profile_likelihood,,,treatment2,2.5% CI,-0.3932548,,
+confint_glm_profile_likelihood,,,treatment2,97.5% CI,0.3932548,,
+confint_glm_profile_likelihood,,,treatment3,2.5% CI,-0.3932548,,
+confint_glm_profile_likelihood,,,treatment3,97.5% CI,0.3932548,,
+confint_glm_asymptotic_normality,,,(Intercept),2.5% CI,2.709567,,
+confint_glm_asymptotic_normality,,,(Intercept),97.5% CI,3.379478,,
+confint_glm_asymptotic_normality,,,outcome2,2.5% CI,-0.8505027,,
+confint_glm_asymptotic_normality,,,outcome2,97.5% CI,-0.05800787,,
+confint_glm_asymptotic_normality,,,outcome3,2.5% CI,-0.6707552,,
+confint_glm_asymptotic_normality,,,outcome3,97.5% CI,0.08478093,,
+confint_glm_asymptotic_normality,,,treatment2,2.5% CI,-0.3919928,,
+confint_glm_asymptotic_normality,,,treatment2,97.5% CI,0.3919928,,
+confint_glm_asymptotic_normality,,,treatment3,2.5% CI,-0.3919928,,
+confint_glm_asymptotic_normality,,,treatment3,97.5% CI,0.3919928,,
+lme4_lme,model,1,(Observations),N,180,Linear mixed model {lme4},
+lme4_lme,model,2,Subject,N,18,Linear mixed model {lme4},
+lme4_lme,random,3,Subject-(Intercept),var,612.0898,Linear mixed model {lme4},
+lme4_lme,random,3,Subject-(Intercept),SD,24.74045,Linear mixed model {lme4},
+lme4_lme,random,4,Subject-Days,var,35.07166,Linear mixed model {lme4},
+lme4_lme,random,4,Subject-Days,SD,5.922133,Linear mixed model {lme4},
+lme4_lme,random,5,Subject-(Intercept)-Days,var,9.604335,Linear mixed model {lme4},
+lme4_lme,random,5,Subject-(Intercept)-Days,SD,0.06555134,Linear mixed model {lme4},
+lme4_lme,random,6,Residual,var,654.941,Linear mixed model {lme4},
+lme4_lme,random,6,Residual,SD,25.59182,Linear mixed model {lme4},
+lme4_lme,fixed,7,(Intercept),estimate,251.4051,Linear mixed model {lme4},
+lme4_lme,fixed,7,(Intercept),SE,6.824556,Linear mixed model {lme4},
+lme4_lme,fixed,7,(Intercept),t,36.83831,Linear mixed model {lme4},
+lme4_lme,fixed,8,Days,estimate,10.46729,Linear mixed model {lme4},
+lme4_lme,fixed,8,Days,SE,1.545789,Linear mixed model {lme4},
+lme4_lme,fixed,8,Days,t,6.771485,Linear mixed model {lme4},
+lme4_lme_uncorrelated,model,1,(Observations),N,180,Linear mixed model {lme4},
+lme4_lme_uncorrelated,model,2,Subject,N,18,Linear mixed model {lme4},
+lme4_lme_uncorrelated,random,3,Subject-(Intercept),var,627.5691,Linear mixed model {lme4},
+lme4_lme_uncorrelated,random,3,Subject-(Intercept),SD,25.05133,Linear mixed model {lme4},
+lme4_lme_uncorrelated,random,4,Subject.1-Days,var,35.8582,Linear mixed model {lme4},
+lme4_lme_uncorrelated,random,4,Subject.1-Days,SD,5.988172,Linear mixed model {lme4},
+lme4_lme_uncorrelated,random,5,Residual,var,653.5838,Linear mixed model {lme4},
+lme4_lme_uncorrelated,random,5,Residual,SD,25.56529,Linear mixed model {lme4},
+lme4_lme_uncorrelated,fixed,6,(Intercept),estimate,251.4051,Linear mixed model {lme4},
+lme4_lme_uncorrelated,fixed,6,(Intercept),SE,6.885382,Linear mixed model {lme4},
+lme4_lme_uncorrelated,fixed,6,(Intercept),t,36.51288,Linear mixed model {lme4},
+lme4_lme_uncorrelated,fixed,7,Days,estimate,10.46729,Linear mixed model {lme4},
+lme4_lme_uncorrelated,fixed,7,Days,SE,1.559566,Linear mixed model {lme4},
+lme4_lme_uncorrelated,fixed,7,Days,t,6.711666,Linear mixed model {lme4},
+lme4_lme_dummies,model,1,(Observations),N,108,Linear mixed model {lme4},
+lme4_lme_dummies,model,2,Subject,N,27,Linear mixed model {lme4},
+lme4_lme_dummies,random,3,Subject-(Intercept),var,5.41511,Linear mixed model {lme4},
+lme4_lme_dummies,random,3,Subject-(Intercept),SD,2.327039,Linear mixed model {lme4},
+lme4_lme_dummies,random,4,Subject-age,var,0.05126967,Linear mixed model {lme4},
+lme4_lme_dummies,random,4,Subject-age,SD,0.2264281,Linear mixed model {lme4},
+lme4_lme_dummies,random,5,Subject-(Intercept)-age,var,-0.3210623,Linear mixed model {lme4},
+lme4_lme_dummies,random,5,Subject-(Intercept)-age,SD,-0.609334,Linear mixed model {lme4},
+lme4_lme_dummies,random,6,Subject.1-nsex,var,0,Linear mixed model {lme4},
+lme4_lme_dummies,random,6,Subject.1-nsex,SD,0,Linear mixed model {lme4},
+lme4_lme_dummies,random,7,Subject.2-nsexage,var,0,Linear mixed model {lme4},
+lme4_lme_dummies,random,7,Subject.2-nsexage,SD,0,Linear mixed model {lme4},
+lme4_lme_dummies,random,8,Residual,var,1.716203,Linear mixed model {lme4},
+lme4_lme_dummies,random,8,Residual,SD,1.310039,Linear mixed model {lme4},
+lme4_lme_dummies,fixed,9,(Intercept),estimate,16.76111,Linear mixed model {lme4},
+lme4_lme_dummies,fixed,9,(Intercept),SE,0.7752464,Linear mixed model {lme4},
+lme4_lme_dummies,fixed,9,(Intercept),t,21.62037,Linear mixed model {lme4},
+lme4_lme_dummies,fixed,10,age,estimate,0.6601852,Linear mixed model {lme4},
+lme4_lme_dummies,fixed,10,age,SE,0.07125329,Linear mixed model {lme4},
+lme4_lme_dummies,fixed,10,age,t,9.26533,Linear mixed model {lme4},
+lmerTest_lme,model,1,(Observations),N,180,Linear mixed model {lmerTest},
+lmerTest_lme,model,2,Subject,N,18,Linear mixed model {lmerTest},
+lmerTest_lme,random,3,Subject-(Intercept),var,612.0898,Linear mixed model {lmerTest},
+lmerTest_lme,random,3,Subject-(Intercept),SD,24.74045,Linear mixed model {lmerTest},
+lmerTest_lme,random,4,Subject-Days,var,35.07166,Linear mixed model {lmerTest},
+lmerTest_lme,random,4,Subject-Days,SD,5.922133,Linear mixed model {lmerTest},
+lmerTest_lme,random,5,Subject-(Intercept)-Days,var,9.604335,Linear mixed model {lmerTest},
+lmerTest_lme,random,5,Subject-(Intercept)-Days,SD,0.06555134,Linear mixed model {lmerTest},
+lmerTest_lme,random,6,Residual,var,654.941,Linear mixed model {lmerTest},
+lmerTest_lme,random,6,Residual,SD,25.59182,Linear mixed model {lmerTest},
+lmerTest_lme,fixed,7,(Intercept),estimate,251.4051,Linear mixed model {lmerTest},
+lmerTest_lme,fixed,7,(Intercept),SE,6.824556,Linear mixed model {lmerTest},
+lmerTest_lme,fixed,7,(Intercept),df,17,Linear mixed model {lmerTest},
+lmerTest_lme,fixed,7,(Intercept),t,36.83831,Linear mixed model {lmerTest},
+lmerTest_lme,fixed,7,(Intercept),p,1.170875e-17,Linear mixed model {lmerTest},
+lmerTest_lme,fixed,8,Days,estimate,10.46729,Linear mixed model {lmerTest},
+lmerTest_lme,fixed,8,Days,SE,1.545789,Linear mixed model {lmerTest},
+lmerTest_lme,fixed,8,Days,df,17,Linear mixed model {lmerTest},
+lmerTest_lme,fixed,8,Days,t,6.771485,Linear mixed model {lmerTest},
+lmerTest_lme,fixed,8,Days,p,3.26379e-06,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,model,1,(Observations),N,180,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,model,2,Subject,N,18,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,random,3,Subject-(Intercept),var,627.5691,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,random,3,Subject-(Intercept),SD,25.05133,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,random,4,Subject.1-Days,var,35.8582,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,random,4,Subject.1-Days,SD,5.988172,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,random,5,Residual,var,653.5838,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,random,5,Residual,SD,25.56529,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,fixed,6,(Intercept),estimate,251.4051,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,fixed,6,(Intercept),SE,6.885382,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,fixed,6,(Intercept),df,18.1562,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,fixed,6,(Intercept),t,36.51288,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,fixed,6,(Intercept),p,1.893365e-18,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,fixed,7,Days,estimate,10.46729,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,fixed,7,Days,SE,1.559566,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,fixed,7,Days,df,18.1562,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,fixed,7,Days,t,6.711666,Linear mixed model {lmerTest},
+lmerTest_lme_uncorrelated,fixed,7,Days,p,2.593946e-06,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,model,1,(Observations),N,108,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,model,2,Subject,N,27,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,random,3,Subject-(Intercept),var,5.41511,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,random,3,Subject-(Intercept),SD,2.327039,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,random,4,Subject-age,var,0.05126967,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,random,4,Subject-age,SD,0.2264281,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,random,5,Subject-(Intercept)-age,var,-0.3210623,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,random,5,Subject-(Intercept)-age,SD,-0.609334,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,random,6,Subject.1-nsex,var,0,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,random,6,Subject.1-nsex,SD,0,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,random,7,Subject.2-nsexage,var,0,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,random,7,Subject.2-nsexage,SD,0,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,random,8,Residual,var,1.716203,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,random,8,Residual,SD,1.310039,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,fixed,9,(Intercept),estimate,16.76111,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,fixed,9,(Intercept),SE,0.7752464,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,fixed,9,(Intercept),df,25.99999,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,fixed,9,(Intercept),t,21.62037,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,fixed,9,(Intercept),p,3.835155e-18,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,fixed,10,age,estimate,0.6601852,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,fixed,10,age,SE,0.07125329,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,fixed,10,age,df,25.99999,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,fixed,10,age,t,9.26533,Linear mixed model {lmerTest},
+lmerTest_lme_dummies,fixed,10,age,p,1.013245e-09,Linear mixed model {lmerTest},
+psych_alpha,,,,raw_alpha,0.684717,alpha {psych},
+psych_alpha,,,,std_alpha,0.6826079,alpha {psych},
+psych_alpha,,,,G6,0.6899729,alpha {psych},
+psych_alpha,,,,average_r,0.125399,alpha {psych},
+psych_alpha,,,,signal_noise_ratio,2.150677,alpha {psych},
+psych_alpha,,,,alpha_standard_error,0.007614516,alpha {psych},
+psych_alpha,,,,M,1.48432,alpha {psych},
+psych_alpha,,,,SD,0.1977682,alpha {psych},
+psych_alpha,,,,median_r,0.1049543,alpha {psych},
+psych_alpha,,,,raw_alpha_lower,0.6697926,alpha {psych},
+psych_alpha,,,,raw_alpha_upper,0.6996415,alpha {psych},
+psych_correlations,,1,rating - complaints,r,0.8254176,Pearson's product-moment correlation {psych},
+psych_correlations,,1,rating - complaints,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,1,rating - complaints,SE,0.1066848,Pearson's product-moment correlation {psych},
+psych_correlations,,1,rating - complaints,t,7.736978,Pearson's product-moment correlation {psych},
+psych_correlations,,1,rating - complaints,p,1.987682e-08,Pearson's product-moment correlation {psych},
+psych_correlations,,1,rating - complaints,2.5% CI,0.6620128,Pearson's product-moment correlation {psych},
+psych_correlations,,1,rating - complaints,97.5% CI,0.9139139,Pearson's product-moment correlation {psych},
+psych_correlations,,2,rating - privileges,r,0.4261169,Pearson's product-moment correlation {psych},
+psych_correlations,,2,rating - privileges,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,2,rating - privileges,SE,0.1709662,Pearson's product-moment correlation {psych},
+psych_correlations,,2,rating - privileges,t,2.492404,Pearson's product-moment correlation {psych},
+psych_correlations,,2,rating - privileges,p,0.01887702,Pearson's product-moment correlation {psych},
+psych_correlations,,2,rating - privileges,2.5% CI,0.07778967,Pearson's product-moment correlation {psych},
+psych_correlations,,2,rating - privileges,97.5% CI,0.6817292,Pearson's product-moment correlation {psych},
+psych_correlations,,3,rating - learning,r,0.6236782,Pearson's product-moment correlation {psych},
+psych_correlations,,3,rating - learning,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,3,rating - learning,SE,0.1477239,Pearson's product-moment correlation {psych},
+psych_correlations,,3,rating - learning,t,4.221919,Pearson's product-moment correlation {psych},
+psych_correlations,,3,rating - learning,p,0.0002311474,Pearson's product-moment correlation {psych},
+psych_correlations,,3,rating - learning,2.5% CI,0.3397475,Pearson's product-moment correlation {psych},
+psych_correlations,,3,rating - learning,97.5% CI,0.8034243,Pearson's product-moment correlation {psych},
+psych_correlations,,4,rating - raises,r,0.590139,Pearson's product-moment correlation {psych},
+psych_correlations,,4,rating - raises,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,4,rating - raises,SE,0.1525657,Pearson's product-moment correlation {psych},
+psych_correlations,,4,rating - raises,t,3.868098,Pearson's product-moment correlation {psych},
+psych_correlations,,4,rating - raises,p,0.0005978237,Pearson's product-moment correlation {psych},
+psych_correlations,,4,rating - raises,2.5% CI,0.2919385,Pearson's product-moment correlation {psych},
+psych_correlations,,4,rating - raises,97.5% CI,0.7837714,Pearson's product-moment correlation {psych},
+psych_correlations,,5,rating - critical,r,0.1564392,Pearson's product-moment correlation {psych},
+psych_correlations,,5,rating - critical,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,5,rating - critical,SE,0.1866554,Pearson's product-moment correlation {psych},
+psych_correlations,,5,rating - critical,t,0.8381174,Pearson's product-moment correlation {psych},
+psych_correlations,,5,rating - critical,p,0.4090626,Pearson's product-moment correlation {psych},
+psych_correlations,,5,rating - critical,2.5% CI,-0.2160041,Pearson's product-moment correlation {psych},
+psych_correlations,,5,rating - critical,97.5% CI,0.4891403,Pearson's product-moment correlation {psych},
+psych_correlations,,6,rating - advance,r,0.1550863,Pearson's product-moment correlation {psych},
+psych_correlations,,6,rating - advance,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,6,rating - advance,SE,0.1866957,Pearson's product-moment correlation {psych},
+psych_correlations,,6,rating - advance,t,0.8306899,Pearson's product-moment correlation {psych},
+psych_correlations,,6,rating - advance,p,0.4131763,Pearson's product-moment correlation {psych},
+psych_correlations,,6,rating - advance,2.5% CI,-0.2173256,Pearson's product-moment correlation {psych},
+psych_correlations,,6,rating - advance,97.5% CI,0.4880848,Pearson's product-moment correlation {psych},
+psych_correlations,,7,complaints - privileges,r,0.5582882,Pearson's product-moment correlation {psych},
+psych_correlations,,7,complaints - privileges,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,7,complaints - privileges,SE,0.1567886,Pearson's product-moment correlation {psych},
+psych_correlations,,7,complaints - privileges,t,3.560771,Pearson's product-moment correlation {psych},
+psych_correlations,,7,complaints - privileges,p,0.001345519,Pearson's product-moment correlation {psych},
+psych_correlations,,7,complaints - privileges,2.5% CI,0.2478751,Pearson's product-moment correlation {psych},
+psych_correlations,,7,complaints - privileges,97.5% CI,0.7647418,Pearson's product-moment correlation {psych},
+psych_correlations,,8,complaints - learning,r,0.5967358,Pearson's product-moment correlation {psych},
+psych_correlations,,8,complaints - learning,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,8,complaints - learning,SE,0.1516465,Pearson's product-moment correlation {psych},
+psych_correlations,,8,complaints - learning,t,3.935045,Pearson's product-moment correlation {psych},
+psych_correlations,,8,complaints - learning,p,0.000500017,Pearson's product-moment correlation {psych},
+psych_correlations,,8,complaints - learning,2.5% CI,0.3012258,Pearson's product-moment correlation {psych},
+psych_correlations,,8,complaints - learning,97.5% CI,0.7876678,Pearson's product-moment correlation {psych},
+psych_correlations,,9,complaints - raises,r,0.6691975,Pearson's product-moment correlation {psych},
+psych_correlations,,9,complaints - raises,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,9,complaints - raises,SE,0.1404298,Pearson's product-moment correlation {psych},
+psych_correlations,,9,complaints - raises,t,4.765353,Pearson's product-moment correlation {psych},
+psych_correlations,,9,complaints - raises,p,5.267508e-05,Pearson's product-moment correlation {psych},
+psych_correlations,,9,complaints - raises,2.5% CI,0.407069,Pearson's product-moment correlation {psych},
+psych_correlations,,9,complaints - raises,97.5% CI,0.8294851,Pearson's product-moment correlation {psych},
+psych_correlations,,10,complaints - critical,r,0.1877143,Pearson's product-moment correlation {psych},
+psych_correlations,,10,complaints - critical,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,10,complaints - critical,SE,0.1856228,Pearson's product-moment correlation {psych},
+psych_correlations,,10,complaints - critical,t,1.011267,Pearson's product-moment correlation {psych},
+psych_correlations,,10,complaints - critical,p,0.3205482,Pearson's product-moment correlation {psych},
+psych_correlations,,10,complaints - critical,2.5% CI,-0.1850709,Pearson's product-moment correlation {psych},
+psych_correlations,,10,complaints - critical,97.5% CI,0.5132721,Pearson's product-moment correlation {psych},
+psych_correlations,,11,complaints - advance,r,0.2245796,Pearson's product-moment correlation {psych},
+psych_correlations,,11,complaints - advance,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,11,complaints - advance,SE,0.1841548,Pearson's product-moment correlation {psych},
+psych_correlations,,11,complaints - advance,t,1.219515,Pearson's product-moment correlation {psych},
+psych_correlations,,11,complaints - advance,p,0.2328224,Pearson's product-moment correlation {psych},
+psych_correlations,,11,complaints - advance,2.5% CI,-0.1476347,Pearson's product-moment correlation {psych},
+psych_correlations,,11,complaints - advance,97.5% CI,0.5410712,Pearson's product-moment correlation {psych},
+psych_correlations,,12,privileges - learning,r,0.493331,Pearson's product-moment correlation {psych},
+psych_correlations,,12,privileges - learning,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,12,privileges - learning,SE,0.1643846,Pearson's product-moment correlation {psych},
+psych_correlations,,12,privileges - learning,t,3.001077,Pearson's product-moment correlation {psych},
+psych_correlations,,12,privileges - learning,p,0.005602447,Pearson's product-moment correlation {psych},
+psych_correlations,,12,privileges - learning,2.5% CI,0.1618228,Pearson's product-moment correlation {psych},
+psych_correlations,,12,privileges - learning,97.5% CI,0.7247831,Pearson's product-moment correlation {psych},
+psych_correlations,,13,privileges - raises,r,0.4454779,Pearson's product-moment correlation {psych},
+psych_correlations,,13,privileges - raises,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,13,privileges - raises,SE,0.1691945,Pearson's product-moment correlation {psych},
+psych_correlations,,13,privileges - raises,t,2.632935,Pearson's product-moment correlation {psych},
+psych_correlations,,13,privileges - raises,p,0.01362357,Pearson's product-moment correlation {psych},
+psych_correlations,,13,privileges - raises,2.5% CI,0.1014984,Pearson's product-moment correlation {psych},
+psych_correlations,,13,privileges - raises,97.5% CI,0.6943151,Pearson's product-moment correlation {psych},
+psych_correlations,,14,privileges - critical,r,0.1472331,Pearson's product-moment correlation {psych},
+psych_correlations,,14,privileges - critical,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,14,privileges - critical,SE,0.1869227,Pearson's product-moment correlation {psych},
+psych_correlations,,14,privileges - critical,t,0.7876687,Pearson's product-moment correlation {psych},
+psych_correlations,,14,privileges - critical,p,0.437508,Pearson's product-moment correlation {psych},
+psych_correlations,,14,privileges - critical,2.5% CI,-0.2249693,Pearson's product-moment correlation {psych},
+psych_correlations,,14,privileges - critical,97.5% CI,0.4819386,Pearson's product-moment correlation {psych},
+psych_correlations,,15,privileges - advance,r,0.3432934,Pearson's product-moment correlation {psych},
+psych_correlations,,15,privileges - advance,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,15,privileges - advance,SE,0.1774974,Pearson's product-moment correlation {psych},
+psych_correlations,,15,privileges - advance,t,1.934075,Pearson's product-moment correlation {psych},
+psych_correlations,,15,privileges - advance,p,0.06326907,Pearson's product-moment correlation {psych},
+psych_correlations,,15,privileges - advance,2.5% CI,-0.01937163,Pearson's product-moment correlation {psych},
+psych_correlations,,15,privileges - advance,97.5% CI,0.6261248,Pearson's product-moment correlation {psych},
+psych_correlations,,16,learning - raises,r,0.6403144,Pearson's product-moment correlation {psych},
+psych_correlations,,16,learning - raises,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,16,learning - raises,SE,0.1451597,Pearson's product-moment correlation {psych},
+psych_correlations,,16,learning - raises,t,4.411103,Pearson's product-moment correlation {psych},
+psych_correlations,,16,learning - raises,p,0.0001383877,Pearson's product-moment correlation {psych},
+psych_correlations,,16,learning - raises,2.5% CI,0.3640191,Pearson's product-moment correlation {psych},
+psych_correlations,,16,learning - raises,97.5% CI,0.8130294,Pearson's product-moment correlation {psych},
+psych_correlations,,17,learning - critical,r,0.1159652,Pearson's product-moment correlation {psych},
+psych_correlations,,17,learning - critical,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,17,learning - critical,SE,0.1877072,Pearson's product-moment correlation {psych},
+psych_correlations,,17,learning - critical,t,0.6177985,Pearson's product-moment correlation {psych},
+psych_correlations,,17,learning - critical,p,0.5417008,Pearson's product-moment correlation {psych},
+psych_correlations,,17,learning - critical,2.5% CI,-0.2549557,Pearson's product-moment correlation {psych},
+psych_correlations,,17,learning - critical,97.5% CI,0.4571359,Pearson's product-moment correlation {psych},
+psych_correlations,,18,learning - advance,r,0.5316198,Pearson's product-moment correlation {psych},
+psych_correlations,,18,learning - advance,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,18,learning - advance,SE,0.1600648,Pearson's product-moment correlation {psych},
+psych_correlations,,18,learning - advance,t,3.321279,Pearson's product-moment correlation {psych},
+psych_correlations,,18,learning - advance,p,0.002500546,Pearson's product-moment correlation {psych},
+psych_correlations,,18,learning - advance,2.5% CI,0.2119433,Pearson's product-moment correlation {psych},
+psych_correlations,,18,learning - advance,97.5% CI,0.7485265,Pearson's product-moment correlation {psych},
+psych_correlations,,19,raises - critical,r,0.376883,Pearson's product-moment correlation {psych},
+psych_correlations,,19,raises - critical,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,19,raises - critical,SE,0.1750469,Pearson's product-moment correlation {psych},
+psych_correlations,,19,raises - critical,t,2.15304,Pearson's product-moment correlation {psych},
+psych_correlations,,19,raises - critical,p,0.04007664,Pearson's product-moment correlation {psych},
+psych_correlations,,19,raises - critical,2.5% CI,0.01922396,Pearson's product-moment correlation {psych},
+psych_correlations,,19,raises - critical,97.5% CI,0.6490276,Pearson's product-moment correlation {psych},
+psych_correlations,,20,raises - advance,r,0.5741862,Pearson's product-moment correlation {psych},
+psych_correlations,,20,raises - advance,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,20,raises - advance,SE,0.1547244,Pearson's product-moment correlation {psych},
+psych_correlations,,20,raises - advance,t,3.711024,Pearson's product-moment correlation {psych},
+psych_correlations,,20,raises - advance,p,0.0009067703,Pearson's product-moment correlation {psych},
+psych_correlations,,20,raises - advance,2.5% CI,0.2697095,Pearson's product-moment correlation {psych},
+psych_correlations,,20,raises - advance,97.5% CI,0.7742855,Pearson's product-moment correlation {psych},
+psych_correlations,,21,critical - advance,r,0.2833432,Pearson's product-moment correlation {psych},
+psych_correlations,,21,critical - advance,N,30,Pearson's product-moment correlation {psych},
+psych_correlations,,21,critical - advance,SE,0.1812375,Pearson's product-moment correlation {psych},
+psych_correlations,,21,critical - advance,t,1.563381,Pearson's product-moment correlation {psych},
+psych_correlations,,21,critical - advance,p,0.1291961,Pearson's product-moment correlation {psych},
+psych_correlations,,21,critical - advance,2.5% CI,-0.08567137,Pearson's product-moment correlation {psych},
+psych_correlations,,21,critical - advance,97.5% CI,0.583998,Pearson's product-moment correlation {psych},
+psych_ICC,ICC1,,,ICC,0.1657418,,
+psych_ICC,ICC1,,,F,1.794678,,
+psych_ICC,ICC1,,,df1,5,,
+psych_ICC,ICC1,,,df2,18,,
+psych_ICC,ICC1,,,p,0.1647688,,
+psych_ICC,ICC1,,,lower bound,-0.1329323,,
+psych_ICC,ICC1,,,upper bound,0.7225601,,
+psych_ICC,ICC1k,,,ICC,0.4427971,,
+psych_ICC,ICC1k,,,F,1.794678,,
+psych_ICC,ICC1k,,,df1,5,,
+psych_ICC,ICC1k,,,df2,18,,
+psych_ICC,ICC1k,,,p,0.1647688,,
+psych_ICC,ICC1k,,,lower bound,-0.8844422,,
+psych_ICC,ICC1k,,,upper bound,0.9124154,,
+psych_ICC,ICC2,,,ICC,0.2897638,,
+psych_ICC,ICC2,,,F,11.02725,,
+psych_ICC,ICC2,,,df1,5,,
+psych_ICC,ICC2,,,df2,15,,
+psych_ICC,ICC2,,,p,0.0001345665,,
+psych_ICC,ICC2,,,lower bound,0.01878651,,
+psych_ICC,ICC2,,,upper bound,0.7610844,,
+psych_ICC,ICC2k,,,ICC,0.6200505,,
+psych_ICC,ICC2k,,,F,11.02725,,
+psych_ICC,ICC2k,,,df1,5,,
+psych_ICC,ICC2k,,,df2,15,,
+psych_ICC,ICC2k,,,p,0.0001345665,,
+psych_ICC,ICC2k,,,lower bound,0.07113682,,
+psych_ICC,ICC2k,,,upper bound,0.927232,,
+psych_ICC,ICC3,,,ICC,0.7148407,,
+psych_ICC,ICC3,,,F,11.02725,,
+psych_ICC,ICC3,,,df1,5,,
+psych_ICC,ICC3,,,df2,15,,
+psych_ICC,ICC3,,,p,0.0001345665,,
+psych_ICC,ICC3,,,lower bound,0.3424648,,
+psych_ICC,ICC3,,,upper bound,0.9458583,,
+psych_ICC,ICC3k,,,ICC,0.9093155,,
+psych_ICC,ICC3k,,,F,11.02725,,
+psych_ICC,ICC3k,,,df1,5,,
+psych_ICC,ICC3k,,,df2,15,,
+psych_ICC,ICC3k,,,p,0.0001345665,,
+psych_ICC,ICC3k,,,lower bound,0.6756747,,
+psych_ICC,ICC3k,,,upper bound,0.9858917,,
