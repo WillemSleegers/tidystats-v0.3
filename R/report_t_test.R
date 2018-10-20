@@ -42,6 +42,24 @@ report_t_test <- function(results, identifier, statistic = NULL) {
     p  <- report_p_value(p)
 
     output <- paste0("*t*(", df, ") = ", t, ", ", p)
+
+    # Add confidence interval, if it exists
+    res_CI <- filter(res, str_detect(statistic, "[0-9]+% CI"))
+
+    if (nrow(res_CI) > 0) {
+
+      CI_pct <- parse_number(first(pull(res_CI, statistic)))
+
+      CI_lower <- pull(res_CI, value)[1]
+      CI_upper <- pull(res_CI, value)[2]
+
+      CI_lower <- report_statistic("CI", CI_lower)
+      CI_upper <- report_statistic("CI", CI_upper)
+
+      CI <- paste0(CI_pct, "% CI ", "[", CI_lower, ", ", CI_upper, "]")
+
+      output <- paste0(output, ", ", CI)
+    }
   }
 
   return(output)

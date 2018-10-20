@@ -4,16 +4,18 @@
 
 * Changed the argument order in the family of `add_stats()` functions. Previously, the model output or tidy data frame was the first argument. This allowed you to directly pipe the model output into `add_stats()` (using **magrittr**'s %>%). However, an alternative approach is to have the tidystats list to be the first argument. This allows you create a long sequence of pipes. You start with the results list, add a model via `add_stats()`, pipe the result into the next `add_stats()`, and so on. Since you often store your model output in variable names anyway, this is probably more convenient. Additionally, this probably also keeps your script more tidy (you can do this at the end of your data analysis script).
 * Certain statistical models are now tidied differently due to the addition of a 'group' column. Several models like multilevel models, meta-analytic models, and arguably also regression models have more than just terms (e.g., model fit), so to distinguish between coefficients and other parts of the output, a 'group' column has been added. This also means usage of the `report()` is affected, as now the group should be specified when necessary. Affected models are regression, within-subjects ANOVA, multilevel models, and meta-analysis models.
-* Added the *class* argument to `add_stats()`. Rather than having to manually tidy the data first, you can make use of some custom `tidy_stats()` functions by specifying the class argument. Run `?add_stats` to see a list of supported classes.
+* Added the *class* argument to `add_stats()` and `add_stats_to_model()`. Rather than having to manually tidy the data first, you can make use of some custom `tidy_stats()` functions by specifying the class argument. Run `?add_stats` to see a list of supported classes and see the help document of `tidy_stats.confint()` for an example.
 * Under the hood: Added a generic report function for single values called `report_statistic()`. Consequently, all report functions have been updated to use this new generic function.
+* Removed the `identifier` column from each list element when using `read_stats()`.
+* Reordered the columns of `tidy_stats.lm()` and `tidy_stats.glm()` to be consistent with the other `tidy_stats()` functions.
 
 ## Features
 
-* Added a new function called `inspect()`. This function accepts a tidystats results list and will display all results in RStudio's Viewer pane. This allows the user to visually inspect the results and, importantly, copy results in APA style to their clipboard. This function is aimed at users who prefer not to use R Markdown or when you want to quickly run a model and get the results in APA-style.
+* Added a new function called `inspect()`. This function accepts a tidystats results list or the output of a statistical model and will display all results in RStudio's Viewer pane. This allows the user to visually inspect the results and, importantly, copy results in APA style to their clipboard. This function is aimed at users who prefer not to use R Markdown or when you want to quickly run a model and get the results in APA-style.
+* Added support for `glm()`.
 * Added support for lme4's `lmer()` and lmerTest's `lmer()`.
 * Added support for psych's `alpha()`.
 * Added support for psych's `ICC()`.
-* Added support for metafor's `rma()`.
 * Added support for stats' `confint()` via the new `class` argument in `add_stats()` and `add_stats_to_model()`.
 
 ## Improvements
@@ -27,6 +29,10 @@
 ## Bugfixes
 
 * Fixed a bug that would incorrectly classify ANOVAs as One-way ANOVAs when character variables were used rather than factors.
+
+## Misc
+
+* Added tests to the R package to minimize bugs.
 
 # tidystats 0.2
 

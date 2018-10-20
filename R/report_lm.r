@@ -96,27 +96,27 @@ report_lm <- function(results, identifier, group = NULL, term = NULL,
       t  <- report_statistic("t", t)
       p  <- report_p_value(p)
 
+      output <- paste0("*b* = ", b, ", *SE* = ", SE, ", *t*(",  df, ") = ",
+        t, ", ", p)
+
       # Guess whether confidence intervals are included
       res_CI <- dplyr::filter(res, str_detect(statistic, "[1234567890]% CI"))
 
-      if (nrow(res_CI) > 0) {
-        CI_pct <- as.numeric(stringr::str_replace(
-          dplyr::pull(res_CI, statistic), "% CI", ""))
-        CI_pct <- CI_pct[2] - CI_pct[1]
+      # Add confidence interval, if it exists
+      if ("[0-9]% CI" %in% dplyr::pull(res, statistic)) {
+        res_CI <- filter(res, str_detect(statistic, "[0-9]+% CI"))
 
-        CI_value1 <- dplyr::pull(res_CI, value)[1]
-        CI_value2 <- dplyr::pull(res_CI, value)[2]
+        CI_pct <- parse_number(first(pull(res_CI, statistic)))
 
-        CI_value1 <- report_statistic("CI", CI_value1)
-        CI_value2 <- report_statistic("CI", CI_value2)
+        CI_lower <- pull(res_CI, value)[1]
+        CI_upper <- pull(res_CI, value)[2]
 
-        CI <- paste0(CI_pct, "% CI ", "[", CI_value1, ", ", CI_value2, "]")
+        CI_lower <- report_statistic("CI", CI_lower)
+        CI_upper <- report_statistic("CI", CI_upper)
 
-        output <- paste0("*b* = ", b, ", *SE* = ", SE, ", *t*(",  df, ") = ",
-                         t, ", ", p, ", ", CI)
-      } else {
-        output <- paste0("*b* = ", b, ", *SE* = ", SE, ", *t*(",  df, ") = ",
-                         t, ", ", p)
+        CI <- paste0(CI_pct, "% CI ", "[", CI_lower, ", ", CI_upper, "]")
+
+        output <- paste0(output, ", ", CI)
       }
     }
   }

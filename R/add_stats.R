@@ -71,6 +71,6 @@
 #'
 #' @export
 
-add_stats <- function(results, output, identifier = NULL, type = NULL, confirmatory = NULL,
-                      notes = NULL, class = NULL, summary_args = NULL)
+add_stats <- function(results, output, identifier = NULL, type = NULL,
+  confirmatory = NULL, notes = NULL, class = NULL, summary_args = NULL)
   UseMethod("add_stats", output)

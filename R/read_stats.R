@@ -8,6 +8,7 @@
 #' results <- read_stats(system.file("results.csv", package = "tidystats"))
 #'
 #' @import readr
+#' @import purrr
 #'
 #' @export
 
@@ -24,7 +25,10 @@ read_stats <- function(file) {
     sum(!is.na(x)) > 0
   }
 
-  results <- map(results, select_if, empty_column)
+  results <- purrr::map(results, dplyr::select_if, empty_column)
+
+  # Loop over each element and remove the identifier column
+  results <- purrr::map(results, dplyr::select, -identifier)
 
   return(results)
 }
