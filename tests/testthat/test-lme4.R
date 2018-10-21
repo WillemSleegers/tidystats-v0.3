@@ -12,7 +12,7 @@ test_results <- read_stats("test_results.csv")
 test_that("lme4's linear mixed models work", {
   correct <- test_results[["lme4_lme"]]
 
-  model <- lme4::lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
+  model <- lme4::lmer(Reaction ~ Days + (Days | Subject), lme4::sleepstudy)
   output <- tidy_stats(model)
 
   expect_equal(as.data.frame(output), as.data.frame(correct), tolerance = .002)
@@ -21,7 +21,7 @@ test_that("lme4's linear mixed models work", {
 test_that("lme4's linear mixed models with uncorrelated terms work", {
   correct <- test_results[["lme4_lme_uncorrelated"]]
 
-  model <- lme4::lmer(Reaction ~ Days + (Days || Subject), sleepstudy)
+  model <- lme4::lmer(Reaction ~ Days + (Days || Subject), lme4::sleepstudy)
   output <- tidy_stats(model)
 
   expect_equal(as.data.frame(output), as.data.frame(correct), tolerance = .002)

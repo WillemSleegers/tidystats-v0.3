@@ -11,8 +11,6 @@
 #' report_statistic("t", 4.2325)
 #' report_statistic("cor", 0.213)
 #'
-#' @import stringr
-#'
 #' @export
 
 report_statistic <- function(statistic, value) {
@@ -32,8 +30,14 @@ report_statistic <- function(statistic, value) {
     output <- format(value, digits = 2, nsmall = 2)
     output <- stringr::str_replace(output, "0\\.", ".")
   } else if ((statistic == "df" & value %% 1 == 0) |
-             statistic %in% c("n", "N")) {
+      statistic %in% c("n", "N")) {
     output <- format(value, digits = 2, nsmall = 0)
+  } else if (statistic %in% c("V", "W")) {
+    if (value %% 1 == 0) {
+      output <- format(value)
+    } else{
+      output <- format(value, digits = 2, nsmall = 2)
+    }
   } else {
     output <- format(value, digits = 2, nsmall = 2)
   }

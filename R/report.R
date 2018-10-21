@@ -32,12 +32,10 @@
 #' # Example: ANOVA
 #' report("ANOVA", term = "N")
 #'
-#' @import dplyr
-#'
 #' @export
 
-report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = NULL,
-                   statistic = NULL, results = getOption("tidystats_list")) {
+report <- function(identifier, term = NULL, term_nr = NULL, var = NULL,
+  group = NULL, statistic = NULL, results = getOption("tidystats_list")) {
 
   # Check whether the identifier exists, otherwise extract it
   if (!identifier %in% names(results)) {
@@ -52,24 +50,28 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
     # Run the appropriate report function
     if (str_detect(method, "t-test")) {
       output <- report_t_test(results, identifier, statistic)
-    } else if (str_detect(method, "Chi-squared")) {
+    } else if (stringr::str_detect(method, "Chi-squared")) {
       output <- report_chi_squared(results, identifier, statistic)
-    } else if (str_detect(method, "correlation")) {
+    } else if (stringr::str_detect(method, "Wilcoxon")) {
+      output <- report_wilcoxon(results, identifier, statistic)
+    } else if (stringr::str_detect(method, "Fisher")) {
+      output <- report_fisher(results, identifier, statistic)
+    } else if (stringr::str_detect(method, "correlation")) {
       output <- report_correlation(results, identifier, statistic)
-    } else if (str_detect(method, "regression")) {
+    } else if (stringr::str_detect(method, "regression")) {
       output <- report_lm(results, identifier, group, term, term_nr, statistic)
-    } else if (str_detect(method, "ANOVA|ANCOVA")) {
+    } else if (stringr::str_detect(method, "ANOVA|ANCOVA")) {
       output <- report_anova(results, identifier, term, term_nr, statistic)
-    } else if (str_detect(method, "metafor")) {
+    } else if (stringr::str_detect(method, "metafor")) {
       output <- report_rma(results, identifier, group, term, term_nr, statistic)
     } else {
       output <- NULL
     }
   }
 
-  # If output is null, it means we either do not have the report function for that method, or the
-  # results are descriptives. In this case we can report a single statistic if enough information
-  # is provided.
+  # If output is null, it means we either do not have the report function for
+  # that method, or the results are descriptives. In this case we can report a
+  # single statistic if enough information is provided.
   if (is.null(output)) {
 
     # Filter: term
@@ -80,7 +82,7 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
         stop("Term not found.")
       }
 
-      res <- filter(res, term == res_term)
+      res <- dplyr::filter(res, term == res_term)
     }
 
     # Filter: term_nr
@@ -91,7 +93,7 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
         stop("Term number not found.")
       }
 
-      res <- filter(res, term_nr == res_term_nr)
+      res <- dplyr::filter(res, term_nr == res_term_nr)
     }
 
     # Filter: statistic
@@ -102,7 +104,7 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
         stop("Statistic not found.")
       }
 
-      res <- filter(res, statistic == res_statistic)
+      res <- dplyr::filter(res, statistic == res_statistic)
     }
 
     # Filter: group
@@ -113,7 +115,7 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
         stop("Group not found.")
       }
 
-      res <- filter(res, group == res_group)
+      res <- dplyr::filter(res, group == res_group)
     }
 
     # Filter: var
@@ -124,17 +126,19 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
         stop("Variable not found.")
       }
 
-      res <- filter(res, var == res_var)
+      res <- dplyr::filter(res, var == res_var)
     }
 
     # Check if enough information is provided
-    info <- select(res, contains("var"), contains("group"), contains("statistic"), contains("term"))
+    info <- dplyr::select(res, contains("var"), contains("group"),
+      contains("statistic"), contains("term"))
 
     for (column in names(info)) {
 
       if (length(unique(pull(info, column))) > 1) {
 
-        stop(paste("Not enough information provided. Please provide", column, "information."))
+        stop(paste("Not enough information provided. Please provide", column,
+          "information."))
       }
     }
 
@@ -143,7 +147,8 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL, group = 
       output <- report_p_value(res$value[1])
     } else {
 
-      # Check if the value is an integer, else return a string with 2 significant digits
+      # Check if the value is an integer, else return a string with 2
+      # significant digits
       if (res$value[1] %% 1 == 0) {
         output <- prettyNum(res$value[1])
       } else {

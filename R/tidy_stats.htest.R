@@ -31,7 +31,12 @@ tidy_stats.htest <- function(model) {
   # Extract statistics
   output <- dplyr::bind_rows(
     if (!is.null(model$estimate)) {
-      tibble::data_frame(statistic = names(model$estimate),
+      test_statistic <- names(model$estimate)
+
+      test_statistic <- ifelse(test_statistic == "odds ratio", "OR",
+        test_statistic)
+
+      tibble::data_frame(statistic = test_statistic,
         value = model$estimate)
     },
     if (!is.null(model$statistic)) {

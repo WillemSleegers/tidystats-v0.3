@@ -68,26 +68,26 @@ wilcoxon_rank_sum_conf,,,,p,0.2544123,Wilcoxon rank sum test,alternative hypothe
 wilcoxon_rank_sum_conf,,,,90% CI lower,-0.08,Wilcoxon rank sum test,alternative hypothesis: two.sided
 wilcoxon_rank_sum_conf,,,,90% CI upper,0.72,Wilcoxon rank sum test,alternative hypothesis: two.sided
 wilcoxon_rank_sum_conf,,,,null value,0,Wilcoxon rank sum test,alternative hypothesis: two.sided
-fisher_test,,,,odds ratio,6.408309,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
+fisher_test,,,,OR,6.408309,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
 fisher_test,,,,p,0.4857143,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
 fisher_test,,,,95% CI lower,0.2117329,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
 fisher_test,,,,95% CI upper,621.9338,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
 fisher_test,,,,null value,1,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
-fisher_test_alternative_greater,,,,odds ratio,6.408309,Fisher's Exact Test for Count Data,alternative hypothesis: greater
+fisher_test_alternative_greater,,,,OR,6.408309,Fisher's Exact Test for Count Data,alternative hypothesis: greater
 fisher_test_alternative_greater,,,,p,0.2428571,Fisher's Exact Test for Count Data,alternative hypothesis: greater
 fisher_test_alternative_greater,,,,95% CI lower,0.3135693,Fisher's Exact Test for Count Data,alternative hypothesis: greater
 fisher_test_alternative_greater,,,,95% CI upper,Inf,Fisher's Exact Test for Count Data,alternative hypothesis: greater
 fisher_test_alternative_greater,,,,null value,1,Fisher's Exact Test for Count Data,alternative hypothesis: greater
-fisher_test_alternative_less,,,,odds ratio,0.04693661,Fisher's Exact Test for Count Data,alternative hypothesis: less
+fisher_test_alternative_less,,,,OR,0.04693661,Fisher's Exact Test for Count Data,alternative hypothesis: less
 fisher_test_alternative_less,,,,p,0.0004651809,Fisher's Exact Test for Count Data,alternative hypothesis: less
 fisher_test_alternative_less,,,,95% CI lower,0,Fisher's Exact Test for Count Data,alternative hypothesis: less
 fisher_test_alternative_less,,,,95% CI upper,0.2849601,Fisher's Exact Test for Count Data,alternative hypothesis: less
 fisher_test_alternative_less,,,,null value,1,Fisher's Exact Test for Count Data,alternative hypothesis: less
-fisher_test_no_CI,,,,odds ratio,0.04693661,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
+fisher_test_no_CI,,,,OR,0.04693661,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
 fisher_test_no_CI,,,,p,0.0005367241,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
 fisher_test_no_CI,,,,null value,1,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
 fisher_test_r_by_c,,,,p,0.7826849,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided
-fisher_test_simulated_p,,,,p,0.7821022,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided; simulated p-value based on 1e+05 replicates
+fisher_test_simulated_p,,,,p,0.7839822,Fisher's Exact Test for Count Data,alternative hypothesis: two.sided; simulated p-value based on 1e+05 replicates
 fisher_test_hybrid,,,,p,0.03928964,Fisher's Exact Test for Count Data,"alternative hypothesis: two.sided; hybrid using asym.chisq. iff exp=5, perc=80, Emin=1"
 aov_one_way,,1,condition,df,1,One-way ANOVA,
 aov_one_way,,1,condition,SS,383.645,One-way ANOVA,

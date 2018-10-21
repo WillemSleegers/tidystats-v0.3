@@ -23,7 +23,7 @@
 #' @export
 
 report_anova <- function(results, identifier, term = NULL, term_nr = NULL,
-                         statistic = NULL) {
+  statistic = NULL) {
 
   # Extract model results
   res <- results[[identifier]]
@@ -33,7 +33,7 @@ report_anova <- function(results, identifier, term = NULL, term_nr = NULL,
 
     # Check whether the statistic exists
     if (!statistic %in% res$statistic) {
-      stop("Statistic not found.")
+      stop("statistic not found")
     } else {
       res_statistic <- statistic
     }
@@ -42,6 +42,11 @@ report_anova <- function(results, identifier, term = NULL, term_nr = NULL,
     if (!is.null(term)) {
       res <- res[res$term == term, ]
     } else if (!is.null(term_nr)) {
+
+      if (!is.numeric(term_nr)) {
+        stop("term_nr is not a number")
+      }
+
       res <- res[res$term_nr == term_nr, ]
     }
 
@@ -51,8 +56,8 @@ report_anova <- function(results, identifier, term = NULL, term_nr = NULL,
     # Check whether enough information was supplied by checking whether the
     # value vector contains more than 1 element
     if (length(value) > 1) {
-      stop(paste("Not enough information provided, considering adding term",
-                 "information."))
+      stop(paste("not enough information provided, considering adding term",
+                 "information"))
     }
 
     output <- report_statistic(res_statistic, value)
@@ -60,7 +65,11 @@ report_anova <- function(results, identifier, term = NULL, term_nr = NULL,
 
     # Check whether a term or term_nr has been provided
     if (is.null(term) & is.null(term_nr)) {
-      stop("Please provide a term or term number.")
+      stop("Please provide a term or term number")
+    }
+
+    if (!is.null(term_nr) & !as.numeric(term_nr)) {
+      stop("term_nr is not a number")
     }
 
     # Get the provided information
@@ -72,15 +81,16 @@ report_anova <- function(results, identifier, term = NULL, term_nr = NULL,
     # If the statistics of the residuals are requested, throw an error
     if (res_term == "Residuals") {
       stop(paste("APA output for residuals is not supported. Try reporting a",
-                 "single residual statistic instead."))
+        "single residual statistic instead"))
     }
 
     # Extract the dfs and then filter out irrelevant statistics
-    dfs <- dplyr::pull(dplyr::filter(
-      res, statistic == "df" & term_nr >= res_term_nr &
-        (term == res_term | term == "Residuals")), value)
+    dfs <- res %>%
+      dplyr::filter(statistic == "df" & term_nr >= res_term_nr &
+          (term == res_term | term == "Residuals")) %>%
+      pull(value)
 
-    res <- filter(res, term == res_term)
+    res <- dplyr::filter(res, term == res_term)
 
     f      <- dplyr::pull(dplyr::filter(res, statistic == "F"), value)
     p      <- dplyr::pull(dplyr::filter(res, statistic == "p"), value)

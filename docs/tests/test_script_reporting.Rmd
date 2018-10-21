@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidystats)
 
 # Load tidystats results
-results <- read_stats("results.csv")
+results <- read_stats("../../tests/testthat/test_results.csv")
 
 # Set the tidystats list in options
 options(tidystats_list = results)
@@ -18,20 +18,127 @@ options(tidystats_list = results)
 
 ### *t*-tests
 
-#### One sample *t*-test
-`r report("t_test_one_sample")`
+| Test:                       | Code:                         | Output:                         |
+|-----------------------------|-------------------------------|---------------------------------|
+| One sample *t*-test         | `report("t_test_one_sample")` | `r report("t_test_one_sample")` |
+| Two sample *t*-test         | `report("t_test_two_sample")` | `r report("t_test_two_sample")` |
+| Welch's two sample *t*-test | `report("t_test_welch")`      | `r report("t_test_welch")`      |
+| Paired *t*-test             | `report("t_test_paired")`     | `r report("t_test_paired")`     |
 
-#### Two sample *t*-test
-`r report("t_test_two_sample")`
 
-#### Welch's two sample *t*-test
-`r report("t_test_welch")`
+**Single statistic output**
 
-#### Paired *t*-test
-`r report("t_test_paired")`
+| Statistic:   | Code:                                             | Output:                                             |
+|--------------|---------------------------------------------------|-----------------------------------------------------|
+| *t*          | `report("t_test_one_sample", statistic = "t")`    | `r report("t_test_one_sample", s = "t")`            |
+| *df*         | `report("t_test_one_sample", s = "df")`           | `r report("t_test_one_sample", s = "df")`           |
+| *p*          | `report("t_test_one_sample", s = "p")`            | `r report("t_test_one_sample", s = "p")`            |
+| 9%% CI lower | `report("t_test_one_sample", s = "95% CI lower")` | `r report("t_test_one_sample", s = "95% CI lower")` |
 
-#### Single statistic output
+**Note**: the `statistic` argument can be abbreviated to `s`.
 
-- t: `r report("t_test_one_sample", statistic = "t")`
-- df: `r report("t_test_one_sample", statistic = "df")`
-- p: `r report("t_test_one_sample", statistic = "p")`
+### Correlations
+
+| Test:                | Code:                            | Output:                            |
+|----------------------|----------------------------------|------------------------------------|
+| Pearson correlation  | `report("correlation_pearson")`  | `r report("correlation_pearson")`  |
+| Kendall correlation  | `report("correlation_kendall")`  | `r report("correlation_kendall")`  |
+| Spearman correlation | `report("correlation_spearman")` | `r report("correlation_spearman")` |
+
+**Single statistic output**
+
+| Statistic: | Code:                                       | Output:                                       |
+|------------|---------------------------------------------|-----------------------------------------------|
+| *r*        | `report("correlation_pearson", s = "cor")`  | `r report("correlation_pearson", s = "cor")`  |
+| *r*~τ~     | `report("correlation_kendall", s = "tau")`  | `r report("correlation_kendall", s = "tau")`  |
+| *r*~*s*~   | `report("correlation_spearman", s = "rho")` | `r report("correlation_spearman", s = "rho")` |
+
+### Chi-square tests
+
+| Test:                 | Code:                    | Output:                   |
+|-----------------------|--------------------------|---------------------------|
+| Pearson's Chi-squared | `report("chi_squared")`  | `r report("chi_squared")` |
+
+**Single statistic output**
+
+| Statistic: | Code:                                    | Output:                                    |
+|------------|------------------------------------------|--------------------------------------------|
+| *χ²*       | `report("chi_squared", s = "X-squared")` | `r report("chi_squared", s = "X-squared")` |
+
+### Wilcoxon rank and signed rank tests
+
+| Test:                                             | Code:                                    | Output:                                    |
+|---------------------------------------------------|------------------------------------------|--------------------------------------------|
+| Wilcoxon signed rank test                         | `report("wilcoxon_signed_rank")`         | `r report("wilcoxon_signed_rank")`         |
+| Wilcoxon rank sum test                            | `report("wilcoxon_rank_sum")`            | `r report("wilcoxon_rank_sum")`            |
+| Wilcoxon rank sum test with CIs                   | `report("wilcoxon_rank_sum_conf")`       | `r report("wilcoxon_rank_sum_conf")`       |
+| Wilcoxon rank sum test with continuity correction | `report("wilcoxon_rank_sum_continuity")` | `r report("wilcoxon_rank_sum_continuity")` |
+
+**Single statistic output**
+
+| Statistic: | Code:                                             | Output:                                             |
+|------------|---------------------------------------------------|-----------------------------------------------------|
+| V          | `report("wilcoxon_signed_rank", s = "V")`         | `r report("wilcoxon_signed_rank", s = "V")`         |
+| W          | `report("wilcoxon_rank_sum_continuity", s = "W")` | `r report("wilcoxon_rank_sum_continuity", s = "W")` |
+
+### Fisher's exact test for count data
+
+| Test:                                | Code:                               | Output:                               |
+|--------------------------------------|-------------------------------------|---------------------------------------|
+| Fisher's exact test for count data   | `report("fisher_test")`             | `r report("fisher_test")`             |
+| Fisher's exact test without CIs      | `report("fisher_test_no_CI")`       | `r report("fisher_test_no_CI")`       |
+| Fisher's test with r > 2 and c > 2   | `report("fisher_test_r_by_c")`      | `r report("fisher_test_r_by_c")`      |
+| Fisher's test with simulated p-value | `report("fisher_test_simulated_p")` | `r report("fisher_test_simulated_p")` |
+| Fisher's test with hybrid approx.    | `report("fisher_test_hybrid")`      | `r report("fisher_test_hybrid")`      |
+
+**Single statistic output**
+
+| Statistic: | Code:                             | Output:                             |
+|------------|-----------------------------------|-------------------------------------|
+| OR         | `report("fisher_test", s = "OR")` | `r report("fisher_test", s = "OR")` |
+
+### ANOVA
+
+| Test:                                | Code:                                                       | Output:                                                       |
+|--------------------------------------|-------------------------------------------------------------|---------------------------------------------------------------|
+| One-way ANOVA                        | `report("aov_one_way", term = "condition")`                 | `r report("aov_one_way", term = "condition")`                 |
+| Two-way ANOVA main effect: condition | `report("aov_two_way", term = "condition")`                 | `r report("aov_two_way", term = "condition")`                 |
+| Two-way ANOVA main effect: sex #2    | `report("aov_two_way", term = "sex")`                       | `r report("aov_two_way", term = "sex")`                       |
+| Two-way ANOVA interaction #1         | `report("aov_two_way_interaction", term = "condition:sex")` | `r report("aov_two_way_interaction", term = "condition:sex")` |
+| Two-way ANOVA interaction #2         | `report("aov_two_way_interaction", term_nr = 3)`            | `r report("aov_two_way_interaction", term_nr = 3)`            |
+| ANCOVA                               | `report("aov_ancova", term = "condition")`                  | `r report("aov_ancova", term = "condition")`                  |
+| One-way within-subjects ANOVA        | `report("aov_one_within", term = "affect")`                 | `r report("aov_one_within", term = "affect")`                 |
+| Mixed ANOVA                          | `report("aov_mixed", term = "affect")`                      | `r report("aov_mixed", term = "affect")`                      |
+
+**Single statistic output**
+
+| Statistic:                            | Code:                                                 | Output:                                                 |
+|---------------------------------------|-------------------------------------------------------|---------------------------------------------------------|
+| *F*                                   | `report("aov_one_way", term = "condition", s = "F")`  | `r report("aov_one_way", term = "condition", s = "F")`  |
+| numerator df                          | `report("aov_one_way", term = "condition", s = "df")` | `r report("aov_one_way", term = "condition", s = "df")` |
+| denominator df                        | `report("aov_one_way", term = "Residuals", s = "df")` | `r report("aov_one_way", term = "Residuals", s = "df")` |
+| Sum of squares                        | `report("aov_one_way", term = "condition", s = "SS")` | `r report("aov_one_way", term = "condition", s = "SS")` |
+
+### Linear regression
+
+| Test:                          | Code:                                                                    | Output:                                                                    |
+|--------------------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| Regression intercept term      | `report("lm_simple", term = "(Intercept)")`                              | `r report("lm_simple", term = "(Intercept)")`                              |
+| Regression term #1             | `report("lm_simple", term = "conditionmortality salience")`              | `r report("lm_simple", term = "conditionmortality salience")`              |
+| Regression term #2             | `report("lm_simple", term_nr = 2)`                                       | `r report("lm_simple", term_nr = 2)`                                       |
+| Regression interaction term #1 | `report("lm_interaction", term = "conditionmortality salience:anxiety")` | `r report("lm_interaction", term = "conditionmortality salience:anxiety")` |
+| Regression interaction term #2 | `report("lm_interaction", term_nr = 4)`                                  | `r report("lm_interaction", term_nr = 4)`                                  |
+| Model fit                      | `report("lm_multiple", group = "model")`                                 | `r report("lm_multiple", group = "model")`                                 |
+**Note**: When the term is particularly long and unwieldly, like it is for the interaction term in this example, it may be worthwhile to specify the `term_nr` argument instead. Of course, this will make the code less readable, so it is recommended to use this conservatively.
+
+**Single statistic output**
+
+| Statistic:    | Code:                                             | Output:                                             |
+|---------------|---------------------------------------------------|-----------------------------------------------------|
+| *b*           | `report("lm_simple", term_nr = 2, s = "b")`       | `r report("lm_simple", term_nr = 2, s = "b")`       |
+| *SE*          | `report("lm_simple", term_nr = 2, s = "SE"")`     | `r report("lm_simple", term_nr = 2, s = "SE")`      |
+| *R²*          | `report("lm_multiple", s = "R squared")`          | `r report("lm_multiple", s = "R squared")`          |
+| adjusted *R²* | `report("lm_multiple", s = "adjusted R squared")` | `r report("lm_multiple", s = "adjusted R squared")` |
+
+**Note**: You do not need to specify the group when you want *R²* because it is a unique statistic. Simply asking for it enough for `tidystats` to figure out where it is and report it.
+

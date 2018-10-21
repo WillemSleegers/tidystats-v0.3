@@ -5,6 +5,7 @@ library(devtools)
 test()
 
 library(testthat)
+test_results <- read_stats("tests/testthat/test_results.csv")
 test_file("tests/testthat/test-psych.R")
 
 # README ------------------------------------------------------------------
