@@ -7,7 +7,7 @@ Depends: R (>= 3.5.0)
 Imports: tibble, readr, tidyr, dplyr, magrittr, purrr, stringr, knitr, kableExtra
 License: MIT + file LICENSE
 Encoding: UTF-8
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 LazyData: true
 Suggests: 
     testthat

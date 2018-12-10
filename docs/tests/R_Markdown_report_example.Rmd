@@ -24,7 +24,3 @@ Start by reading in the data frame containing the output of all the statistical 
 ```{r get_results, message = FALSE}
 results <- read_stats("results.csv")
 ```
-
-### Regression table examples
-
-`r report_table_lm(results, "M3_3", digits = 3)`

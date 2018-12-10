@@ -68,7 +68,7 @@ report_anova <- function(results, identifier, term = NULL, term_nr = NULL,
       stop("Please provide a term or term number")
     }
 
-    if (!is.null(term_nr) & !as.numeric(term_nr)) {
+    if (!is.null(term_nr) & !is.numeric(term_nr)) {
       stop("term_nr is not a number")
     }
 

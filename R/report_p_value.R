@@ -14,6 +14,11 @@
 
 report_p_value <- function(p_value) {
 
+  # Check whether the p-value is between 0 and 1
+  if (p_value < 0 | p_value > 1) {
+    stop("p-value is not between 0 and 1")
+  }
+
   p_value <- case_when(
     p_value >= 0.1 ~ paste("*p* =", str_replace(
       format(round(p_value, 2), nsmall = 2), "0\\.", ".")),

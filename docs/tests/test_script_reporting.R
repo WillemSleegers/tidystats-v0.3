@@ -57,7 +57,7 @@ report("lm_parent_condition", term_nr = 2, statistic = "p")
 # ANOVA -------------------------------------------------------------------
 
 
-
+report("aov_parent_condition", term = "condition")
 
 # Inspect model -----------------------------------------------------------
 

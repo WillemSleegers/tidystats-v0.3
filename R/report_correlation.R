@@ -52,7 +52,7 @@ report_correlation <- function(results, identifier, statistic = NULL) {
       tau <- report_statistic("tau", tau)
       p   <- report_p_value(p)
 
-      output <- paste0("*r*~τ~ = ", tau, ", ", p)
+      output <- paste0("*r*~*τ*~ = ", tau, ", ", p)
     } else if (str_detect(method, "Spearman")) {
       rho <- pull(filter(res, statistic == "rho"), value)
       p   <- pull(filter(res, statistic == "p"), value)

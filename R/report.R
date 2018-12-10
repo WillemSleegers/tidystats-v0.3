@@ -58,8 +58,10 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL,
       output <- report_fisher(results, identifier, statistic)
     } else if (stringr::str_detect(method, "correlation")) {
       output <- report_correlation(results, identifier, statistic)
-    } else if (stringr::str_detect(method, "regression")) {
+    } else if (stringr::str_detect(method, "(L|l)inear model")) {
       output <- report_lm(results, identifier, group, term, term_nr, statistic)
+    } else if (stringr::str_detect(method, "(L|l)inear mixed model")) {
+      output <- report_lmm(results, identifier, group, term, term_nr, statistic)
     } else if (stringr::str_detect(method, "ANOVA|ANCOVA")) {
       output <- report_anova(results, identifier, term, term_nr, statistic)
     } else if (stringr::str_detect(method, "metafor")) {

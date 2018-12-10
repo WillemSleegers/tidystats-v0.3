@@ -19,7 +19,6 @@
 #' @export
 
 # TODO: Make identifiers with terms non-clickable.
-# TODO: Catch some more errors (e.g., clicking on the coefficient group)
 
 inspect.list <- function(results, ...) {
 
@@ -55,7 +54,6 @@ inspect.list <- function(results, ...) {
         condition = "output.table",
         div(
           id = "apa_output",
-          p("APA:"),
           shiny::htmlOutput("apa"),
           actionButton('copy_button', 'Copy',
             onclick = "copy_to_clipboard('apa')")
@@ -89,17 +87,11 @@ inspect.list <- function(results, ...) {
       for (model in names(results)) {
         res <- results[[model]]
 
-        # print(paste("Rows:", model))
-        # print(row_model)
-        # print(row_model + nrow(res) - 1)
-
         table <- table %>%
           kableExtra::group_rows(model, row_model, row_model + nrow(res) - 1,
-            label_row_css = "
-                                   font-weight: bold;
-                                   background-color: rgb(225, 225, 225);
-                                   hack: identifier;")
-
+            label_row_css = "font-weight: bold;
+                             background-color: rgb(225, 225, 225);
+                             hack: identifier;")
         if ("group" %in% names(res)) {
           row_group <- row_model
 
@@ -195,9 +187,16 @@ inspect.list <- function(results, ...) {
 
         # Check if the user clicked on an identifier with terms or on Residuals
         res <- results[[identifier]]
+        print(res$method[1])
 
         if (what == "identifier" & "term" %in% names(res)) {
           output <- knitr::knit2html(text = "Click on a term instead.",
+            fragment.only = TRUE)
+        } else if (group == "coefficients" & term == "") {
+          output <- knitr::knit2html(text = "Click on a term instead.",
+            fragment.only = TRUE)
+        } else if (group == "model" & res$method[1] == "Generalized linear model") {
+          output <- knitr::knit2html(text = "Not supported.",
             fragment.only = TRUE)
         } else if (what == "term" & (term == "Residuals" | str_detect(
           term, "_Residuals"))) {
@@ -214,7 +213,6 @@ inspect.list <- function(results, ...) {
           output <- report(results = results, identifier = identifier,
             group = group, term = term, statistic = statistic)
 
-          # shinyjs::runjs("copy_to_clipboard('apa');")
           # Replace ~ with <sub> to create subscript
           output <- str_replace(output, "~", "<sub>")
           output <- str_replace(output, "~", "</sub>")

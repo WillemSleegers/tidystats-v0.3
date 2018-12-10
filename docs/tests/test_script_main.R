@@ -779,9 +779,8 @@ y.data <- data.frame(
 pcor_correlation <- pcor.test(y.data$hl, y.data$disp, y.data[,c("deg","BC")])
 pcor_correlation
 
-
-
 # Inspect model -----------------------------------------------------------
 
 inspect(results)
-inspect(t_test_one_sample)
+inspect(lm_)
+inspect(results, glm_gamma)

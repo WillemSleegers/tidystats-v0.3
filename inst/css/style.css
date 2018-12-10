@@ -15,12 +15,7 @@
   background-color: rgb(239, 239, 239);
   border-top: 1px solid rgb(213, 213, 213);
   padding: 5px;
-}
-
-#apa_output p {
-  display: inline-block;
-  padding-left: 6px;
-  padding-right: 6px;
+  vertical-align: middle;
 }
 
 #apa {
@@ -30,27 +25,21 @@
   border: 1px solid rgb(213, 213, 213);
   padding: 0;
 
-  width: calc(100vw - 128px);
+  width: calc(100vw - 80px);
 }
 
 #apa p {
+  font-family: "Times New Roman";
   font-size: 12pt;
   margin: 0;
   padding: 6px;
   padding-left: 8px;
 }
 
-#apa p sup {
-  font-size: 12pt;
-}
-
-#apa p sub {
-  font-size: 12pt;
-}
-
 #copy_button {
   float: right;
   margin-right: 6px;
+  height: 36px;
 }
 
         

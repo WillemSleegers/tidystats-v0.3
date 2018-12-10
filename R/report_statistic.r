@@ -38,6 +38,8 @@ report_statistic <- function(statistic, value) {
     } else{
       output <- format(value, digits = 2, nsmall = 2)
     }
+  } else if (value == Inf) {
+    output <- "∞"
   } else {
     output <- format(value, digits = 2, nsmall = 2)
   }

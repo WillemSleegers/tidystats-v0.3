@@ -11,7 +11,7 @@
 
 ## Features
 
-* Added a new function called `inspect()`. This function accepts a tidystats results list or the output of a statistical model and will display all results in RStudio's Viewer pane. This allows the user to visually inspect the results and, importantly, copy results in APA style to their clipboard. This function is aimed at users who prefer not to use R Markdown or when you want to quickly run a model and get the results in APA-style.
+* Added a new function called `inspect()`. This function accepts a tidystats results list or the output of a statistical model and will display all results in RStudio's Viewer pane. This allows the user to visually inspect the results and, importantly, copy results in APA style to their clipboard. This function is aimed at users who prefer not to use R Markdown or when you want to quickly run a model and get the results in APA-style. This new function works well with Microsoft Word, but does not work with Apple Pages (some of the styling is lost when copying the results).
 * Added support for `glm()`.
 * Added support for lme4's `lmer()` and lmerTest's `lmer()`.
 * Added support for psych's `alpha()`.

@@ -11,7 +11,6 @@
 #' @export
 
 # TODO: Make identifiers with terms non-clickable.
-# TODO: Catch some more errors (e.g., clicking on the coefficient group)
 
 inspect.default <- function(model) {
 
@@ -23,7 +22,7 @@ inspect.default <- function(model) {
   # Define the UI
   ui <- miniUI::miniPage(
     miniUI::gadgetTitleBar(
-      "Results",
+      "Results overview",
       right = miniTitleBarButton("done", "Done", primary = TRUE),
       left = NULL
     ),
@@ -36,7 +35,6 @@ inspect.default <- function(model) {
         condition = "output.table",
         div(
           id = "apa_output",
-          p("APA:"),
           shiny::htmlOutput("apa"),
           actionButton('copy_button', 'Copy',
             onclick = "copy_to_clipboard('apa')")
@@ -55,65 +53,62 @@ inspect.default <- function(model) {
     output$table <- function() {
 
       # Combine all the statistics into one table
-      stats <- res %>%
-        dplyr::select(statistic, value) %>%
+      df <- results %>%
+        purrr::map_df(dplyr::select, statistic, value) %>%
         dplyr::mutate(value = prettyNum(value))
 
       # Create the base table
-      table <- knitr::kable(stats, col.names = c("", "")) %>%
+      table <- knitr::kable(df, col.names = c("", "")) %>%
         kableExtra::kable_styling(bootstrap_options = c("striped", "hover",
           "condensed"),
           full_width = T)
 
       # Group the table by identifiers, groups, and terms
       row_model <- 1
+      for (model in names(results)) {
+        res <- results[[model]]
 
-      # print(paste("Rows:", model))
-      # print(row_model)
-      # print(row_model + nrow(res) - 1)
+        table <- table %>%
+          kableExtra::group_rows(model, row_model, row_model + nrow(res) - 1,
+            label_row_css = "font-weight: bold;
+            background-color: rgb(225, 225, 225);
+            hack: identifier;")
+        if ("group" %in% names(res)) {
+          row_group <- row_model
 
-      table <- table %>%
-        kableExtra::group_rows(var_name, row_model, row_model + nrow(res) - 1,
-          label_row_css = "
-                                 font-weight: bold;
-                                 background-color: rgb(225, 225, 225);
-                                 hack: identifier;")
+          for (group in unique(res$group)) {
+            table <- table %>%
+              kableExtra::group_rows(group, row_group, row_group +
+                  sum(res$group == group) - 1,
+                label_row_css =
+                  "font-weight: bold; hack: group;")
 
-      if ("group" %in% names(res)) {
-        row_group <- row_model
+            # Get only the group results and loop through terms, if there are
+            # more than 1
+            res_group <- res[res$group == group, ]
 
-        for (group in unique(res$group)) {
-          table <- table %>%
-            kableExtra::group_rows(group, row_group, row_group +
-                sum(res$group == group) - 1,
-              label_row_css =
-                "font-weight: bold; hack: group;")
-
-          # Get only the group results and loop through terms, if there are
-          # more than 1
-          res_group <- res[res$group == group, ]
-
-          if (!is.na(res_group$term[1])) {
-            row_term <- row_group
+            if (!is.na(res_group$term[1])) {
+              row_term <- row_group
 
 
-            for (term in unique(res_group$term)) {
+              for (term in unique(res_group$term)) {
 
-              res_term <- res_group[res_group$term == term, ]
+                res_term <- res_group[res_group$term == term, ]
 
-              table <- table %>%
-                kableExtra::group_rows(term, row_term, row_term +
-                    sum(res_term$term == term) - 1,
-                  label_row_css =
-                    "font-weight: bold; hack: term;")
+                table <- table %>%
+                  kableExtra::group_rows(term, row_term, row_term +
+                      sum(res_term$term == term) - 1,
+                    label_row_css =
+                      "font-weight: bold; hack: term;")
 
-              row_term <- row_term + sum(res_term$term == term)
+                row_term <- row_term + sum(res_term$term == term)
+              }
             }
+
+            row_group <- row_group + sum(res$group == group)
+
+
           }
-
-          row_group <- row_group + sum(res$group == group)
-
-        }
         } else {
           if ("term" %in% names(res)) {
             row_term <- row_model
@@ -130,8 +125,8 @@ inspect.default <- function(model) {
           }
         }
 
-      row_model <- row_model + nrow(res)
-
+        row_model <- row_model + nrow(res)
+      }
 
       # Make the rows clickable
       table <- stringr::str_replace_all(table, "<tr",
@@ -149,7 +144,7 @@ inspect.default <- function(model) {
       table <- stringr::str_replace_all(table, "</strong>", "")
 
       return(table)
-    }
+  }
 
     observeEvent(input$jsValue, {
       #req(input$jsValue)
@@ -172,10 +167,17 @@ inspect.default <- function(model) {
         # print(paste("statistic:", statistic))
 
         # Check if the user clicked on an identifier with terms or on Residuals
-        res <- results
+        res <- results[[identifier]]
+        print(res$method[1])
 
         if (what == "identifier" & "term" %in% names(res)) {
           output <- knitr::knit2html(text = "Click on a term instead.",
+            fragment.only = TRUE)
+        } else if (group == "coefficients" & term == "") {
+          output <- knitr::knit2html(text = "Click on a term instead.",
+            fragment.only = TRUE)
+        } else if (group == "model" & res$method[1] == "Generalized linear model") {
+          output <- knitr::knit2html(text = "Not supported.",
             fragment.only = TRUE)
         } else if (what == "term" & (term == "Residuals" | str_detect(
           term, "_Residuals"))) {
@@ -189,12 +191,9 @@ inspect.default <- function(model) {
           if (statistic == "") { statistic <- NULL }
 
           # Get output
-          tidy_stats_list <- add_stats(list(), model, identifier = identifier)
-
-          output <- report(results = tidy_stats_list, identifier = identifier,
+          output <- report(results = results, identifier = identifier,
             group = group, term = term, statistic = statistic)
 
-          # shinyjs::runjs("copy_to_clipboard('apa');")
           # Replace ~ with <sub> to create subscript
           output <- str_replace(output, "~", "<sub>")
           output <- str_replace(output, "~", "</sub>")
@@ -213,7 +212,7 @@ inspect.default <- function(model) {
     observeEvent(input$done, {
       stopApp()
     })
-  }
+}
 
   runGadget(ui, server)
 }

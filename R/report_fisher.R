@@ -44,7 +44,7 @@ report_fisher <- function(results, identifier, statistic = NULL) {
 
       OR <- report_statistic("OR", OR)
 
-      output <- paste0("OR = ", OR, ", ", p)
+      output <- paste0("*OR* = ", OR, ", ", p)
     } else {
       output <- p
     }

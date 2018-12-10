@@ -47,9 +47,9 @@ report_wilcoxon <- function(results, identifier, statistic = NULL) {
     test_value <- report_statistic(test_statistic, test_value)
     p <- report_p_value(p)
 
-    output <- paste0(test_statistic, " = ", test_value, ", ", p)
+    output <- paste0("*", test_statistic, "* = ", test_value, ", ", p)
 
-    # Add confidence interval, if it exists
+    # Add the confidence interval, if it exists
     res_CI <- dplyr::filter(res, stringr::str_detect(statistic, "[0-9]+% CI"))
 
     if (nrow(res_CI) > 0) {

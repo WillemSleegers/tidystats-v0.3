@@ -66,7 +66,7 @@ tidy_stats.lm <- function(model) {
   output <- bind_rows(output_coefficients, output_model)
 
   # Add method
-  output$method <- "Linear regression"
+  output$method <- "Linear model"
 
   # Reorder columns
   output <- dplyr::select(output, group, term_nr, term, everything())
