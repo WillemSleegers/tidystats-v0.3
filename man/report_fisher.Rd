@@ -4,15 +4,12 @@
 \alias{report_fisher}
 \title{Report function for Fisher's Exact Tests for Count Data}
 \usage{
-report_fisher(results, identifier, statistic = NULL)
+report_fisher(results, identifier)
 }
 \arguments{
 \item{results}{A tidy stats list.}
 
 \item{identifier}{A character string identifying the model.}
-
-\item{statistic}{A character string identifying the exact statistic you want
-to report.}
 }
 \description{
 Function to report Fisher's Exact Tests for Count Data in APA style.
@@ -23,6 +20,7 @@ results <- read_stats(system.file("results.csv", package = "tidystats"))
 
 # Report results
 report(results, identifier = "fisher_test")
-report(results, identifier = "fisher_test", statistic = "OR")
+report(results, identifier = "fisher_hybrid")
+report(results, identifier = "fisher_simulated_p")
 
 }

@@ -8,8 +8,6 @@
 #' or statistics you want to report.
 #' @param term A character string indicating the term you want to report.
 #' @param term_nr A number indicating the term you want to report.
-#' @param statistic A character string identifying the exact statistic you want
-#' to report.
 #'
 #' @examples
 #' # Read in a list of results
@@ -28,23 +26,16 @@
 #'
 #' @export
 report_lmm <- function(results, identifier, group = NULL, term = NULL,
-  term_nr = NULL, statistic = NULL) {
+  term_nr = NULL) {
 
   # Extract the results of the specific model through its identifier
   res <- results[[identifier]]
-
-  # Check whether the group is 'model' and whether the method is a GLM
-  # If so, throw an unsupported error
-  if (group != "fixed") {
-    stop("Unsupported; try reporting one statistic at a time")
-  }
 
   # Store the arguments in variables that do not share column names with the
   # model data frame
   res_group <- group
   res_term <- term
   res_term_nr <- term_nr
-  res_statistic <- statistic
 
   # Filter the results based on the supplied information
   if (!is.null(group)) {
@@ -56,23 +47,21 @@ report_lmm <- function(results, identifier, group = NULL, term = NULL,
   if (!is.null(term_nr)) {
     res <- dplyr::filter(res, term_nr == res_term_nr)
   }
-  if (!is.null(statistic)) {
-    res <- dplyr::filter(res, statistic == res_statistic)
+
+  if (nrow(res) == 0) {
+    stop("No statistics found; did you supply the correct information?")
   }
 
-  # Check if only a single statistic is asked, otherwise produce a full line of
-  # APA results
-  if (!is.null(statistic)) {
+  output <- NULL
 
-    # Check whether the statistic exists
-    if (!statistic %in% dplyr::pull(res, statistic)) {
-      stop("Statistic not found.")
-    }
+  # Check if enough information has been provided to produce a single line of
+  # output
+  if (length(unique(res$term)) > 1) {
+    stop("Not enough information supplied.")
+  }
 
-    # Get the value of the statistic
-    value <- dplyr::pull(res, value)
-    output <- report_statistic(res_statistic, value)
-  } else {
+  # Check if all the necessary statistics are there to produce a line of output
+  if (sum(c("estimate", "SE", "t") %in% unique(res$statistic)) == 3) {
     b <- dplyr::pull(dplyr::filter(res, statistic == "estimate"), value)
     SE <- dplyr::pull(dplyr::filter(res, statistic == "SE"), value)
     t <- dplyr::pull(dplyr::filter(res, statistic == "t"), value)
@@ -113,13 +102,6 @@ report_lmm <- function(results, identifier, group = NULL, term = NULL,
 
       output <- paste0(output, ", ", CI)
     }
-  }
-
-  # Check whether enough information was supplied by checking whether the output
-  # vector contains more than 1 element
-  if (length(output) > 1) {
-    stop(paste("Not enough information provided, considering adding group/term",
-      "information."))
   }
 
   return(output)

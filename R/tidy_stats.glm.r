@@ -44,7 +44,7 @@ tidy_stats.glm <- function(model) {
   if (model$family$family %in% c("poisson", "binomial")) {
     output_coefficients <- output_coefficients %>%
       dplyr::rename(
-        t = `z value`,
+        z = `z value`,
         p = `Pr(>|z|)`
       )
   } else {

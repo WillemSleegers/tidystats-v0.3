@@ -118,6 +118,9 @@ tidy_stats.psych <- function(model) {
     names(output) <- stringr::str_replace(names(output), "upper",
       paste0(100 - (CI_level * 100 / 2), "% CI"))
 
+    # df
+    output <- mutate(output, df = N - 2)
+
     # Add term number
     output <- dplyr::mutate(output, term_nr = 1:nrow(output))
 

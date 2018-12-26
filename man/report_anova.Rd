@@ -4,8 +4,8 @@
 \alias{report_anova}
 \title{Report method for ANOVA models}
 \usage{
-report_anova(results, identifier, term = NULL, term_nr = NULL,
-  statistic = NULL)
+report_anova(results, identifier, group = NULL, term = NULL,
+  term_nr = NULL, statistic = NULL)
 }
 \arguments{
 \item{results}{A tidy stats list.}

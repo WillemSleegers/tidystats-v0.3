@@ -4,7 +4,7 @@
 # Load packages
 library(devtools)
 document()
-install()
+install(dependencies = TRUE)
 
 # Set options
 options(pillar.sigfig = 5)
@@ -362,14 +362,15 @@ results <- results %>%
 library(lme4)
 
 # Run multilevel models
-lme4_lme <- lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
-lme4_lme_uncorrelated <- lmer(Reaction ~ Days + (Days || Subject), sleepstudy)
+lme4_lme <- lme4::lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
+lme4_lme_uncorrelated <- lme4::lmer(Reaction ~ Days + (Days || Subject),
+  sleepstudy)
 
 data(Orthodont, package = "nlme")
 Orthodont$nsex <- as.numeric(Orthodont$Sex == "Male")
 Orthodont$nsexage <- with(Orthodont, nsex * age)
-lme4_lme_dummies <- lmer(distance ~ age + (age|Subject) + (0 + nsex|Subject) +
-                 (0 + nsexage|Subject), data = Orthodont)
+lme4_lme_dummies <- lme4::lmer(distance ~ age + (age|Subject) +
+    (0 + nsex|Subject) + (0 + nsexage|Subject), data = Orthodont)
 
 summary(lme4_lme)
 summary(lme4_lme_uncorrelated)
@@ -392,16 +393,16 @@ results <- results %>%
 library(lme4)
 library(lmerTest)
 
-# Run multilevel models
-lmerTest_lme <- lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
-lmerTest_lme_uncorrelated <- lmer(Reaction ~ Days + (Days || Subject),
+# Run multilevel models1
+lmerTest_lme <-lmerTest::lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
+lmerTest_lme_uncorrelated <- lmerTest::lmer(Reaction ~ Days + (Days || Subject),
   sleepstudy)
 
 data(Orthodont,package="nlme")
 Orthodont$nsex <- as.numeric(Orthodont$Sex=="Male")
 Orthodont$nsexage <- with(Orthodont, nsex*age)
-lmerTest_lme_dummies <- lmer(distance ~ age + (age|Subject) + (0+nsex|Subject) +
-                      (0 + nsexage|Subject), data = Orthodont)
+lmerTest_lme_dummies <- lmerTest::lmer(distance ~ age + (age | Subject) +
+    (0 + nsex|Subject) + (0 + nsexage | Subject), data = Orthodont)
 
 summary(lmerTest_lme)
 summary(lmerTest_lme_uncorrelated)

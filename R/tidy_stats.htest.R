@@ -64,6 +64,11 @@ tidy_stats.htest <- function(model) {
   # (use trimws to remove the leading space from a Two Sample t-test)
   output$method <- trimws(model$method)
 
+  # Rename the 'cor' statistic to 'r' when the method is a Pearson correlation
+  if (stringr::str_detect(output$method[1], "Pearson")) {
+    output$statistic[output$statistic == "cor"] <- "r"
+  }
+
   # Add additional information
   if (!is.null(model$alternative)) {
     output$notes <- paste("alternative hypothesis:", model$alternative)

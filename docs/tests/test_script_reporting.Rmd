@@ -49,7 +49,7 @@ options(tidystats_list = results)
 
 | Statistic: | Code:                                       | Output:                                       |
 |------------|---------------------------------------------|-----------------------------------------------|
-| *r*        | `report("correlation_pearson", s = "cor")`  | `r report("correlation_pearson", s = "cor")`  |
+| *r*        | `report("correlation_pearson", s = "r")`    | `r report("correlation_pearson", s = "r")`    |
 | *r*~τ~     | `report("correlation_kendall", s = "tau")`  | `r report("correlation_kendall", s = "tau")`  |
 | *r*~*s*~   | `report("correlation_spearman", s = "rho")` | `r report("correlation_spearman", s = "rho")` |
 
@@ -112,14 +112,16 @@ options(tidystats_list = results)
 
 **Single statistic output**
 
-| Statistic:                            | Code:                                                 | Output:                                                 |
-|---------------------------------------|-------------------------------------------------------|---------------------------------------------------------|
-| *F*                                   | `report("aov_one_way", term = "condition", s = "F")`  | `r report("aov_one_way", term = "condition", s = "F")`  |
-| numerator df                          | `report("aov_one_way", term = "condition", s = "df")` | `r report("aov_one_way", term = "condition", s = "df")` |
-| denominator df                        | `report("aov_one_way", term = "Residuals", s = "df")` | `r report("aov_one_way", term = "Residuals", s = "df")` |
-| Sum of squares                        | `report("aov_one_way", term = "condition", s = "SS")` | `r report("aov_one_way", term = "condition", s = "SS")` |
+| Statistic:                              | Code:                                                                          | Output:                                                                          |
+|-----------------------------------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| Sum of squares                          | `report("aov_one_way", term = "condition", s = "SS")`                          | `r report("aov_one_way", term = "condition", s = "SS")`                          |
+| *F*                                     | `report("aov_one_way", term = "condition", s = "F")`                           | `r report("aov_one_way", term = "condition", s = "F")`                           |
+| numerator df                            | `report("aov_one_way", term = "condition", s = "df")`                          | `r report("aov_one_way", term = "condition", s = "df")`                          |
+| denominator df                          | `report("aov_one_way", term = "Residuals", s = "df")`                          | `r report("aov_one_way", term = "Residuals", s = "df")`                          |
+| denominator df in within-subjects ANOVA | `report("aov_ancova_with_within", group = "ID", term = "Residuals", s = "df")` | `r report("aov_ancova_with_within", group = "ID", term = "Residuals", s = "df")` |
 
-### Linear regression
+
+### Linear models
 
 | Test:                          | Code:                                                                    | Output:                                                                    |
 |--------------------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------------|
@@ -136,9 +138,61 @@ options(tidystats_list = results)
 | Statistic:    | Code:                                             | Output:                                             |
 |---------------|---------------------------------------------------|-----------------------------------------------------|
 | *b*           | `report("lm_simple", term_nr = 2, s = "b")`       | `r report("lm_simple", term_nr = 2, s = "b")`       |
-| *SE*          | `report("lm_simple", term_nr = 2, s = "SE"")`     | `r report("lm_simple", term_nr = 2, s = "SE")`      |
+| *SE*          | `report("lm_simple", term_nr = 2, s = "SE")`     | `r report("lm_simple", term_nr = 2, s = "SE")`      |
 | *R²*          | `report("lm_multiple", s = "R squared")`          | `r report("lm_multiple", s = "R squared")`          |
 | adjusted *R²* | `report("lm_multiple", s = "adjusted R squared")` | `r report("lm_multiple", s = "adjusted R squared")` |
 
-**Note**: You do not need to specify the group when you want *R²* because it is a unique statistic. Simply asking for it enough for `tidystats` to figure out where it is and report it.
+**Note**: You do not need to specify the group when you want *R²* because it is a unique statistic. Simply asking for it is enough for `tidystats` to figure out where it is and report it.
 
+### Generalized linear models
+
+| Test:         | Code:                                      | Output:                                      |
+|---------------|--------------------------------------------|----------------------------------------------|
+| Gaussian term | `report("glm_gaussian", term = "Prewt")`   | `r report("glm_gaussian", term = "Prewt")`   |
+| Gamma term    | `report("glm_gamma", term = "log(u)")`     | `r report("glm_gamma", term = "log(u)")`     |
+| Poisson term  | `report("glm_poisson", term = "outcome2")` | `r report("glm_poisson", term = "outcome2")` |
+
+**Single statistic output**
+
+| Statistic:                | Code:                                                     | Output:                                                     |
+|---------------------------|-----------------------------------------------------------|-------------------------------------------------------------|
+| dispersion                | `report("glm_gaussian", s = "dispersion")`                | `r report("glm_gaussian", s = "dispersion")`                |
+| AIC                       | `report("glm_gaussian", s = "AIC")`                       | `r report("glm_gaussian", term_nr = 2, s = "SE")`           |
+| Fisher Scoring iterations | `report("glm_gaussian", s = "Fisher Scoring iterations")` | `r report("glm_gaussian", s = "Fisher Scoring iterations")` |
+
+### Linear mixed models
+
+| Test:                                      | Code:                                      | Output:                                      |
+|--------------------------------------------|--------------------------------------------|----------------------------------------------|
+| Fixed term: Intercept                      | `report("lme4_lme", term = "(Intercept)")` | `r report("lme4_lme", term = "(Intercept)")` |
+| Fixed term: Days                           | `report("lme4_lme", term = "Days")`        | `r report("lme4_lme", term = "Days")`        |
+| Fixed term: Days (with lmerTest's p-value) | `report("lmerTest_lme", term = "Days")`    | `r report("lmerTest_lme", term = "Days")`    |
+
+**Single statistic output**
+
+| Statistic:                              | Code:                                                    | Output:                                                    |
+|-----------------------------------------|----------------------------------------------------------|------------------------------------------------------------|
+| Total N                                 | `report("lme4_lme", term = "(Observations)")`            | `r report("lme4_lme", term = "(Observations)", s = "N")`   |
+| Total subjects                          | `report("lme4_lme", term = "Subject")`                   | `r report("lme4_lme", term = "Subject", s = "N")`          |
+| Fixed term: Intercept-Days correlation  | `report("lme4_lme", term = "(Intercept) - Days"`         | `r report("lme4_lme", term = "(Intercept) - Days")`        |
+| Random term: Days variance              | `report("lme4_lme", term = "Subject - Days", s = "var")` | `r report("lme4_lme", term = "Subject - Days", s = "var")` |
+| Random term: Intercept-Days correlation | `report("lme4_lme", term_nr = 5, s = "r")`               | `r report("lme4_lme", term_nr = 5, s = "r")`               |
+
+**Note**: Note that you do not always need to specify the `statistic` argument to get a single statistic, that is because the term may contain sufficient information for `tidystats` to figure out what you want to report.
+
+### R package: `psych`
+
+| Test:                                        | Code:                                                        | Output:                                                        |
+|----------------------------------------------|--------------------------------------------------------------|----------------------------------------------------------------|
+| `corr.test()` correlation: rating-complaints | `report("psych_correlations", term = "rating - complaints")` | `r report("psych_correlations", term = "rating - complaints")` |
+| `corr.test()` correlation: learning-advance  | `report("psych_correlations", term = "learning - advance")`  | `r report("psych_correlations", term = "learning - advance")`  |
+
+**Single statistic output**
+
+| Statistic:         | Code:                                            | Output:                                            |
+|--------------------|--------------------------------------------------|----------------------------------------------------|
+| Cronbach's alpha   | `report("psych_alpha", s = "raw_alpha")`         | `r report("psych_alpha", s = "raw_alpha")`         |
+| Guttman's Lambda 6 | `report("psych_alpha", s = "G6")`                | `r report("psych_alpha", s = "G6")`                |
+| ICC1               | `report("psych_ICC", group = "ICC1", s = "ICC")` | `r report("psych_ICC", group = "ICC1", s = "ICC")` |
+| ICC2               | `report("psych_ICC", group = "ICC2", s = "ICC")` | `r report("psych_ICC", group = "ICC2", s = "ICC")` |
+| ICC3               | `report("psych_ICC", group = "ICC3", s = "ICC")` | `r report("psych_ICC", group = "ICC3", s = "ICC")` |

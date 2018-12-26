@@ -4,15 +4,12 @@
 \alias{report_t_test}
 \title{Report function for t-tests}
 \usage{
-report_t_test(results, identifier, statistic = NULL)
+report_t_test(results, identifier)
 }
 \arguments{
 \item{results}{A tidy stats list.}
 
 \item{identifier}{A character string identifying the model.}
-
-\item{statistic}{A character string identifying the exact statistic you want
-to report.}
 }
 \description{
 Function to report a t-test in APA style.
@@ -22,7 +19,9 @@ Function to report a t-test in APA style.
 results <- read_stats(system.file("results.csv", package = "tidystats"))
 
 # Report results
-report(results, identifier = "t_test")
-report(results, identifier = "t_test", statistic = "p")
+report(results, identifier = "t_test_one_sample")
+report(results, identifier = "t_test_two_sample")
+report(results, identifier = "t_test_welch")
+report(results, identifier = "t_test_paired")
 
 }

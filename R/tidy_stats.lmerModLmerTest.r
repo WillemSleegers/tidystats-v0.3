@@ -13,10 +13,6 @@
 #'
 #' tidy_stats(model_lmerTest)
 #'
-#' @import dplyr
-#' @import tidyr
-#' @importFrom magrittr %>%
-#'
 #' @export
 
 tidy_stats.lmerModLmerTest <- function(model) {
@@ -30,7 +26,8 @@ tidy_stats.lmerModLmerTest <- function(model) {
     statistic = "N",
     term = "(Observations)",
     term_nr = 1,
-    group = "model")
+    group = "model"
+  )
 
   model_N_groups <- as_data_frame(summary$ngrps) %>%
     mutate(
@@ -44,49 +41,67 @@ tidy_stats.lmerModLmerTest <- function(model) {
 
   # Extract random effects statistics
   random <- as_data_frame(summary$varcor) %>%
-    unite(term, grp, starts_with("var"), sep = "-") %>%
-    mutate(
-      term = gsub("-?NA", "", term),
+    dplyr::mutate(pair = if_else(is.na(var2), FALSE, TRUE)) %>%
+    tidyr::unite(term, grp, starts_with("var"), sep = " - ") %>%
+    dplyr::mutate(
+      term = stringr::str_replace_all(term, " - ?NA", ""),
       term_nr = 1:n() + max(model_N$term_nr),
       group = "random"
     ) %>%
-    rename(
-      var = vcov,
-      SD = sdcor
-    ) %>%
-    gather("statistic", "value", var, SD) %>%
-    arrange(term_nr)
+    tidyr::gather("statistic", "value", vcov, sdcor) %>%
+    dplyr::mutate(statistic = case_when(
+      statistic == "vcov" & !pair ~ "var",
+      statistic == "vcov" & pair ~ "cov",
+      statistic == "sdcor" & !pair ~ "sd",
+      statistic == "sdcor" & pair ~ "r"
+    )) %>%
+    dplyr::arrange(term_nr)
 
   # Extract statistics of fixed effects
-  fixed <- as_data_frame(summary$coefficients) %>%
-    mutate(
+  fixed <- tibble::as_data_frame(summary$coefficients) %>%
+    dplyr::mutate(
       term = rownames(summary$coefficients),
       term_nr = 1:n() + max(random$term_nr),
       group = "fixed"
     ) %>%
-    rename(
+    dplyr::rename(
       estimate = `Estimate`,
       SE = `Std. Error`,
       t = `t value`,
       p = `Pr(>|t|)`
     ) %>%
-    gather("statistic", "value", -term, -term_nr, -group) %>%
-    arrange(term_nr)
+    tidyr::gather("statistic", "value", -term, -term_nr, -group) %>%
+    dplyr::arrange(term_nr)
 
-  # Combine both
-  output <- bind_rows(model_N, random)
-  output <- bind_rows(output, fixed)
+  # Add fixed effects correlations
+  cors <- cov2cor(summary$vcov)
+  cors[lower.tri(cors, diag = TRUE)] <- NA
+  cors <- cors %>%
+    as.matrix() %>% # Coercion to data frame does not work otherwise
+    as.data.frame() %>%
+    tibble::rownames_to_column("term1") %>%
+    tidyr::gather("term2", "value", -term1) %>%
+    dplyr::filter(term1 != term2 & !is.na(value)) %>%
+    tidyr::unite(col = "term", term1, term2, sep = " - ") %>%
+    dplyr::mutate(
+      statistic = "r",
+      group = "fixed",
+      term_nr = 1:n() + max(fixed$term_nr)
+    )
 
-  # Not included:
+  # Combine all parts of the output
+  output <- dplyr::bind_rows(model_N, random, fixed, cors)
+
+  # TODO:
   # - REML criterion at convergence
   # - Scaled residuals
-  # - Correlation of Fixed Effects
 
   # Add method
   output$method <- "Linear mixed model {lmerTest}"
 
   # Order variables
-  output <- select(output, group, term_nr, term, statistic, value, method)
+  output <- dplyr::select(output, group, term_nr, term, statistic, value,
+    method)
 
   return(output)
 }

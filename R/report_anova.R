@@ -22,42 +22,58 @@
 #'
 #' @export
 
-report_anova <- function(results, identifier, term = NULL, term_nr = NULL,
-  statistic = NULL) {
+report_anova <- function(results, identifier, group = NULL, term = NULL,
+  term_nr = NULL, statistic = NULL) {
 
   # Extract model results
   res <- results[[identifier]]
+
+  # Rename argument names to names that are not in res
+  res_group <- group
+  res_statistic <- statistic
+  res_term <- term
+  res_term_nr <- term_nr
 
   # Check whether a single statistic is requested, or a full line of APA output
   if (!is.null(statistic)) {
 
     # Check whether the statistic exists
-    if (!statistic %in% res$statistic) {
+    if (!statistic %in% unique(res$statistic)) {
       stop("statistic not found")
-    } else {
-      res_statistic <- statistic
+    }
+
+    # Select statistics of the group, if provided
+    if (!is.null(group)) {
+      if (group %in% unique(res$group)) {
+        res <- dplyr::filter(res, group == res_group)
+      } else {
+        stop("group not found")
+      }
     }
 
     # Select statistics of the term, if provided
     if (!is.null(term)) {
-      res <- res[res$term == term, ]
+      res <- dplyr::filter(res, term == res_term)
     } else if (!is.null(term_nr)) {
 
+      # Coerce the term_nr to a number if it was provided as a string
       if (!is.numeric(term_nr)) {
-        stop("term_nr is not a number")
+        res_term_nr <- as.numeric(res_term_nr)
       }
 
-      res <- res[res$term_nr == term_nr, ]
+      res <- dplyr::filter(res, term_nr == res_term_nr)
     }
 
     # Get the value of the statistic
-    value  <- dplyr::pull(dplyr::filter(res, statistic == res_statistic), value)
+    value <- res %>%
+      dplyr::filter(statistic == res_statistic) %>%
+      pull(value)
 
     # Check whether enough information was supplied by checking whether the
     # value vector contains more than 1 element
     if (length(value) > 1) {
-      stop(paste("not enough information provided, considering adding term",
-                 "information"))
+      stop(paste("not enough information provided, considering adding group or",
+        "term information"))
     }
 
     output <- report_statistic(res_statistic, value)

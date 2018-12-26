@@ -189,36 +189,25 @@ inspect.list <- function(results, ...) {
         res <- results[[identifier]]
         print(res$method[1])
 
-        if (what == "identifier" & "term" %in% names(res)) {
-          output <- knitr::knit2html(text = "Click on a term instead.",
-            fragment.only = TRUE)
-        } else if (group == "coefficients" & term == "") {
-          output <- knitr::knit2html(text = "Click on a term instead.",
-            fragment.only = TRUE)
-        } else if (group == "model" & res$method[1] == "Generalized linear model") {
-          output <- knitr::knit2html(text = "Not supported.",
-            fragment.only = TRUE)
-        } else if (what == "term" & (term == "Residuals" | str_detect(
-          term, "_Residuals"))) {
+        # Set variables to NULL if they are empty strings
+        if (group == "") { group <- NULL }
+        if (term == "") { term <- NULL }
+        if (statistic == "") { statistic <- NULL }
 
-          output <- knitr::knit2html(text = "Not supported.",
-            fragment.only = TRUE)
-        } else {
-          # Set variables to NULL if they are empty strings
-          if (group == "") { group <- NULL }
-          if (term == "") { term <- NULL }
-          if (statistic == "") { statistic <- NULL }
-
-          # Get output
-          output <- report(results = results, identifier = identifier,
+        # Get output
+        output <- tryCatch({
+          report(results = results, identifier = identifier,
             group = group, term = term, statistic = statistic)
+        }, error = function(e) {
+          output <- "Unsupported; try clicking on something else."
+        })
 
-          # Replace ~ with <sub> to create subscript
-          output <- str_replace(output, "~", "<sub>")
-          output <- str_replace(output, "~", "</sub>")
+        # Replace ~ with <sub> to create subscript
+        output <- str_replace(output, "~", "<sub>")
+        output <- str_replace(output, "~", "</sub>")
 
-          output <- knitr::knit2html(text = output, fragment.only = TRUE)
-        }
+        output <- knitr::knit2html(text = output, fragment.only = TRUE)
+
       } else {
         output <- knitr::knit2html(text = "Click on a row for magic",
           fragment.only = TRUE)

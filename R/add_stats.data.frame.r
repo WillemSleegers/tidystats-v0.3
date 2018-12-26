@@ -1,10 +1,11 @@
 #' add_stats data frame function
 #'
-#' \code{add_stats.data.frame} is a function to add a tidy data frame of results to a tidy stats
-#' list. tidystats does not support all possible statistical tests, so it may not be able to produce
-#' tidy output of a statistical model. The best solution for now is to tidy the output of a
-#' statistical test yourself, creating a tidy data frame, and then use \code{add_stats}, which will
-#' call this function, to add it to the tidy stats list.
+#' \code{add_stats.data.frame} is a function to add a tidy data frame of
+#' results to a tidy stats list. tidystats does not support all possible
+#' statistical tests, so it may not be able to produce tidy output of a
+#' statistical model. The best solution for now is to tidy the output of a
+#' statistical test yourself, creating a tidy data frame, and then use
+#' \code{add_stats}, which will call this function, to add it to the tidy stats list.
 #'
 #' @param results A tidy stats list.
 #' @param output A data frame that contains statistical output in a tidy format.
@@ -18,8 +19,6 @@
 #' notes information, which will be overwritten if notes are provided.
 #' @param class A character string to indicate which function was used to produce the output. See
 #' 'Details' for a list of supported functions.
-#'
-#' @import dplyr
 #'
 #' @examples
 #'
@@ -38,13 +37,14 @@
 #'
 #' @export
 add_stats.data.frame <- function(results, output, identifier = NULL,
-                                 type = NULL, confirmatory = NULL,
-                                 notes = NULL, class = NULL) {
+  type = NULL, confirmatory = NULL, notes = NULL, class = NULL) {
 
-  # Create an identifier if it is not specified, else check whether it already exists
+  # Create an identifier if it is not specified, else check whether it already
+  # exists
   if (is.null(identifier)) {
     if (deparse(substitute(output)) == ".") {
-      identifier <- paste0("M", formatC(length(results)+1, width = "1", format = "d"))
+      identifier <- paste0("M", formatC(length(results)+1, width = "1",
+        format = "d"))
     } else {
       identifier <- deparse(substitute(output))
     }
@@ -56,18 +56,20 @@ add_stats.data.frame <- function(results, output, identifier = NULL,
     }
   }
 
-  # Check whether a tidied data frame is provided or whether a class is provided, in which case we
-  # can tidy the data frame.
+  # Check whether a tidied data frame is provided or whether a class is
+  # provided, in which case we can tidy the data frame.
   if (!is.null(class)) {
     class(output) <- append(class(output), class)
     new_element <- tidy_stats(output)
   } else {
-    # Throw a warning to make sure the user knows he or she is added an unsupported data frame.
-    warning("You added a data.frame to your results list. Please make sure it is properly tidied.")
+    # Throw a warning to make sure the user knows he or she is added an
+    # unsupported data frame.
+    warning(paste("You added a data.frame to your results list. Please make",
+      "sure it is properly tidied."))
 
     # Throw a warning if non-standard columns are found in the data
-    if (sum(!names(output) %in% c("var", "statistic", "value", "method", "group", "term",
-                                  "term_nr")) > 0) {
+    if (sum(!names(output) %in% c("var", "statistic", "value", "method",
+      "group", "term", "term_nr")) > 0) {
       warning("Non-standard columns found.")
     }
 
@@ -77,8 +79,8 @@ add_stats.data.frame <- function(results, output, identifier = NULL,
 
   # Add the type
   if (!is.null(type)) {
-    type <- match.arg(type, choices = c("hypothesis", "manipulation check", "contrast",
-                                        "descriptives", "other"))
+    type <- match.arg(type, choices = c("hypothesis", "manipulation check",
+      "contrast", "descriptives", "other"))
 
     new_element$type <- dplyr::case_when(
       substr(type, 1, 1) == "h" ~ "hypothesis",

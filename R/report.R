@@ -4,11 +4,11 @@
 #'
 #' @param results A tidy stats list.
 #' @param identifier A character string identifying the model.
+#' @param group A character string identifying the group.
 #' @param term A character string indicating which term you want to report the statistics of.
 #' @param term_nr A number indicating which term you want to report the the statistics of.
 #' @param statistic A character string of a statistic you want to extract from a model.
 #' @param var A character string identifying the variable.
-#' @param group A character string identifying the group/
 #'
 #' @details \code{report} calls a specific report function dependent on the type of statistical test that is supplied. The 'method' column of the statistical test is used to determine which report function to run.
 #'
@@ -22,16 +22,6 @@
 #' # Example: t-test
 #' report("t_test")
 #'
-#' # Example: correlation, r statistic only
-#' report("correlation", statistic = "p")
-#'
-#' # Example: regression term
-#' report("regression", term = "groupTrt")
-#' report("regression", term_nr = 2)
-#'
-#' # Example: ANOVA
-#' report("ANOVA", term = "N")
-#'
 #' @export
 
 report <- function(identifier, term = NULL, term_nr = NULL, var = NULL,
@@ -44,36 +34,39 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL,
     res <- results[[identifier]]
   }
 
-  if ("method" %in% names(res)) {
-    method <- res$method[1]
+  output <- NULL
 
-    # Run the appropriate report function
-    if (str_detect(method, "t-test")) {
-      output <- report_t_test(results, identifier, statistic)
-    } else if (stringr::str_detect(method, "Chi-squared")) {
-      output <- report_chi_squared(results, identifier, statistic)
-    } else if (stringr::str_detect(method, "Wilcoxon")) {
-      output <- report_wilcoxon(results, identifier, statistic)
-    } else if (stringr::str_detect(method, "Fisher")) {
-      output <- report_fisher(results, identifier, statistic)
-    } else if (stringr::str_detect(method, "correlation")) {
-      output <- report_correlation(results, identifier, statistic)
-    } else if (stringr::str_detect(method, "(L|l)inear model")) {
-      output <- report_lm(results, identifier, group, term, term_nr, statistic)
-    } else if (stringr::str_detect(method, "(L|l)inear mixed model")) {
-      output <- report_lmm(results, identifier, group, term, term_nr, statistic)
-    } else if (stringr::str_detect(method, "ANOVA|ANCOVA")) {
-      output <- report_anova(results, identifier, term, term_nr, statistic)
-    } else if (stringr::str_detect(method, "metafor")) {
-      output <- report_rma(results, identifier, group, term, term_nr, statistic)
-    } else {
-      output <- NULL
+  # Check whether a single statistic is requested, or a full line of output
+  if (is.null(statistic)) {
+    # Run the appropriate reporting function based on the method information
+    if ("method" %in% names(res)) {
+      method <- res$method[1]
+
+      if (stringr::str_detect(method, "t-test")) {
+        output <- report_t_test(results, identifier)
+      } else if (stringr::str_detect(method, "Chi-squared")) {
+        output <- report_chi_squared(results, identifier)
+      } else if (stringr::str_detect(method, "Wilcoxon")) {
+        output <- report_wilcoxon(results, identifier)
+      } else if (stringr::str_detect(method, "Fisher")) {
+        output <- report_fisher(results, identifier)
+      } else if (stringr::str_detect(method, "correlation")) {
+        output <- report_correlation(results, identifier, term, term_nr)
+        # Check for GLMs before checking for LMs
+      } else if (stringr::str_detect(method, "Generalized linear model")) {
+        output <- report_glm(results, identifier, group, term, term_nr)
+      } else if (stringr::str_detect(method, "(L|l)inear model")) {
+        output <- report_lm(results, identifier, group, term, term_nr)
+      } else if (stringr::str_detect(method, "(L|l)inear mixed model")) {
+        output <- report_lmm(results, identifier, group, term, term_nr)
+      } else if (stringr::str_detect(method, "ANOVA|ANCOVA")) {
+        output <- report_anova(results, identifier, group, term, term_nr)
+      }
     }
   }
 
-  # If output is null, it means we either do not have the report function for
-  # that method, or the results are descriptives. In this case we can report a
-  # single statistic if enough information is provided.
+  # If output is null, this is either because we do not yet have support for the
+  # method, or a single statistic is requested. In thcan report a single statistic if enough information is provided.
   if (is.null(output)) {
 
     # Filter: term

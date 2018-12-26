@@ -240,7 +240,7 @@ results %>%
    <td style="text-align:left;"> - </td>
    <td style="text-align:right;"> - </td>
    <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> cor </td>
+   <td style="text-align:left;"> r </td>
    <td style="text-align:right;"> -0.0268794 </td>
    <td style="text-align:left;"> Pearson's product-moment correlation </td>
   </tr>
@@ -305,7 +305,7 @@ results %>%
    <td style="text-align:left;"> (Intercept) </td>
    <td style="text-align:left;"> b </td>
    <td style="text-align:right;"> 29.4466534 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -314,7 +314,7 @@ results %>%
    <td style="text-align:left;"> (Intercept) </td>
    <td style="text-align:left;"> SE </td>
    <td style="text-align:right;"> 9.9311192 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -323,7 +323,7 @@ results %>%
    <td style="text-align:left;"> (Intercept) </td>
    <td style="text-align:left;"> t </td>
    <td style="text-align:right;"> 2.9650891 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -332,7 +332,7 @@ results %>%
    <td style="text-align:left;"> (Intercept) </td>
    <td style="text-align:left;"> p </td>
    <td style="text-align:right;"> 0.0034017 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -341,7 +341,7 @@ results %>%
    <td style="text-align:left;"> (Intercept) </td>
    <td style="text-align:left;"> df </td>
    <td style="text-align:right;"> 196.0000000 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -350,7 +350,7 @@ results %>%
    <td style="text-align:left;"> conditionmortality salience </td>
    <td style="text-align:left;"> b </td>
    <td style="text-align:right;"> 20.2945974 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -359,7 +359,7 @@ results %>%
    <td style="text-align:left;"> conditionmortality salience </td>
    <td style="text-align:left;"> SE </td>
    <td style="text-align:right;"> 14.0193962 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -368,7 +368,7 @@ results %>%
    <td style="text-align:left;"> conditionmortality salience </td>
    <td style="text-align:left;"> t </td>
    <td style="text-align:right;"> 1.4476085 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -377,7 +377,7 @@ results %>%
    <td style="text-align:left;"> conditionmortality salience </td>
    <td style="text-align:left;"> p </td>
    <td style="text-align:right;"> 0.1493242 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -386,7 +386,7 @@ results %>%
    <td style="text-align:left;"> conditionmortality salience </td>
    <td style="text-align:left;"> df </td>
    <td style="text-align:right;"> 196.0000000 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -395,7 +395,7 @@ results %>%
    <td style="text-align:left;"> anxiety </td>
    <td style="text-align:left;"> b </td>
    <td style="text-align:right;"> -1.5511207 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -404,7 +404,7 @@ results %>%
    <td style="text-align:left;"> anxiety </td>
    <td style="text-align:left;"> SE </td>
    <td style="text-align:right;"> 3.0119376 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -413,7 +413,7 @@ results %>%
    <td style="text-align:left;"> anxiety </td>
    <td style="text-align:left;"> t </td>
    <td style="text-align:right;"> -0.5149910 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -422,7 +422,7 @@ results %>%
    <td style="text-align:left;"> anxiety </td>
    <td style="text-align:left;"> p </td>
    <td style="text-align:right;"> 0.6071396 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -431,7 +431,7 @@ results %>%
    <td style="text-align:left;"> anxiety </td>
    <td style="text-align:left;"> df </td>
    <td style="text-align:right;"> 196.0000000 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -440,7 +440,7 @@ results %>%
    <td style="text-align:left;"> conditionmortality salience:anxiety </td>
    <td style="text-align:left;"> b </td>
    <td style="text-align:right;"> -5.5666889 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -449,7 +449,7 @@ results %>%
    <td style="text-align:left;"> conditionmortality salience:anxiety </td>
    <td style="text-align:left;"> SE </td>
    <td style="text-align:right;"> 4.3104789 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -458,7 +458,7 @@ results %>%
    <td style="text-align:left;"> conditionmortality salience:anxiety </td>
    <td style="text-align:left;"> t </td>
    <td style="text-align:right;"> -1.2914316 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -467,7 +467,7 @@ results %>%
    <td style="text-align:left;"> conditionmortality salience:anxiety </td>
    <td style="text-align:left;"> p </td>
    <td style="text-align:right;"> 0.1980750 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -476,7 +476,7 @@ results %>%
    <td style="text-align:left;"> conditionmortality salience:anxiety </td>
    <td style="text-align:left;"> df </td>
    <td style="text-align:right;"> 196.0000000 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -485,7 +485,7 @@ results %>%
    <td style="text-align:left;"> - </td>
    <td style="text-align:left;"> R squared </td>
    <td style="text-align:right;"> 0.0360246 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -494,7 +494,7 @@ results %>%
    <td style="text-align:left;"> - </td>
    <td style="text-align:left;"> adjusted R squared </td>
    <td style="text-align:right;"> 0.0212698 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -503,7 +503,7 @@ results %>%
    <td style="text-align:left;"> - </td>
    <td style="text-align:left;"> F </td>
    <td style="text-align:right;"> 2.4415618 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -512,7 +512,7 @@ results %>%
    <td style="text-align:left;"> - </td>
    <td style="text-align:left;"> numerator df </td>
    <td style="text-align:right;"> 3.0000000 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -521,7 +521,7 @@ results %>%
    <td style="text-align:left;"> - </td>
    <td style="text-align:left;"> denominator df </td>
    <td style="text-align:right;"> 196.0000000 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M3_condition_anxiety </td>
@@ -530,7 +530,7 @@ results %>%
    <td style="text-align:left;"> - </td>
    <td style="text-align:left;"> p </td>
    <td style="text-align:right;"> 0.0655150 </td>
-   <td style="text-align:left;"> Linear regression </td>
+   <td style="text-align:left;"> Linear model </td>
   </tr>
   <tr>
    <td style="text-align:left;"> M4_condition_sex </td>
@@ -754,13 +754,13 @@ Below is a list of common report examples:
 
 | code                                                         | output                                                          |
 |--------------------------------------------------------------|-----------------------------------------------------------------|
-|`report("M1_condition")`                                       | *t*(99) = -1.26, *p* = .21                                       |
+|`report("M1_condition")`                                       | *t*(99) = -1.26, *p* = .21, 95% CI [-7.13, 1.59]                                       |
 |`report("M1_condition", statistic = "t")`                      | -1.26                      |
 |`report("M2_parent_siblings")`                                       | *r*(198) = -.027, *p* = .65                                       |
 |`report("M3_condition_anxiety", term = "conditionmortality salience")` | *b* = 20.29, *SE* = 14.02, *t*(196) = 1.45, *p* = .15 |
 |`report("M3_condition_anxiety", term_nr = 2)`                           | *b* = 20.29, *SE* = 14.02, *t*(196) = 1.45, *p* = .15                          |
 |`report("M3_condition_anxiety", term = "(Model)")`                     | adjusted *R*<sup>2</sup> = .0035, *F*(1, 198) = 1.70, *p* = .19                     |
-|`report("M4_condition_sex", term = "condition:sex")`               | *F*(1, 196) = 0.30, .59               |
+|`report("M4_condition_sex", term = "condition:sex")`               | *F*(1, 196) = 0.30, *p* = .59               |
 
 As you can see in the examples above, you can use `report()` to produce a full 
 line of output. You can also retrieve a single statistic by using the 
@@ -781,7 +781,7 @@ To execute the code, the code segment should be surrounded by backward ticks
 
 > We found no significant difference between the mortality salience condition 
 and the dental pain condition on the number of minutes allocated to calling 
-one's parents, *t*(99) = -1.26, *p* = .21.
+one's parents, *t*(99) = -1.26, *p* = .21, 95% CI [-7.13, 1.59].
 
 ### Helper functions
 
@@ -800,10 +800,10 @@ describe_data(cox, anxiety)
 
 ```
 ## # A tibble: 1 x 13
-##   var     missing     n     M    SD     SE   min   max range median  mode
-##   <chr>     <int> <int> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>  <dbl> <dbl>
-## 1 anxiety       0   200  3.22 0.492 0.0348  1.38  4.38     3   3.25   3.5
-## # ... with 2 more variables: skew <dbl>, kurtosis <dbl>
+##   var   missing     n      M      SD       SE   min   max range median
+##   <chr>   <int> <int>  <dbl>   <dbl>    <dbl> <dbl> <dbl> <dbl>  <dbl>
+## 1 anxi…       0   200 3.2162 0.49172 0.034770 1.375 4.375     3   3.25
+## # ... with 3 more variables: mode <dbl>, skew <dbl>, kurtosis <dbl>
 ```
 
 
@@ -817,10 +817,10 @@ cox %>%
 ```
 ## # A tibble: 2 x 14
 ## # Groups:   condition [2]
-##   var     condition     missing     n     M    SD     SE   min   max range
-##   <chr>   <chr>           <int> <int> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>
-## 1 anxiety dental pain         0   100  3.26 0.497 0.0497  1.62  4.38  2.75
-## 2 anxiety mortality sa…       0   100  3.17 0.485 0.0485  1.38  4.38  3   
+##   var   condition missing     n      M      SD       SE   min   max range
+##   <chr> <fct>       <int> <int>  <dbl>   <dbl>    <dbl> <dbl> <dbl> <dbl>
+## 1 anxi… dental p…       0   100 3.26   0.49673 0.049673 1.625 4.375  2.75
+## 2 anxi… mortalit…       0   100 3.1725 0.48519 0.048519 1.375 4.375  3   
 ## # ... with 4 more variables: median <dbl>, mode <dbl>, skew <dbl>,
 ## #   kurtosis <dbl>
 ```

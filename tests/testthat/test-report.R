@@ -23,7 +23,7 @@ test_that("reporting linear regression coefficients work", {
 })
 
 test_that("reporting linear regression model fit works", {
-  correct <- "adjusted *R²* = 0.0035, *F*(1, 198) = 1.70, *p* = .19"
+  correct <- "adj. *R²* = 0.0035, *F*(1, 198) = 1.70, *p* = .19"
 
   output <- report("lm_simple", group = "model")
 

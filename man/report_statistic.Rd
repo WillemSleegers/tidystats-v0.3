@@ -18,6 +18,6 @@ A helper function to report single statistics in APA style.
 \examples{
 report_statistic("p", 0.0001)
 report_statistic("t", 4.2325)
-report_statistic("cor", 0.213)
+report_statistic("r", 0.213)
 
 }

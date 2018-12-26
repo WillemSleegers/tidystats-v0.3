@@ -9,7 +9,7 @@
 #' @examples
 #' report_statistic("p", 0.0001)
 #' report_statistic("t", 4.2325)
-#' report_statistic("cor", 0.213)
+#' report_statistic("r", 0.213)
 #'
 #' @export
 
@@ -26,7 +26,7 @@ report_statistic <- function(statistic, value) {
   # Check what kind of statistic is requested and convert the value accordingly
   if (statistic == "p" & value < 0.001) {
     output <- "< .001"
-  } else if (statistic %in% c("p", "r", "cor", "rho", "tau")) {
+  } else if (statistic %in% c("p", "r", "rho", "tau")) {
     output <- format(value, digits = 2, nsmall = 2)
     output <- stringr::str_replace(output, "0\\.", ".")
   } else if ((statistic == "df" & value %% 1 == 0) |

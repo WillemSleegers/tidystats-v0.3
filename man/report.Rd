@@ -17,7 +17,7 @@ report(identifier, term = NULL, term_nr = NULL, var = NULL,
 
 \item{var}{A character string identifying the variable.}
 
-\item{group}{A character string identifying the group/}
+\item{group}{A character string identifying the group.}
 
 \item{statistic}{A character string of a statistic you want to extract from a model.}
 
@@ -38,15 +38,5 @@ options(tidystats_list = results)
 
 # Example: t-test
 report("t_test")
-
-# Example: correlation, r statistic only
-report("correlation", statistic = "p")
-
-# Example: regression term
-report("regression", term = "groupTrt")
-report("regression", term_nr = 2)
-
-# Example: ANOVA
-report("ANOVA", term = "N")
 
 }

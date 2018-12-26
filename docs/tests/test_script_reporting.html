@@ -281,6 +281,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -288,14 +291,74 @@ button.code-folding-btn:focus {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -329,7 +392,7 @@ $(document).ready(function () {
 <tr class="odd">
 <td>One sample <em>t</em>-test</td>
 <td><code>report(&quot;t_test_one_sample&quot;)</code></td>
-<td><em>t</em>(199) = 24.22, <em>p</em> &lt; .001, 95% CI [24.02, Inf]</td>
+<td><em>t</em>(199) = 24.22, <em>p</em> &lt; .001, 95% CI [24.02, ∞]</td>
 </tr>
 <tr class="even">
 <td>Two sample <em>t</em>-test</td>
@@ -371,7 +434,7 @@ $(document).ready(function () {
 <tr class="odd">
 <td><em>p</em></td>
 <td><code>report(&quot;t_test_one_sample&quot;, s = &quot;p&quot;)</code></td>
-<td>&lt; .001</td>
+<td><em>p</em> &lt; .001</td>
 </tr>
 <tr class="even">
 <td>9%% CI lower</td>
@@ -401,7 +464,7 @@ $(document).ready(function () {
 <tr class="even">
 <td>Kendall correlation</td>
 <td><code>report(&quot;correlation_kendall&quot;)</code></td>
-<td><em>r</em><sub>τ</sub> = -.088, <em>p</em> = .092</td>
+<td><em>r</em><sub><em>τ</em></sub> = -.088, <em>p</em> = .092</td>
 </tr>
 <tr class="odd">
 <td>Spearman correlation</td>
@@ -422,18 +485,18 @@ $(document).ready(function () {
 <tbody>
 <tr class="odd">
 <td><em>r</em></td>
-<td><code>report(&quot;correlation_pearson&quot;, s = &quot;cor&quot;)</code></td>
-<td>-.15</td>
+<td><code>report(&quot;correlation_pearson&quot;, s = &quot;r&quot;)</code></td>
+<td>-0.15</td>
 </tr>
 <tr class="even">
 <td><em>r</em><sub>τ</sub></td>
 <td><code>report(&quot;correlation_kendall&quot;, s = &quot;tau&quot;)</code></td>
-<td>-.088</td>
+<td>-0.088</td>
 </tr>
 <tr class="odd">
 <td><em>r</em><sub><em>s</em></sub></td>
 <td><code>report(&quot;correlation_spearman&quot;, s = &quot;rho&quot;)</code></td>
-<td>-.12</td>
+<td>-0.12</td>
 </tr>
 </tbody>
 </table>
@@ -493,22 +556,22 @@ $(document).ready(function () {
 <tr class="odd">
 <td>Wilcoxon signed rank test</td>
 <td><code>report(&quot;wilcoxon_signed_rank&quot;)</code></td>
-<td>V = 40, <em>p</em> = .020</td>
+<td><em>V</em> = 40, <em>p</em> = .020</td>
 </tr>
 <tr class="even">
 <td>Wilcoxon rank sum test</td>
 <td><code>report(&quot;wilcoxon_rank_sum&quot;)</code></td>
-<td>W = 35, <em>p</em> = .11</td>
+<td><em>W</em> = 35, <em>p</em> = .11</td>
 </tr>
 <tr class="odd">
 <td>Wilcoxon rank sum test with CIs</td>
 <td><code>report(&quot;wilcoxon_rank_sum_conf&quot;)</code></td>
-<td>W = 35, <em>p</em> = .25, 90% CI [-0.08, 0.72]</td>
+<td><em>W</em> = 35, <em>p</em> = .25, 90% CI [-0.08, 0.72]</td>
 </tr>
 <tr class="even">
 <td>Wilcoxon rank sum test with continuity correction</td>
 <td><code>report(&quot;wilcoxon_rank_sum_continuity&quot;)</code></td>
-<td>W = 127.50, <em>p</em> &lt; .001</td>
+<td><em>W</em> = 127.50, <em>p</em> &lt; .001</td>
 </tr>
 </tbody>
 </table>
@@ -554,12 +617,12 @@ $(document).ready(function () {
 <tr class="odd">
 <td>Fisher’s exact test for count data</td>
 <td><code>report(&quot;fisher_test&quot;)</code></td>
-<td>OR = 6.41, <em>p</em> = .49, 95% CI [0.21, 621.93]</td>
+<td><em>OR</em> = 6.41, <em>p</em> = .49, 95% CI [0.21, 621.93]</td>
 </tr>
 <tr class="even">
 <td>Fisher’s exact test without CIs</td>
 <td><code>report(&quot;fisher_test_no_CI&quot;)</code></td>
-<td>OR = 0.047, <em>p</em> &lt; .001</td>
+<td><em>OR</em> = 0.047, <em>p</em> &lt; .001</td>
 </tr>
 <tr class="odd">
 <td>Fisher’s test with r &gt; 2 and c &gt; 2</td>
@@ -656,6 +719,11 @@ $(document).ready(function () {
 </table>
 <p><strong>Single statistic output</strong></p>
 <table>
+<colgroup>
+<col width="20%"></col>
+<col width="39%"></col>
+<col width="40%"></col>
+</colgroup>
 <thead>
 <tr class="header">
 <th>Statistic:</th>
@@ -665,30 +733,35 @@ $(document).ready(function () {
 </thead>
 <tbody>
 <tr class="odd">
-<td><em>F</em></td>
-<td><code>report(&quot;aov_one_way&quot;, term = &quot;condition&quot;, s = &quot;F&quot;)</code></td>
-<td>1.70</td>
-</tr>
-<tr class="even">
-<td>numerator df</td>
-<td><code>report(&quot;aov_one_way&quot;, term = &quot;condition&quot;, s = &quot;df&quot;)</code></td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>denominator df</td>
-<td><code>report(&quot;aov_one_way&quot;, term = &quot;Residuals&quot;, s = &quot;df&quot;)</code></td>
-<td>198</td>
-</tr>
-<tr class="even">
 <td>Sum of squares</td>
 <td><code>report(&quot;aov_one_way&quot;, term = &quot;condition&quot;, s = &quot;SS&quot;)</code></td>
 <td>383.64</td>
 </tr>
+<tr class="even">
+<td><em>F</em></td>
+<td><code>report(&quot;aov_one_way&quot;, term = &quot;condition&quot;, s = &quot;F&quot;)</code></td>
+<td>1.70</td>
+</tr>
+<tr class="odd">
+<td>numerator df</td>
+<td><code>report(&quot;aov_one_way&quot;, term = &quot;condition&quot;, s = &quot;df&quot;)</code></td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>denominator df</td>
+<td><code>report(&quot;aov_one_way&quot;, term = &quot;Residuals&quot;, s = &quot;df&quot;)</code></td>
+<td>198</td>
+</tr>
+<tr class="odd">
+<td>denominator df in within-subjects ANOVA</td>
+<td><code>report(&quot;aov_ancova_with_within&quot;, group = &quot;ID&quot;, term = &quot;Residuals&quot;, s = &quot;df&quot;)</code></td>
+<td>198</td>
+</tr>
 </tbody>
 </table>
 </div>
-<div id="linear-regression" class="section level3">
-<h3>Linear regression</h3>
+<div id="linear-models" class="section level3">
+<h3>Linear models</h3>
 <table>
 <colgroup>
 <col width="17%"></col>
@@ -731,7 +804,7 @@ $(document).ready(function () {
 <tr class="even">
 <td>Model fit</td>
 <td><code>report(&quot;lm_multiple&quot;, group = &quot;model&quot;)</code></td>
-<td>adjusted <em>R²</em> = 0.018, <em>F</em>(2, 197) = 2.82, <em>p</em> = .062</td>
+<td>adj. <em>R²</em> = 0.018, <em>F</em>(2, 197) = 2.82, <em>p</em> = .062</td>
 </tr>
 </tbody>
 </table>
@@ -753,7 +826,7 @@ $(document).ready(function () {
 </tr>
 <tr class="even">
 <td><em>SE</em></td>
-<td><code>report(&quot;lm_simple&quot;, term_nr = 2, s = &quot;SE&quot;&quot;)</code></td>
+<td><code>report(&quot;lm_simple&quot;, term_nr = 2, s = &quot;SE&quot;)</code></td>
 <td>2.12</td>
 </tr>
 <tr class="odd">
@@ -768,7 +841,216 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p><strong>Note</strong>: You do not need to specify the group when you want <em>R²</em> because it is a unique statistic. Simply asking for it enough for <code>tidystats</code> to figure out where it is and report it.</p>
+<p><strong>Note</strong>: You do not need to specify the group when you want <em>R²</em> because it is a unique statistic. Simply asking for it is enough for <code>tidystats</code> to figure out where it is and report it.</p>
+</div>
+<div id="generalized-linear-models" class="section level3">
+<h3>Generalized linear models</h3>
+<table>
+<colgroup>
+<col width="14%"></col>
+<col width="41%"></col>
+<col width="43%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Test:</th>
+<th>Code:</th>
+<th>Output:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gaussian term</td>
+<td><code>report(&quot;glm_gaussian&quot;, term = &quot;Prewt&quot;)</code></td>
+<td><em>b</em> = -0.57, <em>SE</em> = 0.16, <em>t</em>(68) = -3.51, <em>p</em> &lt; .001</td>
+</tr>
+<tr class="even">
+<td>Gamma term</td>
+<td><code>report(&quot;glm_gamma&quot;, term = &quot;log(u)&quot;)</code></td>
+<td><em>b</em> = 0.015, <em>SE</em> = 0.00041, <em>t</em>(7) = 36.97, <em>p</em> &lt; .001</td>
+</tr>
+<tr class="odd">
+<td>Poisson term</td>
+<td><code>report(&quot;glm_poisson&quot;, term = &quot;outcome2&quot;)</code></td>
+<td><em>b</em> = -0.45, <em>SE</em> = 0.20, <em>z</em>(4) = -2.25, <em>p</em> = .025</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Single statistic output</strong></p>
+<table>
+<colgroup>
+<col width="18%"></col>
+<col width="40%"></col>
+<col width="41%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Statistic:</th>
+<th>Code:</th>
+<th>Output:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dispersion</td>
+<td><code>report(&quot;glm_gaussian&quot;, s = &quot;dispersion&quot;)</code></td>
+<td>48.70</td>
+</tr>
+<tr class="even">
+<td>AIC</td>
+<td><code>report(&quot;glm_gaussian&quot;, s = &quot;AIC&quot;)</code></td>
+<td>0.16</td>
+</tr>
+<tr class="odd">
+<td>Fisher Scoring iterations</td>
+<td><code>report(&quot;glm_gaussian&quot;, s = &quot;Fisher Scoring iterations&quot;)</code></td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="linear-mixed-models" class="section level3">
+<h3>Linear mixed models</h3>
+<table>
+<colgroup>
+<col width="32%"></col>
+<col width="32%"></col>
+<col width="34%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Test:</th>
+<th>Code:</th>
+<th>Output:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fixed term: Intercept</td>
+<td><code>report(&quot;lme4_lme&quot;, term = &quot;(Intercept)&quot;)</code></td>
+<td><em>b</em> = 251.41, <em>SE</em> = 6.82, <em>t</em> = 36.84</td>
+</tr>
+<tr class="even">
+<td>Fixed term: Days</td>
+<td><code>report(&quot;lme4_lme&quot;, term = &quot;Days&quot;)</code></td>
+<td><em>b</em> = 10.47, <em>SE</em> = 1.55, <em>t</em> = 6.77</td>
+</tr>
+<tr class="odd">
+<td>Fixed term: Days (with lmerTest’s p-value)</td>
+<td><code>report(&quot;lmerTest_lme&quot;, term = &quot;Days&quot;)</code></td>
+<td><em>b</em> = 10.47, <em>SE</em> = 1.55, <em>t</em>(17) = 6.77, <em>p</em> &lt; .001</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Single statistic output</strong></p>
+<table>
+<colgroup>
+<col width="25%"></col>
+<col width="36%"></col>
+<col width="37%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Statistic:</th>
+<th>Code:</th>
+<th>Output:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Total N</td>
+<td><code>report(&quot;lme4_lme&quot;, term = &quot;(Observations)&quot;)</code></td>
+<td>180</td>
+</tr>
+<tr class="even">
+<td>Total subjects</td>
+<td><code>report(&quot;lme4_lme&quot;, term = &quot;Subject&quot;)</code></td>
+<td>18</td>
+</tr>
+<tr class="odd">
+<td>Fixed term: Intercept-Days correlation</td>
+<td><code>report(&quot;lme4_lme&quot;, term = &quot;(Intercept) - Days&quot;</code></td>
+<td>-0.14</td>
+</tr>
+<tr class="even">
+<td>Random term: Days variance</td>
+<td><code>report(&quot;lme4_lme&quot;, term = &quot;Subject - Days&quot;, s = &quot;var&quot;)</code></td>
+<td>35.07</td>
+</tr>
+<tr class="odd">
+<td>Random term: Intercept-Days correlation</td>
+<td><code>report(&quot;lme4_lme&quot;, term_nr = 5, s = &quot;r&quot;)</code></td>
+<td>0.066</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong>: Note that you do not always need to specify the <code>statistic</code> argument to get a single statistic, that is because the term may contain sufficient information for <code>tidystats</code> to figure out what you want to report.</p>
+</div>
+<div id="r-package-psych" class="section level3">
+<h3>R package: <code>psych</code></h3>
+<table>
+<colgroup>
+<col width="26%"></col>
+<col width="36%"></col>
+<col width="37%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Test:</th>
+<th>Code:</th>
+<th>Output:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>corr.test()</code> correlation: rating-complaints</td>
+<td><code>report(&quot;psych_correlations&quot;, term = &quot;rating - complaints&quot;)</code></td>
+<td><em>r</em>(28) = .83, <em>p</em> &lt; .001</td>
+</tr>
+<tr class="even">
+<td><code>corr.test()</code> correlation: learning-advance</td>
+<td><code>report(&quot;psych_correlations&quot;, term = &quot;learning - advance&quot;)</code></td>
+<td><em>r</em>(28) = .53, <em>p</em> = .003</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Single statistic output</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Statistic:</th>
+<th>Code:</th>
+<th>Output:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cronbach’s alpha</td>
+<td><code>report(&quot;psych_alpha&quot;, s = &quot;raw_alpha&quot;)</code></td>
+<td>0.68</td>
+</tr>
+<tr class="even">
+<td>Guttman’s Lambda 6</td>
+<td><code>report(&quot;psych_alpha&quot;, s = &quot;G6&quot;)</code></td>
+<td>0.69</td>
+</tr>
+<tr class="odd">
+<td>ICC1</td>
+<td><code>report(&quot;psych_ICC&quot;, group = &quot;ICC1&quot;, s = &quot;ICC&quot;)</code></td>
+<td>0.17</td>
+</tr>
+<tr class="even">
+<td>ICC2</td>
+<td><code>report(&quot;psych_ICC&quot;, group = &quot;ICC2&quot;, s = &quot;ICC&quot;)</code></td>
+<td>0.29</td>
+</tr>
+<tr class="odd">
+<td>ICC3</td>
+<td><code>report(&quot;psych_ICC&quot;, group = &quot;ICC3&quot;, s = &quot;ICC&quot;)</code></td>
+<td>0.71</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 
