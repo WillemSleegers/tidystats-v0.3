@@ -118,7 +118,6 @@ the Reproducibility Project (see https://osf.io/ezcuj/). The data set is part of
 the `tidystats` package.
 
 ```{r}
-
 # Perform analyses
 M1_condition <- t.test(call_parent ~ condition, data = cox, paired = TRUE)
 M2_parent_siblings <- cor.test(cox$call_parent, cox$call_siblings, 
@@ -208,15 +207,15 @@ see that it is part of the t-test family, and produce results accordingly.
 
 Below is a list of common report examples:
 
-| code                                                         | output                                                          |
-|--------------------------------------------------------------|-----------------------------------------------------------------|
-|`report("M1_condition")`                                       | `r report("M1_condition")`                                       |
-|`report("M1_condition", statistic = "t")`                      | `r report("M1_condition", statistic = "t")`                      |
-|`report("M2_parent_siblings")`                                       | `r report("M2_parent_siblings")`                                       |
+| code                                                                  | output                                                                   |
+|-----------------------------------------------------------------------|--------------------------------------------------------------------------|
+|`report("M1_condition")`                                               | `r report("M1_condition")`                                               |
+|`report("M1_condition", statistic = "t")`                              | `r report("M1_condition", statistic = "t")`                              |
+|`report("M2_parent_siblings")`                                         | `r report("M2_parent_siblings")`                                         |
 |`report("M3_condition_anxiety", term = "conditionmortality salience")` | `r report("M3_condition_anxiety", term = "conditionmortality salience")` |
-|`report("M3_condition_anxiety", term_nr = 2)`                           | `r report("M3_condition_anxiety", term_nr = 2)`                          |
-|`report("M3_condition_anxiety", term = "(Model)")`                     | adjusted *R*<sup>2</sup> = .0035, *F*(1, 198) = 1.70, *p* = .19                     |
-|`report("M4_condition_sex", term = "condition:sex")`               | `r report("M4_condition_sex", term = "condition:sex")`               |
+|`report("M3_condition_anxiety", term_nr = 2)`                          | `r report("M3_condition_anxiety", term_nr = 2)`                          |
+|`report("M3_condition_anxiety", term = "(Model)")`                     | adjusted *R*<sup>2</sup> = .0035, *F*(1, 198) = 1.70, *p* = .19          |
+|`report("M4_condition_sex", term = "condition:sex")`                   | `r report("M4_condition_sex", term = "condition:sex")`                   |
 
 As you can see in the examples above, you can use `report()` to produce a full 
 line of output. You can also retrieve a single statistic by using the 

@@ -1,7 +1,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <p align="center">
-  <img src="docs/img/hex.png" width = 150 align = center alt="tidystats logo"/>
+  <img src="reference/img/hex.png" width = 150 align = center alt="tidystats logo"/>
 </p>
 
 tidystats
@@ -725,7 +725,7 @@ appear in a textbox at the bottom, next to a copy button that can be pressed to
 copy the results into your clipboard. See below for an example.
 
 <p>
-  <img src="docs/img/inspect.png" alt="inspect"/>
+  <img src="reference/img/inspect.png" alt="inspect"/>
 </p>
 
 #### R Markdown
@@ -752,15 +752,15 @@ see that it is part of the t-test family, and produce results accordingly.
 
 Below is a list of common report examples:
 
-| code                                                         | output                                                          |
-|--------------------------------------------------------------|-----------------------------------------------------------------|
-|`report("M1_condition")`                                       | *t*(99) = -1.26, *p* = .21, 95% CI [-7.13, 1.59]                                       |
-|`report("M1_condition", statistic = "t")`                      | -1.26                      |
-|`report("M2_parent_siblings")`                                       | *r*(198) = -.027, *p* = .65                                       |
+| code                                                                  | output                                                                   |
+|-----------------------------------------------------------------------|--------------------------------------------------------------------------|
+|`report("M1_condition")`                                               | *t*(99) = -1.26, *p* = .21, 95% CI [-7.13, 1.59]                                               |
+|`report("M1_condition", statistic = "t")`                              | -1.26                              |
+|`report("M2_parent_siblings")`                                         | *r*(198) = -.027, *p* = .65                                         |
 |`report("M3_condition_anxiety", term = "conditionmortality salience")` | *b* = 20.29, *SE* = 14.02, *t*(196) = 1.45, *p* = .15 |
-|`report("M3_condition_anxiety", term_nr = 2)`                           | *b* = 20.29, *SE* = 14.02, *t*(196) = 1.45, *p* = .15                          |
-|`report("M3_condition_anxiety", term = "(Model)")`                     | adjusted *R*<sup>2</sup> = .0035, *F*(1, 198) = 1.70, *p* = .19                     |
-|`report("M4_condition_sex", term = "condition:sex")`               | *F*(1, 196) = 0.30, *p* = .59               |
+|`report("M3_condition_anxiety", term_nr = 2)`                          | *b* = 20.29, *SE* = 14.02, *t*(196) = 1.45, *p* = .15                          |
+|`report("M3_condition_anxiety", term = "(Model)")`                     | adjusted *R*<sup>2</sup> = .0035, *F*(1, 198) = 1.70, *p* = .19          |
+|`report("M4_condition_sex", term = "condition:sex")`                   | *F*(1, 196) = 0.30, *p* = .59                   |
 
 As you can see in the examples above, you can use `report()` to produce a full 
 line of output. You can also retrieve a single statistic by using the 

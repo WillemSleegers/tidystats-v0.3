@@ -41,6 +41,11 @@
 report <- function(identifier, term = NULL, term_nr = NULL, var = NULL,
   group = NULL, statistic = NULL, results = getOption("tidystats_list")) {
 
+  # Check whether the results list is provided
+  if (is.null(results)) {
+    stop("No results found; did you specify a results list?")
+  }
+
   # Check whether the identifier exists, otherwise extract it
   if (!identifier %in% names(results)) {
     stop("Identifier not found.")
