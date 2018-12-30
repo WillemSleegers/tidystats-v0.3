@@ -9,7 +9,7 @@
 \arguments{
 \item{results}{A tidystats list.}
 
-\item{...}{Models to show in the viewer.}
+\item{...}{Identifiers of models to show in the viewer.}
 }
 \description{
 \code{inspect} is a function to inspect one or more models that are part of a

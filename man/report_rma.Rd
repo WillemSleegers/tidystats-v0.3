@@ -4,12 +4,10 @@
 \alias{report_rma}
 \title{Report method for metafor's rma models}
 \usage{
-report_rma(results, identifier, group = NULL, term = NULL,
-  term_nr = NULL, statistic = NULL)
+report_rma(identifier, group = NULL, term = NULL, term_nr = NULL,
+  results = getOption("tidystats_list"))
 }
 \arguments{
-\item{results}{A tidy stats list.}
-
 \item{identifier}{A character string identifying the model.}
 
 \item{group}{A character string identifying the group you want to report the
@@ -21,20 +19,8 @@ statistics of.}
 \item{term_nr}{A number indicating which term you want to report the the
 statistics of.}
 
-\item{statistic}{A character string of a statistic you want to extract from a
-model.}
+\item{results}{A tidystats list.}
 }
 \description{
 Function to report a meta-analysis in APA style.
-}
-\examples{
-# Read in a list of results
-results <- read_stats(system.file("results.csv", package = "tidystats"))
-
-# Set the default results list
-options(tidystats_list = results)
-
-# Example: regression term
-# report("regression", term = "groupTrt")
-
 }

@@ -20,7 +20,21 @@
 #' options(tidystats_list = results)
 #'
 #' # Example: t-test
-#' report("t_test")
+#' report("t_test_one_sample")
+#' report("t_test_welch")
+#'
+#' # Example: correlation
+#' report("correlation_pearson")
+#' report("correlation_spearman")
+#'
+#' # Example: ANOVA
+#' report("aov_two_way", term = "condition")
+#' report("aov_two_way", term = "sex")
+#'
+#' # Example: Linear models
+#' report("lm_simple", term = "conditionmortality salience")
+#' report("lm_simple", term_nr = 2)
+#' report("lm_simple", group = "model")
 #'
 #' @export
 
@@ -43,24 +57,28 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL,
       method <- res$method[1]
 
       if (stringr::str_detect(method, "t-test")) {
-        output <- report_t_test(results, identifier)
+        output <- report_t_test(identifier, results = results)
       } else if (stringr::str_detect(method, "Chi-squared")) {
-        output <- report_chi_squared(results, identifier)
+        output <- report_chi_squared(identifier, results = results)
       } else if (stringr::str_detect(method, "Wilcoxon")) {
-        output <- report_wilcoxon(results, identifier)
+        output <- report_wilcoxon(identifier, results = results)
       } else if (stringr::str_detect(method, "Fisher")) {
-        output <- report_fisher(results, identifier)
+        output <- report_fisher(identifier, results = results)
       } else if (stringr::str_detect(method, "correlation")) {
-        output <- report_correlation(results, identifier, term, term_nr)
+        output <- report_correlation(identifier, term, term_nr,
+          results = results)
         # Check for GLMs before checking for LMs
       } else if (stringr::str_detect(method, "Generalized linear model")) {
-        output <- report_glm(results, identifier, group, term, term_nr)
+        output <- report_glm(identifier, group, term, term_nr,
+          results = results)
       } else if (stringr::str_detect(method, "(L|l)inear model")) {
-        output <- report_lm(results, identifier, group, term, term_nr)
+        output <- report_lm(identifier, group, term, term_nr, results = results)
       } else if (stringr::str_detect(method, "(L|l)inear mixed model")) {
-        output <- report_lmm(results, identifier, group, term, term_nr)
+        output <- report_lmm(identifier, group, term, term_nr,
+          results = results)
       } else if (stringr::str_detect(method, "ANOVA|ANCOVA")) {
-        output <- report_anova(results, identifier, group, term, term_nr)
+        output <- report_anova(identifier, group, term, term_nr,
+          results = results)
       }
     }
   }
@@ -130,7 +148,7 @@ report <- function(identifier, term = NULL, term_nr = NULL, var = NULL,
 
     for (column in names(info)) {
 
-      if (length(unique(pull(info, column))) > 1) {
+      if (length(unique(dplyr::pull(info, column))) > 1) {
 
         stop(paste("Not enough information provided. Please provide", column,
           "information."))

@@ -6,15 +6,9 @@
 #' visually inspect the model output, as well as copy the results in APA format.
 #'
 #' @param results A tidystats list.
-#' @param ... Models to show in the viewer.
+#' @param ... Identifiers of models to show in the viewer.
 #'
 #' @import shiny
-#' @import miniUI
-#' @import dplyr
-#' @import stringr
-#' @import purrr
-#' @import knitr
-#' @import kableExtra
 #'
 #' @export
 
@@ -42,7 +36,7 @@ inspect.list <- function(results, ...) {
   ui <- miniUI::miniPage(
     miniUI::gadgetTitleBar(
       "Results overview",
-      right = miniTitleBarButton("done", "Done", primary = TRUE),
+      right = miniUI::miniTitleBarButton("done", "Done", primary = TRUE),
       left = NULL
     ),
 
@@ -50,12 +44,12 @@ inspect.list <- function(results, ...) {
       shiny::tableOutput('table'),
 
       # Hide the APA textbox until the results have loaded
-      conditionalPanel(
+      shiny::conditionalPanel(
         condition = "output.table",
-        div(
+        shiny::div(
           id = "apa_output",
           shiny::htmlOutput("apa"),
-          actionButton('copy_button', 'Copy',
+          shiny::actionButton('copy_button', 'Copy',
             onclick = "copy_to_clipboard('apa')")
         )
       )
@@ -170,7 +164,7 @@ inspect.list <- function(results, ...) {
       #print(input$jsValue)
     })
 
-    output$apa <- renderText({
+    output$apa <- shiny::renderText({
 
       if (!is.null(input$jsValue)) {
         what = input$jsValue[1]
@@ -203,8 +197,8 @@ inspect.list <- function(results, ...) {
         })
 
         # Replace ~ with <sub> to create subscript
-        output <- str_replace(output, "~", "<sub>")
-        output <- str_replace(output, "~", "</sub>")
+        output <- stringr::str_replace(output, "~", "<sub>")
+        output <- stringr::str_replace(output, "~", "</sub>")
 
         output <- knitr::knit2html(text = output, fragment.only = TRUE)
 
@@ -218,11 +212,11 @@ inspect.list <- function(results, ...) {
 
     # When the Done button is clicked, return a value
     observeEvent(input$done, {
-      stopApp()
+      shiny::stopApp()
     })
   }
 
-  runGadget(ui, server)
+  shiny::runGadget(ui, server)
 }
 
 # library(shiny); library(miniUI); library(knitr); library(kableExtra)

@@ -12,16 +12,3 @@
 \description{
 \code{tidy_stats.rma} takes an rma object and converts the object to a tidy stats data frame.
 }
-\examples{
-library(metafor)
-
-# Calculate log risk ratios and corresponding sampling variances
-dat <- escalc(measure = "RR", ai = tpos, bi = tneg, ci = cpos, di = cneg, data = dat.bcg)
-
-# Perform a random-effects model
-model_rma <- rma(yi, vi, data=dat, method="REML")
-
-# Tidy the model output
-tidy_stats(model_rma)
-
-}

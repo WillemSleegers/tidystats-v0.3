@@ -10,11 +10,14 @@ correlation_table(correlations, triangle = "lower", p_values = NULL,
 \arguments{
 \item{correlations}{A data frame or matrix containing the correlations.}
 
-\item{triangle}{A character string indicating whether the lower, upper, or both halves should be visible, must be one of 'lower', 'upper', or 'both'. You can specify just the initial letter.}
+\item{triangle}{A character string indicating whether the lower, upper, or
+both halves should be visible, must be one of 'lower', 'upper', or 'both'.
+You can specify just the initial letter.}
 
 \item{p_values}{A data frame or matrix containing the p-values.}
 
-\item{diagonal}{A vector of values to be placed on the diagonal. Default is a vector of 1s.}
+\item{diagonal}{A vector of values to be placed on the diagonal. Default is
+a vector of 1s.}
 
 \item{labels}{A vector of strings containing the labels for each variable.}
 
@@ -24,6 +27,6 @@ correlation_table(correlations, triangle = "lower", p_values = NULL,
 Function to create a correlation table.
 }
 \examples{
-# Add example
+# Add examples
 
 }

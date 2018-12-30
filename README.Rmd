@@ -24,10 +24,8 @@ regression.
 Besides enabling you to create an organized data file of statistical results, 
 the `tidystats` package also contains functions to help you report statistics in
 APA style. Results can be reported using 
-[R Markdown](http://rmarkdown.rstudio.com) or using a new built-in Shiny app 
-(this is currently only available in the development version). Additionally, 
-development has started on a Google Docs plugin that uses a tidystats data file 
-to report statistics.
+[R Markdown](http://rmarkdown.rstudio.com) or using a new built-in Shiny app. Additionally, development has started on a Google Docs plugin that uses a 
+tidystats data file to report statistics.
 
 Please see below for instructions on how to install and use this package. 
 **Do note that the package is currently in development. This means the package 
@@ -64,7 +62,6 @@ The main function is `add_stats()`. The function has 2 necessary arguments:
 - `output`: The output of a statistical test you want to add to the list (e.g., 
 the output of `t.test()` or `lm()`)
 
-
 Optionally you can also add an identifier, type, whether the analysis was 
 confirmatory or exploratory, and additional notes using the `identifier`, 
 `type`, `confirmatory`, and `notes` arguments, respectively. 
@@ -93,18 +90,21 @@ which will be overwritten when a `notes` argument is supplied to the
 - `t.test()`
 - `cor.test()`
 - `lm()`
+- `glm()`
 - `aov()`
 - `chisq.test()`
 - `wilcox.test()`
+- `fisher.test()`
 
-<!-- **Package:** psych -->
+**Package:** psych
 
-<!-- - `alpha(`) -->
-<!-- - `corr.test()` -->
+- `alpha()`
+- `corr.test()`
+- `ICC()`
 
-<!-- **Package:** lme4 and lmerTest -->
+**Package:** lme4 and lmerTest
 
-<!-- - `lmer()` -->
+- `lmer()`
 
 ### Example
 
@@ -122,7 +122,7 @@ the `tidystats` package.
 # Perform analyses
 M1_condition <- t.test(call_parent ~ condition, data = cox, paired = TRUE)
 M2_parent_siblings <- cor.test(cox$call_parent, cox$call_siblings, 
-                               alternative = "greater")
+  alternative = "greater")
 M3_condition_anxiety <- lm(call_parent ~ condition * anxiety , data = cox)
 M4_condition_sex <- aov(call_parent ~ condition * sex, data = cox)
 
@@ -168,7 +168,7 @@ re-create the tidystats list, using the `read_stats()` function.
 results <- read_stats("data/results.csv")
 ```
 
-#### Shiny app (available in the Github version of tidystats)
+#### Shiny app
 
 If you do not want to use R Markdown, you can use the built-in Shiny app to 
 interactively produce APA-output and copy it to your manuscript. To start the
@@ -225,7 +225,7 @@ term label or the term number (and in some cases, using a group). Although it
 may be less descriptive to use a term number, it reduces the amount of code 
 clutter in your Markdown document. Our philosophy is, in line with Markdown's 
 general writing philosophy, that the code should not distract from writing. To 
-illustrate, writing part of a results section will now, using `tidystats` look 
+illustrate, writing part of a results section with `tidystats` will look 
 like this:
 
 > We found no significant difference between the mortality salience condition 
@@ -280,6 +280,3 @@ anxiety_tidy <- cox %>%
 results <- results %>%
   add_stats(anxiety_tidy, type = "d", notes = "Anxious attachment style")
 ```
-In the `add_stats()` function you can also specify which of the statistics you 
-would like to store in the results list, using the `statistics` argument. Of 
-course, the results can also be tidied when the data is grouped.

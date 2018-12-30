@@ -13,12 +13,20 @@
 Creates a tidystats data frame for a psych's alpha object.
 }
 \examples{
+# Load packages
 library(psych)
+library(dplyr)
+
+# Create an empty list to store results in
 results <- list()
 
-bfi \%>\%
+# Calculate Cronbach's alpha
+alpha_agreeableness <- bfi \%>\%
   select(A1, A2, A3, A4, A5) \%>\%
-  alpha(check.keys = TRUE) \%>\%
-  add_stats(results, identifier = 'alpha_agreeableness')
+  alpha(check.keys = TRUE)
+
+# Tidy stats
+tidy_stats(alpha_agreeableness)
+
 
 }

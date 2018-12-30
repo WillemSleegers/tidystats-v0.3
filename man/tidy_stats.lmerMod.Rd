@@ -10,12 +10,19 @@
 \item{model}{Output of lme4's \code{lmer()}.}
 }
 \description{
-\code{tidy_stats.lmerMod} takes an lmerMod object and converts the object to a tidy stats data frame.
+\code{tidy_stats.lmerMod} takes an lmerMod object and converts the object to
+a tidy stats data frame.
 }
 \examples{
-# Conduct a linear mixed model
-model_lmer <- lmer(extra ~ group + (1|ID), data = sleep)
+\donttest{
+  # Load package
+  library(lme4)
 
-tidy_stats(model_lmer)
+  # Conduct a linear mixed model
+  model_lmer <- lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
+
+  # Tidy stats
+  tidy_stats(model_lmer)
+}
 
 }

@@ -13,12 +13,16 @@
 \code{tidy_stats.lmerModLmerTest} takes an lmerModLmerTest object and converts the object to a tidy stats data frame.
 }
 \examples{
-library(lme4)
-library(lmerTest)
+\donttest{
+  # Load packages
+  library(lme4)
+  library(lmerTest)
 
-# Conduct a linear mixed model
-model_lmerTest <- lmer(extra ~ group + (1|ID), data = sleep)
+  # Conduct a linear mixed model
+  model_lmerTest <- lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
 
-tidy_stats(model_lmerTest)
+  # Tidy stats
+  tidy_stats(model_lmerTest)
+}
 
 }

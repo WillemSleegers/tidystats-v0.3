@@ -8,31 +8,34 @@
   type = NULL, confirmatory = NULL, notes = NULL, class = NULL)
 }
 \arguments{
-\item{results}{A tidy stats list.}
+\item{results}{A tidystats list.}
 
 \item{output}{A data frame that contains statistical output in a tidy format.}
 
-\item{identifier}{A character string identifying the model. Automatically created if not
-provided.}
+\item{identifier}{A character string identifying the model. Automatically
+created if not provided.}
 
-\item{type}{A character string indicating the type of test. One of "hypothesis", "manipulation
-check", "contrast", "descriptives", or "other". Can be abbreviated.}
+\item{type}{A character string indicating the type of test. One of
+"hypothesis", "manipulation check", "contrast", "descriptives", or "other".
+Can be abbreviated.}
 
-\item{confirmatory}{A boolean to indicate whether the statistical test was confirmatory (TRUE)
-or exploratory (FALSE). Can be NA.}
+\item{confirmatory}{A boolean to indicate whether the statistical test was
+confirmatory (TRUE) or exploratory (FALSE). Can be NA.}
 
-\item{notes}{A character string to add additional information. Some statistical tests produce
-notes information, which will be overwritten if notes are provided.}
+\item{notes}{A character string to add additional information. Some
+statistical tests produce notes information, which will be overwritten if
+notes are provided.}
 
-\item{class}{A character string to indicate which function was used to produce the output. See
-'Details' for a list of supported functions.}
+\item{class}{Unused.}
 }
 \description{
-\code{add_stats.data.frame} is a function to add a tidy data frame of results to a tidy stats
-list. tidystats does not support all possible statistical tests, so it may not be able to produce
-tidy output of a statistical model. The best solution for now is to tidy the output of a
-statistical test yourself, creating a tidy data frame, and then use \code{add_stats}, which will
-call this function, to add it to the tidy stats list.
+\code{add_stats.data.frame} is a function to add a tidy data frame of
+results to a tidystats list. tidystats does not support all possible
+statistical tests, so it may not be able to produce tidy output of a
+statistical model. The best solution for now is to tidy the output of a
+statistical test yourself, creating a tidy data frame, and then use
+\code{add_stats}, which will call this function, to add it to the tidystats
+list.
 }
 \examples{
 

@@ -3,11 +3,12 @@
 #' @param identifier A character string identifying the descriptives.
 #' @param var A character string identifying the exact variable, if needed.
 #' @param group A character string identifiying the group, if needed.
-#' @param results The tidystats results list.
+#' @param results A tidystats list.
 #'
 #' @examples
 #' # Read in a list of results
-#' descriptives <- read_stats(system.file("descriptives.csv", package = "tidystats"))
+#' descriptives <- read_stats(system.file("descriptives.csv",
+#'   package = "tidystats"))
 #'
 #' options(tidystats_list = descriptives)
 #'
@@ -21,13 +22,16 @@
 #' @name report_descriptives
 #'
 #' @export
-M <- function(identifier, var = NULL, group = NULL, results = getOption("tidystats_list")) {
-  report(identifier = identifier, var = var, group = group, results = results, statistic = "M")
+M <- function(identifier, var = NULL, group = NULL,
+  results = getOption("tidystats_list")) {
+  report(identifier = identifier, var = var, group = group, statistic = "M")
 }
 
 #' @name report_descriptives
 #'
 #' @export
-SD <- function(identifier, var = NULL, group = NULL, results = getOption("tidystats_list")) {
-  report(identifier = identifier, var = var, group = group, results = results, statistic = "SD")
+SD <- function(identifier, var = NULL, group = NULL,
+  results = getOption("tidystats_list")) {
+  report(identifier = identifier, var = var, group = group, results = results,
+    statistic = "SD")
 }

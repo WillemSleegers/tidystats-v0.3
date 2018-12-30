@@ -4,16 +4,17 @@
 \alias{report_correlation}
 \title{Report function for correlations}
 \usage{
-report_correlation(results, identifier, term, term_nr)
+report_correlation(identifier, term, term_nr,
+  results = getOption("tidystats_list"))
 }
 \arguments{
-\item{results}{A tidy stats list.}
-
 \item{identifier}{A character string identifying the model.}
 
 \item{term}{A character string indicating the term you want to report.}
 
-\item{term_nr}{A number indicating the term you want to report.}
+\item{term_nr}{A number indicating the term you want to report.]}
+
+\item{results}{A tidystats list.}
 }
 \description{
 Function to report a correlation in APA style.
@@ -22,9 +23,12 @@ Function to report a correlation in APA style.
 # Read in a list of results
 results <- read_stats(system.file("results.csv", package = "tidystats"))
 
+# Set the default tidystats list in options()
+options(tidystats_list = results)
+
 # Report results
-report(results, identifier = "correlation_pearson")
-report(results, identifier = "correlation_spearman")
-report(results, identifier = "correlation_kendall")
+report(identifier = "correlation_pearson")
+report(identifier = "correlation_spearman")
+report(identifier = "correlation_kendall")
 
 }

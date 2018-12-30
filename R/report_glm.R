@@ -2,12 +2,12 @@
 #'
 #' Function to report a generalized linear models in APA style.
 #'
-#' @param results A tidy stats list.
 #' @param identifier A character string identifying the model.
-#' @param group A character string indicating the group containing the statistic
-#' or statistics you want to report.
+#' @param group A character string indicating the group containing the
+#' statistics you want to report.
 #' @param term A character string indicating the term you want to report.
 #' @param term_nr A number indicating the term you want to report.
+#' @param results A tidystats list.
 #'
 #' @examples
 #' # Read in a list of results
@@ -17,16 +17,15 @@
 #' options(tidystats_list = results)
 #'
 #' # Report results
-#' report("lm_simple", term = "conditionmortality salience")
-#' report("lm_simple", term_nr = 2)
-#' report("lm_simple", group = "model")
-#'
-#' @import dplyr
-#' @import stringr
+#' report("glm_gaussian", term = "Prewt")
+#' report("glm_gamma", term = "log(u)")
+#' report("glm_poisson", term_nr = 2)
 #'
 #' @export
-report_glm <- function(results, identifier, group = NULL, term = NULL,
-  term_nr = NULL) {
+report_glm <- function(identifier, group = NULL, term = NULL, term_nr = NULL,
+  results = getOption("tidystats_list")) {
+
+  output <- NULL
 
   # Extract the results of the specific model through its identifier
   res <- results[[identifier]]
@@ -63,15 +62,14 @@ report_glm <- function(results, identifier, group = NULL, term = NULL,
 
   output <- NULL
 
-  # Check if enough information has been provided to produce a single line of
-  # output
+  # Check if enough information has been provided to isolate only 1 term
   if (length(unique(res$term)) > 1) {
     stop("Not enough information supplied.")
   }
 
   # Check if all the necessary statistics are there to produce a line of output
   if (sum(c("b", "SE", "t", "z", "p", "df") %in% unique(res$statistic)) == 5) {
-
+    # Extract statistics
     b <- dplyr::pull(dplyr::filter(res, statistic == "b"), value)
     SE <- dplyr::pull(dplyr::filter(res, statistic == "SE"), value)
     df <- dplyr::pull(dplyr::filter(res, statistic == "df"), value)
@@ -96,16 +94,16 @@ report_glm <- function(results, identifier, group = NULL, term = NULL,
     }
 
     # Guess whether confidence intervals are included
-    res_CI <- dplyr::filter(res, str_detect(statistic, "[1234567890]% CI"))
+    res_CI <- dplyr::filter(res, stringr::str_detect(statistic, "[1234567890]% CI"))
 
     # Add confidence interval, if it exists
     if ("[0-9]% CI" %in% dplyr::pull(res, statistic)) {
-      res_CI <- filter(res, str_detect(statistic, "[0-9]+% CI"))
+      res_CI <- dplyr::filter(res, stringr::str_detect(statistic, "[0-9]+% CI"))
 
-      CI_pct <- parse_number(first(pull(res_CI, statistic)))
+      CI_pct <- readr::parse_number(first(pull(res_CI, statistic)))
 
-      CI_lower <- pull(res_CI, value)[1]
-      CI_upper <- pull(res_CI, value)[2]
+      CI_lower <- dplyr::pull(res_CI, value)[1]
+      CI_upper <- dplyr::pull(res_CI, value)[2]
 
       CI_lower <- report_statistic("CI", CI_lower)
       CI_upper <- report_statistic("CI", CI_upper)

@@ -2,12 +2,12 @@
 #'
 #' Function to report a linear mixed model in APA style.
 #'
-#' @param results A tidy stats list.
 #' @param identifier A character string identifying the model.
-#' @param group A character string indicating the group containing the statistic
-#' or statistics you want to report.
+#' @param group A character string indicating the group containing the
+#' statistics you want to report.
 #' @param term A character string indicating the term you want to report.
 #' @param term_nr A number indicating the term you want to report.
+#' @param results A tidystats list.
 #'
 #' @examples
 #' # Read in a list of results
@@ -17,16 +17,14 @@
 #' options(tidystats_list = results)
 #'
 #' # Example: regression term
-#' report("regression", term = "groupTrt")
-#' report("regression", term_nr = 2)
-#' report("regression", term = "groupTrt", statistic = "p")
-#'
-#' @import dplyr
-#' @import stringr
+#' report("lme4_lme", term = "Days")
+#' report("lmerTest_lme", term = "Days")
 #'
 #' @export
-report_lmm <- function(results, identifier, group = NULL, term = NULL,
-  term_nr = NULL) {
+report_lmm <- function(identifier, group = NULL, term = NULL, term_nr = NULL,
+  results = getOption("tidystats_list")) {
+
+  output <- NULL
 
   # Extract the results of the specific model through its identifier
   res <- results[[identifier]]
@@ -52,8 +50,6 @@ report_lmm <- function(results, identifier, group = NULL, term = NULL,
     stop("No statistics found; did you supply the correct information?")
   }
 
-  output <- NULL
-
   # Check if enough information has been provided to produce a single line of
   # output
   if (length(unique(res$term)) > 1) {
@@ -62,6 +58,7 @@ report_lmm <- function(results, identifier, group = NULL, term = NULL,
 
   # Check if all the necessary statistics are there to produce a line of output
   if (sum(c("estimate", "SE", "t") %in% unique(res$statistic)) == 3) {
+    # Extrac statistics
     b <- dplyr::pull(dplyr::filter(res, statistic == "estimate"), value)
     SE <- dplyr::pull(dplyr::filter(res, statistic == "SE"), value)
     t <- dplyr::pull(dplyr::filter(res, statistic == "t"), value)
@@ -84,16 +81,16 @@ report_lmm <- function(results, identifier, group = NULL, term = NULL,
     }
 
     # Guess whether confidence intervals are included
-    res_CI <- dplyr::filter(res, str_detect(statistic, "[1234567890]% CI"))
+    res_CI <- dplyr::filter(res, stringr::str_detect(statistic, "[1234567890]% CI"))
 
     # Add confidence interval, if it exists
     if ("[0-9]% CI" %in% dplyr::pull(res, statistic)) {
-      res_CI <- filter(res, str_detect(statistic, "[0-9]+% CI"))
+      res_CI <- dplyr::filter(res, stringr::str_detect(statistic, "[0-9]+% CI"))
 
-      CI_pct <- parse_number(first(pull(res_CI, statistic)))
+      CI_pct <- readr::parse_number(first(pull(res_CI, statistic)))
 
-      CI_lower <- pull(res_CI, value)[1]
-      CI_upper <- pull(res_CI, value)[2]
+      CI_lower <- dplyr::pull(res_CI, value)[1]
+      CI_upper <- dplyr::pull(res_CI, value)[2]
 
       CI_lower <- report_statistic("CI", CI_lower)
       CI_upper <- report_statistic("CI", CI_upper)

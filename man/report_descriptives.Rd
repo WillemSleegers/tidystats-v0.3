@@ -19,14 +19,15 @@ SD(identifier, var = NULL, group = NULL,
 
 \item{group}{A character string identifiying the group, if needed.}
 
-\item{results}{The tidystats results list.}
+\item{results}{A tidystats list.}
 }
 \description{
 Report descriptives helper functions
 }
 \examples{
 # Read in a list of results
-descriptives <- read_stats(system.file("descriptives.csv", package = "tidystats"))
+descriptives <- read_stats(system.file("descriptives.csv",
+  package = "tidystats"))
 
 options(tidystats_list = descriptives)
 

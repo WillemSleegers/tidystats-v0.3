@@ -4,20 +4,20 @@
 \alias{report_glm}
 \title{Report method for generalized linear models}
 \usage{
-report_glm(results, identifier, group = NULL, term = NULL,
-  term_nr = NULL)
+report_glm(identifier, group = NULL, term = NULL, term_nr = NULL,
+  results = getOption("tidystats_list"))
 }
 \arguments{
-\item{results}{A tidy stats list.}
-
 \item{identifier}{A character string identifying the model.}
 
-\item{group}{A character string indicating the group containing the statistic
-or statistics you want to report.}
+\item{group}{A character string indicating the group containing the
+statistics you want to report.}
 
 \item{term}{A character string indicating the term you want to report.}
 
 \item{term_nr}{A number indicating the term you want to report.}
+
+\item{results}{A tidystats list.}
 }
 \description{
 Function to report a generalized linear models in APA style.
@@ -30,8 +30,8 @@ results <- read_stats(system.file("results.csv", package = "tidystats"))
 options(tidystats_list = results)
 
 # Report results
-report("lm_simple", term = "conditionmortality salience")
-report("lm_simple", term_nr = 2)
-report("lm_simple", group = "model")
+report("glm_gaussian", term = "Prewt")
+report("glm_gamma", term = "log(u)")
+report("glm_poisson", term_nr = 2)
 
 }

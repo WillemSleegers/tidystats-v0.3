@@ -8,45 +8,54 @@
   type = NULL, confirmatory = NULL, notes = NULL, class = NULL)
 }
 \arguments{
-\item{results}{A tidy stats list.}
+\item{results}{A tidystats list.}
 
-\item{output}{A data frame that contains statistical output in a tidy format.}
+\item{output}{A matrix that contains statistical output.}
 
-\item{identifier}{A character string identifying the model. Automatically created if not
-provided.}
+\item{identifier}{A character string identifying the model. Automatically
+created if not provided.}
 
-\item{type}{A character string indicating the type of test. One of "hypothesis", "manipulation
-check", "contrast", "descriptives", or "other". Can be abbreviated.}
+\item{type}{A character string indicating the type of test. One of
+"hypothesis", "manipulation check", "contrast", "descriptives", or "other".
+Can be abbreviated.}
 
-\item{confirmatory}{A boolean to indicate whether the statistical test was confirmatory (TRUE) or
-exploratory (FALSE). Can be NA.}
+\item{confirmatory}{A boolean to indicate whether the statistical test was
+confirmatory (TRUE) or exploratory (FALSE). Can be NA.}
 
-\item{notes}{A character string to add additional information. Some statistical tests produce
-notes information, which will be overwritten if notes are provided.}
+\item{notes}{A character string to add additional information. Some
+statistical tests produce notes information, which will be overwritten if
+notes are provided.}
 
-\item{class}{A character string to indicate which function was used to produce the output. See
-'Details' for a list of supported functions.}
+\item{class}{A character string to indicate which function was used to
+produce the output. See 'Details' for a list of supported functions.}
 }
 \description{
-\code{add_stats.data.frame} is a function to add a tidy data frame of results to a tidy stats
-list. tidystats does not support all possible statistical tests, so it may not be able to produce
-tidy output of a statistical model. The best solution for now is to tidy the output of a
-statistical test yourself, creating a tidy data frame, and then use \code{add_stats}, which will
-call this function, to add it to the tidy stats list.
+\code{add_stats.matrix} is a function to add a matrix to a tidystats list.
+Some statistical functions (e.g., \code{confint}) return a matrix. Normally
+this would not be enough information for tidystats to figure out how to tidy
+the results. However, if you run \code{add_stats} and provide a class,
+tidystats may be able to tidy the output. See 'Details' for a list of
+supported classes.
+}
+\details{
+Supported classes include: \code{confint}
 }
 \examples{
 
 # Create an empty list to store the results in
 results <- list()
 
-# Example: Manual chi-squared test of independence
-x_squared_data <- data.frame(
-  statistic = c("X-squared", "df", "p"),
-  value = c(5.4885, 6, 0.4828),
-  method = "Chi-squared test of independence"
-  )
+# Example: Confidence intervals on a regression model
+ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
+trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
+group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
+weight <- c(ctl, trt)
 
-# Add results to results
-results <- add_stats(results, x_squared_data)
+model_lm <- lm(weight ~ group)
+model_lm_confint <- confint(model_lm)
+
+# Add output to the results list
+results <- add_stats(results, model_lm_confint, identifier = "lm_confint",
+  class = "confint")
 
 }

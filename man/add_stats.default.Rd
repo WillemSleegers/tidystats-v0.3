@@ -5,31 +5,34 @@
 \title{add_stats default function}
 \usage{
 \method{add_stats}{default}(results, output, identifier = NULL,
-  type = NULL, confirmatory = NULL, notes = NULL)
+  type = NULL, confirmatory = NULL, notes = NULL, class = NULL)
 }
 \arguments{
-\item{results}{a tidy stats list.}
+\item{results}{A tidy stats list.}
 
-\item{output}{output of a statistical test.}
+\item{output}{Output of a statistical test.}
 
-\item{identifier}{a character string identifying the model. Automatically created if not
-provided.}
+\item{identifier}{A character string identifying the model. Automatically
+created if not provided.}
 
-\item{type}{a character string indicating the type of test. One of "hypothesis",
-"manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.}
+\item{type}{A character string indicating the type of test. One of
+"hypothesis", "manipulation check", "contrast", "descriptives", or "other".
+Can be abbreviated.}
 
-\item{confirmatory}{a boolean to indicate whether the statistical test was confirmatory (TRUE)
-or exploratory (FALSE). Can be NA.}
+\item{confirmatory}{A boolean to indicate whether the statistical test was
+confirmatory (TRUE) or exploratory (FALSE). Can be NA.}
 
-\item{notes}{a character string to add additional information. Some statistical tests produce
-notes information, which will be overwritten if notes are provided.}
+\item{notes}{A character string to add additional information. Some
+statistical tests produce notes information, which will be overwritten if
+notes are provided.}
 
-\item{summary_args}{A list of arguments that will be provided to the summary function that will
-be applied to the output of some functions, like lm().}
+\item{class}{A character string to indicate which function was used to
+produce the output. See 'Details' for a list of supported functions.}
 }
 \description{
-\code{add_stats.default} is the default add_stats function, which takes the output of a
-statistical test, tidies the output, and adds it to a results list.
+\code{add_stats.default} is the default add_stats function, which takes the
+output of a statistical test, tidies the output, and adds it to a tidystats
+list.
 }
 \examples{
 # Create an empty list to store the results in
@@ -57,14 +60,15 @@ weight <- c(ctl, trt)
 model_lm <- lm(weight ~ group)
 
 # Add output to the results list, with notes
-results <- add_stats(results, model_lm, identifier = "regression", notes = "regression example")
+results <- add_stats(results, model_lm, identifier = "regression", notes =
+  "regression example")
 
 # Example: ANOVA
 model_aov <- aov(yield ~ block + N * P * K, npk)
 
 results <- add_stats(results, model_aov, identifier = "ANOVA")
 
-# Example: Within-subjects ANOVA
+# Example: Within-Subjects ANOVA
 model_aov_within <- aov(extra ~ group + Error(ID/group), data = sleep)
 
 results <- add_stats(results, model_aov_within, identifier = "ANOVA_within")

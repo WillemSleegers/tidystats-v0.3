@@ -3,21 +3,22 @@
 #' Function to create a correlation table.
 #'
 #' @param correlations A data frame or matrix containing the correlations.
-#' @param triangle A character string indicating whether the lower, upper, or both halves should be visible, must be one of 'lower', 'upper', or 'both'. You can specify just the initial letter.
+#' @param triangle A character string indicating whether the lower, upper, or
+#' both halves should be visible, must be one of 'lower', 'upper', or 'both'.
+#' You can specify just the initial letter.
 #' @param p_values A data frame or matrix containing the p-values.
-#' @param diagonal A vector of values to be placed on the diagonal. Default is a vector of 1s.
+#' @param diagonal A vector of values to be placed on the diagonal. Default is
+#' a vector of 1s.
 #' @param labels A vector of strings containing the labels for each variable.
 #' @param digits An integer indicating the number of decimal places.
 #'
 #' @examples
-#' # Add example
-#'
-#' @import knitr
+#' # Add examples
 #'
 #' @export
 
-correlation_table <- function(correlations, triangle = "lower", p_values = NULL, diagonal = NULL,
-                              labels = NULL, digits = 2) {
+correlation_table <- function(correlations, triangle = "lower", p_values = NULL,
+  diagonal = NULL, labels = NULL, digits = 2) {
 
   # Check whether correlations are provided
   if (is.null(correlations)) {
@@ -26,7 +27,7 @@ correlation_table <- function(correlations, triangle = "lower", p_values = NULL,
 
   # Convert the output to a data frame and make each column a character
   correlations <- as.data.frame(correlations) %>%
-    mutate_all(prettyNum, digits = digits)
+    dplyr::mutate_all(prettyNum, digits = digits)
 
   # Add significance asterisks
   output <- correlations
@@ -52,10 +53,10 @@ correlation_table <- function(correlations, triangle = "lower", p_values = NULL,
   output$var <- names(output)
 
   # Move var to the beginning of the data frame
-  output <- select(output, var, everything())
+  output <- dplyr::select(output, var, everything())
 
   # Create table
-  output <- kable(output, caption = paste("Correlation matrix"))
+  output <- knitr::kable(output, caption = paste("Correlation matrix"))
 
   return(output)
 }

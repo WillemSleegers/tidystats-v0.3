@@ -4,15 +4,12 @@
 \alias{report_chi_squared}
 \title{Report function for a chi-squared test}
 \usage{
-report_chi_squared(results, identifier, statistic = NULL)
+report_chi_squared(identifier, results = getOption("tidystats_list"))
 }
 \arguments{
-\item{results}{A tidy stats list.}
-
 \item{identifier}{A character string identifying the model.}
 
-\item{statistic}{A character string identifying the exact statistic you want
-to report.}
+\item{results}{A tidystats list.}
 }
 \description{
 Function to report a chi-squared test in APA style.
@@ -21,8 +18,11 @@ Function to report a chi-squared test in APA style.
 # Read in a list of results
 results <- read_stats(system.file("results.csv", package = "tidystats"))
 
+# Set the default tidystats list in options()
+options(tidystats_list = results)
+
 # Report results
-report(results, identifier = "chi_square")
-report(results, identifier = "chi_square", statistic = "p")
+report(identifier = "chi_squared")
+report(identifier = "chi_squared_yates")
 
 }

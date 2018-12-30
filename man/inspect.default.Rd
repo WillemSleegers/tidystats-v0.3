@@ -2,18 +2,24 @@
 % Please edit documentation in R/inspect.default.R
 \name{inspect.default}
 \alias{inspect.default}
-\title{Inspect (a) statistical model(s) added to your tidystats list}
+\title{Inspect (a) statistical model(s) output}
 \usage{
-\method{inspect}{default}(model)
+\method{inspect}{default}(results, ...)
 }
 \arguments{
-\item{results}{A tidystats list.}
+\item{results}{The output of a statistical test.}
 
-\item{...}{Models to show in the viewer.}
+\item{...}{Unused}
 }
 \description{
-\code{inspect} is a function to inspect one or more models that are part of a
-tidystats list. The function will open a Shiny widget in the Viewer pane,
-which will show the results of one or more models. This allows the user to
-visually inspect the model output, as well as copy the results in APA format.
+\code{inspect} is a function to inspect the output of a statistical model via
+the Viewer pane.
+}
+\examples{
+# Run a statistical test
+model <- t.test(extra ~ group, data = sleep)
+
+# Inspect the output
+# inspect(model)
+
 }

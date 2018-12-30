@@ -39,10 +39,10 @@ tidy_stats.aovlist <- function(model) {
     dplyr::arrange(term_nr)
 
   # Remove spaces from the term variable
-  output$term <- str_replace_all(output$term, " ", "")
+  output$term <- stringr::str_replace_all(output$term, " ", "")
 
   # Add a group column
-  output <- mutate(output, group = str_replace(group, "Error: ", ""))
+  output <- dplyr::mutate(output, group = stringr::str_replace(group, "Error: ", ""))
 
   # Get classes of the predictors
   classes <- unlist(lapply(stats::model.frame(model), class))[-1]
@@ -50,7 +50,7 @@ tidy_stats.aovlist <- function(model) {
   # Add kind of ANOVA
   output <- dplyr::mutate(output, method = dplyr::case_when(
     "numeric" %in% classes ~ "ANCOVA",
-    !str_detect(first(dplyr::pull(output, term)), "Residuals") ~ "Mixed ANOVA",
+    !stringr::str_detect(first(dplyr::pull(output, term)), "Residuals") ~ "Mixed ANOVA",
     sum(!is.na(classes)) == 2 ~ "One-way repeated measures ANOVA",
     sum(!is.na(classes)) == 3 ~ "Factorial repeated measures ANOVA",
     TRUE ~ "Repeated measures ANOVA"

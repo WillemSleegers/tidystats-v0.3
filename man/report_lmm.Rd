@@ -4,20 +4,20 @@
 \alias{report_lmm}
 \title{Report method for linear mixed models}
 \usage{
-report_lmm(results, identifier, group = NULL, term = NULL,
-  term_nr = NULL)
+report_lmm(identifier, group = NULL, term = NULL, term_nr = NULL,
+  results = getOption("tidystats_list"))
 }
 \arguments{
-\item{results}{A tidy stats list.}
-
 \item{identifier}{A character string identifying the model.}
 
-\item{group}{A character string indicating the group containing the statistic
-or statistics you want to report.}
+\item{group}{A character string indicating the group containing the
+statistics you want to report.}
 
 \item{term}{A character string indicating the term you want to report.}
 
 \item{term_nr}{A number indicating the term you want to report.}
+
+\item{results}{A tidystats list.}
 }
 \description{
 Function to report a linear mixed model in APA style.
@@ -30,8 +30,7 @@ results <- read_stats(system.file("results.csv", package = "tidystats"))
 options(tidystats_list = results)
 
 # Example: regression term
-report("regression", term = "groupTrt")
-report("regression", term_nr = 2)
-report("regression", term = "groupTrt", statistic = "p")
+report("lme4_lme", term = "Days")
+report("lmerTest_lme", term = "Days")
 
 }

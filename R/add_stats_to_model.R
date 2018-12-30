@@ -5,14 +5,17 @@
 #' test, so you want to add these results to an existing model in a tidy stats
 #' list.
 #'
-#' @param results a tidy stats list.
-#' @param output output of a statistical test.
-#' @param identifier a character string identifying the model.
+#' @param results A tidystats list.
+#' @param output Output of a statistical test.
+#' @param identifier A character string identifying the model.
 #' @param class A character string to indicate which function was used to
 #' produce the output. See 'Details' for a list of supported functions.
 #'
+#' @details
+#' Supported classes are:
+#' - \code{confint}
+#'
 #' @examples
-#' library(magrittr)
 #'
 #' # Create an empty list to store the results in
 #' results <- list()
@@ -31,17 +34,11 @@
 #' # Get confidence intervals of the model
 #' model_CIs <- confint(model)
 #'
-#' # Produce a tidy data frame of the CIs and add it to the results list
-#' model_CIs_tidy <- tidy_stats_confint(model_CIs)
-#'
 #' # Add it to the results list
-#' results <- add_stats_to_model(results, model_CIs_tidy, identifier = "M1")
-#'
-#' @import dplyr
-#' @importFrom magrittr %>%
+#' results <- add_stats_to_model(results, model_CIs, identifier = "M1",
+#'   class = "confint")
 #'
 #' @export
-
 add_stats_to_model <- function(results, output, identifier, class = NULL) {
 
   # Check whether the identifier exists, otherwise extract it
@@ -56,7 +53,6 @@ add_stats_to_model <- function(results, output, identifier, class = NULL) {
     class(output) <- append(class(output), class)
     new_element <- tidy_stats(output)
   } else {
-
     # Check whether the new element contains the necessary columns
     if (!"statistic" %in% names(output)) {
       stop("No statistic column found.")
@@ -79,8 +75,7 @@ add_stats_to_model <- function(results, output, identifier, class = NULL) {
     if (length(res$term) > 0) {
       if ("term" %in% names(new_element)) {
         new_element <- dplyr::full_join(res, new_element, by = c("term",
-                                                                 "statistic",
-                                                                 "value")) %>%
+          "statistic", "value")) %>%
           dplyr::group_by(term) %>%
           dplyr::mutate(
             group = first(group),
@@ -89,8 +84,7 @@ add_stats_to_model <- function(results, output, identifier, class = NULL) {
           )
       } else {
         new_element <- dplyr::full_join(res, new_element, by = c("term_nr",
-                                                                 "statistic",
-                                                                 "value")) %>%
+          "statistic", "value")) %>%
           dplyr::group_by(term_nr) %>%
           dplyr::mutate(
             term = first(term),
@@ -102,8 +96,8 @@ add_stats_to_model <- function(results, output, identifier, class = NULL) {
         dplyr::ungroup()
     }
   } else {
-    new_element <- dplyr::full_join(res, new_element, by = c("statistic",
-                                                             "value")) %>%
+    new_element <- res %>%
+      dplyr::full_join(new_element, by = c("statistic", "value")) %>%
       dplyr::mutate(method = first(method))
   }
 

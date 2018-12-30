@@ -39,7 +39,8 @@ report_statistic <- function(statistic, value) {
       output <- format(value, digits = 2, nsmall = 2)
     }
   } else if (value == Inf) {
-    output <- "∞"
+    # ∞ = \u221E
+    output <- "\u221E"
   } else {
     output <- format(value, digits = 2, nsmall = 2)
   }

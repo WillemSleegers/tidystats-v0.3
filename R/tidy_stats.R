@@ -1,6 +1,8 @@
 #' Create a tidy stats data frame from a statistical output object
 #'
-#' \code{tidy_stats} is a generic function that calls one of the specific \code{tidy_stats} functions dependent on the type of model (e.g., htest, lm, aov).
+#' \code{tidy_stats} is a generic function that calls one of the specific
+#' \code{tidy_stats} functions dependent on the type of model
+#' (e.g., htest, lm, aov).
 #'
 #' @param model Output of a statistical test
 #'

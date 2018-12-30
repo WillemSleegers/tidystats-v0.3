@@ -2,37 +2,33 @@
 #'
 #' Function to report a chi-squared test in APA style.
 #'
-#' @param results A tidy stats list.
 #' @param identifier A character string identifying the model.
-#' @param statistic A character string identifying the exact statistic you want
-#' to report.
+#' @param results A tidystats list.
 #'
 #' @examples
 #' # Read in a list of results
 #' results <- read_stats(system.file("results.csv", package = "tidystats"))
 #'
+#' # Set the default tidystats list in options()
+#' options(tidystats_list = results)
+#'
 #' # Report results
-#' report(results, identifier = "chi_square")
-#' report(results, identifier = "chi_square", statistic = "p")
+#' report(identifier = "chi_squared")
+#' report(identifier = "chi_squared_yates")
 #'
 #' @export
 
-report_chi_squared <- function(results, identifier, statistic = NULL) {
+report_chi_squared <- function(identifier,
+  results = getOption("tidystats_list")) {
+
+  output <- NULL
 
   # Extract model results
   res <- results[[identifier]]
 
-  # Check whether a single statistic is requested, or a full line of APA output
-  if (!is.null(statistic)) {
-    if (!statistic %in% res$statistic) {
-      stop("Statistic not found.")
-    } else {
-      res_statistic = statistic
-    }
-
-    value <- pull(filter(res, statistic == res_statistic), value)
-    output <- report_statistic(res_statistic, value)
-  } else {
+  # Check if all the necessary statistics are there to produce a line of output
+  if (sum(c("X-squared", "df", "p") %in% unique(res$statistic)) == 3) {
+    # Extract statistics
     x_squared <- pull(filter(res, statistic == "X-squared"), value)
     df        <- pull(filter(res, statistic == "df"), value)
     p         <- pull(filter(res, statistic == "p"), value)
@@ -41,7 +37,7 @@ report_chi_squared <- function(results, identifier, statistic = NULL) {
     df        <- report_statistic("df", df)
     p         <- report_p_value(p)
 
-    output <- paste0("*χ²* (", df, ") = ", x_squared, ", ", p)
+    output <- paste0("*\u03C7\u00B2* (", df, ") = ", x_squared, ", ", p)
   }
 
   return(output)

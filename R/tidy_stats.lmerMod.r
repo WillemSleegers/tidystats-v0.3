@@ -1,21 +1,23 @@
 #' Create a tidy stats data frame from an lmerMod object
 #'
-#' \code{tidy_stats.lmerMod} takes an lmerMod object and converts the object to a tidy stats data frame.
+#' \code{tidy_stats.lmerMod} takes an lmerMod object and converts the object to
+#' a tidy stats data frame.
 #'
 #' @param model Output of lme4's \code{lmer()}.
 #'
 #' @examples
-#' # Conduct a linear mixed model
-#' model_lmer <- lmer(extra ~ group + (1|ID), data = sleep)
+#' \donttest{
+#'   # Load package
+#'   library(lme4)
 #'
-#' tidy_stats(model_lmer)
+#'   # Conduct a linear mixed model
+#'   model_lmer <- lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
 #'
-#' @import dplyr
-#' @import tidyr
-#' @importFrom magrittr %>%
+#'   # Tidy stats
+#'   tidy_stats(model_lmer)
+#' }
 #'
 #' @export
-
 tidy_stats.lmerMod <- function(model) {
 
   # Get summary statistics
@@ -74,10 +76,9 @@ tidy_stats.lmerMod <- function(model) {
     dplyr::arrange(term_nr)
 
   # Add fixed effects correlations
-  cors <- cov2cor(summary$vcov)
+  cors <- lme4::cov2sdcor(as.matrix(summary$vcov))
   cors[lower.tri(cors, diag = TRUE)] <- NA
   cors <- cors %>%
-    as.matrix() %>% # Coercion to data frame does not work otherwise
     as.data.frame() %>%
     tibble::rownames_to_column("term1") %>%
     tidyr::gather("term2", "value", -term1) %>%
@@ -90,7 +91,7 @@ tidy_stats.lmerMod <- function(model) {
     )
 
   # Combine all parts of the output
-  output <- bind_rows(model_N, random, fixed, cors)
+  output <- dplyr::bind_rows(model_N, random, fixed, cors)
 
   # Not included:
   # - REML criterion at convergence
@@ -101,7 +102,7 @@ tidy_stats.lmerMod <- function(model) {
   output$method <- "Linear mixed model {lme4}"
 
   # Order variables
-  output <- select(output, group, term_nr, term, statistic, value, method)
+  output <- dplyr::select(output, group, term_nr, term, statistic, value, method)
 
   return(output)
 }

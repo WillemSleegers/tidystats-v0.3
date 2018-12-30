@@ -9,8 +9,8 @@ count_data(data, ..., na.rm = TRUE)
 \arguments{
 \item{data}{A data frame.}
 
-\item{...}{One or more unquoted (categorical) variable names separated by
-commas.}
+\item{...}{One or more unquoted (categorical) column names from the data
+frame, separated by commas.}
 
 \item{na.rm}{Logical. Should missing values (including NaN) be removed?}
 }
@@ -19,7 +19,7 @@ commas.}
 variables.
 }
 \details{
-The data set can be grouped using \strong{dplyr}'s \code{group_by}
+The data frame can be grouped using \strong{dplyr}'s \code{group_by}
 so that the total of observations will be calculated for each group level.
 }
 \examples{

@@ -4,20 +4,20 @@
 \alias{report_lm}
 \title{Report method for linear regression models}
 \usage{
-report_lm(results, identifier, group = NULL, term = NULL,
-  term_nr = NULL)
+report_lm(identifier, group = NULL, term = NULL, term_nr = NULL,
+  results = getOption("tidystats_list"))
 }
 \arguments{
-\item{results}{A tidy stats list.}
-
 \item{identifier}{A character string identifying the model.}
 
-\item{group}{A character string indicating the group containing the statistic
-or statistics you want to report.}
+\item{group}{A character string indicating the group containing the
+statistics you want to report.}
 
 \item{term}{A character string indicating the term you want to report.}
 
 \item{term_nr}{A number indicating the term you want to report.}
+
+\item{results}{A tidystats list.}
 }
 \description{
 Function to report a regression in APA style.

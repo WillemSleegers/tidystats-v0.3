@@ -5,13 +5,17 @@
 #' @param model Output of lmerTest's \code{lmer()}.
 #'
 #' @examples
-#' library(lme4)
-#' library(lmerTest)
+#' \donttest{
+#'   # Load packages
+#'   library(lme4)
+#'   library(lmerTest)
 #'
-#' # Conduct a linear mixed model
-#' model_lmerTest <- lmer(extra ~ group + (1|ID), data = sleep)
+#'   # Conduct a linear mixed model
+#'   model_lmerTest <- lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
 #'
-#' tidy_stats(model_lmerTest)
+#'   # Tidy stats
+#'   tidy_stats(model_lmerTest)
+#' }
 #'
 #' @export
 
@@ -74,10 +78,9 @@ tidy_stats.lmerModLmerTest <- function(model) {
     dplyr::arrange(term_nr)
 
   # Add fixed effects correlations
-  cors <- cov2cor(summary$vcov)
+  cors <- lme4::cov2sdcor(as.matrix(summary$vcov))
   cors[lower.tri(cors, diag = TRUE)] <- NA
   cors <- cors %>%
-    as.matrix() %>% # Coercion to data frame does not work otherwise
     as.data.frame() %>%
     tibble::rownames_to_column("term1") %>%
     tidyr::gather("term2", "value", -term1) %>%

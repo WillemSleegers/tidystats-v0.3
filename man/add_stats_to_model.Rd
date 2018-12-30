@@ -7,11 +7,11 @@
 add_stats_to_model(results, output, identifier, class = NULL)
 }
 \arguments{
-\item{results}{a tidy stats list.}
+\item{results}{A tidystats list.}
 
-\item{output}{output of a statistical test.}
+\item{output}{Output of a statistical test.}
 
-\item{identifier}{a character string identifying the model.}
+\item{identifier}{A character string identifying the model.}
 
 \item{class}{A character string to indicate which function was used to
 produce the output. See 'Details' for a list of supported functions.}
@@ -22,8 +22,11 @@ Sometimes you have to run additional analyses on the output of a statistical
 test, so you want to add these results to an existing model in a tidy stats
 list.
 }
+\details{
+Supported classes are:
+- \code{confint}
+}
 \examples{
-library(magrittr)
 
 # Create an empty list to store the results in
 results <- list()
@@ -42,10 +45,8 @@ results <- add_stats(results, model, identifier = "M1")
 # Get confidence intervals of the model
 model_CIs <- confint(model)
 
-# Produce a tidy data frame of the CIs and add it to the results list
-model_CIs_tidy <- tidy_stats_confint(model_CIs)
-
 # Add it to the results list
-results <- add_stats_to_model(results, model_CIs_tidy, identifier = "M1")
+results <- add_stats_to_model(results, model_CIs, identifier = "M1",
+  class = "confint")
 
 }

@@ -4,20 +4,20 @@
 \alias{report_anova}
 \title{Report method for ANOVA models}
 \usage{
-report_anova(results, identifier, group = NULL, term = NULL,
-  term_nr = NULL, statistic = NULL)
+report_anova(identifier, group = NULL, term = NULL, term_nr = NULL,
+  results = getOption("tidystats_list"))
 }
 \arguments{
-\item{results}{A tidy stats list.}
-
 \item{identifier}{A character string identifying the model.}
+
+\item{group}{A character string indicating the group containing the
+statistics you want to report.}
 
 \item{term}{A character string indicating the term you want to report.}
 
 \item{term_nr}{A number indicating the term you want to report.}
 
-\item{statistic}{A character string identifying the exact statistic you want
-to report.}
+\item{results}{A tidystats list.}
 }
 \description{
 Function to report ANOVA output in APA style.
@@ -26,9 +26,11 @@ Function to report ANOVA output in APA style.
 # Read in a list of results
 results <- read_stats(system.file("results.csv", package = "tidystats"))
 
+# Set the list as the default list
+options(tidystats_list = results)
+
 # Report results
-report(results, identifier = "ANOVA", term = "N")
-report(results, identifier = "ANOVA", term_nr = "2")
-report(results, identifier = "ANOVA", term = "N", statistic = "p")
+report_anova("aov_two_way", term = "condition")
+report_anova("aov_two_way", term = "sex")
 
 }

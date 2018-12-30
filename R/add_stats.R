@@ -1,24 +1,32 @@
 #' Add statistical output to a tidy stats list
 #'
-#' \code{add_stats} adds output to a results list. It can take either the output of a statistical test as input or a data frame. See Details for more information on adding data frames.
+#' \code{add_stats} adds output to a tidystats list. It can take either the
+#' output of a statistical test as input or a data frame. See Details for more
+#' information on adding data frames.
 #'
-
-#' @param results A tidy stats list.
-#' @param output Output of a statistical test or a data frame. If a data frame is provided, it must already be in a tidy format.
-#' @param identifier A character string identifying the model. Automatically created if not provided.
-#' @param type A character string indicating the type of test. One of "hypothesis", "manipulation check", "contrast", "descriptives", or "other". Can be abbreviated.
-#' @param confirmatory A boolean to indicate whether the statistical test was confirmatory (TRUE) or exploratory (FALSE). Can be NA.
-#' @param notes A character string to add additional information. Some statistical tests produce notes information, which will be overwritten if notes are provided.
-#' @param class A character string to indicate which function was used to produce the output. See 'Details' for a list of supported functions.
-#' @param summary_args A list of arguments that will be provided to the summary function that will be applied to the output of some functions, like lm().
+#' @param results A tidystats list.
+#' @param output Output of a statistical test or a data frame. If a data frame
+#' is provided, it must already be in a tidy format.
+#' @param identifier A character string identifying the model. Automatically
+#' created if not provided.
+#' @param type A character string indicating the type of test. One of
+#' "hypothesis", "manipulation check", "contrast", "descriptives", or "other".
+#' Can be abbreviated.
+#' @param confirmatory A boolean to indicate whether the statistical test was
+#' confirmatory (TRUE) or exploratory (FALSE). Can be NA.
+#' @param notes A character string to add additional information. Some
+#' statistical tests produce notes information, which will be overwritten if
+#' notes are provided.
+#' @param class A character string to indicate which function was used to
+#' produce the output. See 'Details' for a list of supported functions.
 #'
-#' @details Some statistical functions produce unidentifiable output, which means \code{tidystats}
-#' cannot figure out how to tidy the data. To add these results, you can provide a class via the
-#' class argument or you can manually tidy the results yourself and add the resulting data frame via
-#' add_stats().
+#' @details Some statistical functions produce unidentifiable output, which
+#' means \code{tidystats} cannot figure out how to tidy the data. To add these
+#' results, you can provide a class via the class argument or you can manually
+#' tidy the results yourself and add the resulting data frame via add_stats().
 #'
 #' A list of supported classes are:
-#' - confint
+#' - \code{confint}
 #'
 #' @examples
 #' # Create an empty list to store the results in
@@ -46,7 +54,8 @@
 #' model_lm <- lm(weight ~ group)
 #'
 #' # Add output to the results list, with notes
-#' results <- add_stats(results, model_lm, identifier = "regression", notes = "regression example")
+#' results <- add_stats(results, model_lm, identifier = "regression", notes =
+#' "regression example")
 #'
 #' # Example: ANOVA
 #' model_aov <- aov(yield ~ block + N * P * K, npk)
@@ -70,7 +79,6 @@
 #' results <- add_stats(results, x_squared_data, identifier = "x_squared")
 #'
 #' @export
-
 add_stats <- function(results, output, identifier = NULL, type = NULL,
-  confirmatory = NULL, notes = NULL, class = NULL, summary_args = NULL)
+  confirmatory = NULL, notes = NULL, class = NULL)
   UseMethod("add_stats", output)

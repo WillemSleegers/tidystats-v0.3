@@ -24,10 +24,8 @@ regression.
 Besides enabling you to create an organized data file of statistical results, 
 the `tidystats` package also contains functions to help you report statistics in
 APA style. Results can be reported using 
-[R Markdown](http://rmarkdown.rstudio.com) or using a new built-in Shiny app 
-(this is currently only available in the development version). Additionally, 
-development has started on a Google Docs plugin that uses a tidystats data file 
-to report statistics.
+[R Markdown](http://rmarkdown.rstudio.com) or using a new built-in Shiny app. Additionally, development has started on a Google Docs plugin that uses a 
+tidystats data file to report statistics.
 
 Please see below for instructions on how to install and use this package. 
 **Do note that the package is currently in development. This means the package 
@@ -66,7 +64,6 @@ The main function is `add_stats()`. The function has 2 necessary arguments:
 - `output`: The output of a statistical test you want to add to the list (e.g., 
 the output of `t.test()` or `lm()`)
 
-
 Optionally you can also add an identifier, type, whether the analysis was 
 confirmatory or exploratory, and additional notes using the `identifier`, 
 `type`, `confirmatory`, and `notes` arguments, respectively. 
@@ -95,18 +92,21 @@ which will be overwritten when a `notes` argument is supplied to the
 - `t.test()`
 - `cor.test()`
 - `lm()`
+- `glm()`
 - `aov()`
 - `chisq.test()`
 - `wilcox.test()`
+- `fisher.test()`
 
-<!-- **Package:** psych -->
+**Package:** psych
 
-<!-- - `alpha(`) -->
-<!-- - `corr.test()` -->
+- `alpha()`
+- `corr.test()`
+- `ICC()`
 
-<!-- **Package:** lme4 and lmerTest -->
+**Package:** lme4 and lmerTest
 
-<!-- - `lmer()` -->
+- `lmer()`
 
 ### Example
 
@@ -124,7 +124,7 @@ the `tidystats` package.
 # Perform analyses
 M1_condition <- t.test(call_parent ~ condition, data = cox, paired = TRUE)
 M2_parent_siblings <- cor.test(cox$call_parent, cox$call_siblings, 
-                               alternative = "greater")
+  alternative = "greater")
 M3_condition_anxiety <- lm(call_parent ~ condition * anxiety , data = cox)
 M4_condition_sex <- aov(call_parent ~ condition * sex, data = cox)
 
@@ -711,7 +711,7 @@ re-create the tidystats list, using the `read_stats()` function.
 results <- read_stats("data/results.csv")
 ```
 
-#### Shiny app (available in the Github version of tidystats)
+#### Shiny app
 
 If you do not want to use R Markdown, you can use the built-in Shiny app to 
 interactively produce APA-output and copy it to your manuscript. To start the
@@ -769,7 +769,7 @@ term label or the term number (and in some cases, using a group). Although it
 may be less descriptive to use a term number, it reduces the amount of code 
 clutter in your Markdown document. Our philosophy is, in line with Markdown's 
 general writing philosophy, that the code should not distract from writing. To 
-illustrate, writing part of a results section will now, using `tidystats` look 
+illustrate, writing part of a results section with `tidystats` will look 
 like this:
 
 > We found no significant difference between the mortality salience condition 
@@ -800,10 +800,10 @@ describe_data(cox, anxiety)
 
 ```
 ## # A tibble: 1 x 13
-##   var   missing     n      M      SD       SE   min   max range median
-##   <chr>   <int> <int>  <dbl>   <dbl>    <dbl> <dbl> <dbl> <dbl>  <dbl>
-## 1 anxi…       0   200 3.2162 0.49172 0.034770 1.375 4.375     3   3.25
-## # ... with 3 more variables: mode <dbl>, skew <dbl>, kurtosis <dbl>
+##   var   missing     n     M    SD     SE   min   max range median  mode
+##   <chr>   <int> <int> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>  <dbl> <dbl>
+## 1 anxi…       0   200  3.22 0.492 0.0348  1.38  4.38     3   3.25   3.5
+## # ... with 2 more variables: skew <dbl>, kurtosis <dbl>
 ```
 
 
@@ -817,12 +817,11 @@ cox %>%
 ```
 ## # A tibble: 2 x 14
 ## # Groups:   condition [2]
-##   var   condition missing     n      M      SD       SE   min   max range
-##   <chr> <fct>       <int> <int>  <dbl>   <dbl>    <dbl> <dbl> <dbl> <dbl>
-## 1 anxi… dental p…       0   100 3.26   0.49673 0.049673 1.625 4.375  2.75
-## 2 anxi… mortalit…       0   100 3.1725 0.48519 0.048519 1.375 4.375  3   
-## # ... with 4 more variables: median <dbl>, mode <dbl>, skew <dbl>,
-## #   kurtosis <dbl>
+##   var   condition missing     n     M    SD     SE   min   max range median
+##   <chr> <chr>       <int> <int> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>  <dbl>
+## 1 anxi… dental p…       0   100  3.26 0.497 0.0497  1.62  4.38  2.75   3.38
+## 2 anxi… mortalit…       0   100  3.17 0.485 0.0485  1.38  4.38  3      3.25
+## # ... with 3 more variables: mode <dbl>, skew <dbl>, kurtosis <dbl>
 ```
 
 
@@ -861,6 +860,3 @@ results <- results %>%
 ## "Anxious attachment style"): You added a data.frame to your results list.
 ## Please make sure it is properly tidied.
 ```
-In the `add_stats()` function you can also specify which of the statistics you 
-would like to store in the results list, using the `statistics` argument. Of 
-course, the results can also be tidied when the data is grouped.

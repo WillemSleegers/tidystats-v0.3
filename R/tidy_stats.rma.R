@@ -4,22 +4,6 @@
 #'
 #' @param model Output of \code{metafor::rma()}.
 #'
-#' @examples
-#' library(metafor)
-#'
-#' # Calculate log risk ratios and corresponding sampling variances
-#' dat <- escalc(measure = "RR", ai = tpos, bi = tneg, ci = cpos, di = cneg, data = dat.bcg)
-#'
-#' # Perform a random-effects model
-#' model_rma <- rma(yi, vi, data=dat, method="REML")
-#'
-#' # Tidy the model output
-#' tidy_stats(model_rma)
-#'
-#' @import dplyr
-#' @import tidyr
-#' @importFrom magrittr %>%
-#'
 #' @export
 
 tidy_stats.rma <- function(model) {
@@ -101,9 +85,9 @@ tidy_stats.rma <- function(model) {
     CI_level <- 95
   }
 
-  names(model_results) <- str_replace(names(model_results), "lower",
+  names(model_results) <- stringr::str_replace(names(model_results), "lower",
                                       paste0((100-CI_level)/2, "% CI"))
-  names(model_results) <- str_replace(names(model_results), "upper",
+  names(model_results) <- stringr::str_replace(names(model_results), "upper",
                                       paste0(100-(100-CI_level)/2, "% CI"))
 
   if (is.element(model$test, c("knha","adhoc","t"))) {
@@ -111,14 +95,14 @@ tidy_stats.rma <- function(model) {
   }
 
   model_results <- model_results %>%
-    gather("statistic", "value", -term, -term_nr, -group) %>%
-    arrange(term_nr)
+    tidyr::gather("statistic", "value", -term, -term_nr, -group) %>%
+    dplyr::arrange(term_nr)
 
   # Combine statistics
-  output <- bind_rows(output, model_results)
+  output <- dplyr::bind_rows(output, model_results)
 
   # Re-order columns
-  output <- select(output, group, term, term_nr, statistic, value)
+  output <- dplyr::select(output, group, term, term_nr, statistic, value)
 
   # Add method information
   if (class(model)[1] == "rma.uni") {

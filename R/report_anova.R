@@ -2,109 +2,68 @@
 #'
 #' Function to report ANOVA output in APA style.
 #'
-#' @param results A tidy stats list.
 #' @param identifier A character string identifying the model.
+#' @param group A character string indicating the group containing the
+#' statistics you want to report.
 #' @param term A character string indicating the term you want to report.
 #' @param term_nr A number indicating the term you want to report.
-#' @param statistic A character string identifying the exact statistic you want
-#' to report.
+#' @param results A tidystats list.
 #'
 #' @examples
 #' # Read in a list of results
 #' results <- read_stats(system.file("results.csv", package = "tidystats"))
 #'
-#' # Report results
-#' report(results, identifier = "ANOVA", term = "N")
-#' report(results, identifier = "ANOVA", term_nr = "2")
-#' report(results, identifier = "ANOVA", term = "N", statistic = "p")
+#' # Set the list as the default list
+#' options(tidystats_list = results)
 #'
-#' @import stringr
+#' # Report results
+#' report_anova("aov_two_way", term = "condition")
+#' report_anova("aov_two_way", term = "sex")
 #'
 #' @export
+report_anova <- function(identifier, group = NULL, term = NULL, term_nr = NULL,
+  results = getOption("tidystats_list")) {
 
-report_anova <- function(results, identifier, group = NULL, term = NULL,
-  term_nr = NULL, statistic = NULL) {
+  output <- NULL
 
   # Extract model results
   res <- results[[identifier]]
 
   # Rename argument names to names that are not in res
   res_group <- group
-  res_statistic <- statistic
   res_term <- term
   res_term_nr <- term_nr
 
-  # Check whether a single statistic is requested, or a full line of APA output
-  if (!is.null(statistic)) {
+  # Figure out both the term and term_nr
+  res_term <- ifelse(!is.null(term), term, unique(dplyr::pull(res, term))[term_nr])
+  res_term_nr <- ifelse(!is.null(term_nr), term_nr,
+    first(dplyr::pull(dplyr::filter(res, term == res_term), term_nr)))
 
-    # Check whether the statistic exists
-    if (!statistic %in% unique(res$statistic)) {
-      stop("statistic not found")
-    }
+  # If the statistics of the residuals are requested, throw an error
+  if (res_term == "Residuals") {
+    stop(paste("APA output for residuals is not supported. Try reporting a",
+      "single residual statistic instead"))
+  }
 
-    # Select statistics of the group, if provided
-    if (!is.null(group)) {
-      if (group %in% unique(res$group)) {
-        res <- dplyr::filter(res, group == res_group)
-      } else {
-        stop("group not found")
-      }
-    }
+  # Filter the results based on the supplied information
+  if (!is.null(group)) {
+    res <- dplyr::filter(res, group == res_group)
+  }
 
-    # Select statistics of the term, if provided
-    if (!is.null(term)) {
-      res <- dplyr::filter(res, term == res_term)
-    } else if (!is.null(term_nr)) {
+  res <- dplyr::filter(res, term == res_term | term == "Residuals")
 
-      # Coerce the term_nr to a number if it was provided as a string
-      if (!is.numeric(term_nr)) {
-        res_term_nr <- as.numeric(res_term_nr)
-      }
+  if (nrow(res) == nrow(filter(res, term == "Residuals"))) {
+    stop("No statistics found; did you supply the correct information?")
+  }
 
-      res <- dplyr::filter(res, term_nr == res_term_nr)
-    }
-
-    # Get the value of the statistic
-    value <- res %>%
-      dplyr::filter(statistic == res_statistic) %>%
-      pull(value)
-
-    # Check whether enough information was supplied by checking whether the
-    # value vector contains more than 1 element
-    if (length(value) > 1) {
-      stop(paste("not enough information provided, considering adding group or",
-        "term information"))
-    }
-
-    output <- report_statistic(res_statistic, value)
-  } else {
-
-    # Check whether a term or term_nr has been provided
-    if (is.null(term) & is.null(term_nr)) {
-      stop("Please provide a term or term number")
-    }
-
-    if (!is.null(term_nr) & !is.numeric(term_nr)) {
-      stop("term_nr is not a number")
-    }
-
-    # Get the provided information
-    res_term <- ifelse(!is.null(term), term, unique(pull(res, term))[term_nr])
-    res_term_nr <- ifelse(!is.null(term_nr), term_nr,
-                          first(pull(filter(res, term == res_term), term_nr)))
-
-
-    # If the statistics of the residuals are requested, throw an error
-    if (res_term == "Residuals") {
-      stop(paste("APA output for residuals is not supported. Try reporting a",
-        "single residual statistic instead"))
-    }
-
+  # Check if all the necessary statistics are there to produce a line of output
+  if (sum(c("F", "p", "df") %in% unique(res$statistic)) == 3) {
+    # TODO: Add a check for both num df and denominator df
     # Extract the dfs and then filter out irrelevant statistics
     dfs <- res %>%
       dplyr::filter(statistic == "df" & term_nr >= res_term_nr &
           (term == res_term | term == "Residuals")) %>%
-      pull(value)
+      dplyr::pull(value)
 
     res <- dplyr::filter(res, term == res_term)
 
@@ -117,7 +76,7 @@ report_anova <- function(results, identifier, group = NULL, term = NULL,
     p      <- report_p_value(p)
 
     output <- paste0("*F*(", df_num, ", ", df_den, ") = ", f, ", ", p)
-    }
+  }
 
   return(output)
 }

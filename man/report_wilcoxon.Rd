@@ -4,15 +4,12 @@
 \alias{report_wilcoxon}
 \title{Report function for Wilcoxon Rank Sum and Signed Rank Tests}
 \usage{
-report_wilcoxon(results, identifier, statistic = NULL)
+report_wilcoxon(identifier, results = getOption("tidystats_list"))
 }
 \arguments{
-\item{results}{A tidy stats list.}
-
 \item{identifier}{A character string identifying the model.}
 
-\item{statistic}{A character string identifying the exact statistic you want
-to report.}
+\item{results}{A tidystats list.}
 }
 \description{
 Function to report Wilcoxon Rank Sum and Signed Rank Tests in APA style.
@@ -21,8 +18,11 @@ Function to report Wilcoxon Rank Sum and Signed Rank Tests in APA style.
 # Read in a list of results
 results <- read_stats(system.file("results.csv", package = "tidystats"))
 
+# Set the default tidystats list in options()
+options(tidystats_list = results)
+
 # Report results
-report(results, identifier = "wilcoxon_signed_rank")
-report(results, identifier = "wilcoxon_signed_rank", statistic = "Z")
+report(identifier = "wilcoxon_rank_sum")
+report(identifier = "wilcoxon_signed_rank")
 
 }

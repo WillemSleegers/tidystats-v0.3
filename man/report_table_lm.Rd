@@ -4,12 +4,11 @@
 \alias{report_table_lm}
 \title{Report table method for linear regression models}
 \usage{
-report_table_lm(results, identifier, terms = NULL, term_nrs = NULL,
-  statistics = NULL, include_model = TRUE, term_labels = NULL)
+report_table_lm(identifier, terms = NULL, term_nrs = NULL,
+  statistics = NULL, include_model = TRUE, term_labels = NULL,
+  results = getOption("tidystats_list"))
 }
 \arguments{
-\item{results}{A tidy stats list.}
-
 \item{identifier}{A character string identifying the model.}
 
 \item{terms}{A character vector indicating which terms you want to report in the table.}
@@ -21,15 +20,9 @@ report_table_lm(results, identifier, terms = NULL, term_nrs = NULL,
 \item{include_model}{Include or exclude model statistics (e.g., R squared).}
 
 \item{term_labels}{A character vector to change the labels for the terms.}
+
+\item{results}{A tidystats list.}
 }
 \description{
 Function create a table in order to display results of a regression.
-}
-\examples{
-# Read in a list of results
-results <- read_stats(system.file("results.csv", package = "tidystats"))
-
-# Example: regression term
-report_table_lm("regression", results = results)
-
 }

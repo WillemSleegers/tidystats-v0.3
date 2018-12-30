@@ -4,7 +4,7 @@
 # Load packages
 library(devtools)
 document()
-install(dependencies = TRUE)
+install()
 
 # Set options
 options(pillar.sigfig = 5)
