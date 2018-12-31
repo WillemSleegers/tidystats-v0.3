@@ -1,7 +1,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <p align="center">
-  <img src="reference/img/hex.png" width = 150 align = center alt="tidystats logo"/>
+  <img src="https://raw.githubusercontent.com/WillemSleegers/tidystats/master/docs/img/hex.png" width = 150 align = center alt="tidystats logo"/>
 </p>
 
 tidystats
@@ -159,543 +159,68 @@ results %>%
   kable()
 ```
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> identifier </th>
-   <th style="text-align:left;"> group </th>
-   <th style="text-align:right;"> term_nr </th>
-   <th style="text-align:left;"> term </th>
-   <th style="text-align:left;"> statistic </th>
-   <th style="text-align:right;"> value </th>
-   <th style="text-align:left;"> method </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> M1_condition </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> mean of the differences </td>
-   <td style="text-align:right;"> -2.7700000 </td>
-   <td style="text-align:left;"> Paired t-test </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M1_condition </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> t </td>
-   <td style="text-align:right;"> -1.2614135 </td>
-   <td style="text-align:left;"> Paired t-test </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M1_condition </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> df </td>
-   <td style="text-align:right;"> 99.0000000 </td>
-   <td style="text-align:left;"> Paired t-test </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M1_condition </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> p </td>
-   <td style="text-align:right;"> 0.2101241 </td>
-   <td style="text-align:left;"> Paired t-test </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M1_condition </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> 95% CI lower </td>
-   <td style="text-align:right;"> -7.1272396 </td>
-   <td style="text-align:left;"> Paired t-test </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M1_condition </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> 95% CI upper </td>
-   <td style="text-align:right;"> 1.5872396 </td>
-   <td style="text-align:left;"> Paired t-test </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M1_condition </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> null value </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:left;"> Paired t-test </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M2_parent_siblings </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> r </td>
-   <td style="text-align:right;"> -0.0268794 </td>
-   <td style="text-align:left;"> Pearson's product-moment correlation </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M2_parent_siblings </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> t </td>
-   <td style="text-align:right;"> -0.3783637 </td>
-   <td style="text-align:left;"> Pearson's product-moment correlation </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M2_parent_siblings </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> df </td>
-   <td style="text-align:right;"> 198.0000000 </td>
-   <td style="text-align:left;"> Pearson's product-moment correlation </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M2_parent_siblings </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> p </td>
-   <td style="text-align:right;"> 0.6472171 </td>
-   <td style="text-align:left;"> Pearson's product-moment correlation </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M2_parent_siblings </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> 95% CI lower </td>
-   <td style="text-align:right;"> -0.1430882 </td>
-   <td style="text-align:left;"> Pearson's product-moment correlation </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M2_parent_siblings </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> 95% CI upper </td>
-   <td style="text-align:right;"> 1.0000000 </td>
-   <td style="text-align:left;"> Pearson's product-moment correlation </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M2_parent_siblings </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> null value </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:left;"> Pearson's product-moment correlation </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> (Intercept) </td>
-   <td style="text-align:left;"> b </td>
-   <td style="text-align:right;"> 29.4466534 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> (Intercept) </td>
-   <td style="text-align:left;"> SE </td>
-   <td style="text-align:right;"> 9.9311192 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> (Intercept) </td>
-   <td style="text-align:left;"> t </td>
-   <td style="text-align:right;"> 2.9650891 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> (Intercept) </td>
-   <td style="text-align:left;"> p </td>
-   <td style="text-align:right;"> 0.0034017 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> (Intercept) </td>
-   <td style="text-align:left;"> df </td>
-   <td style="text-align:right;"> 196.0000000 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> conditionmortality salience </td>
-   <td style="text-align:left;"> b </td>
-   <td style="text-align:right;"> 20.2945974 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> conditionmortality salience </td>
-   <td style="text-align:left;"> SE </td>
-   <td style="text-align:right;"> 14.0193962 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> conditionmortality salience </td>
-   <td style="text-align:left;"> t </td>
-   <td style="text-align:right;"> 1.4476085 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> conditionmortality salience </td>
-   <td style="text-align:left;"> p </td>
-   <td style="text-align:right;"> 0.1493242 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> conditionmortality salience </td>
-   <td style="text-align:left;"> df </td>
-   <td style="text-align:right;"> 196.0000000 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> anxiety </td>
-   <td style="text-align:left;"> b </td>
-   <td style="text-align:right;"> -1.5511207 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> anxiety </td>
-   <td style="text-align:left;"> SE </td>
-   <td style="text-align:right;"> 3.0119376 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> anxiety </td>
-   <td style="text-align:left;"> t </td>
-   <td style="text-align:right;"> -0.5149910 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> anxiety </td>
-   <td style="text-align:left;"> p </td>
-   <td style="text-align:right;"> 0.6071396 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> anxiety </td>
-   <td style="text-align:left;"> df </td>
-   <td style="text-align:right;"> 196.0000000 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> conditionmortality salience:anxiety </td>
-   <td style="text-align:left;"> b </td>
-   <td style="text-align:right;"> -5.5666889 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> conditionmortality salience:anxiety </td>
-   <td style="text-align:left;"> SE </td>
-   <td style="text-align:right;"> 4.3104789 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> conditionmortality salience:anxiety </td>
-   <td style="text-align:left;"> t </td>
-   <td style="text-align:right;"> -1.2914316 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> conditionmortality salience:anxiety </td>
-   <td style="text-align:left;"> p </td>
-   <td style="text-align:right;"> 0.1980750 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> coefficients </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> conditionmortality salience:anxiety </td>
-   <td style="text-align:left;"> df </td>
-   <td style="text-align:right;"> 196.0000000 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> model </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> R squared </td>
-   <td style="text-align:right;"> 0.0360246 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> model </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> adjusted R squared </td>
-   <td style="text-align:right;"> 0.0212698 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> model </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> F </td>
-   <td style="text-align:right;"> 2.4415618 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> model </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> numerator df </td>
-   <td style="text-align:right;"> 3.0000000 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> model </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> denominator df </td>
-   <td style="text-align:right;"> 196.0000000 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M3_condition_anxiety </td>
-   <td style="text-align:left;"> model </td>
-   <td style="text-align:right;"> - </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:left;"> p </td>
-   <td style="text-align:right;"> 0.0655150 </td>
-   <td style="text-align:left;"> Linear model </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> condition </td>
-   <td style="text-align:left;"> df </td>
-   <td style="text-align:right;"> 1.0000000 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> condition </td>
-   <td style="text-align:left;"> SS </td>
-   <td style="text-align:right;"> 383.6450000 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> condition </td>
-   <td style="text-align:left;"> MS </td>
-   <td style="text-align:right;"> 383.6450000 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> condition </td>
-   <td style="text-align:left;"> F </td>
-   <td style="text-align:right;"> 1.7299360 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> condition </td>
-   <td style="text-align:left;"> p </td>
-   <td style="text-align:right;"> 0.1899557 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> sex </td>
-   <td style="text-align:left;"> df </td>
-   <td style="text-align:right;"> 1.0000000 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> sex </td>
-   <td style="text-align:left;"> SS </td>
-   <td style="text-align:right;"> 1140.4861329 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> sex </td>
-   <td style="text-align:left;"> MS </td>
-   <td style="text-align:right;"> 1140.4861329 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> sex </td>
-   <td style="text-align:left;"> F </td>
-   <td style="text-align:right;"> 5.1426918 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> sex </td>
-   <td style="text-align:left;"> p </td>
-   <td style="text-align:right;"> 0.0244352 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> condition:sex </td>
-   <td style="text-align:left;"> df </td>
-   <td style="text-align:right;"> 1.0000000 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> condition:sex </td>
-   <td style="text-align:left;"> SS </td>
-   <td style="text-align:right;"> 66.1529617 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> condition:sex </td>
-   <td style="text-align:left;"> MS </td>
-   <td style="text-align:right;"> 66.1529617 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> condition:sex </td>
-   <td style="text-align:left;"> F </td>
-   <td style="text-align:right;"> 0.2982976 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> condition:sex </td>
-   <td style="text-align:left;"> p </td>
-   <td style="text-align:right;"> 0.5855728 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> Residuals </td>
-   <td style="text-align:left;"> df </td>
-   <td style="text-align:right;"> 196.0000000 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> Residuals </td>
-   <td style="text-align:left;"> SS </td>
-   <td style="text-align:right;"> 43466.5909054 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> M4_condition_sex </td>
-   <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> Residuals </td>
-   <td style="text-align:left;"> MS </td>
-   <td style="text-align:right;"> 221.7683209 </td>
-   <td style="text-align:left;"> Factorial ANOVA </td>
-  </tr>
-</tbody>
-</table>
+
+
+|identifier           |group        | term_nr|term                                |statistic               |         value|method                               |
+|:--------------------|:------------|-------:|:-----------------------------------|:-----------------------|-------------:|:------------------------------------|
+|M1_condition         |-            |       -|-                                   |mean of the differences |    -2.7700000|Paired t-test                        |
+|M1_condition         |-            |       -|-                                   |t                       |    -1.2614135|Paired t-test                        |
+|M1_condition         |-            |       -|-                                   |df                      |    99.0000000|Paired t-test                        |
+|M1_condition         |-            |       -|-                                   |p                       |     0.2101241|Paired t-test                        |
+|M1_condition         |-            |       -|-                                   |95% CI lower            |    -7.1272396|Paired t-test                        |
+|M1_condition         |-            |       -|-                                   |95% CI upper            |     1.5872396|Paired t-test                        |
+|M1_condition         |-            |       -|-                                   |null value              |     0.0000000|Paired t-test                        |
+|M2_parent_siblings   |-            |       -|-                                   |r                       |    -0.0268794|Pearson's product-moment correlation |
+|M2_parent_siblings   |-            |       -|-                                   |t                       |    -0.3783637|Pearson's product-moment correlation |
+|M2_parent_siblings   |-            |       -|-                                   |df                      |   198.0000000|Pearson's product-moment correlation |
+|M2_parent_siblings   |-            |       -|-                                   |p                       |     0.6472171|Pearson's product-moment correlation |
+|M2_parent_siblings   |-            |       -|-                                   |95% CI lower            |    -0.1430882|Pearson's product-moment correlation |
+|M2_parent_siblings   |-            |       -|-                                   |95% CI upper            |     1.0000000|Pearson's product-moment correlation |
+|M2_parent_siblings   |-            |       -|-                                   |null value              |     0.0000000|Pearson's product-moment correlation |
+|M3_condition_anxiety |coefficients |       1|(Intercept)                         |b                       |    29.4466534|Linear model                         |
+|M3_condition_anxiety |coefficients |       1|(Intercept)                         |SE                      |     9.9311192|Linear model                         |
+|M3_condition_anxiety |coefficients |       1|(Intercept)                         |t                       |     2.9650891|Linear model                         |
+|M3_condition_anxiety |coefficients |       1|(Intercept)                         |p                       |     0.0034017|Linear model                         |
+|M3_condition_anxiety |coefficients |       1|(Intercept)                         |df                      |   196.0000000|Linear model                         |
+|M3_condition_anxiety |coefficients |       2|conditionmortality salience         |b                       |    20.2945974|Linear model                         |
+|M3_condition_anxiety |coefficients |       2|conditionmortality salience         |SE                      |    14.0193962|Linear model                         |
+|M3_condition_anxiety |coefficients |       2|conditionmortality salience         |t                       |     1.4476085|Linear model                         |
+|M3_condition_anxiety |coefficients |       2|conditionmortality salience         |p                       |     0.1493242|Linear model                         |
+|M3_condition_anxiety |coefficients |       2|conditionmortality salience         |df                      |   196.0000000|Linear model                         |
+|M3_condition_anxiety |coefficients |       3|anxiety                             |b                       |    -1.5511207|Linear model                         |
+|M3_condition_anxiety |coefficients |       3|anxiety                             |SE                      |     3.0119376|Linear model                         |
+|M3_condition_anxiety |coefficients |       3|anxiety                             |t                       |    -0.5149910|Linear model                         |
+|M3_condition_anxiety |coefficients |       3|anxiety                             |p                       |     0.6071396|Linear model                         |
+|M3_condition_anxiety |coefficients |       3|anxiety                             |df                      |   196.0000000|Linear model                         |
+|M3_condition_anxiety |coefficients |       4|conditionmortality salience:anxiety |b                       |    -5.5666889|Linear model                         |
+|M3_condition_anxiety |coefficients |       4|conditionmortality salience:anxiety |SE                      |     4.3104789|Linear model                         |
+|M3_condition_anxiety |coefficients |       4|conditionmortality salience:anxiety |t                       |    -1.2914316|Linear model                         |
+|M3_condition_anxiety |coefficients |       4|conditionmortality salience:anxiety |p                       |     0.1980750|Linear model                         |
+|M3_condition_anxiety |coefficients |       4|conditionmortality salience:anxiety |df                      |   196.0000000|Linear model                         |
+|M3_condition_anxiety |model        |       -|-                                   |R squared               |     0.0360246|Linear model                         |
+|M3_condition_anxiety |model        |       -|-                                   |adjusted R squared      |     0.0212698|Linear model                         |
+|M3_condition_anxiety |model        |       -|-                                   |F                       |     2.4415618|Linear model                         |
+|M3_condition_anxiety |model        |       -|-                                   |numerator df            |     3.0000000|Linear model                         |
+|M3_condition_anxiety |model        |       -|-                                   |denominator df          |   196.0000000|Linear model                         |
+|M3_condition_anxiety |model        |       -|-                                   |p                       |     0.0655150|Linear model                         |
+|M4_condition_sex     |-            |       1|condition                           |df                      |     1.0000000|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       1|condition                           |SS                      |   383.6450000|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       1|condition                           |MS                      |   383.6450000|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       1|condition                           |F                       |     1.7299360|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       1|condition                           |p                       |     0.1899557|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       2|sex                                 |df                      |     1.0000000|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       2|sex                                 |SS                      |  1140.4861329|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       2|sex                                 |MS                      |  1140.4861329|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       2|sex                                 |F                       |     5.1426918|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       2|sex                                 |p                       |     0.0244352|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       3|condition:sex                       |df                      |     1.0000000|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       3|condition:sex                       |SS                      |    66.1529617|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       3|condition:sex                       |MS                      |    66.1529617|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       3|condition:sex                       |F                       |     0.2982976|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       3|condition:sex                       |p                       |     0.5855728|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       4|Residuals                           |df                      |   196.0000000|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       4|Residuals                           |SS                      | 43466.5909054|Factorial ANOVA                      |
+|M4_condition_sex     |-            |       4|Residuals                           |MS                      |   221.7683209|Factorial ANOVA                      |
 
 ### Report functions
 
@@ -725,7 +250,7 @@ appear in a textbox at the bottom, next to a copy button that can be pressed to
 copy the results into your clipboard. See below for an example.
 
 <p>
-  <img src="reference/img/inspect.png" alt="inspect"/>
+  <img src="https://raw.githubusercontent.com/WillemSleegers/tidystats/master/docs/img/inspect.png" alt="inspect"/>
 </p>
 
 #### R Markdown

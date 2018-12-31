@@ -22,9 +22,6 @@
 #' model_chi_square <- chisq.test(M)
 #' tidy_stats(model_chi_square)
 #'
-#' @import tibble
-#' @import dplyr
-#'
 #' @export
 tidy_stats.htest <- function(model) {
 

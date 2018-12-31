@@ -15,6 +15,8 @@
 \examples{
 # Conduct an ANOVA
 model_aov <- aov(yield ~ block + N * P * K, npk)
+
+# Tidy stats
 tidy_stats(model_aov)
 
 }

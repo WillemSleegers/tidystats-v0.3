@@ -29,10 +29,13 @@
 ## Bugfixes
 
 * Fixed a bug that would incorrectly classify ANOVAs as One-way ANOVAs when character variables were used rather than factors.
+* Prepared for `dplyr` 0.8
 
 ## Misc
 
 * Added tests to the R package to minimize bugs.
+* Made the code and documentation more consistent
+* Added an under-the-hood helper function to rename statistics columns
 
 # tidystats 0.2
 

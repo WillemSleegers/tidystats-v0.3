@@ -87,7 +87,7 @@ describe_data <- function(data, ..., na.rm = TRUE) {
   output <- data %>%
     dplyr::summarize(
       missing  = sum(is.na(value)),
-      n        = n() - missing,
+      n        = dplyr::n() - missing,
       M        = mean(value, na.rm = na.rm),
       SD       = sd(value, na.rm = na.rm),
       SE       = SD / sqrt(n),

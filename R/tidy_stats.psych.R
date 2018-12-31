@@ -12,46 +12,55 @@
 #' # Create an empty list to store results in
 #' results <- list()
 #'
-#' # Calculate Cronbach's alpha
+#' # Example: Cronbach's alpha
 #' alpha_agreeableness <- bfi %>%
 #'   select(A1, A2, A3, A4, A5) %>%
-#'   alpha(check.keys = TRUE)
+#'   alpha(check.keys = TRUE, warnings = FALSE)
 #'
 #' # Tidy stats
 #' tidy_stats(alpha_agreeableness)
 #'
+#' # Example: Correlations
+#' cors_agreeableness <- bfi %>%
+#'   select(A1, A2, A3, A4, A5) %>%
+#'   corr.test()
+#'
+#' # Tidy stats
+#' tidy_stats(cors_agreeableness)
 #'
 #' @export
 tidy_stats.psych <- function(model) {
 
-  # Check the additional class
+  # Check the additional class to figure out what kind of analysis was performed
   if (class(model)[2] == 'alpha') {
-    # Extract statistics
-    output <- tibble::as_data_frame(model$total) %>%
-      dplyr::rename(
-        raw_alpha = raw_alpha,
-        std_alpha = std.alpha,
-        G6 = `G6(smc)`,
-        signal_noise_ratio = `S/N`,
-        alpha_standard_error = ase,
-        M = mean,
-        SD = sd
-      ) %>%
-      dplyr::mutate(
-        order = 1:n(),
-        raw_alpha_lower = raw_alpha - 1.96 * alpha_standard_error,
-        raw_alpha_upper = raw_alpha + 1.96 * alpha_standard_error
-      ) %>%
+
+    # Convert model output to a data frame
+    output <- tibble::as_data_frame(model$total)
+
+    # Add lower and upper limits of raw alpha
+    output <- output %>%
+      mutate(
+        `raw alpha (lower)` = raw_alpha - 1.96 * ase,
+        `raw alpha (upper)` = raw_alpha + 1.96 * ase
+      )
+
+    # Rename columns
+    output <- rename_columns(output)
+
+    # Tidy stats
+    output <- output %>%
+      dplyr::mutate(order = 1:dplyr::n()) %>%
       tidyr::gather("statistic", "value", -order) %>%
       dplyr::arrange(order) %>%
       dplyr::select(-order)
+
     # Not included:
-    # - reliability if an item is dropped
-    # - item statistics
+    # - Teliability if an item is dropped
+    # - Item statistics
     # - Non missing response frequency for each item
 
     # Add method
-    output$method <- "alpha {psych}"
+    output <- dplyr::mutate(output, method = "alpha {psych}")
   } else if (class(model)[2] == "corr.test") {
     # Get call information
     call <- as.character(model$Call)
@@ -147,19 +156,24 @@ tidy_stats.psych <- function(model) {
     # Add model information
     if (!is.na(call["method"])) {
       if (call["method"] == "spearman") {
-        output$method <- "Spearman's rank correlation rho {psych}"
+        output <- dplyr::mutate(output,
+          method = "Spearman's rank correlation rho {psych}")
       } else if (call["method"] == "kendall") {
-        output$method <- "Kendall's rank correlation tau {psych}"
+        output <- dplyr::mutate(output,
+          method = "Kendall's rank correlation tau {psych}")
       } else {
-        output$method <- "Pearson's product-moment correlation {psych}"
+        output <- dplyr::mutate(output,
+          method = "Pearson's product-moment correlation {psych}")
       }
     } else {
-      output$method <- "Pearson's product-moment correlation {psych}"
+      output <- dplyr::mutate(output,
+        method = "Pearson's product-moment correlation {psych}")
     }
 
     # Add notes
     if (model$adjust != "none") {
-      output$notes <- paste(model$adjust, "multiple test adjustment")
+      output <- dplyr::mutate(output, notes = paste(model$adjust,
+        "multiple test adjustment"))
     }
 
     output <- tibble::as_data_frame(output) %>%

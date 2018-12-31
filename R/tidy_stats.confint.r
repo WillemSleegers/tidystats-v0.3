@@ -7,12 +7,11 @@
 #' @details This method should not be called directly.
 #'
 #' @export
-
 tidy_stats.confint <- function(model) {
   output <- as.data.frame(model) %>% # as_data_frame() throws an error
     dplyr::mutate(
       term = rownames(model),
-      order = 1:n()
+      order = 1:dplyr::n()
       ) %>%
     tidyr::gather("statistic", "value", -term, -order) %>%
     dplyr::arrange(order) %>%

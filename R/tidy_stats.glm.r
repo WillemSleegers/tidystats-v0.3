@@ -6,7 +6,6 @@
 #' @param model Output of \code{glm()}.
 #'
 #' @examples
-#'
 #' # Get data
 #' counts <- c(18,17,15,20,10,20,25,13,12)
 #' outcome <- gl(3,1,9)
@@ -19,9 +18,6 @@
 #' # Tidy stats
 #' tidy_stats(glm.D93)
 #'
-#' @import dplyr
-#' @import tidyr
-#'
 #' @export
 
 tidy_stats.glm <- function(model) {
@@ -29,42 +25,29 @@ tidy_stats.glm <- function(model) {
   # Get summary statistics
   summary <- summary(model)
 
-  # Extract statistics
+  # Convert model coefficients output to a data frame
+  output_coefficients <- summary$coefficients %>%
+    tibble::as_data_frame()
   # Not included: Descriptives of residuals, residual standard error, residual
   # degrees of freedom
 
-  # Extract coefficients
-  output_coefficients <- summary$coefficients %>%
-    tibble::as_data_frame() %>%
-    dplyr::rename(
-      b = Estimate,
-      SE = `Std. Error`
-    )
+  # Rename columns
+  output_coefficients <- rename_columns(output_coefficients)
 
-  if (model$family$family %in% c("poisson", "binomial")) {
-    output_coefficients <- output_coefficients %>%
-      dplyr::rename(
-        z = `z value`,
-        p = `Pr(>|z|)`
-      )
-  } else {
-    output_coefficients <- output_coefficients %>%
-      dplyr::rename(
-        t = `t value`,
-        p = `Pr(>|t|)`
-      )
-  }
-
+  # Set group and term information, and add degrees of freedom
   output_coefficients <- output_coefficients %>%
     dplyr::mutate(
       df = summary$df[2],
       term = names(model$coefficients),
-      term_nr = 1:n(),
-      group = "coefficients") %>%
+      term_nr = 1:dplyr::n(),
+      group = "coefficients")
+
+  # Tidy stats
+  output_coefficients <- output_coefficients %>%
     tidyr::gather("statistic", "value", -term, -term_nr, -group) %>%
     dplyr::arrange(term_nr)
 
-  # Extract model fit
+  # Extract model fit statistics and immediately tidy the statistics
   output_model <- tibble::data_frame(
     group = "model",
     statistic = c("dispersion", "null deviance", "null deviance df",

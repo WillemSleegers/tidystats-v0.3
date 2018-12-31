@@ -10,7 +10,8 @@
 \item{model}{Output of \code{anova()}.}
 }
 \description{
-\code{tidy_stats.anova} takes an anova object and converts the object to a tidy stats data frame.
+\code{tidy_stats.anova} takes an anova object and tidies the output into a
+data frame.
 }
 \examples{
 # Regression example
@@ -25,5 +26,15 @@ model_1 <- lm(weight ~ group)
 tidy_stats(anova(model_0))
 tidy_stats(anova(model_1))
 tidy_stats(anova(model_0, model_1))
+tidy_stats(anova(model_0, model_1, test = "Chisq"))
+
+# Logistic regression example
+counts <- c(18,17,15,20,10,20,25,13,12)
+outcome <- gl(3,1,9)
+treatment <- gl(3,3)
+
+glm.D93 <- glm(counts ~ outcome + treatment, family = poisson())
+
+tidy_stats(anova(glm.D93))
 
 }

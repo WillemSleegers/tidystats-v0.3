@@ -5,7 +5,6 @@
 #' @param model Output of \code{metafor::rma()}.
 #'
 #' @export
-
 tidy_stats.rma <- function(model) {
 
   # Heterogeneity statistics

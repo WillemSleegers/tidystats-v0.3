@@ -37,7 +37,7 @@ tidy_stats.lmerModLmerTest <- function(model) {
     mutate(
       statistic = "N",
       term = names(summary$ngrps),
-      term_nr = 1:n() + 1,
+      term_nr = 1:dplyr::n() + 1,
       group = "model"
     )
 
@@ -49,7 +49,7 @@ tidy_stats.lmerModLmerTest <- function(model) {
     tidyr::unite(term, grp, starts_with("var"), sep = " - ") %>%
     dplyr::mutate(
       term = stringr::str_replace_all(term, " - ?NA", ""),
-      term_nr = 1:n() + max(model_N$term_nr),
+      term_nr = 1:dplyr::n() + max(model_N$term_nr),
       group = "random"
     ) %>%
     tidyr::gather("statistic", "value", vcov, sdcor) %>%
@@ -61,19 +61,22 @@ tidy_stats.lmerModLmerTest <- function(model) {
     )) %>%
     dplyr::arrange(term_nr)
 
-  # Extract statistics of fixed effects
-  fixed <- tibble::as_data_frame(summary$coefficients) %>%
+  # Convert fixed effects statistics to a data frame
+  fixed <- tibble::as_data_frame(summary$coefficients)
+
+  # Rename columns
+  fixed <- rename_columns(fixed)
+
+  # Set group and term information
+  fixed <- fixed %>%
     dplyr::mutate(
       term = rownames(summary$coefficients),
-      term_nr = 1:n() + max(random$term_nr),
+      term_nr = 1:dplyr::n() + max(random$term_nr),
       group = "fixed"
-    ) %>%
-    dplyr::rename(
-      estimate = `Estimate`,
-      SE = `Std. Error`,
-      t = `t value`,
-      p = `Pr(>|t|)`
-    ) %>%
+    )
+
+  # Tidy stats
+  fixed <- fixed %>%
     tidyr::gather("statistic", "value", -term, -term_nr, -group) %>%
     dplyr::arrange(term_nr)
 
@@ -89,7 +92,7 @@ tidy_stats.lmerModLmerTest <- function(model) {
     dplyr::mutate(
       statistic = "r",
       group = "fixed",
-      term_nr = 1:n() + max(fixed$term_nr)
+      term_nr = 1:dplyr::n() + max(fixed$term_nr)
     )
 
   # Combine all parts of the output

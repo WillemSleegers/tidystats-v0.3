@@ -19,7 +19,7 @@ knit("README.Rmd")
 # Check examples
 devtools::run_examples()
 
-´´# Check package
+# Check package
 devtools::check()
 devtools::check(args = c('--run-donttest'))
 

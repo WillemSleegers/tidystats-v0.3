@@ -1,7 +1,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <p align="center">
-  <img src="reference/img/hex.png" width = 150 align = center alt="tidystats logo"/>
+  <img src="https://raw.githubusercontent.com/WillemSleegers/tidystats/master/docs/img/hex.png" width = 150 align = center alt="tidystats logo"/>
 </p>
 
 tidystats
@@ -181,7 +181,7 @@ appear in a textbox at the bottom, next to a copy button that can be pressed to
 copy the results into your clipboard. See below for an example.
 
 <p>
-  <img src="reference/img/inspect.png" alt="inspect"/>
+  <img src="https://raw.githubusercontent.com/WillemSleegers/tidystats/master/docs/img/inspect.png" alt="inspect"/>
 </p>
 
 #### R Markdown

@@ -1,6 +1,7 @@
 #' Create a tidy stats data frame from an anova object
 #'
-#' \code{tidy_stats.anova} takes an anova object and converts the object to a tidy stats data frame.
+#' \code{tidy_stats.anova} takes an anova object and tidies the output into a
+#' data frame.
 #'
 #' @param model Output of \code{anova()}.
 #'
@@ -17,72 +18,54 @@
 #' tidy_stats(anova(model_0))
 #' tidy_stats(anova(model_1))
 #' tidy_stats(anova(model_0, model_1))
+#' tidy_stats(anova(model_0, model_1, test = "Chisq"))
 #'
-#' @import tibble
-#' @import dplyr
-#' @import tidyr
-#' @importFrom magrittr %>%
+#' # Logistic regression example
+#' counts <- c(18,17,15,20,10,20,25,13,12)
+#' outcome <- gl(3,1,9)
+#' treatment <- gl(3,3)
+#'
+#' glm.D93 <- glm(counts ~ outcome + treatment, family = poisson())
+#'
+#' tidy_stats(anova(glm.D93))
 #'
 #' @export
 
 tidy_stats.anova <- function(model) {
 
-  # Check whether it's a one model ANOVA or multiple
-  if (!grepl("Model", attr(model, "heading")[2])) {
-    output <- tibble::as_data_frame(model) %>%
-      dplyr::mutate(
-        term = row.names(model),
-        order = 1:n()
-      ) %>%
-      dplyr::rename(
-        df = Df,
-        SS = `Sum Sq`,
-        MS = `Mean Sq`,
-        `F` = `F value`
-      ) %>%
-      dplyr::rename_if(grepl("Pr\\(", names(.)), funs(sprintf("p", .))) %>%
-      tidyr::gather("statistic", "value", -term, -order) %>%
-      dplyr::filter(!is.na(value)) %>%
-      dplyr::mutate(method = "Single model ANOVA") %>%
-      dplyr::arrange(order) %>%
-      dplyr::select(-order)
-  } else {
-    output <- tibble::as_data_frame(model) %>%
-      dplyr::mutate(order = 1:n()) %>%
-      dplyr::rename(df = Df)
+  # Convert model output to a data frame
+  output <- tibble::as_data_frame(model)
 
-    if ("AIC" %in% names(output)) {
-      output <- output %>%
-        dplyr:: mutate(
-          term = row.names(model)
-        ) %>%
-        dplyr::rename(
-          `log likelihood` = logLik,
-          `chi-squared` = Chisq,
-          `df chi-squared` = `Chi Df`,
-          p = `Pr(>Chisq)`
-        )
-    } else {
-      output <- output %>%
-        dplyr::mutate(term = strsplit(attr(model, "heading")[2], split = "\n")[[1]]) %>%
-        dplyr::rename(
-          `df residual` = `Res.Df`,
-          SS = `Sum of Sq`
-        ) %>%
-        dplyr::rename_if(grepl("Pr\\(", names(.)), funs(sprintf("p", .)))
-    }
+  # Rename columns
+  output <- rename_columns(output)
 
+  # Set term information
+  if (sum(stringr::str_detect(attr(model, "heading"), "Model [0-9]")) == 1) {
     output <- output %>%
-      tidyr::gather("statistic", "value", -term, -order) %>%
-      dplyr::filter(!is.na(value)) %>%
-      dplyr::mutate(method = "Multiple model ANOVA") %>%
-      dplyr::arrange(order) %>%
-      dplyr::select(-order)
+      dplyr::mutate(
+        term = stringr::str_split(attr(model, "heading")[2], "\n")[[1]],
+        term_nr = 1:dplyr::n()
+      )
+  } else {
+    output <- output %>%
+      dplyr::mutate(
+        term = rownames(model),
+        term_nr = 1:dplyr::n()
+      )
   }
 
+  # Tidy stats
+  output <- output %>%
+    tidyr::gather("statistic", "value", -term, -term_nr) %>%
+    dplyr::filter(!is.na(value)) %>%
+    dplyr::arrange(term_nr)
+
+  # Add method information
+  output <- dplyr::mutate(output, method = "ANOVA Table")
+
   # If it was a chi-square test on an lm model, indicate this in a notes column
-  if (grepl("Pr\\(>Chi\\)", names(model)[5])) {
-    output$notes <- "Chi-square test"
+  if (sum(stringr::str_detect(names(model), "Pr\\(>Chi\\)")) == 1) {
+    output <- dplyr::mutate(output, notes = "Chi-squared test")
   }
 
   return(output)

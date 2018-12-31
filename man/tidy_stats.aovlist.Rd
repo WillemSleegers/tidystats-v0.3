@@ -10,11 +10,14 @@
 \item{model}{Output of \code{aov()} including within-subject factors.}
 }
 \description{
-\code{tidy_stats.aovlist} takes an aovlist object and converts the object to a tidy stats data frame.
+\code{tidy_stats.aovlist} takes an aovlist object and converts the object to
+a tidy stats data frame.
 }
 \examples{
 # Conduct a within-subjects ANOVA
 model_aov_within <- aov(extra ~ group + Error(ID/group), data = sleep)
+
+# Tidy stats
 tidy_stats(model_aov_within)
 
 }

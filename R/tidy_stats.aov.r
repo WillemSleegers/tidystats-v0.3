@@ -7,34 +7,35 @@
 #' @examples
 #' # Conduct an ANOVA
 #' model_aov <- aov(yield ~ block + N * P * K, npk)
-#' tidy_stats(model_aov)
 #'
-#' @import dplyr
-#' @import tidyr
-#' @importFrom magrittr %>%
+#' # Tidy stats
+#' tidy_stats(model_aov)
 #'
 #' @export
 
 tidy_stats.aov <- function(model) {
 
-  # Extract statistics
-  output <- tibble::as_data_frame(summary(model)[[1]]) %>%
-    dplyr::rename(
-      SS = `Sum Sq`,
-      MS = `Mean Sq`,
-      `F` = `F value`,
-      df = Df,
-      p = `Pr(>F)`
-    ) %>%
+  # Convert model output to a data frame
+  output <- tibble::as_data_frame(summary(model)[[1]])
+
+  # Rename columns
+  output <- rename_columns(output)
+
+  # Set term information
+  output <- output %>%
     dplyr::mutate(
       term = row.names(data.frame(summary(model)[[1]])),
-      term_nr = 1:n()) %>%
+      term_nr = 1:n()
+    )
+
+  # Tidy stats
+  output <- output %>%
     tidyr::gather("statistic", "value", -term, -term_nr) %>%
     dplyr::filter(!is.na(value)) %>%
     dplyr::arrange(term_nr)
 
   # Remove spaces from term
-  output$term <- gsub(" ", "", output$term)
+  output <- mutate(output, term = stringr::str_replace_all(term, " ", ""))
 
   # Determine the type of ANOVA
   classes <- attr(model$terms, "dataClasses")[-1]
@@ -44,7 +45,7 @@ tidy_stats.aov <- function(model) {
     sum(classes == "factor" | classes == "character") == 2 ~ "Factorial ANOVA",
     TRUE ~ "ANOVA"
   )
-  output$method <- method
+  output <- mutate(output, method = method)
 
   # Reorder columns
   output <- dplyr::select(output, term_nr, everything())
