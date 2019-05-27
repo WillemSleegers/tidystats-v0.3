@@ -18,6 +18,9 @@
 #' notes are provided.
 #' @param class A character string to indicate which function was used to
 #' produce the output. See 'Details' for a list of supported functions.
+#' @param args An optional list of additional arguments. Can be used to specify
+#' how model results should be summarized.
+#'
 #'
 #' @examples
 #' # Create an empty list to store the results in
@@ -61,7 +64,7 @@
 #' @export
 
 add_stats.default <- function(results, output, identifier = NULL, type = NULL,
-  confirmatory = NULL, notes = NULL, class = NULL) {
+  confirmatory = NULL, notes = NULL, class = NULL, args = NULL) {
 
   # Create an identifier if it is not specified, else check whether it already
   # exists

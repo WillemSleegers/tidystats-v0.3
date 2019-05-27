@@ -22,7 +22,7 @@ tidy_stats.aovlist <- function(model) {
     as.list.data.frame() %>%
     purrr::map(as.list.data.frame) %>%
     purrr::map(as.data.frame) %>%
-    purrr::map(rownames_to_column, "term") %>%
+    purrr::map(tibble::rownames_to_column, "term") %>%
     purrr::map_df(as_tibble, .id = "group") %>%
     dplyr::mutate(term_nr = 1:dplyr::n())
 

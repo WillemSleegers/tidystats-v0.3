@@ -27,4 +27,4 @@ devtools::check(args = c('--run-donttest'))
 devtools::check_win_release()
 
 # Build tar
-build()
+devtools::build()

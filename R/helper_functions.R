@@ -8,6 +8,8 @@
 #' statistical names and renames the column if necessary. The goal is to create
 #' a naming scheme that makes statistical labels as consistent as possible.
 #'
+#' @importFrom rlang UQS
+#'
 #' @export
 rename_columns <- function(x) {
   # List of statistical labels
@@ -30,6 +32,8 @@ rename_columns <- function(x) {
     "F value" = "F",
     "F.value" = "F",
     "Pr(>F)" = "p",
+    "num Df" = "numerator df",
+    "den Df" = "denominator df",
     "Res.Df" = "denominator df",
     "Resid. Df" = "denominator df",
     "RSS" = "RSS",

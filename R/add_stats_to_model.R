@@ -103,12 +103,12 @@ add_stats_to_model <- function(results, output, identifier, class = NULL) {
 
   # If there is a 'confirmatory' column; add the same information to the new
   # rows
-  if (has_name(new_element, "confirmatory")) {
+  if (tibble::has_name(new_element, "confirmatory")) {
     new_element <- mutate(new_element, confirmatory = first(confirmatory))
   }
 
   # If there is a 'notes' column; add the same information to the new rows
-  if (has_name(new_element, "notes")) {
+  if (tibble::has_name(new_element, "notes")) {
     new_element <- mutate(new_element, notes = first(notes))
   }
 

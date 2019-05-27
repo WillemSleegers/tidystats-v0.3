@@ -19,6 +19,8 @@
 #' notes are provided.
 #' @param class A character string to indicate which function was used to
 #' produce the output. See 'Details' for a list of supported functions.
+#' @param args An optional list of additional arguments. Can be used to specify
+#' how model results should be summarized.
 #'
 #' @details Some statistical functions produce unidentifiable output, which
 #' means \code{tidystats} cannot figure out how to tidy the data. To add these
@@ -80,5 +82,5 @@
 #'
 #' @export
 add_stats <- function(results, output, identifier = NULL, type = NULL,
-  confirmatory = NULL, notes = NULL, class = NULL)
+  confirmatory = NULL, notes = NULL, class = NULL, args = NULL)
   UseMethod("add_stats", output)

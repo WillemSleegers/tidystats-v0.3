@@ -38,4 +38,4 @@
 #'
 #' @export
 
-tidy_stats <- function(model) UseMethod("tidy_stats")
+tidy_stats <- function(model, args = NULL) UseMethod("tidy_stats")

@@ -473,6 +473,55 @@ tidy_stats(psych_ICC)
 # Add stats
 results <- add_stats(results, psych_ICC)
 
+
+# Analysis: afex ----------------------------------------------------------
+
+# Load afex package
+library(afex)
+
+# Load data
+data(obk.long, package = "afex")
+
+# Perform analyses
+afex_aov_ez <- aov_ez("id", "value", obk.long, within = c("phase", "hour"),
+  between = c("treatment", "gender"), observed = "gender")
+afex_aov_car <- aov_car(value ~ treatment * gender + Error(id/(phase*hour)),
+  data = obk.long, observed = "gender")
+afex_aov_4 <- aov_4(value ~ treatment * gender + (phase*hour|id),
+  data = obk.long, observed = "gender")
+
+# Tidy stats
+tidy_stats(afex_aov_ez)
+tidy_stats(afex_aov_car)
+tidy_stats(afex_aov_4)
+
+# Load data
+data("sk2011.2")
+sk2_aff <- droplevels(sk2011.2[sk2011.2$what == "affirmation",])
+
+# Perform analysis
+sk_m1 <- mixed(response ~ instruction * inference * type +
+    (inference * type | id), sk2_aff)
+sk_m1
+
+# Tidy stats
+tidy_stats(sk_m1, args = list(summary = "lmer"))
+
+# Data analysis: afex + emmeans -------------------------------------------
+
+# Load packages
+library(afex)
+library(emmeans)
+
+# Load data
+data(sk2011.1)
+
+# Perform analysis
+a1 <- aov_ez("id", "response", sk2011.1, between = "instruction",
+  within = c("inference", "plausibility"))
+
+m1 <- emmeans(a1, ~ inference)
+
 # add_stats.data.frame() --------------------------------------------------
 
 # Create a tidy data frame
