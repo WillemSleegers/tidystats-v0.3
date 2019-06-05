@@ -5,7 +5,7 @@
 \title{Add statistical output to a tidy stats list}
 \usage{
 add_stats(results, output, identifier = NULL, type = NULL,
-  confirmatory = NULL, notes = NULL, class = NULL)
+  confirmatory = NULL, notes = NULL, class = NULL, args = NULL)
 }
 \arguments{
 \item{results}{A tidystats list.}
@@ -29,6 +29,9 @@ notes are provided.}
 
 \item{class}{A character string to indicate which function was used to
 produce the output. See 'Details' for a list of supported functions.}
+
+\item{args}{An optional list of additional arguments. Can be used to specify
+how model results should be summarized.}
 }
 \description{
 \code{add_stats} adds output to a tidystats list. It can take either the

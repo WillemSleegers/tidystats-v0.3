@@ -4,7 +4,7 @@
 \alias{tidy_stats}
 \title{Create a tidy stats data frame from a statistical output object}
 \usage{
-tidy_stats(model)
+tidy_stats(model, args = NULL)
 }
 \arguments{
 \item{model}{Output of a statistical test}

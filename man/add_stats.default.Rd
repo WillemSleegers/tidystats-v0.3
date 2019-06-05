@@ -5,7 +5,8 @@
 \title{add_stats default function}
 \usage{
 \method{add_stats}{default}(results, output, identifier = NULL,
-  type = NULL, confirmatory = NULL, notes = NULL, class = NULL)
+  type = NULL, confirmatory = NULL, notes = NULL, class = NULL,
+  args = NULL)
 }
 \arguments{
 \item{results}{A tidy stats list.}
@@ -28,6 +29,9 @@ notes are provided.}
 
 \item{class}{A character string to indicate which function was used to
 produce the output. See 'Details' for a list of supported functions.}
+
+\item{args}{An optional list of additional arguments. Can be used to specify
+how model results should be summarized.}
 }
 \description{
 \code{add_stats.default} is the default add_stats function, which takes the

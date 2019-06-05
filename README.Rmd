@@ -7,7 +7,7 @@
 tidystats
 ---------------
 
-**Authors:** [Willem Sleegers](http://willemsleegers.com/), [Arnoud Plantinga](http://www.arnoudplantinga.nl/)<br/>
+**Authors:** [Willem Sleegers](http://willemsleegers.com/)
 **License:** [MIT](https://opensource.org/licenses/MIT)
 
 `tidystats` is a package to easily create a text file containing the output of 

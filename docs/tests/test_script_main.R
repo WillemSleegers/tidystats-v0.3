@@ -507,20 +507,37 @@ sk_m1
 # Tidy stats
 tidy_stats(sk_m1, args = list(summary = "lmer"))
 
-# Data analysis: afex + emmeans -------------------------------------------
+# Analysis: emmeans -------------------------------------------------------
 
 # Load packages
-library(afex)
 library(emmeans)
 
 # Load data
-data(sk2011.1)
+pigs <- as_tibble(pigs)
 
 # Perform analysis
-a1 <- aov_ez("id", "response", sk2011.1, between = "instruction",
-  within = c("inference", "plausibility"))
+pigs.lm1 <- lm(log(conc) ~ source + factor(percent), data = pigs)
+pigs.lm1.emmeans <- emmeans(pigs.lm1, "percent")
+pigs.lm1.emmeans
 
-m1 <- emmeans(a1, ~ inference)
+mtcars.1 <- lm(mpg ~ factor(cyl) + disp + I(disp^2), data = mtcars)
+mtcars.1.emmeans <- emmeans(mtcars.1, "cyl")
+mtcars.1.emmeans
+
+noise.lm <- lm(noise ~ size * type * side, data = auto.noise)
+noise.lm.emmeans <- emmeans(noise.lm, pairwise ~ size)
+noise.lm.emmeans
+
+emm_s.t.emmeans <- emmeans(noise.lm, pairwise ~ size | type)
+emm_s.t.emmeans
+
+noise.emm.emmeans <- emmeans(noise.lm, ~ size * side * type)
+noise.emm.emmeans
+
+# Tidy stats
+tidy_stats(pigs.lm1.emmeans)
+tidy_stats(mtcars.1.emmeans)
+tidy_stats(noise.emm.emmeans)
 
 # add_stats.data.frame() --------------------------------------------------
 

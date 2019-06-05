@@ -1,3 +1,11 @@
+# tidystats 0.4
+
+## Changes
+* Added the *args* argument to `add_stats()` and `tidy_stats()`. This argument allows you to request a different set of statistics, if the particular statistical function allows it.
+
+## Features
+* Added support for the afex package.
+
 # tidystats 0.3
 
 ## Changes

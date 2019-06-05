@@ -66,7 +66,9 @@ rename_columns <- function(x) {
     "ase" = "alpha SE",
 
     "mean" = "M",
-    "sd" = "SD"
+    "sd" = "SD",
+
+    "emmean" = "EMM"
   )
 
   # Rename columns
