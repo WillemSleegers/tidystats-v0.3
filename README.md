@@ -1,7 +1,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WillemSleegers/tidystats/master/docs/img/hex.png" width = 150 align = center alt="tidystats logo"/>
+  <img src="https://raw.githubusercontent.com/WillemSleegers/tidystats-v0.3/master/docs/img/hex.png" width = 150 align = center alt="tidystats logo"/>
 </p>
 
 tidystats
