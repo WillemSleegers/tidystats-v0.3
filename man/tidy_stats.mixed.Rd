@@ -14,6 +14,8 @@
 a tidy stats data frame.
 }
 \examples{
+library(afex)
+
 # Load data
 data("sk2011.2")
 sk2_aff <- droplevels(sk2011.2[sk2011.2$what == "affirmation",])
