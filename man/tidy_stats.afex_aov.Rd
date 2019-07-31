@@ -14,6 +14,8 @@
 tidy stats data frame.
 }
 \examples{
+library(afex)
+
 # Load data
 data(obk.long, package = "afex")
 

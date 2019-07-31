@@ -6,6 +6,8 @@
 #' @param model Output of afex's \code{aov_ez}, \code{aov_car}, or \code{aov_4}
 #'
 #' @examples
+#' library(afex)
+#' 
 #' # Load data
 #' data(obk.long, package = "afex")
 #'
