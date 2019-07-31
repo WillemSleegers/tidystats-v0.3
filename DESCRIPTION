@@ -31,4 +31,5 @@ Suggests:
     lme4,
     lmerTest,
     psych,
-    afex
+    afex,
+    emmeans

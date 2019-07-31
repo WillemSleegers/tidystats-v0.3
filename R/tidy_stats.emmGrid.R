@@ -6,6 +6,8 @@
 #' @param model Output of emmeans's \code{emmeans} without pairwise comparisons.
 #'
 #' @examples
+#' library(emmeans)
+#' 
 #' # Load data
 #' pigs <- emmeans::pigs
 #'

@@ -14,6 +14,8 @@
 tidy stats data frame.
 }
 \examples{
+library(emmeans)
+
 # Load data
 pigs <- emmeans::pigs
 
