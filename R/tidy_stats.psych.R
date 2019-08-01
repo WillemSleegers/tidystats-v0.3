@@ -3,6 +3,7 @@
 #' Creates a tidystats data frame for a psych's alpha object.
 #'
 #' @param model An psych alpha object
+#' @param args Unused.
 #'
 #' @examples
 #' # Load packages
@@ -29,7 +30,7 @@
 #' tidy_stats(cors_agreeableness)
 #'
 #' @export
-tidy_stats.psych <- function(model) {
+tidy_stats.psych <- function(model, args = NULL) {
 
   # Check the additional class to figure out what kind of analysis was performed
   if (class(model)[2] == 'alpha') {

@@ -4,10 +4,12 @@
 \alias{tidy_stats.lmerModLmerTest}
 \title{Create a tidy stats data frame from an lmerModLmerTest object}
 \usage{
-\method{tidy_stats}{lmerModLmerTest}(model)
+\method{tidy_stats}{lmerModLmerTest}(model, args = NULL)
 }
 \arguments{
 \item{model}{Output of lmerTest's \code{lmer()}.}
+
+\item{args}{Unused.}
 }
 \description{
 \code{tidy_stats.lmerModLmerTest} takes an lmerModLmerTest object and converts the object to a tidy stats data frame.

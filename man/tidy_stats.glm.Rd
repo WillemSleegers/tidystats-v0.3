@@ -4,10 +4,12 @@
 \alias{tidy_stats.glm}
 \title{Create a tidy stats data frame from a glm object}
 \usage{
-\method{tidy_stats}{glm}(model)
+\method{tidy_stats}{glm}(model, args = NULL)
 }
 \arguments{
 \item{model}{Output of \code{glm()}.}
+
+\item{args}{Unused.}
 }
 \description{
 \code{tidy_stats.glm} takes a glm object and converts the object to a tidy

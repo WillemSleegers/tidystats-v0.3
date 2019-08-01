@@ -5,7 +5,8 @@
 \title{add_stats matrix function}
 \usage{
 \method{add_stats}{matrix}(results, output, identifier = NULL,
-  type = NULL, confirmatory = NULL, notes = NULL, class = NULL)
+  type = NULL, confirmatory = NULL, notes = NULL, class = NULL,
+  args = NULL)
 }
 \arguments{
 \item{results}{A tidystats list.}
@@ -28,6 +29,8 @@ notes are provided.}
 
 \item{class}{A character string to indicate which function was used to
 produce the output. See 'Details' for a list of supported functions.}
+
+\item{args}{Unused.}
 }
 \description{
 \code{add_stats.matrix} is a function to add a matrix to a tidystats list.

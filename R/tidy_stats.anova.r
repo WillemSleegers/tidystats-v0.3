@@ -4,7 +4,8 @@
 #' data frame.
 #'
 #' @param model Output of \code{anova()}.
-#'
+#' @param args Unused.
+#' 
 #' @examples
 #' # Regression example
 #' ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
@@ -31,7 +32,7 @@
 #'
 #' @export
 
-tidy_stats.anova <- function(model) {
+tidy_stats.anova <- function(model, args = NULL) {
 
   # Convert model output to a data frame
   output <- tibble::as_data_frame(model)

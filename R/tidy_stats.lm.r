@@ -4,6 +4,7 @@
 #' stats data frame.
 #'
 #' @param model Output of \code{lm()}.
+#' @param args Unused.
 #'
 #' @examples
 #' # Conduct a regression
@@ -17,7 +18,7 @@
 #'
 #' @export
 
-tidy_stats.lm <- function(model) {
+tidy_stats.lm <- function(model, args = NULL) {
 
   # Get summary statistics
   summary <- summary(model)

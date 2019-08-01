@@ -8,6 +8,8 @@
 }
 \arguments{
 \item{model}{Output of afex's \code{mixed}.}
+
+\item{args}{Unused.}
 }
 \description{
 \code{tidy_stats.mixed} takes an afex mixed object and converts the object to

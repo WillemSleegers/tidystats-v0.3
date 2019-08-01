@@ -4,10 +4,12 @@
 \alias{tidy_stats.emmGrid}
 \title{Create a tidy stats data frame from an emmGrid object}
 \usage{
-\method{tidy_stats}{emmGrid}(model)
+\method{tidy_stats}{emmGrid}(model, args = NULL)
 }
 \arguments{
 \item{model}{Output of emmeans's \code{emmeans} without pairwise comparisons.}
+
+\item{args}{Unused.}
 }
 \description{
 \code{tidy_stats.emmGrid} takes an emmGrid object and converts the object to a

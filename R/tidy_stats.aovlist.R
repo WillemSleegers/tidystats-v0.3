@@ -4,7 +4,8 @@
 #' a tidy stats data frame.
 #'
 #' @param model Output of \code{aov()} including within-subject factors.
-#'
+#' @param args Unused.
+#' 
 #' @examples
 #' # Conduct a within-subjects ANOVA
 #' model_aov_within <- aov(extra ~ group + Error(ID/group), data = sleep)
@@ -14,7 +15,7 @@
 #'
 #' @export
 
-tidy_stats.aovlist <- function(model) {
+tidy_stats.aovlist <- function(model, args = NULL) {
 
   # Convert model output to a data frame and set group/term information
   output <- model %>%

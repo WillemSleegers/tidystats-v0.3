@@ -4,6 +4,7 @@
 #' tidy stats data frame.
 #'
 #' @param model Output of afex's \code{aov_ez}, \code{aov_car}, or \code{aov_4}
+#' @param args Unused
 #'
 #' @examples
 #' # Load data
@@ -18,7 +19,7 @@
 #'
 #' @export
 
-tidy_stats.afex_aov <- function(model) {
+tidy_stats.afex_aov <- function(model, args = NULL) {
 
   # Convert model output to a data frame
   output <- tibble::as_tibble(model$anova_table, rownames = "term")

@@ -4,10 +4,12 @@
 \alias{tidy_stats.afex_aov}
 \title{Create a tidy stats data frame from an afex aov object}
 \usage{
-\method{tidy_stats}{afex_aov}(model)
+\method{tidy_stats}{afex_aov}(model, args = NULL)
 }
 \arguments{
 \item{model}{Output of afex's \code{aov_ez}, \code{aov_car}, or \code{aov_4}}
+
+\item{args}{Unused}
 }
 \description{
 \code{tidy_stats.aov} takes an afex aov object and converts the object to a

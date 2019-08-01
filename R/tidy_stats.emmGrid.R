@@ -4,7 +4,8 @@
 #' tidy stats data frame.
 #'
 #' @param model Output of emmeans's \code{emmeans} without pairwise comparisons.
-#'
+#' @param args Unused.
+#' 
 #' @examples
 #' # Load data
 #' pigs <- emmeans::pigs
@@ -17,7 +18,7 @@
 #'
 #' @export
 
-tidy_stats.emmGrid <- function(model) {
+tidy_stats.emmGrid <- function(model, args = NULL) {
 
   # Convert model output to a data frame
   output <- tibble::as_tibble(model)

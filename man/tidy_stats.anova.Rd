@@ -4,10 +4,12 @@
 \alias{tidy_stats.anova}
 \title{Create a tidy stats data frame from an anova object}
 \usage{
-\method{tidy_stats}{anova}(model)
+\method{tidy_stats}{anova}(model, args = NULL)
 }
 \arguments{
 \item{model}{Output of \code{anova()}.}
+
+\item{args}{Unused.}
 }
 \description{
 \code{tidy_stats.anova} takes an anova object and tidies the output into a

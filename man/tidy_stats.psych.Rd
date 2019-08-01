@@ -4,10 +4,12 @@
 \alias{tidy_stats.psych}
 \title{tidy_stats method for psych's alpha objects}
 \usage{
-\method{tidy_stats}{psych}(model)
+\method{tidy_stats}{psych}(model, args = NULL)
 }
 \arguments{
 \item{model}{An psych alpha object}
+
+\item{args}{Unused.}
 }
 \description{
 Creates a tidystats data frame for a psych's alpha object.

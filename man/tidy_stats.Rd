@@ -8,6 +8,8 @@ tidy_stats(model, args = NULL)
 }
 \arguments{
 \item{model}{Output of a statistical test}
+
+\item{args}{Unused.}
 }
 \description{
 \code{tidy_stats} is a generic function that calls one of the specific

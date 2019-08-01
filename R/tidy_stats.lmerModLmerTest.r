@@ -3,6 +3,7 @@
 #' \code{tidy_stats.lmerModLmerTest} takes an lmerModLmerTest object and converts the object to a tidy stats data frame.
 #'
 #' @param model Output of lmerTest's \code{lmer()}.
+#' @param args Unused.
 #'
 #' @examples
 #' \donttest{
@@ -19,7 +20,7 @@
 #'
 #' @export
 
-tidy_stats.lmerModLmerTest <- function(model) {
+tidy_stats.lmerModLmerTest <- function(model, args = NULL) {
 
   # Get summary statistics
   summary <- summary(model)

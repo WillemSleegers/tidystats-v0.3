@@ -5,7 +5,8 @@
 \title{add_stats data frame function}
 \usage{
 \method{add_stats}{data.frame}(results, output, identifier = NULL,
-  type = NULL, confirmatory = NULL, notes = NULL, class = NULL)
+  type = NULL, confirmatory = NULL, notes = NULL, class = NULL,
+  args = NULL)
 }
 \arguments{
 \item{results}{A tidystats list.}
@@ -27,6 +28,8 @@ statistical tests produce notes information, which will be overwritten if
 notes are provided.}
 
 \item{class}{Unused.}
+
+\item{args}{Unused.}
 }
 \description{
 \code{add_stats.data.frame} is a function to add a tidy data frame of

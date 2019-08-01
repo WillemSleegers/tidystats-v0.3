@@ -21,6 +21,7 @@
 #' statistical tests produce notes information, which will be overwritten if
 #' notes are provided.
 #' @param class Unused.
+#' @param args Unused.
 #'
 #' @examples
 #'
@@ -39,7 +40,7 @@
 #'
 #' @export
 add_stats.data.frame <- function(results, output, identifier = NULL,
-  type = NULL, confirmatory = NULL, notes = NULL, class = NULL) {
+  type = NULL, confirmatory = NULL, notes = NULL, class = NULL, args = NULL) {
 
   # Create an identifier if it is not specified, else check whether it already
   # exists

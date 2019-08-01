@@ -3,11 +3,12 @@
 #' Creates a tidystats data frame from the output of confint.
 #'
 #' @param model The output of confint().
+#' @param args Unused.
 #'
 #' @details This method should not be called directly.
 #'
 #' @export
-tidy_stats.confint <- function(model) {
+tidy_stats.confint <- function(model, args = NULL) {
   output <- as.data.frame(model) %>% # as_data_frame() throws an error
     dplyr::mutate(
       term = rownames(model),

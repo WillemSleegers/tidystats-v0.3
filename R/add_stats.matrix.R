@@ -21,6 +21,7 @@
 #' notes are provided.
 #' @param class A character string to indicate which function was used to
 #' produce the output. See 'Details' for a list of supported functions.
+#' @param args Unused.
 #'
 #' @details Supported classes include: \code{confint}
 #'
@@ -44,7 +45,7 @@
 #'
 #' @export
 add_stats.matrix <- function(results, output, identifier = NULL, type = NULL,
-  confirmatory = NULL, notes = NULL, class = NULL) {
+  confirmatory = NULL, notes = NULL, class = NULL, args = NULL) {
 
   # Create an identifier if it is not specified, else check whether it already
   # exists
