@@ -1,0 +1,5 @@
+^README\.Rmd$
+^cran-comments\.md$
+^docs$
+^news\.md$
+^tidystats\.Rproj$
