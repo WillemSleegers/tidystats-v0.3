@@ -14,15 +14,19 @@
 tidy stats data frame.
 }
 \examples{
-library(emmeans)
+if(!requireNamespace("emmeans", quietly = TRUE)) {
 
-# Load data
-pigs <- emmeans::pigs
+  message(paste0("Package 'emmeans' is needed for this example to work. ",
+                 "Please install it."), .call = FALSE) 
+} else {
 
-# Conduct a linear regression
-pigs.lm1 <- lm(log(conc) ~ source + factor(percent), data = pigs)
-
-# Tidy stats
-tidy_stats(pigs.lm1)
-
+  # Load data
+  pigs <- emmeans::pigs
+ 
+  # Conduct a linear regression
+  pigs.lm1 <- lm(log(conc) ~ source + factor(percent), data = pigs)
+ 
+  # Tidy stats
+  tidy_stats(pigs.lm1)
+}
 }

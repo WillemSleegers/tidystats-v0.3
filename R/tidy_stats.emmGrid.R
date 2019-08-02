@@ -6,17 +6,21 @@
 #' @param model Output of emmeans's \code{emmeans} without pairwise comparisons.
 #'
 #' @examples
-#' library(emmeans)
+#' if(!requireNamespace("emmeans", quietly = TRUE)) {
 #' 
-#' # Load data
-#' pigs <- emmeans::pigs
-#'
-#' # Conduct a linear regression
-#' pigs.lm1 <- lm(log(conc) ~ source + factor(percent), data = pigs)
-#'
-#' # Tidy stats
-#' tidy_stats(pigs.lm1)
-#'
+#'   message(paste0("Package 'emmeans' is needed for this example to work. ",
+#'                  "Please install it."), .call = FALSE) 
+#' } else {
+#' 
+#'   # Load data
+#'   pigs <- emmeans::pigs
+#'  
+#'   # Conduct a linear regression
+#'   pigs.lm1 <- lm(log(conc) ~ source + factor(percent), data = pigs)
+#'  
+#'   # Tidy stats
+#'   tidy_stats(pigs.lm1)
+#' }
 #' @export
 
 tidy_stats.emmGrid <- function(model) {

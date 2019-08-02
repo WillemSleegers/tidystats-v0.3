@@ -13,13 +13,16 @@
 \code{tidy_stats.lmerModLmerTest} takes an lmerModLmerTest object and converts the object to a tidy stats data frame.
 }
 \examples{
-\donttest{
-  # Load packages
-  library(lme4)
-  library(lmerTest)
+# Check if lme4 and lmerTest packages are available
+if(!requireNamespace("lme4", quietly = TRUE) &
+   !requireNamespace("lmerTest", quietly = TRUE)) {
+
+  message(paste0("Packages 'lme4' and 'lme4Test are needed for this ",
+                 "example to work. Please install them."), .call = FALSE)
+} else {
 
   # Conduct a linear mixed model
-  model_lmerTest <- lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
+  model_lmerTest <- lmerTest::lmer(Reaction ~ Days + (Days | Subject), lme4::sleepstudy)
 
   # Tidy stats
   tidy_stats(model_lmerTest)

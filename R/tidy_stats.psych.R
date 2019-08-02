@@ -5,29 +5,33 @@
 #' @param model An psych alpha object
 #'
 #' @examples
-#' # Load packages
-#' library(psych)
-#' library(dplyr)
-#'
-#' # Create an empty list to store results in
-#' results <- list()
-#'
-#' # Example: Cronbach's alpha
-#' alpha_agreeableness <- bfi %>%
-#'   select(A1, A2, A3, A4, A5) %>%
-#'   alpha(check.keys = TRUE, warnings = FALSE)
-#'
-#' # Tidy stats
-#' tidy_stats(alpha_agreeableness)
-#'
-#' # Example: Correlations
-#' cors_agreeableness <- bfi %>%
-#'   select(A1, A2, A3, A4, A5) %>%
-#'   corr.test()
-#'
-#' # Tidy stats
-#' tidy_stats(cors_agreeableness)
-#'
+#' # Check if psych and dplyr packages are available
+#' if(!requireNamespace("psych", quietly = TRUE)) {
+#' 
+#'   message(paste0("Package 'psych' is needed for this example to work. ",
+#'                  "Please install it."), .call = FALSE)
+#' } else {
+#' 
+#'   # Create an empty list to store results in
+#'   results <- list()
+#'  
+#'   # Example: Cronbach's alpha
+#'   alpha_agreeableness <- psych::bfi %>%
+#'     dplyr::select(A1, A2, A3, A4, A5) %>%
+#'     psych::alpha(check.keys = TRUE, warnings = FALSE)
+#'  
+#'   # Tidy stats
+#'   tidy_stats(alpha_agreeableness)
+#'  
+#'   # Example: Correlations
+#'   cors_agreeableness <- psych::bfi %>%
+#'     dplyr::select(A1, A2, A3, A4, A5) %>%
+#'     psych::corr.test()
+#'  
+#'   # Tidy stats
+#'   tidy_stats(cors_agreeableness)
+#' }
+#' 
 #' @export
 tidy_stats.psych <- function(model) {
 

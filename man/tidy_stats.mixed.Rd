@@ -14,18 +14,25 @@
 a tidy stats data frame.
 }
 \examples{
-library(afex)
+\donttest{
+# Check if afex package is available
+if(!requireNamespace("afex", quietly = TRUE)) {
 
-# Load data
-data("sk2011.2")
-sk2_aff <- droplevels(sk2011.2[sk2011.2$what == "affirmation",])
+  message(paste0("Package 'afex' is needed for this example to work. ",
+                 "Please install it."), .call = FALSE)
+} else {
 
-# Perform the analysis
-sk_m1 <- mixed(response ~ instruction * inference * type +
-  (inference * type | id), sk2_aff)
+  # Load data
+  data("sk2011.2", package = "afex")
+  sk2_aff <- droplevels(sk2011.2[sk2011.2$what == "affirmation",])
 
-# Tidy stats
-tidy_stats(sk_m1) # Default ANOVA output
-tidy_stats(sk_m1, args = list(summary = "lmer")) # lmer summary
+  # Perform the analysis
+  sk_m1 <- afex::mixed(response ~ instruction * inference * type +
+                       (inference * type | id), sk2_aff)
 
+  # Tidy stats
+  tidy_stats(sk_m1) # Default ANOVA output
+  tidy_stats(sk_m1, args = list(summary = "lmer")) # lmer summary
+}
+}
 }

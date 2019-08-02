@@ -6,20 +6,27 @@
 #' @param model Output of afex's \code{mixed}.
 #'
 #' @examples
-#' library(afex)
+#' \donttest{
+#' # Check if afex package is available
+#' if(!requireNamespace("afex", quietly = TRUE)) {
 #' 
-#' # Load data
-#' data("sk2011.2")
-#' sk2_aff <- droplevels(sk2011.2[sk2011.2$what == "affirmation",])
+#'   message(paste0("Package 'afex' is needed for this example to work. ",
+#'                  "Please install it."), .call = FALSE)
+#' } else {
+#' 
+#'   # Load data
+#'   data("sk2011.2", package = "afex")
+#'   sk2_aff <- droplevels(sk2011.2[sk2011.2$what == "affirmation",])
 #'
-#' # Perform the analysis
-#' sk_m1 <- mixed(response ~ instruction * inference * type +
-#'   (inference * type | id), sk2_aff)
+#'   # Perform the analysis
+#'   sk_m1 <- afex::mixed(response ~ instruction * inference * type +
+#'                        (inference * type | id), sk2_aff)
 #'
-#' # Tidy stats
-#' tidy_stats(sk_m1) # Default ANOVA output
-#' tidy_stats(sk_m1, args = list(summary = "lmer")) # lmer summary
-#'
+#'   # Tidy stats
+#'   tidy_stats(sk_m1) # Default ANOVA output
+#'   tidy_stats(sk_m1, args = list(summary = "lmer")) # lmer summary
+#' }
+#' }
 #' @export
 
 tidy_stats.mixed <- function(model, args = NULL) {
