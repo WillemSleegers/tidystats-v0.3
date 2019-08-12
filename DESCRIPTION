@@ -27,7 +27,9 @@ Encoding: UTF-8
 RoxygenNote: 6.1.1
 LazyData: true
 Suggests: 
-  testthat,
-  lme4,
-  lmerTest,
-  psych
+    testthat,
+    lme4,
+    lmerTest,
+    psych,
+    afex,
+    emmeans

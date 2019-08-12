@@ -7,16 +7,24 @@
 #' @param args Unused
 #'
 #' @examples
-#' # Load data
-#' data(obk.long, package = "afex")
+#' # Check if afex package is available
+#' if(!requireNamespace("afex", quietly = TRUE)) {
+#' 
+#'   message(paste0("Package 'afex' is needed for this example to work. ",
+#'               "Please install it."), .call = FALSE) 
+#' } else {
 #'
-#' # Conduct an ANOVA
-#' afex_aov <- aov_4(value ~ treatment * gender + (phase * hour | id),
-#'   data = obk.long, observed = "gender")
+#'   # Load data
+#'   data(obk.long, package = "afex")
 #'
-#' # Tidy stats
-#' tidy_stats(afex_aov)
+#'   # Conduct an ANOVA
+#'   afex_aov <- afex::aov_4(value ~ treatment * gender + (phase * hour | id),
+#'                           data = obk.long, observed = "gender")
 #'
+#'   # Tidy stats
+#'   tidy_stats(afex_aov)
+#' }
+#' 
 #' @export
 
 tidy_stats.afex_aov <- function(model, args = NULL) {

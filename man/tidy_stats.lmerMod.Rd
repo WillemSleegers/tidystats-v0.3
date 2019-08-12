@@ -16,12 +16,15 @@
 a tidy stats data frame.
 }
 \examples{
-\donttest{
-  # Load package
-  library(lme4)
+# Check if lme4 package is available
+if(!requireNamespace("lme4", quietly = TRUE)) {
+
+  message(paste0("Package 'lme4' is needed for this example to work. ",
+              "Please install it."), .call = FALSE) 
+} else {
 
   # Conduct a linear mixed model
-  model_lmer <- lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
+  model_lmer <- lme4::lmer(Reaction ~ Days + (Days | Subject), lme4::sleepstudy)
 
   # Tidy stats
   tidy_stats(model_lmer)

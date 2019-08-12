@@ -15,27 +15,31 @@
 Creates a tidystats data frame for a psych's alpha object.
 }
 \examples{
-# Load packages
-library(psych)
-library(dplyr)
+# Check if psych and dplyr packages are available
+if(!requireNamespace("psych", quietly = TRUE)) {
 
-# Create an empty list to store results in
-results <- list()
+  message(paste0("Package 'psych' is needed for this example to work. ",
+                 "Please install it."), .call = FALSE)
+} else {
 
-# Example: Cronbach's alpha
-alpha_agreeableness <- bfi \%>\%
-  select(A1, A2, A3, A4, A5) \%>\%
-  alpha(check.keys = TRUE, warnings = FALSE)
-
-# Tidy stats
-tidy_stats(alpha_agreeableness)
-
-# Example: Correlations
-cors_agreeableness <- bfi \%>\%
-  select(A1, A2, A3, A4, A5) \%>\%
-  corr.test()
-
-# Tidy stats
-tidy_stats(cors_agreeableness)
+  # Create an empty list to store results in
+  results <- list()
+ 
+  # Example: Cronbach's alpha
+  alpha_agreeableness <- psych::bfi \%>\%
+    dplyr::select(A1, A2, A3, A4, A5) \%>\%
+    psych::alpha(check.keys = TRUE, warnings = FALSE)
+ 
+  # Tidy stats
+  tidy_stats(alpha_agreeableness)
+ 
+  # Example: Correlations
+  cors_agreeableness <- psych::bfi \%>\%
+    dplyr::select(A1, A2, A3, A4, A5) \%>\%
+    psych::corr.test()
+ 
+  # Tidy stats
+  tidy_stats(cors_agreeableness)
+}
 
 }
