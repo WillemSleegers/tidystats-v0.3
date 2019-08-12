@@ -4,7 +4,8 @@
 #' a tidy stats data frame.
 #'
 #' @param model Output of afex's \code{mixed}.
-#'
+#' @param args Unused.
+#' 
 #' @examples
 #' # Load data
 #' data("sk2011.2")

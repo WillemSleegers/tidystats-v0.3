@@ -4,10 +4,12 @@
 \alias{tidy_stats.htest}
 \title{Create a tidy stats data frame from an htest object}
 \usage{
-\method{tidy_stats}{htest}(model)
+\method{tidy_stats}{htest}(model, args = NULL)
 }
 \arguments{
 \item{model}{Output of \code{t.test()}.}
+
+\item{args}{Unused.}
 }
 \description{
 \code{tidy_stats.htest} takes an htest object and converts the object to a tidy stats data frame.

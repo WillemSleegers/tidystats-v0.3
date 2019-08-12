@@ -3,7 +3,8 @@
 #' \code{tidy_stats.aov} takes an aov object and converts the object to a tidy stats data frame.
 #'
 #' @param model Output of \code{aov} without within-subject factors.
-#'
+#' @param args Unused.
+#' 
 #' @examples
 #' # Conduct an ANOVA
 #' model_aov <- aov(yield ~ block + N * P * K, npk)
@@ -13,7 +14,7 @@
 #'
 #' @export
 
-tidy_stats.aov <- function(model) {
+tidy_stats.aov <- function(model, args = NULL) {
 
   # Convert model output to a data frame
   output <- tibble::as_data_frame(summary(model)[[1]])

@@ -4,6 +4,7 @@
 #' stats data frame.
 #'
 #' @param model Output of \code{glm()}.
+#' @param args Unused.
 #'
 #' @examples
 #' # Get data
@@ -20,7 +21,7 @@
 #'
 #' @export
 
-tidy_stats.glm <- function(model) {
+tidy_stats.glm <- function(model, args = NULL) {
 
   # Get summary statistics
   summary <- summary(model)

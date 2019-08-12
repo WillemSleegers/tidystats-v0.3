@@ -3,6 +3,7 @@
 #' \code{tidy_stats.htest} takes an htest object and converts the object to a tidy stats data frame.
 #'
 #' @param model Output of \code{t.test()}.
+#' @param args Unused.
 #'
 #' @examples
 #' # Conduct a t-test
@@ -23,7 +24,7 @@
 #' tidy_stats(model_chi_square)
 #'
 #' @export
-tidy_stats.htest <- function(model) {
+tidy_stats.htest <- function(model, args = NULL) {
 
   # Extract statistics
   output <- dplyr::bind_rows(

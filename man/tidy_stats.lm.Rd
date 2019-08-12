@@ -4,10 +4,12 @@
 \alias{tidy_stats.lm}
 \title{Create a tidy stats data frame from an lm object}
 \usage{
-\method{tidy_stats}{lm}(model)
+\method{tidy_stats}{lm}(model, args = NULL)
 }
 \arguments{
 \item{model}{Output of \code{lm()}.}
+
+\item{args}{Unused.}
 }
 \description{
 \code{tidy_stats.lm} takes an lm object and converts the object to a tidy

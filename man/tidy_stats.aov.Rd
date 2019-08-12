@@ -4,10 +4,12 @@
 \alias{tidy_stats.aov}
 \title{Create a tidy stats data frame from an aov object}
 \usage{
-\method{tidy_stats}{aov}(model)
+\method{tidy_stats}{aov}(model, args = NULL)
 }
 \arguments{
 \item{model}{Output of \code{aov} without within-subject factors.}
+
+\item{args}{Unused.}
 }
 \description{
 \code{tidy_stats.aov} takes an aov object and converts the object to a tidy stats data frame.

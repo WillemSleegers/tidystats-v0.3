@@ -4,6 +4,7 @@
 #' a tidy stats data frame.
 #'
 #' @param model Output of lme4's \code{lmer()}.
+#' @param args Unused.
 #'
 #' @examples
 #' \donttest{
@@ -18,7 +19,7 @@
 #' }
 #'
 #' @export
-tidy_stats.lmerMod <- function(model) {
+tidy_stats.lmerMod <- function(model, args = NULL) {
 
   # Get summary statistics
   summary <- summary(model)

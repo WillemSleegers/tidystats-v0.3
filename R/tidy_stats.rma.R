@@ -3,9 +3,10 @@
 #' \code{tidy_stats.rma} takes an rma object and converts the object to a tidy stats data frame.
 #'
 #' @param model Output of \code{metafor::rma()}.
+#' @param args Unused.
 #'
 #' @export
-tidy_stats.rma <- function(model) {
+tidy_stats.rma <- function(model, args = NULL) {
 
   # Heterogeneity statistics
 

@@ -4,10 +4,12 @@
 \alias{tidy_stats.confint}
 \title{tidy_stats method for confint output.}
 \usage{
-\method{tidy_stats}{confint}(model)
+\method{tidy_stats}{confint}(model, args = NULL)
 }
 \arguments{
 \item{model}{The output of confint().}
+
+\item{args}{Unused.}
 }
 \description{
 Creates a tidystats data frame from the output of confint.

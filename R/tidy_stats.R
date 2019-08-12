@@ -5,6 +5,7 @@
 #' (e.g., htest, lm, aov).
 #'
 #' @param model Output of a statistical test
+#' @param args Unused.
 #'
 #' @examples
 #'

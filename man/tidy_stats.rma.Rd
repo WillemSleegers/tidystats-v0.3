@@ -4,10 +4,12 @@
 \alias{tidy_stats.rma}
 \title{Create a tidy stats data frame from an rma object from the metafor package}
 \usage{
-\method{tidy_stats}{rma}(model)
+\method{tidy_stats}{rma}(model, args = NULL)
 }
 \arguments{
 \item{model}{Output of \code{metafor::rma()}.}
+
+\item{args}{Unused.}
 }
 \description{
 \code{tidy_stats.rma} takes an rma object and converts the object to a tidy stats data frame.
