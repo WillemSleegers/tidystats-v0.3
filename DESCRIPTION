@@ -32,4 +32,6 @@ Suggests:
     lmerTest,
     psych,
     afex,
-    emmeans
+    emmeans,
+    MASS,
+    nlme
