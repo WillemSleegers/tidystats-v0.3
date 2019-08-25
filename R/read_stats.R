@@ -7,28 +7,29 @@
 #' @examples
 #' results <- read_stats(system.file("results.csv", package = "tidystats"))
 #'
+#' @import dplyr
 #' @import readr
 #' @import purrr
+#' @importFrom magrittr "%>%"
 #'
 #' @export
 
 read_stats <- function(file) {
+  col_types <- cols(
+    identifier = col_character(),
+    group = col_character(),
+    term_nr = col_double(),
+    term = col_character(),
+    statistic = col_character(),
+    value = col_double(),
+    method = col_character(),
+    notes = col_character()
+  )
 
-  # Read a tidystats csv file
-  df <- readr::read_csv(file)
+  readr::read_csv(file, col_types = col_types) %>%
+    split(., .$identifier) %>%
 
-  # Split the data frame by the identifier to create a list
-  results <- split(df, df$identifier)
-
-  # Loop over each element and remove columns that are empty
-  empty_column <- function(x) {
-    sum(!is.na(x)) > 0
-  }
-
-  results <- purrr::map(results, dplyr::select_if, empty_column)
-
-  # Loop over each element and remove the identifier column
-  results <- purrr::map(results, dplyr::select, -identifier)
-
-  return(results)
+    # remove superfluous identifier column and empty columns
+    purrr::map( ~dplyr::select(.x, -identifier) %>%
+                  dplyr::select_if(~!all(is.na(.))))
 }
