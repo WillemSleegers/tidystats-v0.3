@@ -28,8 +28,8 @@ test_that("lmerTest's linear mixed models with uncorrelated terms work", {
 })
 
 test_that("lmerTest's linear mixed models with dummies work", {
+  skip_if_not_installed("nlme")
   correct <- test_results[["lmerTest_lme_dummies"]]
-
   data(Orthodont, package = "nlme")
   Orthodont$nsex <- as.numeric(Orthodont$Sex == "Male")
   Orthodont$nsexage <- with(Orthodont, nsex * age)

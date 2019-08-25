@@ -24,6 +24,7 @@ test_that("generalized linear models with a poisson family work", {
 })
 
 test_that("generalized linear models with a gaussian family work", {
+  skip_if_not_installed("MASS")
   correct <- test_results[["glm_gaussian"]]
 
   utils::data(anorexia, package = "MASS")
